@@ -113,9 +113,9 @@ def prepare_for_ft():
     data_info_dict = json.load(
         open(dataset_info_path, 'r')
     )
-    data_info_dict['mental-healer_reward-sentiment_train'] = {'file_name': train_path.split('/')[-2:]}
-    data_info_dict['mental-healer_reward-sentiment_val'] = {'file_name': val_path.split('/')[-2:]}
-    data_info_dict['mental-healer_reward-sentiment_test'] = {'file_name': test_path.split('/')[-2:]}
+    data_info_dict['mental-healer_reward-sentiment_train'] = {'file_name': '/'.join(train_path.split('/')[-2:])}
+    data_info_dict['mental-healer_reward-sentiment_val'] = {'file_name': '/'.join(val_path.split('/')[-2:])}
+    data_info_dict['mental-healer_reward-sentiment_test'] = {'file_name': '/'.join(test_path.split('/')[-2:])}
     with open(dataset_info_path, 'w') as f:
         json.dump(data_info_dict, f, indent=4)
     print(f"\n\nDataset info updated in {dataset_info_path}")
