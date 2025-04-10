@@ -109,12 +109,16 @@ def prepare_for_ft():
                 json.dump(data, f, indent=4)
 
     # load and modify the dataset info file in LLamaFactory
+    dataset_info_path = '/scratch/prj/charnu/LLaMA-Factory/data/dataset_info.json'
     data_info_dict = json.load(
-        open('/scratch/prj/charnu/LLaMA-Factory/data/dataset_info.json', 'r')
+        open(dataset_info_path, 'r')
     )
     data_info_dict['mental-healer_reward-sentiment_train'] = train_path
     data_info_dict['mental-healer_reward-sentiment_val'] = val_path
     data_info_dict['mental-healer_reward-sentiment_test'] = test_path
+    with open(dataset_info_path, 'w') as f:
+        json.dump(data_info_dict, f, indent=4)
+    print(f"\n\nDataset info updated in {dataset_info_path}")
 
     # ------------------------ prepare finetuning script ------------------------
 
