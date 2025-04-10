@@ -137,7 +137,9 @@ def prepare_for_ft():
         '/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment',
         f'{args.model}'
     )
-    os.mkdir(output_fpath)
+    if not os.path.exists(output_fpath):
+        os.mkdir(output_fpath)
+
     ft_script_template['output_dir'] = output_fpath
 
     # save the prepared finetuning script
