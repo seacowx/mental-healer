@@ -64,7 +64,7 @@ def organize_coke(data) -> tuple:
 if __name__ == '__main__':
     train_data = pd.read_csv('./train_emotion.csv')
 
-    # split train data into train and validation with 90/10 ratio
+    # NOTE: split train data into train and validation with 90/10 ratio
     train_data = train_data.sample(frac=1, random_state=42).reset_index(drop=True)
     train_data, val_data = train_data[:int(len(train_data) * 0.9)], train_data[int(len(train_data) * 0.9):]
 
