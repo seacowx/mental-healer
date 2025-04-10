@@ -143,7 +143,7 @@ def prepare_for_ft():
     ft_script_template['output_dir'] = output_fpath
 
     # save the prepared finetuning script
-    ft_script_path = os.path.join(f'../scripts/sentiment/{args.model}.yaml')
+    ft_script_path = f'../scripts/sentiment/{args.model}.yaml'
     with open(ft_script_path, 'w') as f:
         yaml.dump(ft_script_template, f)
     print(f"\n\nFinetuning script saved to {ft_script_path}")
