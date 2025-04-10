@@ -34,6 +34,7 @@ def assemble_data(data_list: list) -> list:
 
         out_data_list.append({
             'instruction': instruction,
+            'input': '',
             'output': output
         })
 
