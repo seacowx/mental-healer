@@ -100,9 +100,9 @@ def prepare_for_ft():
                 json.dump(data, f, indent=4)
 
     # save a copy to llamafactory data folder
-    train_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/train.json'
-    val_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/val.json'
-    test_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/test.json'
+    train_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/sentiment-train.json'
+    val_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/sentiment-val.json'
+    test_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/sentiment-test.json'
     for path, data in zip([train_path, val_path, test_path], [out_train_data, out_val_data, out_test_data]):
         if not os.path.exists(path):
             with open(path, 'w') as f:
