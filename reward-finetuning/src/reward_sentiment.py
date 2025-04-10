@@ -135,7 +135,7 @@ def prepare_for_ft():
     for key, val in cur_config.items():
         ft_script_template[key] = val
 
-    ft_script_template['dataset'] = train_path
+    ft_script_template['dataset'] = 'mental-healer_reward-sentiment_train'
 
     output_fpath = os.path.join(
         '/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment',
