@@ -1,0 +1,15 @@
+{
+    "anger": 550,
+    "boredom": 547,
+    "disgust": 548,
+    "fear": 549,
+    "guilt": 275,
+    "joy": 546,
+    "no-emotion": 549,
+    "pride": 546,
+    "relief": 549,
+    "sadness": 545,
+    "shame": 272,
+    "surprise": 542,
+    "trust": 548
+}
