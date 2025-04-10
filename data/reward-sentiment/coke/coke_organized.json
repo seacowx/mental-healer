@@ -1,0 +1,486 @@
+{
+    "2635116781": {
+        "context": "I almost fell off the stage when I was giving my presentation . ",
+        "emotion_label": "Fearful"
+    },
+    "2403108716": {
+        "context": "I almost fell asleep in my boring history class . ",
+        "emotion_label": "Fearful"
+    },
+    "2592187030": {
+        "context": "I was at the top of the Eiffel Tower and started to lean over the edge to see how far down it was, but my friends stopped me before I could fall . ",
+        "emotion_label": "Fearful"
+    },
+    "3027147521": {
+        "context": "I was walking up the stairs and I almost fell . ",
+        "emotion_label": "Fearful"
+    },
+    "1072985705": {
+        "context": "I also decided to go to the game today . ",
+        "emotion_label": "Sad"
+    },
+    "1327862855": {
+        "context": "I also decided to take the job . ",
+        "emotion_label": "Angry"
+    },
+    "3942660678": {
+        "context": "My boss also decided to take the day off tomorrow  . ",
+        "emotion_label": "Fearful"
+    },
+    "2732744246": {
+        "context": "I also decided to travel more and see the world  . ",
+        "emotion_label": "Fearful"
+    },
+    "2420112954": {
+        "context": "I also decided to ask her out today  . ",
+        "emotion_label": "Sad"
+    },
+    "3359478124": {
+        "context": "I also kept my old job as a backup . ",
+        "emotion_label": "Fearful"
+    },
+    "1770145864": {
+        "context": "I also wanted to try out for the soccer team . ",
+        "emotion_label": "Fearful"
+    },
+    "5168236259": {
+        "context": "I also liked the idea of working from home a few days a week . ",
+        "emotion_label": "Angry"
+    },
+    "3096750908": {
+        "context": "We were talking about our hobbies the other day and I mentioned that I liked hiking, and he also liked hiking . ",
+        "emotion_label": "Sad"
+    },
+    "1826066516": {
+        "context": "I also noticed that the door was unlocked . ",
+        "emotion_label": "Fearful"
+    },
+    "1532821742": {
+        "context": "I also noticed that my boss was acting really strange today  . ",
+        "emotion_label": "Fearful"
+    },
+    "3129890889": {
+        "context": "I also noticed that my old friend from high school was there  . ",
+        "emotion_label": "Sad"
+    },
+    "1396029154": {
+        "context": "My aunt also mentioned that she enjoyed the food and the museums  . ",
+        "emotion_label": "Sad"
+    },
+    "2277944087": {
+        "context": "I also picked up some sushi for lunch . ",
+        "emotion_label": "Fearful"
+    },
+    "4127270926": {
+        "context": "She also picked up a souvenir for me while she was there . ",
+        "emotion_label": "Fearful"
+    },
+    "1016504575": {
+        "context": "I also picked up a six-pack of beer before heading over to his place  . ",
+        "emotion_label": "Fearful"
+    },
+    "2959559390": {
+        "context": "My boss also said that I could take the rest of the day off  . ",
+        "emotion_label": "Fearful"
+    },
+    "1482067066": {
+        "context": "My aunt also said that she took a lot of pictures  . ",
+        "emotion_label": "Fearful"
+    },
+    "2200924394": {
+        "context": "We also talked about our similar taste in books  . ",
+        "emotion_label": "Fearful"
+    },
+    "5464664855": {
+        "context": "I also set up a meeting with HR to discuss my benefits . ",
+        "emotion_label": "Fearful"
+    },
+    "5787058912": {
+        "context": "I also set up a romantic evening for the two of us  . ",
+        "emotion_label": "Sad"
+    },
+    "1754584879": {
+        "context": "I stopped at the light . ",
+        "emotion_label": "Fearful"
+    },
+    "2793263846": {
+        "context": "She also stopped in London and Paris on her way home . ",
+        "emotion_label": "Angry"
+    },
+    "5605681544": {
+        "context": "The girl also stopped texting me  . ",
+        "emotion_label": "Sad"
+    },
+    "3125339941": {
+        "context": "I went out to eat with my boss and he also took my secretary . ",
+        "emotion_label": "Sad"
+    },
+    "1200221536": {
+        "context": "My aunt also took a little bit of spending money with her on the trip . ",
+        "emotion_label": "Sad"
+    },
+    "1286006633": {
+        "context": "I also took a psychology course  . ",
+        "emotion_label": "Fearful"
+    },
+    "2236285641": {
+        "context": "I also turned down the offer because I didn't want the job . ",
+        "emotion_label": "Sad"
+    },
+    "1190033937": {
+        "context": "I also bought a new car  . ",
+        "emotion_label": "Fearful"
+    },
+    "2653213579": {
+        "context": "She also turned down the promotion . ",
+        "emotion_label": "Sad"
+    },
+    "1727759102": {
+        "context": "I have an appointment with my doctor tomorrow . ",
+        "emotion_label": "Fearful"
+    },
+    "2237666028": {
+        "context": "I accept an appointment from my boss to go to his country club for lunch . ",
+        "emotion_label": "Fearful"
+    },
+    "2875990502": {
+        "context": "I have an appointment with the doctor to discuss my test results  . ",
+        "emotion_label": "Fearful"
+    },
+    "3189466981": {
+        "context": "I have accepted the job offer in New York . ",
+        "emotion_label": "Sad"
+    },
+    "1897719870": {
+        "context": "I accepted his request to be his friend on facebook . ",
+        "emotion_label": "Fearful"
+    },
+    "2902578188": {
+        "context": "I accepted his offer to go to the movies . ",
+        "emotion_label": "Sad"
+    },
+    "2135867749": {
+        "context": "I accept my boss's offer to go out to eat . ",
+        "emotion_label": "Fearful"
+    },
+    "6938120665": {
+        "context": "I was offered a promotion at work and accepted it  . ",
+        "emotion_label": "Fearful"
+    },
+    "1987034075": {
+        "context": "I have accepted your offer to come and stay with you for a week  . ",
+        "emotion_label": "Sad"
+    },
+    "2400591296": {
+        "context": "After a long discussion , I accepted my friend's offer to go on a trip together  . ",
+        "emotion_label": "Angry"
+    },
+    "3267514045": {
+        "context": "I will attend the party that my friends invited me to . ",
+        "emotion_label": "Sad"
+    },
+    "1182402402": {
+        "context": "I turned down my friends' invitations to go out because I had to finish a project for work . ",
+        "emotion_label": "Fearful"
+    },
+    "2563464376": {
+        "context": "I was invited to my friends' wedding but I didn't want to go  . ",
+        "emotion_label": "Fearful"
+    },
+    "3372813875": {
+        "context": "I have accepted my friends' invitation to go to their cabin for the weekend  . ",
+        "emotion_label": "Sad"
+    },
+    "2500978965": {
+        "context": "I accepted his invite to come over for some Netflix and chill . ",
+        "emotion_label": "Fearful"
+    },
+    "6629037515": {
+        "context": "My dad accompanied me to the airport . ",
+        "emotion_label": "Sad"
+    },
+    "3307263180": {
+        "context": "I accompany my boss on a business trip to Japan . ",
+        "emotion_label": "Angry"
+    },
+    "3125670606": {
+        "context": "I accompanied my brother to Greece for the summer  . ",
+        "emotion_label": "Sad"
+    },
+    "3116776297": {
+        "context": "My boyfriend and I are going on a road trip together . ",
+        "emotion_label": "Fearful"
+    },
+    "3422665636": {
+        "context": "I accompanied my little sister to her friends house down the street  . ",
+        "emotion_label": "Sad"
+    },
+    "3402556357": {
+        "context": "My project achieved the desired effect . ",
+        "emotion_label": "Sad"
+    },
+    "6765225566": {
+        "context": "After months of going to the gym and eating healthy, I achieved my goal weight  . ",
+        "emotion_label": "Fearful"
+    },
+    "2351335416": {
+        "context": "The athlete achieved a fantastic effect with her rigorous training schedule . ",
+        "emotion_label": "Sad"
+    },
+    "3382076044": {
+        "context": "I achieved the desired effect with the girl I talked to  . ",
+        "emotion_label": "Angry"
+    },
+    "2375710045": {
+        "context": "We achieved our goal of getting 100 signatures for the petition . ",
+        "emotion_label": "Sad"
+    },
+    "9322648338": {
+        "context": "I achieve my sales objective for the month . ",
+        "emotion_label": "Sad"
+    },
+    "2690830523": {
+        "context": "Michael Jordan achieved his objective of becoming the best basketball player in the world . ",
+        "emotion_label": "Sad"
+    },
+    "7575169810": {
+        "context": "The company achieved its goal of becoming the most valuable in the world  . ",
+        "emotion_label": "Sad"
+    },
+    "6520385489": {
+        "context": "My boss tried to acquire my company . ",
+        "emotion_label": "Angry"
+    },
+    "3327890363": {
+        "context": "I buy my boss's favorite sports team  . ",
+        "emotion_label": "Angry"
+    },
+    "2992112963": {
+        "context": "My boss has recently taken an interest in my work  . ",
+        "emotion_label": "Fearful"
+    },
+    "3400306242": {
+        "context": "I caught my best friend's boyfriend cheating so I acquired his interest . ",
+        "emotion_label": "Fearful"
+    },
+    "3402222993": {
+        "context": "My dad is my agent . ",
+        "emotion_label": "Fearful"
+    },
+    "1171103840": {
+        "context": "My boss acts as my agent to sell my house  . ",
+        "emotion_label": "Angry"
+    },
+    "2227742765": {
+        "context": "My older sister is my travel agent and books all of my trips for me . ",
+        "emotion_label": "Angry"
+    },
+    "4367443039": {
+        "context": "My dad acts as my power of attorney . ",
+        "emotion_label": "Fearful"
+    },
+    "1370284812": {
+        "context": "I, as a manager, have to act in a capacity that I am uncomfortable with in order to appease my boss . ",
+        "emotion_label": "Angry"
+    },
+    "2356901195": {
+        "context": "I am acting in my capacity as your lawyer to advise you not to answer any more questions  . ",
+        "emotion_label": "Fearful"
+    },
+    "1634801809": {
+        "context": "I am acting in my mother's stead while she is away on business . ",
+        "emotion_label": "Fearful"
+    },
+    "4382175781": {
+        "context": "I am filling in for my boss on a conference call  . ",
+        "emotion_label": "Fearful"
+    },
+    "1810102238": {
+        "context": "I act in a way that is not like myself in order to get what I want  . ",
+        "emotion_label": "Fearful"
+    },
+    "2916446500": {
+        "context": "I'm trying to be more like my successful friend in terms of the way I dress and conduct myself in meetings  . ",
+        "emotion_label": "Sad"
+    },
+    "1224873730": {
+        "context": "I am trying to act more like my older sister  . ",
+        "emotion_label": "Sad"
+    },
+    "2610808911": {
+        "context": "I am acting in a flirty way to the new stranger  . ",
+        "emotion_label": "Fearful"
+    },
+    "1368329252": {
+        "context": "My boss acts on my behalf . ",
+        "emotion_label": "Fearful"
+    },
+    "1687621592": {
+        "context": "I have to act in front of an audience  . ",
+        "emotion_label": "Fearful"
+    },
+    "2129326803": {
+        "context": "My boss acted on my behalf and helped me get the raise I deserved . ",
+        "emotion_label": "Sad"
+    },
+    "9567355020": {
+        "context": "The president will address the nation in a televised speech tonight . ",
+        "emotion_label": "Fearful"
+    },
+    "1469500768": {
+        "context": "I give a speech to my boss's audience . ",
+        "emotion_label": "Sad"
+    },
+    "2667629728": {
+        "context": "President Obama addressed the nation in a live speech to discuss the new jobs bill  . ",
+        "emotion_label": "Fearful"
+    },
+    "2640686900": {
+        "context": "The President is addressing the nation  . ",
+        "emotion_label": "Fearful"
+    },
+    "3227731924": {
+        "context": "My uncle added me to his insurance policy . ",
+        "emotion_label": "Angry"
+    },
+    "2236917034": {
+        "context": "I add more information to her report . ",
+        "emotion_label": "Angry"
+    },
+    "3717569446": {
+        "context": "I added my husband as an authorized user on my credit card so he could get the points for the purchase . ",
+        "emotion_label": "Fearful"
+    },
+    "1739192363": {
+        "context": "I added a girl I met at the supermarket to my Facebook  . ",
+        "emotion_label": "Fearful"
+    },
+    "1994729151": {
+        "context": "I admitted she was right after we had gotten into a big argument  . ",
+        "emotion_label": "Angry"
+    },
+    "3259301939": {
+        "context": "I am going to adopt a new approach to my studies . ",
+        "emotion_label": "Fearful"
+    },
+    "2895168036": {
+        "context": "I decided to adopt my friend's study habits in college and now I'm getting better grades . ",
+        "emotion_label": "Fearful"
+    },
+    "3319390264": {
+        "context": "I am adopting a more relaxed approach to my work . ",
+        "emotion_label": "Fearful"
+    },
+    "4628087481": {
+        "context": "I adopt my friend's approach to relationships  . ",
+        "emotion_label": "Fearful"
+    },
+    "3184459566": {
+        "context": "Parliament adopts the president's policy . ",
+        "emotion_label": "Fearful"
+    },
+    "2558448086": {
+        "context": "I adopt a more lenient policy towards my employees after my boss yells at me for being too strict . ",
+        "emotion_label": "Fearful"
+    },
+    "2460327441": {
+        "context": "The company has adopted a new attendance policy . ",
+        "emotion_label": "Fearful"
+    },
+    "6512294423": {
+        "context": "I am adopting a hands-off policy with my kids  . ",
+        "emotion_label": "Fearful"
+    },
+    "1186692487": {
+        "context": "I am advancing towards my goal of becoming a doctor . ",
+        "emotion_label": "Sad"
+    },
+    "5886819562": {
+        "context": "I am walking toward my boss to talk to him about my job . ",
+        "emotion_label": "Fearful"
+    },
+    "4486935186": {
+        "context": "I accidentally dropped my phone and now the screen is cracked . ",
+        "emotion_label": "Fearful"
+    },
+    "2478764697": {
+        "context": "I have always wanted a puppy . ",
+        "emotion_label": "Fearful"
+    },
+    "2189340861": {
+        "context": "I brought the family together for Thanksgiving . ",
+        "emotion_label": "Fearful"
+    },
+    "2888668334": {
+        "context": "I bought a bike from the store . ",
+        "emotion_label": "Angry"
+    },
+    "9827472738": {
+        "context": "I need to buy a new pair of shoes . ",
+        "emotion_label": "Sad"
+    },
+    "2414265399": {
+        "context": "I accept the terms of my new job . ",
+        "emotion_label": "Fearful"
+    },
+    "2929148137": {
+        "context": "I accidentally dropped my companies latest phone prototype  . ",
+        "emotion_label": "Fearful"
+    },
+    "1482780141": {
+        "context": "I accidentally put my shirt on backwards this morning and didn't realize it until I got to work  . ",
+        "emotion_label": "Sad"
+    },
+    "2296825438": {
+        "context": "I was watching the game from the stands  . ",
+        "emotion_label": "Sad"
+    },
+    "2718998939": {
+        "context": "My church is hosting a Thanksgiving dinner for the community and I'm helping to bring together the food . ",
+        "emotion_label": "Fearful"
+    },
+    "1017020988": {
+        "context": "I bought a new bike so I could go riding with my friends on the weekends . ",
+        "emotion_label": "Fearful"
+    },
+    "2510505762": {
+        "context": "I love shopping online for new clothes and shoes . ",
+        "emotion_label": "Fearful"
+    },
+    "6209669335": {
+        "context": "I'm about to run out of gas , so I need to find a gas station soon  . ",
+        "emotion_label": "Fearful"
+    },
+    "1828881229": {
+        "context": "I have accepted an all-inclusive trip to Hawaii from my boss . ",
+        "emotion_label": "Sad"
+    },
+    "2453201613": {
+        "context": "I accidentally dropped my phone in the pool  . ",
+        "emotion_label": "Fearful"
+    },
+    "3084491836": {
+        "context": "I accept my friends request to go on a date  . ",
+        "emotion_label": "Sad"
+    },
+    "2946528155": {
+        "context": "I accidentally put milk in my coffee  . ",
+        "emotion_label": "Fearful"
+    },
+    "2383694790": {
+        "context": "I brought together my old friends from high school  . ",
+        "emotion_label": "Sad"
+    },
+    "9144948006": {
+        "context": "I bought a bike from a second-hand store  . ",
+        "emotion_label": "Fearful"
+    },
+    "1189933059": {
+        "context": "I continued to drive even though I was lost  . ",
+        "emotion_label": "Fearful"
+    },
+    "2506673166": {
+        "context": "I buy the bike from the bike shop  . ",
+        "emotion_label": "Joyful"
+    }
+}

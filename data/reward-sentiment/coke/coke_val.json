@@ -1,0 +1,3598 @@
+{
+    "2949915774": {
+        "context": "I let my friends borrow my car, and I'm thinking that i am going to trust them to not wreck it.",
+        "emotion_label": "joyful"
+    },
+    "5484490553": {
+        "context": "I am going to bring my laptop to the show so I can keep an eye on my email, and I'm thinking that i will be able to get a lot of work done while i am there.",
+        "emotion_label": "joyful"
+    },
+    "3054048941": {
+        "context": "I asked her dad if I could marry his daughter, and I'm thinking that he will say no.",
+        "emotion_label": "sad"
+    },
+    "1753300998": {
+        "context": "I asked my kids if they were interested in going on a trip to Europe with me, and I'm thinking that they will say no.",
+        "emotion_label": "fearful"
+    },
+    "5067158669": {
+        "context": "I asked my doctor what medication she wanted me to take, and I'm thinking that it will be expensive.",
+        "emotion_label": "fearful"
+    },
+    "1814444115": {
+        "context": "I agree to go on a date with the new guy, and I'm thinking that here is potential for a relationship.",
+        "emotion_label": "joyful"
+    },
+    "1294560820": {
+        "context": "The doctor assured me that the test results would be negative, and I'm thinking that he could be wrong.",
+        "emotion_label": "fearful"
+    },
+    "1199999722": {
+        "context": "The news about the outbreak is affecting people's mental health, and I'm thinking that people will be even more anxious.",
+        "emotion_label": "sad"
+    },
+    "4315779846": {
+        "context": "I am biding my time until my next vacation, and I'm thinking that i am going to have a blast.",
+        "emotion_label": "joyful"
+    },
+    "1723575343": {
+        "context": "I asked my husband if he wanted to go on a trip with me to visit our families, and I'm thinking that would be a great bonding experience for us.",
+        "emotion_label": "joyful"
+    },
+    "9490220665": {
+        "context": "I bowed my head at the funeral, and I'm thinking that i will see the deceased 's face.",
+        "emotion_label": "fearful"
+    },
+    "1443886924": {
+        "context": "I was really affected by the 9/11 terrorist attacks, and I'm thinking that our country will be forever changed.",
+        "emotion_label": "fearful"
+    },
+    "3306313636": {
+        "context": "I was playing tennis with my friends when I broke my hip, and I'm thinking that hat i have recovered well.",
+        "emotion_label": "joyful"
+    },
+    "2140524079": {
+        "context": "I asked my daughter how her trip to England was, and I'm thinking that she lost the bags.",
+        "emotion_label": "sad"
+    },
+    "6653984693": {
+        "context": "I accomplished my goal of fitness, and I'm thinking that i will get fatter .",
+        "emotion_label": "fearful"
+    },
+    "1828259787": {
+        "context": "I bought souvenirs for my family when I was in Mexico, and I'm thinking that i would overspend my budget.",
+        "emotion_label": "fearful"
+    },
+    "2470722717": {
+        "context": "The economic recession has affected my family in many ways, and I'm thinking that we may not recover from it.",
+        "emotion_label": "fearful"
+    },
+    "1300293970": {
+        "context": "I agree to go on a date with the person I met at the bar, and I'm thinking that he may be a serial killer.",
+        "emotion_label": "fearful"
+    },
+    "2791376718": {
+        "context": "My little sister always takes my opinion into account when she is planning her vacation, and I'm thinking that i will be asked to go with her even if i do not want to.",
+        "emotion_label": "angry"
+    },
+    "1946415124": {
+        "context": "My boss is going to assist me in making a report for work, and I'm thinking that he will think i am incompetent.",
+        "emotion_label": "fearful"
+    },
+    "1452052855": {
+        "context": "I allocate my time efficiently, and I'm thinking that i will get a lot accomplished today.",
+        "emotion_label": "joyful"
+    },
+    "4186832848": {
+        "context": "I asked my teacher a question in class, and I'm thinking that he thought i was paying attention.",
+        "emotion_label": "joyful"
+    },
+    "2647460585": {
+        "context": "I asked my friend if she had seen my black umbrella, and I'm thinking that he  has it.",
+        "emotion_label": "joyful"
+    },
+    "8760480485": {
+        "context": "I bake my own bread, and I'm thinking that i did it all by myself.",
+        "emotion_label": "joyful"
+    },
+    "2916081065": {
+        "context": "After the war finally ended, the people of the village were able to start farming again and they turned their weapons into farming tools, and I'm thinking that he people can finally start living in peace.",
+        "emotion_label": "joyful"
+    },
+    "2986140026": {
+        "context": "My dad always told me to never give up on my dreams, and I'm thinking that he was right.",
+        "emotion_label": "joyful"
+    },
+    "2767852823": {
+        "context": "I wanted to get a new car, so I saved up and finally bought one, and I'm thinking that i need it to get to work.",
+        "emotion_label": "joyful"
+    },
+    "1429454051": {
+        "context": "I asked my best friend to come with me to my college graduation, and I'm thinking that she won't be able to make it.",
+        "emotion_label": "sad"
+    },
+    "3234328793": {
+        "context": "I assure you that the bride will be beautiful on her wedding day, and I'm thinking that i helped in some way.",
+        "emotion_label": "joyful"
+    },
+    "8740640868": {
+        "context": "I asked my friend for relationship advice since they've been together for so long, and I'm thinking that they will say i'm not good enough.",
+        "emotion_label": "fearful"
+    },
+    "3558249003": {
+        "context": "I asked my boss if he liked the restaurant I took him to, and I'm thinking that he did.",
+        "emotion_label": "love"
+    },
+    "2813100706": {
+        "context": "I backed into my friends car, and I'm thinking that hey will understand.",
+        "emotion_label": "joyful"
+    },
+    "1736650304": {
+        "context": "The teacher assures the students that the material will be on the test, and I'm thinking that the students will not study.",
+        "emotion_label": "fearful"
+    },
+    "9992985287": {
+        "context": "I fell off my skateboard and broke my back, and I'm thinking that i will have to be in a wheelchair for the rest of my life.",
+        "emotion_label": "sad"
+    },
+    "1394402386": {
+        "context": "I was backing out of my driveway the other day and hit my neighbor's car, and I'm thinking that he is going to be really mad.",
+        "emotion_label": "fearful"
+    },
+    "9539138670": {
+        "context": "I achieved my goal of running a marathon, and I'm thinking that i will never be able to run that far again.",
+        "emotion_label": "sad"
+    },
+    "2283608349": {
+        "context": "I aroused my boss' interest with my new project proposal, and I'm thinking that he will think it's stupid.",
+        "emotion_label": "fearful"
+    },
+    "1553666036": {
+        "context": "I used my friend's car to get to the party, and I'm thinking that i will be able to get home safely.",
+        "emotion_label": "joyful"
+    },
+    "7745965329": {
+        "context": "He achieved his lifelong dream of captaining a ship, and I'm thinking that he will be lost at sea.",
+        "emotion_label": "fearful"
+    },
+    "7104743846": {
+        "context": "My dad backs my car into the driveway, and I'm thinking that he is going to hit the house.",
+        "emotion_label": "fearful"
+    },
+    "1975852512": {
+        "context": "I went to my friends room to study together, and I'm thinking that we should have studied more.",
+        "emotion_label": "joyful"
+    },
+    "2754834219": {
+        "context": "I shot my load all over the place, and I'm thinking that i may have to clean it up.",
+        "emotion_label": "angry"
+    },
+    "1231112046": {
+        "context": "I take my little sister to the park to afford her some pleasurable time outside, and I'm thinking that she will be bored.",
+        "emotion_label": "fearful"
+    },
+    "1579301370": {
+        "context": "I accomplished my goal of reading 100 books this year, and I'm thinking that i may never read that many again.",
+        "emotion_label": "fearful"
+    },
+    "2963202597": {
+        "context": "I assert my authority by telling my employees what to do, and I'm thinking that i am a terrible leader.",
+        "emotion_label": "sad"
+    },
+    "2358642167": {
+        "context": "I can't believe how much my tuition has gone up since I last looked into affording college, and I'm thinking that i won't be able to pay for it.",
+        "emotion_label": "sad"
+    },
+    "1931666554": {
+        "context": "I completed my degree in computer science so that I could get a job in the tech industry, and I'm thinking that my job prospects are bleak.",
+        "emotion_label": "sad"
+    },
+    "5459085153": {
+        "context": "I lead two groups in my church, and I'm thinking that i am helping out.",
+        "emotion_label": "joyful"
+    },
+    "1866644553": {
+        "context": "A couple who has been married for 5 years decides to adopt a child, and I'm thinking that hey will be great parents.",
+        "emotion_label": "joyful"
+    },
+    "2708112315": {
+        "context": "My boyfriend asked me to marry him on our trip to Paris, and I'm thinking that we are going to have a great life together.",
+        "emotion_label": "love"
+    },
+    "2151971811": {
+        "context": "I have to go to a lot of parent-teacher meetings because I'm a teacher, and I'm thinking that he parents appreciate my time.",
+        "emotion_label": "joyful"
+    },
+    "1563229553": {
+        "context": "I bring up my children in a conversation with my boss, and I'm thinking that he sees me as a potential leader.",
+        "emotion_label": "joyful"
+    },
+    "4134256562": {
+        "context": "My grandma asked her doctor if it was okay for her to travel with her diabetes, and I'm thinking that she will get rejected.",
+        "emotion_label": "fearful"
+    },
+    "4922282109": {
+        "context": "I accidentally sent an email to my boss that was meant for my friend, and I apologized profusely, and I'm thinking that y boss will understand the situation.",
+        "emotion_label": "joyful"
+    },
+    "7624624811": {
+        "context": "I announce my intention to   resign from my current job, and I'm thinking that i will regret it later.",
+        "emotion_label": "fearful"
+    },
+    "1471863600": {
+        "context": "I gave my mother a plant for Mother's Day, and I'm thinking that he was happy.",
+        "emotion_label": "joyful"
+    },
+    "2685252824": {
+        "context": "I appear among a group of people who are discussing the new company project, and I'm thinking that i will not understand the discussion.",
+        "emotion_label": "fearful"
+    },
+    "2136735398": {
+        "context": "My dad asked me to go on a business trip with him, and I'm thinking that i will have to work the whole time.",
+        "emotion_label": "angry"
+    },
+    "3061873909": {
+        "context": "The CEO was caught abusing his power by creating a slush fund, and I'm thinking that i will get in trouble because i work for the company.",
+        "emotion_label": "fearful"
+    },
+    "1787641169": {
+        "context": "I am working on getting my pilot's license in order to advance my career, and I'm thinking that i will never achieve my goal.",
+        "emotion_label": "fearful"
+    },
+    "1696609793": {
+        "context": "I asked my brother to teach me how to drive, and I'm thinking that he will get mad at me.",
+        "emotion_label": "angry"
+    },
+    "1713995703": {
+        "context": "my boss airs my dirty laundry in public, and I'm thinking that i will never be able to live it down.",
+        "emotion_label": "angry"
+    },
+    "1637795911": {
+        "context": "My boss asked me to have dinner with him, and I'm thinking that he wants to promote me.",
+        "emotion_label": "joyful"
+    },
+    "2002604915": {
+        "context": "I gave my mom an excuse for why I was home so late, and I'm thinking that she wouldn't believe me.",
+        "emotion_label": "fearful"
+    },
+    "2899998568": {
+        "context": "I bait my grandpa's hook when we go fishing, and I'm thinking that he will catch more fish than me.",
+        "emotion_label": "fearful"
+    },
+    "1365742615": {
+        "context": "I ask my friend for advice on how to handle my new boss, and I'm thinking that i will be rejected.",
+        "emotion_label": "sad"
+    },
+    "1789723342": {
+        "context": "I am biding my time until my next vacation, and I'm thinking that about all the fun amazing places i will get to go.",
+        "emotion_label": "joyful"
+    },
+    "2436871774": {
+        "context": "I helped my friend study for his test, and I'm thinking that he will fail.",
+        "emotion_label": "sad"
+    },
+    "3193131455": {
+        "context": "I have boarded the plane to go on my honeymoon, and I'm thinking that y life is positively going to change for the better.",
+        "emotion_label": "joyful"
+    },
+    "2211460575": {
+        "context": "I begin my search for a new job, and I'm thinking that i will have trouble finding one.",
+        "emotion_label": "fearful"
+    },
+    "9027595277": {
+        "context": "The professor asked me to write a paper on a specific topic, and I'm thinking that will be easy for me.",
+        "emotion_label": "joyful"
+    },
+    "2703576885": {
+        "context": "I break my hip after falling down the stairs at my office, and I'm thinking that i will get a big insurance payout.",
+        "emotion_label": "joyful"
+    },
+    "1628844417": {
+        "context": "I talked to my daughter about getting a cat, and I'm thinking that we will go to the shelter this weekend.",
+        "emotion_label": "joyful"
+    },
+    "2793741547": {
+        "context": "I will appear for my interview tomorrow, and I'm thinking that i will not get selected.",
+        "emotion_label": "fearful"
+    },
+    "6743511116": {
+        "context": "I asked my girlfriend what she wanted for dinner and she said she didn't know, and I'm thinking that i can choose whatever i want.",
+        "emotion_label": "joyful"
+    },
+    "1527319922": {
+        "context": "My parents asked me to let them know as soon as I book my flight for my trip to Japan, and I'm thinking that i will be getting a lot of money from them.",
+        "emotion_label": "joyful"
+    },
+    "7578099270": {
+        "context": "I asked my friend what she wanted for her birthday, and I'm thinking that i did a good job.",
+        "emotion_label": "joyful"
+    },
+    "2394325775": {
+        "context": "I asked my friend's grandmother for a recipe, and I'm thinking that he will be able to cook it.",
+        "emotion_label": "joyful"
+    },
+    "1746656482": {
+        "context": "I adopt every stray dog I see, and I'm thinking that i may never be able to find good homes for them all.",
+        "emotion_label": "sad"
+    },
+    "3240573372": {
+        "context": "I asked my husband if he wanted to go on a trip with me to visit our families, and I'm thinking that he may not want to go.",
+        "emotion_label": "fearful"
+    },
+    "1482534109": {
+        "context": "My ability to focus is affected when she's around, and I'm thinking that she genuinely cares for me .",
+        "emotion_label": "love"
+    },
+    "3015238620": {
+        "context": "The guidance counselor advised me to take more AP classes, and I'm thinking that i will get into a good college.",
+        "emotion_label": "joyful"
+    },
+    "1088904301": {
+        "context": "My parents asked me to let them know as soon as I book my flight for my trip to Japan, and I'm thinking that would give them some peace of mind.",
+        "emotion_label": "love"
+    },
+    "1135049280": {
+        "context": "I was arguing with my boss about the new project proposal, and I'm thinking that i may have jeopardized my job.",
+        "emotion_label": "fearful"
+    },
+    "6646644940": {
+        "context": "I bet my boots that I can get the job done in time, and I'm thinking that i will be laughed at.",
+        "emotion_label": "fearful"
+    },
+    "2990367570": {
+        "context": "I am brushing my teeth before bed, and I'm thinking that i will never fall asleep.",
+        "emotion_label": "sad"
+    },
+    "1413430935": {
+        "context": "My boss allows me to enter his office, and I'm thinking that he will give me a raise.",
+        "emotion_label": "surprised"
+    },
+    "1841487599": {
+        "context": "I had to apologize to my boss for being late, and I'm thinking that i will be fired.",
+        "emotion_label": "fearful"
+    },
+    "2736251606": {
+        "context": "I ask my boss to forgive me for being late to our meeting, and I'm thinking that he will say no.",
+        "emotion_label": "fearful"
+    },
+    "7368803837": {
+        "context": "My best friend argues with her boyfriend every day, and I'm thinking that i'll get to see her more often.",
+        "emotion_label": "joyful"
+    },
+    "8025852552": {
+        "context": "I ask my friend for advice on how to ask a girl out, and I'm thinking that i will be rejected .",
+        "emotion_label": "fearful"
+    },
+    "1741895671": {
+        "context": "After I put in a hard day's work, it was nice to come home to a home-cooked meal, and I'm thinking that i deserve it.",
+        "emotion_label": "joyful"
+    },
+    "1524329419": {
+        "context": "The weather forecast said that the hurricane would affect people's travel plans, and I'm thinking that y friends from out of state won't be able to come visit me.",
+        "emotion_label": "surprised"
+    },
+    "1538948393": {
+        "context": "My boss asked me to start advertising his business on my personal social media accounts, and I'm thinking that it is unethical.",
+        "emotion_label": "angry"
+    },
+    "5965416522": {
+        "context": "I put my laundry away and noticed my dog had gotten into my hamper, and I'm thinking that i will have to wash everything again.",
+        "emotion_label": "angry"
+    },
+    "7101972533": {
+        "context": "I asked the new guy's name in my class, and I'm thinking that he will think i am weird.",
+        "emotion_label": "fearful"
+    },
+    "2242616516": {
+        "context": "I form my opinion of my new boss after talking to her for the first time, and I'm thinking that hat she is very intelligent and knows what she is doing.",
+        "emotion_label": "love"
+    },
+    "9019274967": {
+        "context": "The teacher assures the students that the material will be on the test, and I'm thinking that the teacher will not hold true to their word.",
+        "emotion_label": "angry"
+    },
+    "3330452646": {
+        "context": "I am hugging my boss tightly as a sign of appreciation, and I'm thinking that he will think i am unprofessional.",
+        "emotion_label": "fearful"
+    },
+    "1957222350": {
+        "context": "I was beating the living daylights out of that guy who tried to mug me, and I'm thinking that i will get prosecuted.",
+        "emotion_label": "fearful"
+    },
+    "3053339566": {
+        "context": "I took over my mom's shift at work, and I'm thinking that i've been doing a good job.",
+        "emotion_label": "joyful"
+    },
+    "1921178318": {
+        "context": "I ask my friend to join my book club, and I'm thinking that i will be rejected.",
+        "emotion_label": "fearful"
+    },
+    "2812067395": {
+        "context": "My boss asked me to start advertising his business on my personal social media accounts, and I'm thinking that he recognizes my marketing potential.",
+        "emotion_label": "joyful"
+    },
+    "1894156307": {
+        "context": "I was really affected by the 9/11 terrorist attacks, and I'm thinking that people will think i'm a terrorist .",
+        "emotion_label": "fearful"
+    },
+    "8030354400": {
+        "context": "I arouse my boss's interest by wearing a low-cut shirt to work, and I'm thinking that he  will try to take sexual advantage of me.",
+        "emotion_label": "angry"
+    },
+    "2653664448": {
+        "context": "I have to adapt to my new environment in college, and I'm thinking that i'll never fit in.",
+        "emotion_label": "fearful"
+    },
+    "1871353187": {
+        "context": "My boss abuses his power by making us work overtime, and I'm thinking that will have to say yes.",
+        "emotion_label": "angry"
+    },
+    "1158467424": {
+        "context": "I will bring my daughter to school, and I'm thinking that he will have a great day.",
+        "emotion_label": "joyful"
+    },
+    "6966459825": {
+        "context": "My brother asked me to say hello to my cousins for him, and I'm thinking that i'm being a good sister .",
+        "emotion_label": "joyful"
+    },
+    "2740610379": {
+        "context": "I am at the bar , getting drunk, and I'm thinking that i will make a fool of myself .",
+        "emotion_label": "sad"
+    },
+    "2390008791": {
+        "context": "As my relationships with others increase, I find that I am more likely to travel, and I'm thinking that i will not be able to visit everyone as often as i want.",
+        "emotion_label": "sad"
+    },
+    "5228336517": {
+        "context": "I have a niece who bears my name, and I'm thinking that my family is continuing the cycle of abuse.",
+        "emotion_label": "angry"
+    },
+    "1140759149": {
+        "context": "I asked my friends for advice on what to see and do while I am traveling in Europe, and I'm thinking that hey will provide me with great recommendations.",
+        "emotion_label": "joyful"
+    },
+    "1130198139": {
+        "context": "My boss arrives to pick me up for a business trip, and I'm thinking that i will be fired.",
+        "emotion_label": "fearful"
+    },
+    "2835859814": {
+        "context": "I asked my friend to let me borrow his car, and I'm thinking that i will scratch it.",
+        "emotion_label": "fearful"
+    },
+    "1190102521": {
+        "context": "I just bought a new car, and I'm thinking that was a perfect choice .",
+        "emotion_label": "joyful"
+    },
+    "8419163681": {
+        "context": "I will assume full responsibility for the project, and I'm thinking that i will not be able to complete it.",
+        "emotion_label": "fearful"
+    },
+    "3277319131": {
+        "context": "I beat my best friend in a foot race for the first time, and I'm thinking that i can win any race against anyone.",
+        "emotion_label": "joyful"
+    },
+    "2929916969": {
+        "context": "I ask my boss if he could help me with a project, and I'm thinking that he will say no.",
+        "emotion_label": "fearful"
+    },
+    "2808662189": {
+        "context": "My brother asked me to say hello to my cousins for him, and I'm thinking that he misses them a lot.",
+        "emotion_label": "love"
+    },
+    "3698522236": {
+        "context": "I help my friend by giving her a job at my company, and I'm thinking that she will not do her job properly.",
+        "emotion_label": "angry"
+    },
+    "3073096836": {
+        "context": "I ask my boss's mom for help with my car, and I'm thinking that i can trust her to help me.",
+        "emotion_label": "joyful"
+    },
+    "2890200071": {
+        "context": "I asked my dad for help fixing the car, and I'm thinking that he may not know how.",
+        "emotion_label": "fearful"
+    },
+    "4993920147": {
+        "context": "I attends my boss's funeral, and I'm thinking that i will never have a boss as good as him.",
+        "emotion_label": "sad"
+    },
+    "5900401575": {
+        "context": "I ask my daughter what she wants for breakfast, and I'm thinking that hows that i care.",
+        "emotion_label": "joyful"
+    },
+    "4947561996": {
+        "context": "We are eagerly awaiting our family's arrival for Thanksgiving, and I'm thinking that our turkey will be dry .",
+        "emotion_label": "fearful"
+    },
+    "1217897577": {
+        "context": "I ask my boss's opinion on what color to paint my office walls, and I'm thinking that he'll think i'm unprofessional.",
+        "emotion_label": "fearful"
+    },
+    "7890544389": {
+        "context": "I asked the tour guide what happened to the ancient city that used to be here, and I'm thinking that she may not know.",
+        "emotion_label": "fearful"
+    },
+    "3066978379": {
+        "context": "I asked my mom if I could go to the movies, and I'm thinking that he will let me go.",
+        "emotion_label": "joyful"
+    },
+    "1239842498": {
+        "context": "I asked my friend's husband if he wanted to play tennis, and I'm thinking that we both will have fun.",
+        "emotion_label": "joyful"
+    },
+    "2722883000": {
+        "context": "I asked for my mom's opinion on my wedding dress, and I'm thinking that he nicest one i've tried on.",
+        "emotion_label": "joyful"
+    },
+    "1001151543": {
+        "context": "My mom is attending my doctor's appointment  with me, and I'm thinking that she will be disappointed in me.",
+        "emotion_label": "sad"
+    },
+    "2793538739": {
+        "context": "I give my girlfriend flowers on our anniversary, and I'm thinking that she might not appreciate the gesture.",
+        "emotion_label": "sad"
+    },
+    "3143749466": {
+        "context": "Every time I see a picture of a dog, I automatically assume it's form, and I'm thinking that i'm getting closer to getting a dog.",
+        "emotion_label": "joyful"
+    },
+    "1450035965": {
+        "context": "My friend asks me out on a date tomorrow, and I'm thinking that his could be the start of a beautiful relationship.",
+        "emotion_label": "joyful"
+    },
+    "2354770459": {
+        "context": "My parents just adopted a new kitten, and I'm thinking that the new kitten will die.",
+        "emotion_label": "sad"
+    },
+    "1785969653": {
+        "context": "I picked up the slack for my friend who was going through a rough patch, and I'm thinking that he will never repay me.",
+        "emotion_label": "angry"
+    },
+    "3339083867": {
+        "context": "My boss always tells me that I need to improve my writing skills, and I'm thinking that he values my opinion.",
+        "emotion_label": "joyful"
+    },
+    "1230361880": {
+        "context": "I apologize to my boss for coming in late, and I'm thinking that he will think i am lazy.",
+        "emotion_label": "fearful"
+    },
+    "1292144720": {
+        "context": "The questions my boss asked me were very difficult, and I'm thinking that i will be fired .",
+        "emotion_label": "fearful"
+    },
+    "2834353681": {
+        "context": "I asked my parents to make a big batch of chili for the party, and I'm thinking that hey will make it just the way i like it.",
+        "emotion_label": "joyful"
+    },
+    "1600303870": {
+        "context": "The art teacher arouses myinterest in painting, and I'm thinking that i would spend more time with art.",
+        "emotion_label": "joyful"
+    },
+    "1816922325": {
+        "context": "I am ashamed of myself and I bow my head in front of my boss, and I'm thinking that i am admitted my wrong doings.",
+        "emotion_label": "joyful"
+    },
+    "8614374629": {
+        "context": "The students crowd around the table to get a better view of the experiment, and I'm thinking that i will be stepped on.",
+        "emotion_label": "fearful"
+    },
+    "1871363816": {
+        "context": "I will agree to work on the project, and I'm thinking that would be beneficial for my career.",
+        "emotion_label": "joyful"
+    },
+    "3164004159": {
+        "context": "I am avoiding my ex's eyes, and I'm thinking that he/4she knows i am lying.",
+        "emotion_label": "fearful"
+    },
+    "2526009085": {
+        "context": "my boss airs my dirty laundry in public, and I'm thinking that i will  be  laughed  at.",
+        "emotion_label": "fearful"
+    },
+    "4839546227": {
+        "context": "I asked my daughter to help me with the dishes, and I'm thinking that she will think i am not capable.",
+        "emotion_label": "sad"
+    },
+    "6811858755": {
+        "context": "I asked my uncle for help to fix my car, and I'm thinking that he will say no and i'll have to fix it myself.",
+        "emotion_label": "fearful"
+    },
+    "1700052128": {
+        "context": "I advertised my friend's business by putting up flyers around town, and I'm thinking that she may not want me to do that.",
+        "emotion_label": "fearful"
+    },
+    "3381133777": {
+        "context": "I ask my daughter what she wants for breakfast, and I'm thinking that i make a great breakfast.",
+        "emotion_label": "joyful"
+    },
+    "1303096892": {
+        "context": "I have achieved one of my New Year's resolutions- to travel to Thailand!, and I'm thinking that will be an amazing experience.",
+        "emotion_label": "joyful"
+    },
+    "2853502589": {
+        "context": "I appear on stage with my band mates to the screaming of the audience, and I'm thinking that he performance will go well.",
+        "emotion_label": "joyful"
+    },
+    "6829127097": {
+        "context": "I ask my friend to join my book club, and I'm thinking that she will think i am asking her to do something that is not worth her time.",
+        "emotion_label": "sad"
+    },
+    "7431820462": {
+        "context": "I asked my boss to send the client the proposal by Friday, and I'm thinking that the client will not like it.",
+        "emotion_label": "fearful"
+    },
+    "6942944518": {
+        "context": "I asked my little brother to borrow his video game, and I'm thinking that he will let me play it.",
+        "emotion_label": "joyful"
+    },
+    "3163351162": {
+        "context": "I asked my friends for advice on what to see and do while I am traveling in Europe, and I'm thinking that they will just tell me what they think i want to hear.",
+        "emotion_label": "fearful"
+    },
+    "2544272134": {
+        "context": "I attend to my boss's business by doing his work for him while he is on vacation, and I'm thinking that i am going to get a raise.",
+        "emotion_label": "joyful"
+    },
+    "1174513271": {
+        "context": "Last week, John asked me to go to Homecoming with him but I said no because I don't think of him like that, and I'm thinking that john will be mad.",
+        "emotion_label": "sad"
+    },
+    "1496886778": {
+        "context": "She efficiently allocates her time between work and relaxation, and I'm thinking that he is going to be successful.",
+        "emotion_label": "joyful"
+    },
+    "3114325285": {
+        "context": "We finally reached the top of the mountain after hours of hiking, and I'm thinking that i may have gotten altitude sickness.",
+        "emotion_label": "fearful"
+    },
+    "1832958411": {
+        "context": "I found out that my habits are really affecting my health negatively, and I'm thinking that i won't be able to change them.",
+        "emotion_label": "fearful"
+    },
+    "3087878704": {
+        "context": "I have achieved my dream of becoming a doctor, and I'm thinking that i will be able to help save many lives.",
+        "emotion_label": "joyful"
+    },
+    "3400263957": {
+        "context": "The hunter aimed his rifle at the deer, and I'm thinking that he will get the deer.",
+        "emotion_label": "joyful"
+    },
+    "1754405949": {
+        "context": "I have to adapt to my new environment in college, and I'm thinking that will make so many friends.",
+        "emotion_label": "joyful"
+    },
+    "3118181115": {
+        "context": "My mom is attending my doctor's appointment  with me, and I'm thinking that the doctor will give her some bad news.",
+        "emotion_label": "angry"
+    },
+    "3099720208": {
+        "context": "My brother asked if I could help him fix his computer, and I'm thinking that he will be able to fix it himself.",
+        "emotion_label": "joyful"
+    },
+    "4070220079": {
+        "context": "I hold my friends place in line while they go to the bathroom, and I'm thinking that they won't come back.",
+        "emotion_label": "fearful"
+    },
+    "7471246111": {
+        "context": "I beat my friend in a race, and I'm thinking that i have achieved something.",
+        "emotion_label": "joyful"
+    },
+    "2734815887": {
+        "context": "I asked the tour guide what happened to the ancient city that used to be here, and I'm thinking that i will get an interesting answer .",
+        "emotion_label": "joyful"
+    },
+    "1752041033": {
+        "context": "I announce my intention to   resign from my current job, and I'm thinking that will  be  unemployed.",
+        "emotion_label": "fearful"
+    },
+    "2624321910": {
+        "context": "I asked my friend's permission to borrow his car, and I'm thinking that he said yes.",
+        "emotion_label": "joyful"
+    },
+    "1112153366": {
+        "context": "I gave my boss an explanation for why I was late, and I'm thinking that he understood what happened.",
+        "emotion_label": "joyful"
+    },
+    "1936401542": {
+        "context": "I also asked for a raise, and I'm thinking that i will be rejected .",
+        "emotion_label": "fearful"
+    },
+    "3380161590": {
+        "context": "I'm at a networking event, and I'm talking to a potential client, and I'm thinking that hows i am approachable.",
+        "emotion_label": "joyful"
+    },
+    "2120122907": {
+        "context": "I need help from my friends planning my next birthday party, and I'm thinking that will be a lot of fun.",
+        "emotion_label": "joyful"
+    },
+    "1888919429": {
+        "context": "My boss always tells me that I need to improve my writing skills, and I'm thinking that i will never be a good writer.",
+        "emotion_label": "sad"
+    },
+    "4171211991": {
+        "context": "Every time I see a picture of a dog, I automatically assume it's form, and I'm thinking that i will be alone forever.",
+        "emotion_label": "sad"
+    },
+    "3074461965": {
+        "context": "I asked my teacher for an assignment extension, and I'm thinking that i will be able to complete the work with more time.",
+        "emotion_label": "joyful"
+    },
+    "7722110984": {
+        "context": "I ask my boss if I can have the day off tomorrow, and I'm thinking that i will get the day off.",
+        "emotion_label": "joyful"
+    },
+    "6406811441": {
+        "context": "I was arguing with my boss about the new project proposal, and I'm thinking that i presented my case well.",
+        "emotion_label": "joyful"
+    },
+    "2953754557": {
+        "context": "I brag to all my friends about how I just got a raise, and I'm thinking that i will be exposed as a liar.",
+        "emotion_label": "fearful"
+    },
+    "1748475101": {
+        "context": "I will ask my friends for their opinion on my project, and I'm thinking that heir input will be very helpful.",
+        "emotion_label": "joyful"
+    },
+    "1503575094": {
+        "context": "I take out my gun and shoot at the person who is trying to break into my house, and I'm thinking that i am protecting my family inside.",
+        "emotion_label": "love"
+    },
+    "6351373171": {
+        "context": "We were waiting in line for the new iPhone, and I'm thinking that we are going to be first.",
+        "emotion_label": "joyful"
+    },
+    "1454555812": {
+        "context": "I brew my own beer at home, and I'm thinking that will taste fantastic.",
+        "emotion_label": "joyful"
+    },
+    "3070673126": {
+        "context": "I'm currently going through a divorce and although it's been hard, I'm trying to focus on being the best parent I can be for my kids, and I'm thinking that i will not be able to financially support them.",
+        "emotion_label": "fearful"
+    },
+    "5194685779": {
+        "context": "I was arguing with my boyfriend about going to the gym more often, and I'm thinking that i will get my way .",
+        "emotion_label": "joyful"
+    },
+    "2601323311": {
+        "context": "I asked Sarah on a date to see the new Avengers movie, and I'm thinking that he will say yes.",
+        "emotion_label": "joyful"
+    },
+    "3045547060": {
+        "context": "My boss asked me to have dinner with him, and I'm thinking that he wants to talk about the raise i've been wanting.",
+        "emotion_label": "joyful"
+    },
+    "3074379666": {
+        "context": "I assumed my little sister's responsibility when our parents died, and I'm thinking that i am doing the right thing.",
+        "emotion_label": "joyful"
+    },
+    "2791320831": {
+        "context": "I based my decision to change careers on my experience working in the corporate world, and I'm thinking that i am not making the right decision.",
+        "emotion_label": "fearful"
+    },
+    "8271227487": {
+        "context": "I would advise you to go on the earlier flight, and I'm thinking that your flight may be delayed.",
+        "emotion_label": "fearful"
+    },
+    "1599441401": {
+        "context": "I asked my parents to make a big batch of chili for the party, and I'm thinking that they will say no.",
+        "emotion_label": "angry"
+    },
+    "7993057954": {
+        "context": "A couple I know just adopted a baby from China, and I'm thinking that hey will be awesome parents.",
+        "emotion_label": "love"
+    },
+    "1979520464": {
+        "context": "A same-sex couple adopts a child, and I'm thinking that hey will provide a loving home.",
+        "emotion_label": "love"
+    },
+    "2041436739": {
+        "context": "I asked my neighbor if they could water my plants while I'm gone, and I'm thinking that hey will say yes.",
+        "emotion_label": "joyful"
+    },
+    "2587764655": {
+        "context": "I added a new book to my collection, and I'm thinking that will add more value to my life .",
+        "emotion_label": "joyful"
+    },
+    "4524273333": {
+        "context": "My friend is moving next week and I offered to help her pack up her stuff, and I'm thinking that i will be never invited to her new place.",
+        "emotion_label": "sad"
+    },
+    "7111798726": {
+        "context": "I asked one of my best friends to teach me how to play the piano, and I'm thinking that he will say no.",
+        "emotion_label": "fearful"
+    },
+    "2225049927": {
+        "context": "I was arguing with my boss about the new project proposal, and I'm thinking that i was right and he actually agreed with me.",
+        "emotion_label": "joyful"
+    },
+    "1504600912": {
+        "context": "He gave her flowers on their first date, and I'm thinking that the relationship will not last.",
+        "emotion_label": "fearful"
+    },
+    "2980290985": {
+        "context": "My boss announced the new intern's arrival, and I'm thinking that i will be replaced.",
+        "emotion_label": "fearful"
+    },
+    "9893668674": {
+        "context": "I took my little sister to the library because she has to do a school project on ants, and I'm thinking that i will be bored.",
+        "emotion_label": "sad"
+    },
+    "2993476404": {
+        "context": "I ask my boss for his opinion on a work-related issue, and I'm thinking that he will give me some positive feedback.",
+        "emotion_label": "joyful"
+    },
+    "5540194355": {
+        "context": "The boss will allow me access to the server room, and I'm thinking that i will not be able to do my job .",
+        "emotion_label": "fearful"
+    },
+    "1633679195": {
+        "context": "A lot of people crowd around me, straining to hear what I'm saying, and I'm thinking that i'm going to say something interesting.",
+        "emotion_label": "joyful"
+    },
+    "1559991305": {
+        "context": "My lawyer is arguing my case in front of the judge, and I'm thinking that i will not win the case.",
+        "emotion_label": "fearful"
+    },
+    "2458469255": {
+        "context": "My co-worker became my friend, and I'm thinking that i may not be able to get another friend like her.",
+        "emotion_label": "sad"
+    },
+    "2682728984": {
+        "context": "I begin my career as an accountant, and I'm thinking that i will never make enough money.",
+        "emotion_label": "sad"
+    },
+    "6872188279": {
+        "context": "After my father died , my brother assumed the responsibility of being the head of the household, and I'm thinking that he will be a great leader for our family.",
+        "emotion_label": "joyful"
+    },
+    "2667428847": {
+        "context": "The school shooting affected everyone in the community, and I'm thinking that we should be brought together by something like this.",
+        "emotion_label": "joyful"
+    },
+    "3760091356": {
+        "context": "I asked my neighbor for a cup of sugar, and I'm thinking that he will be happy to help me out.",
+        "emotion_label": "joyful"
+    },
+    "3338669059": {
+        "context": "I apologize to my boss for coming in late, and I'm thinking that he will forgive me.",
+        "emotion_label": "joyful"
+    },
+    "2092908314": {
+        "context": "I have been looking for a new job for the past few months, and I'm thinking that i will start my new job soon.",
+        "emotion_label": "joyful"
+    },
+    "1693099200": {
+        "context": "I ask my daughter what she wants for breakfast, and I'm thinking that she will never be happy with anything i make.",
+        "emotion_label": "sad"
+    },
+    "1764391999": {
+        "context": "I have achieved my travel goals for this year, and I'm thinking that it will be very difficult to top this .",
+        "emotion_label": "sad"
+    },
+    "2247376989": {
+        "context": "I am going to let my friends know about my upcoming trip to Thailand, and I'm thinking that they will be jealous.",
+        "emotion_label": "angry"
+    },
+    "2847192526": {
+        "context": "I ask my boss if he could help me with a project, and I'm thinking that he will say yes.",
+        "emotion_label": "joyful"
+    },
+    "2251608285": {
+        "context": "I asked my daughter to help me with the dishes, and I'm thinking that he will be happy to do so.",
+        "emotion_label": "joyful"
+    },
+    "2298596862": {
+        "context": "I have accomplished my goal of visiting every continent, and I'm thinking that i will feel like   i  did something great.",
+        "emotion_label": "joyful"
+    },
+    "2690265910": {
+        "context": "I asked my neighbor for a cup of sugar, and I'm thinking that she will say no.",
+        "emotion_label": "fearful"
+    },
+    "2004016611": {
+        "context": "I caught my friend's attention by waving my hand, and I'm thinking that i will  get to talk to him.",
+        "emotion_label": "joyful"
+    },
+    "2052306363": {
+        "context": "I Amend the phone service contract, and I'm thinking that i am getting a better deal.",
+        "emotion_label": "joyful"
+    },
+    "2427581530": {
+        "context": "I asked my little sister's permission to borrow her laptop, and I'm thinking that he will let me use it.",
+        "emotion_label": "joyful"
+    },
+    "2160580471": {
+        "context": "I really admire my boss's work, and I'm thinking that he is going to give me a raise.",
+        "emotion_label": "surprised"
+    },
+    "2878668034": {
+        "context": "I accidentally broke my mom's favorite vase when I was dusting it, and I'm thinking that y mom will be more happy with me if i'm honest  .",
+        "emotion_label": "joyful"
+    },
+    "5514019575": {
+        "context": "I achieve my purpose of being promoted to a manager position, and I'm thinking that y boss will approve of my work .",
+        "emotion_label": "joyful"
+    },
+    "3279734732": {
+        "context": "I pretend to be interested in sports so that my male friends will not think I am weird, and I'm thinking that they will see right through me.",
+        "emotion_label": "fearful"
+    },
+    "2433788560": {
+        "context": "I became good friends with my neighbor, and I'm thinking that he may eventually move away.",
+        "emotion_label": "sad"
+    },
+    "7396660473": {
+        "context": "I was trying to be cool and aloof like my favorite movie star, and I'm thinking that i will never be like him.",
+        "emotion_label": "sad"
+    },
+    "4876281640": {
+        "context": "I bring my grades to my mom, and I'm thinking that i will be scolded.",
+        "emotion_label": "sad"
+    },
+    "2054392001": {
+        "context": "I ask my girlfriend's mom if I can marry her daughter, and I'm thinking that i will be rejected.",
+        "emotion_label": "sad"
+    },
+    "3345371296": {
+        "context": "I am going to bring my laptop to the show so I can keep an eye on my email, and I'm thinking that i will get the email i've been waiting for.",
+        "emotion_label": "joyful"
+    },
+    "2519332480": {
+        "context": "I asked my teacher to say the answer to the question, and I'm thinking that i am going to get   an a on my upcoming test.",
+        "emotion_label": "joyful"
+    },
+    "7495526616": {
+        "context": "My friend asked me to go to homecoming with him, and I'm thinking that he is going to ask me to be his girlfriend.",
+        "emotion_label": "surprised"
+    },
+    "1709689814": {
+        "context": "I ask my girlfriend's mom if I can marry her daughter, and I'm thinking that he will say yes.",
+        "emotion_label": "love"
+    },
+    "1492401879": {
+        "context": "I bet my boots that I can get the job done in time, and I'm thinking that i have put in the extra effort.",
+        "emotion_label": "joyful"
+    },
+    "1179598080": {
+        "context": "I broadened my dating pool to include older men, and I'm thinking that i will have more success.",
+        "emotion_label": "joyful"
+    },
+    "3088439551": {
+        "context": "I add a Dollar to my bank account, and I'm thinking that i will get penalized .",
+        "emotion_label": "fearful"
+    },
+    "8557307820": {
+        "context": "I was at a networking event the other day and I met this really great guy, but I didn't catch his name, and I'm thinking that we will bumped into each other again.",
+        "emotion_label": "surprised"
+    },
+    "2611740732": {
+        "context": "The cashier asked me for my name and address, and I'm thinking that i'm going to get a sales pitch.",
+        "emotion_label": "angry"
+    },
+    "1181306383": {
+        "context": "I asked my friend's girlfriend out on a date, and I'm thinking that she will say no.",
+        "emotion_label": "fearful"
+    },
+    "4047304279": {
+        "context": "I ask my boss's opinion on what color to paint my office walls, and I'm thinking that y boss will actually listen to me.",
+        "emotion_label": "joyful"
+    },
+    "1005331227": {
+        "context": "I was trying to go to my seat in the theatre, but someone was blocking my way, and I'm thinking that i will never get to my seat.",
+        "emotion_label": "angry"
+    },
+    "2599719912": {
+        "context": "My dad always told me to never give up on my dreams, and I'm thinking that i am doing what he wanted me to do.",
+        "emotion_label": "joyful"
+    },
+    "1299895001": {
+        "context": "I grew up in the city but moved to the country to be with my partner and had to learn to live off the land, and I'm thinking that was a great adventure.",
+        "emotion_label": "surprised"
+    },
+    "3656814137": {
+        "context": "I based my research on my mom's experienced, and I'm thinking that i will get a bad grade.",
+        "emotion_label": "sad"
+    },
+    "5247008593": {
+        "context": "My friends ask me to marry her, and I'm thinking that we will be together for a long time .",
+        "emotion_label": "love"
+    },
+    "1407096535": {
+        "context": "I try to calm my boss's fears about the company's future, and I'm thinking that my boss won't believe me.",
+        "emotion_label": "sad"
+    },
+    "5960446239": {
+        "context": "I am at my brother's house and we get into a fight and I beat him up, and I'm thinking that i will be the one in the wrong .",
+        "emotion_label": "sad"
+    },
+    "1794229268": {
+        "context": "I was walking to work the other day when this strange man started following me, and I'm thinking that he just wanted to ask for directions.",
+        "emotion_label": "surprised"
+    },
+    "4465361628": {
+        "context": "My sister is going to act as my power of attorney while I'm out of the country, and I'm thinking that she will make some mistakes.",
+        "emotion_label": "fearful"
+    },
+    "1312684764": {
+        "context": "I asked my brother to teach me how to drive, and I'm thinking that he is a great teacher.",
+        "emotion_label": "joyful"
+    },
+    "4374552562": {
+        "context": "I buy the bike from the bike shop, and I'm thinking that it will break easily.",
+        "emotion_label": "fearful"
+    },
+    "3686947816": {
+        "context": "I was asking my kids about their day at school today, and I'm thinking that hey are happy .",
+        "emotion_label": "joyful"
+    },
+    "1215465759": {
+        "context": "I ask my neighbors if they know where my lost cat is, and I'm thinking that hey will have seen her.",
+        "emotion_label": "joyful"
+    },
+    "2978081033": {
+        "context": "I accomplish my goal of becoming CEO by the age of 30, and I'm thinking that i will have to work even harder.",
+        "emotion_label": "sad"
+    },
+    "1894740012": {
+        "context": "I brought my daughter to her first dance recital, and I'm thinking that he will enjoy it.",
+        "emotion_label": "love"
+    },
+    "3309483606": {
+        "context": "A mother is breastfeeding her baby, and I'm thinking that it is inappropriate in public.",
+        "emotion_label": "angry"
+    },
+    "1472455351": {
+        "context": "My mother gave me a long explanation about her travels when she was younger, and I'm thinking that i was able to understand her more.",
+        "emotion_label": "joyful"
+    },
+    "3039121348": {
+        "context": "I give my boss an explanation for why I was late to work, and I'm thinking that he will be understanding.",
+        "emotion_label": "joyful"
+    },
+    "7695014394": {
+        "context": "A couple in my neighborhood just adopted a baby  from China, and I'm thinking that i am going to be a godmother.",
+        "emotion_label": "love"
+    },
+    "1980993944": {
+        "context": "I broke my window yesterday, and I'm thinking that i'll get a new one.",
+        "emotion_label": "joyful"
+    },
+    "3131617775": {
+        "context": "I avenged my father's death by killing his murderer, and I'm thinking that i will never see my father again.",
+        "emotion_label": "sad"
+    },
+    "3360742736": {
+        "context": "My sister is arranging an interview for me with her boss, and I'm thinking that the job is going to be really difficult.",
+        "emotion_label": "fearful"
+    },
+    "1324770548": {
+        "context": "I ask my family for their opinion on a major life decision I am about to make, and I'm thinking that heir opinion is very important to me.",
+        "emotion_label": "joyful"
+    },
+    "1089681393": {
+        "context": "I apologize to my boss for coming in late, and I'm thinking that he will understand.",
+        "emotion_label": "joyful"
+    },
+    "2457578806": {
+        "context": "My boss's decision affects my interests because I do not want the job position that he offered me, and I'm thinking that i will get a better job position.",
+        "emotion_label": "joyful"
+    },
+    "2974353499": {
+        "context": "I ran into my ex's mom at the grocery store and she asked how I was doing, and I'm thinking that i am doing wonderful without him.",
+        "emotion_label": "joyful"
+    },
+    "2103240717": {
+        "context": "I became good friends with my neighbor, and I'm thinking that we would have many fun adventures together.",
+        "emotion_label": "joyful"
+    },
+    "2045717362": {
+        "context": "I take out my gun and shoot at the person who is trying to break into my house, and I'm thinking that i am saving my life .",
+        "emotion_label": "joyful"
+    },
+    "3319429786": {
+        "context": "I show everyone my new car, and I'm thinking that hey will be impressed.",
+        "emotion_label": "joyful"
+    },
+    "6677875933": {
+        "context": "I give my girlfriend flowers on our anniversary, and I'm thinking that he will be happy.",
+        "emotion_label": "joyful"
+    },
+    "1362446962": {
+        "context": "I asked my daughter how her trip to England was, and I'm thinking that he loved it very much.",
+        "emotion_label": "joyful"
+    },
+    "2437695766": {
+        "context": "I agree to go on a date with the person I met at the bar, and I'm thinking that it will be a disaster.",
+        "emotion_label": "fearful"
+    },
+    "2476726880": {
+        "context": "I broadened my dating pool to include older men, and I'm thinking that i will  be  looked  down  upon.",
+        "emotion_label": "angry"
+    },
+    "1979260118": {
+        "context": "I was batting my eyelashes and flirting with the waiter, and I'm thinking that he/she may think i am easy.",
+        "emotion_label": "fearful"
+    },
+    "1171950706": {
+        "context": "She showed us all her pictures from when she went sky diving, and I'm thinking that i am going to do that someday.",
+        "emotion_label": "surprised"
+    },
+    "6543860580": {
+        "context": "The cashier was trying to explain to me why I couldn't use my credit card, and I'm thinking that hey were being really patient with me.",
+        "emotion_label": "joyful"
+    },
+    "2460898561": {
+        "context": "After our first date , he sent me flowers at work to apologize for being late, and I'm thinking that he is going to ask me out again.",
+        "emotion_label": "joyful"
+    },
+    "2101622091": {
+        "context": "I am accompanied by my boss's wife, and I'm thinking that will be an honor to meet her.",
+        "emotion_label": "joyful"
+    },
+    "1053254519": {
+        "context": "A famous actor airs his dirty laundry in public, and I'm thinking that people will not forget his past.",
+        "emotion_label": "sad"
+    },
+    "2505289065": {
+        "context": "I attained the new girl's number at school, and I'm thinking that she will reject me.",
+        "emotion_label": "fearful"
+    },
+    "2887882954": {
+        "context": "I was arguing with my brother and I said something that just made him angry, and I'm thinking that i just ruined our relationship.",
+        "emotion_label": "sad"
+    },
+    "2778079982": {
+        "context": "I went to the store and bought myself a new outfit for my date tonight, and I'm thinking that i'll look bad no matter what i wear.",
+        "emotion_label": "sad"
+    },
+    "2584499087": {
+        "context": "I have been looking for a new job for the past few months, and I'm thinking that i will find the right job soon.",
+        "emotion_label": "joyful"
+    },
+    "1326740588": {
+        "context": "I have to accept my employees resignation because he is caught stealing from the company, and I'm thinking that i will have to do all his work by myself.",
+        "emotion_label": "sad"
+    },
+    "1951203228": {
+        "context": "I pretend to be interested in sports so that my male friends will not think I am weird, and I'm thinking that i'm doing a good job of fitting in.",
+        "emotion_label": "joyful"
+    },
+    "9007266547": {
+        "context": "I also asked for a raise, and I'm thinking that y boss might give me one.",
+        "emotion_label": "surprised"
+    },
+    "9822431030": {
+        "context": "My dad always told me to never give up on my dreams, and I'm thinking that i will achieve anything if i try hard enough .",
+        "emotion_label": "joyful"
+    },
+    "5729229053": {
+        "context": "I grew up in the city but moved to the country to be with my partner and had to learn to live off the land, and I'm thinking that i can do anything i set my mind to.",
+        "emotion_label": "joyful"
+    },
+    "1314513609": {
+        "context": "We are going to have to adapt our lesson plans to the needs of the students, and I'm thinking that i will fail the class.",
+        "emotion_label": "fearful"
+    },
+    "2116323451": {
+        "context": "I was trying to get my friend's attention, but she was too busy talking to other people, and I'm thinking that he is going to be really happy when i tell her what i wanted to say.",
+        "emotion_label": "joyful"
+    },
+    "2873765959": {
+        "context": "My father is attending to his duties as a doctor, and I'm thinking that he will be blamed .",
+        "emotion_label": "angry"
+    },
+    "2981466353": {
+        "context": "I asked my roommate if he wanted to play video games with me, and I'm thinking that he likes playing video games with me.",
+        "emotion_label": "love"
+    },
+    "1910965561": {
+        "context": "I take care of my younger sister when my parents are gone, and I'm thinking that i am a responsible person .",
+        "emotion_label": "joyful"
+    },
+    "1143716278": {
+        "context": "The military has been disbanded, and everyone is now trying to find new jobs, and I'm thinking that i will definitely find a job in environmentalism.",
+        "emotion_label": "joyful"
+    },
+    "2338315768": {
+        "context": "I babysit my younger cousin while my aunt goes out to run errands, and I'm thinking that i'm going to be stuck watching her all day.",
+        "emotion_label": "sad"
+    },
+    "2431317772": {
+        "context": "I also took out the new girl on a date, and I'm thinking that he will call me her boyfriend.",
+        "emotion_label": "love"
+    },
+    "1363994508": {
+        "context": "I asked Sarah for her number, and I'm thinking that he will say yes.",
+        "emotion_label": "joyful"
+    },
+    "2657868284": {
+        "context": "I attained my end of getting a job that my father wanted me to have, and I'm thinking that i positively made him proud.",
+        "emotion_label": "joyful"
+    },
+    "2307571002": {
+        "context": "I bared my soul to my therapist, and I'm thinking that i am ready to start processing my emotions.",
+        "emotion_label": "joyful"
+    },
+    "8253015725": {
+        "context": "I asked my date to dinner, and I'm thinking that she will say no .",
+        "emotion_label": "fearful"
+    },
+    "3349878834": {
+        "context": "My grandparents ask me if I am going to marry my high school sweetheart, and I'm thinking that getting married is the right thing to do.",
+        "emotion_label": "love"
+    },
+    "1816712340": {
+        "context": "I take on the form of my boss in order to make a point to my employees, and I'm thinking that will be outed as a fraud.",
+        "emotion_label": "fearful"
+    },
+    "1827236587": {
+        "context": "I was arguing with my boyfriend about going to the gym more often, and I'm thinking that 's important to stay healthy.",
+        "emotion_label": "joyful"
+    },
+    "1409509876": {
+        "context": "I accidentally put my credit card in the washing machine, and I'm thinking that i may never get it back.",
+        "emotion_label": "fearful"
+    },
+    "2893949913": {
+        "context": "My butler announced the queen's arrival, and I'm thinking that i will not be able to say anything intelligent.",
+        "emotion_label": "fearful"
+    },
+    "2657278304": {
+        "context": "I was out with some friends at a bar last night and I asked the bartender for the number of the cute girl that was sitting at the end of the bar, and I'm thinking that i am going to get a date.",
+        "emotion_label": "love"
+    },
+    "1779001778": {
+        "context": "My boss asked me to make a report, and I'm thinking that it's too difficult for me.",
+        "emotion_label": "sad"
+    },
+    "6830577244": {
+        "context": "I attained my boss' respect, and I'm thinking that i am going to get a raise.",
+        "emotion_label": "joyful"
+    },
+    "2977211054": {
+        "context": "I gave my mom an excuse for why I was home so late, and I'm thinking that he would believe me.",
+        "emotion_label": "joyful"
+    },
+    "1363595237": {
+        "context": "I asked my sister-in-law to watch my kids while I am out of town, and I'm thinking that y kids will be in good hands.",
+        "emotion_label": "joyful"
+    },
+    "7692221195": {
+        "context": "I have arrived in Honolulu for my vacation, and I'm thinking that i will have a lot of fun .",
+        "emotion_label": "joyful"
+    },
+    "4809108689": {
+        "context": "I asked for my boss's pardon after I accidently spilled coffee on his laptop, and I'm thinking that he will never forgive me.",
+        "emotion_label": "fearful"
+    },
+    "3293856350": {
+        "context": "My dad told me that he used to beat my grandfather at arm wrestling when they were younger, and I'm thinking that my grandfather is not as strong as he used to be.",
+        "emotion_label": "sad"
+    },
+    "3062021597": {
+        "context": "I begin my search for a new job, and I'm thinking that i will get tons of job offers.",
+        "emotion_label": "joyful"
+    },
+    "2365750258": {
+        "context": "I accomplished my goal of reading 100 books this year, and I'm thinking that i will never be able to read that many books again.",
+        "emotion_label": "fearful"
+    },
+    "1687314974": {
+        "context": "I talked to my boss about getting a raise, and he agreed and gave me a raise, and I'm thinking that he only did it because i asked.",
+        "emotion_label": "angry"
+    },
+    "2861043332": {
+        "context": "A couple I know just adopted a baby from China, and I'm thinking that hat the world is a little bit brighter now.",
+        "emotion_label": "joyful"
+    },
+    "1915371295": {
+        "context": "I am nervously biting my nails waiting for the date to start, and I'm thinking that will go well.",
+        "emotion_label": "joyful"
+    },
+    "3034072768": {
+        "context": "I will brag to my friends about my new car, and I'm thinking that i am impressing them.",
+        "emotion_label": "joyful"
+    },
+    "2063461276": {
+        "context": "I began my modeling career when I was 17, and I'm thinking that i will be considered too young and inexperienced.",
+        "emotion_label": "fearful"
+    },
+    "1439626534": {
+        "context": "I decided to go on a hike with my friends, and I'm thinking that i wouldn't be able to keep up.",
+        "emotion_label": "fearful"
+    },
+    "3351794464": {
+        "context": "I ask my boss what was wrong with my presentation, and I'm thinking that he will tell me i am not good enough.",
+        "emotion_label": "fearful"
+    },
+    "2013906810": {
+        "context": "My aunt also bought me a souvenir keychain from her trip to Italy, and I'm thinking that was a thoughtful gesture .",
+        "emotion_label": "joyful"
+    },
+    "1800098905": {
+        "context": "I give my opinions about music to my boss, and I'm thinking that i will be scolded.",
+        "emotion_label": "fearful"
+    },
+    "1951376980": {
+        "context": "I asked my friend for relationship advice since they've been together for so long, and I'm thinking that heir next giving me the most positive answer out of anyone i've asked.",
+        "emotion_label": "joyful"
+    },
+    "3203802636": {
+        "context": "I asked my boss for a raise, and I'm thinking that he will give me a promotion .",
+        "emotion_label": "joyful"
+    },
+    "1816110456": {
+        "context": "I brought home my ex-boyfriend's dog because he was moving out of the country and couldn't take her with him, and I'm thinking that my current boyfriend will be mad.",
+        "emotion_label": "fearful"
+    },
+    "2275240944": {
+        "context": "I brought my date back to my place after the movie, and I'm thinking that we will have a great time.",
+        "emotion_label": "joyful"
+    },
+    "3598142854": {
+        "context": "My best friend caught me cheating and I asked him to forgive me, and I'm thinking that he will not forgive me.",
+        "emotion_label": "sad"
+    },
+    "5876842285": {
+        "context": "The school shooting affected everyone in the community, and I'm thinking that i will be the next victim.",
+        "emotion_label": "fearful"
+    },
+    "2736712576": {
+        "context": "I tell my boss about my personal life in order to gain his trust, and I'm thinking that he will gossip about it to other colleagues.",
+        "emotion_label": "angry"
+    },
+    "2388743236": {
+        "context": "The board of directors accepted the CEO's resignation, and I'm thinking that i'm going to get a big bonus.",
+        "emotion_label": "joyful"
+    },
+    "2637193850": {
+        "context": "I ask my boss to visit my hometown with me, and I'm thinking that he might get to know me better.",
+        "emotion_label": "joyful"
+    },
+    "1934952384": {
+        "context": "I talked to my boss about getting a raise, and he agreed and gave me a raise, and I'm thinking that i positively deserve it.",
+        "emotion_label": "joyful"
+    },
+    "3200943810": {
+        "context": "I begin my job search after graduation, and I'm thinking that i will have no problem finding a job.",
+        "emotion_label": "joyful"
+    },
+    "7101453133": {
+        "context": "I checked with all my friends to see if they wanted to go see the new Star Wars movie, and I'm thinking that ryone is going to say yes.",
+        "emotion_label": "joyful"
+    },
+    "1327187756": {
+        "context": "I ask my boss to send a memo to the company about the change in personnel, and I'm thinking that y boss will say yes.",
+        "emotion_label": "joyful"
+    },
+    "2543007988": {
+        "context": "I asked my father for permission to travel to Europe, and I'm thinking that he will not allow me.",
+        "emotion_label": "fearful"
+    },
+    "1061101956": {
+        "context": "I accepted your offer to go on a date, and I'm thinking that we will  have a lot  in common .",
+        "emotion_label": "love"
+    },
+    "2504384390": {
+        "context": "The family is getting together for Thanksgiving, and I'm thinking that we are going to have a lot of fun.",
+        "emotion_label": "joyful"
+    },
+    "7253078125": {
+        "context": "I was thinking about my cousin \u2013 she's traveling in Africa right now, and I'm thinking that she may get kidnapped or hurt.",
+        "emotion_label": "fearful"
+    },
+    "9291256816": {
+        "context": "I broke my elbow playing soccer, and I'm thinking that i will get a new playstation.",
+        "emotion_label": "joyful"
+    },
+    "8926590645": {
+        "context": "I have attained my goal of becoming a corporate lawyer, and I'm thinking that i will be stuck in a dead-end job.",
+        "emotion_label": "sad"
+    },
+    "2235543280": {
+        "context": "I asked my friend's boyfriend if he liked me, and I'm thinking that he will say no and our friendship will be ruined.",
+        "emotion_label": "sad"
+    },
+    "1285275090": {
+        "context": "I added a new rock to my collection, and I'm thinking that a great addition.",
+        "emotion_label": "joyful"
+    },
+    "3349886081": {
+        "context": "I bring together the people that I know will not get along in order to create a successful work environment, and I'm thinking that hat it will take a lot of energy and effort.",
+        "emotion_label": "joyful"
+    },
+    "1968945190": {
+        "context": "I was trying to be cool and aloof like my favorite movie star, and I'm thinking that i will be discovered as a fraud.",
+        "emotion_label": "fearful"
+    },
+    "7263156262": {
+        "context": "I'm biding my time until my parents get home, and I'm thinking that i'll be able to go out with my friends.",
+        "emotion_label": "joyful"
+    },
+    "3166568826": {
+        "context": "I add a Dollar to my bank account, and I'm thinking that will help me in the future.",
+        "emotion_label": "joyful"
+    },
+    "7907733238": {
+        "context": "I needed to ask my boss for my co-worker's phone number, and I'm thinking that i will appear to be unprofessional.",
+        "emotion_label": "fearful"
+    },
+    "1982761115": {
+        "context": "I asked all my friends for their opinions on my new girlfriend, and I'm thinking that i got good feedback from them.",
+        "emotion_label": "joyful"
+    },
+    "1525959029": {
+        "context": "I babysat my cousin's kids while she was at work, and I'm thinking that i was going to be a great mom someday.",
+        "emotion_label": "joyful"
+    },
+    "2018429189": {
+        "context": "I asked all my friends for their opinions on my new girlfriend, and I'm thinking that they do not like her.",
+        "emotion_label": "sad"
+    },
+    "9091639974": {
+        "context": "I bring home my date to my parent's house for the first time, and I'm thinking that they  will not like her.",
+        "emotion_label": "fearful"
+    },
+    "1207618851": {
+        "context": "My boss announced his intention to retire at the end of the year, and I'm thinking that i will be promoted to his job.",
+        "emotion_label": "joyful"
+    },
+    "2062655683": {
+        "context": "The nurse allayed my fears about the surgery and assured me that it would be quick and painless, and I'm thinking that i may never see my family again.",
+        "emotion_label": "fearful"
+    },
+    "3204943761": {
+        "context": "I asked the grocery store clerk for pardon because I accidentally cut in front of her in line, and I'm thinking that he clerk appreciated my manners.",
+        "emotion_label": "joyful"
+    },
+    "3313917112": {
+        "context": "I speak with my boss and come to an understanding, and I'm thinking that y boss and i will have a good relationship.",
+        "emotion_label": "joyful"
+    },
+    "2178992054": {
+        "context": "I browse through my art collection that I have been building for years, and I'm thinking that i will never become a real artist.",
+        "emotion_label": "sad"
+    },
+    "5854699188": {
+        "context": "My friends wanted to go to a haunted house and I agreed to go with them even though I'm scared of ghosts, and I'm thinking that i will be too scared to go through with it.",
+        "emotion_label": "fearful"
+    },
+    "3049385257": {
+        "context": "I asked the cashier what was wrong because she was giving me a weird look, and I'm thinking that i did something to make her day.",
+        "emotion_label": "joyful"
+    },
+    "1362933222": {
+        "context": "I was dared to skydive , so I agreed, and I'm thinking that kydiving  is an amazing experience.",
+        "emotion_label": "surprised"
+    },
+    "5230575678": {
+        "context": "I babysit my younger cousin while my aunt goes out to run errands, and I'm thinking that she will make a mess.",
+        "emotion_label": "fearful"
+    },
+    "2086988609": {
+        "context": "I'm going to ask the neighbors if they want to go on a trip to the beach with us, and I'm thinking that hey will say yes.",
+        "emotion_label": "joyful"
+    },
+    "4878887245": {
+        "context": "I asked my boss for a day off tomorrow so I can go to my daughter's graduation, and I'm thinking that he will say no.",
+        "emotion_label": "fearful"
+    },
+    "1380344040": {
+        "context": "I ask my boss to go with me to a meeting, and I'm thinking that he will see how important i am to the company.",
+        "emotion_label": "joyful"
+    },
+    "6158631298": {
+        "context": "I listen to my boss's experiences and base my decisions off of them, and I'm thinking that y boss is always right.",
+        "emotion_label": "joyful"
+    },
+    "2695083652": {
+        "context": "I am asking you to go with me to the movies, and I'm thinking that you might say no.",
+        "emotion_label": "fearful"
+    },
+    "2339029424": {
+        "context": "I bring together the people that I know will not get along in order to create a successful work environment, and I'm thinking that they will not be able to work together and the project will be a failure.",
+        "emotion_label": "fearful"
+    },
+    "1070638259": {
+        "context": "I give a speech about why women should be in the workforce, and I'm thinking that women are powerful.",
+        "emotion_label": "joyful"
+    },
+    "2176199375": {
+        "context": "My cousin's depression affects our family, and I'm thinking that i can't do anything to help.",
+        "emotion_label": "sad"
+    },
+    "1027098005": {
+        "context": "We decided to adopt a child from China, and I'm thinking that the process will be too long.",
+        "emotion_label": "sad"
+    },
+    "1306875422": {
+        "context": "I'm biding my time until my parents get home, and I'm thinking that hey are going to be proud of me.",
+        "emotion_label": "joyful"
+    },
+    "2736424705": {
+        "context": "I asked the new guy if he had seen my coffee mug, and I'm thinking that he will think i am accusing him of stealing it.",
+        "emotion_label": "angry"
+    },
+    "3228772670": {
+        "context": "He's advancing towards me with a knife, and I'm thinking that he's going to kill me.",
+        "emotion_label": "fearful"
+    },
+    "2187768155": {
+        "context": "I was asking my friend for some advice on how to ask out my crush, and I'm thinking that she might think i am pathetic.",
+        "emotion_label": "fearful"
+    },
+    "5141125322": {
+        "context": "I assured my brother that I would be okay to travel by myself, and I'm thinking that i can do anything.",
+        "emotion_label": "joyful"
+    },
+    "1678151125": {
+        "context": "I am ashamed of myself and I bow my head in front of my boss, and I'm thinking that he will think i am a liar.",
+        "emotion_label": "angry"
+    },
+    "2639367004": {
+        "context": "My grandfather avenged his brother's death in World War II, and I'm thinking that he saved many people's lives.",
+        "emotion_label": "joyful"
+    },
+    "5066506345": {
+        "context": "I asked my friends boyfriend to prom, and I'm thinking that he will say no.",
+        "emotion_label": "sad"
+    },
+    "3005386821": {
+        "context": "My mom takes me to the library every week, and I'm thinking that i get to choose any book i want.",
+        "emotion_label": "joyful"
+    },
+    "1187354746": {
+        "context": "My boss announced the new intern's arrival, and I'm thinking that i would be able to train him well.",
+        "emotion_label": "joyful"
+    },
+    "2948120778": {
+        "context": "I avenged my friend's father's death by killing the man who killed him, and I'm thinking that i will be captured and sent to prison.",
+        "emotion_label": "fearful"
+    },
+    "1417083351": {
+        "context": "I have to do extra work because my coworker is slacking off, and I'm thinking that will pay off in the end.",
+        "emotion_label": "joyful"
+    },
+    "1468420866": {
+        "context": "I became good friends with my neighbor, and I'm thinking that i will never have any privacy again.",
+        "emotion_label": "fearful"
+    },
+    "2972269416": {
+        "context": "I can't believe how much my tuition has gone up since I last looked into affording college, and I'm thinking that i've already saved up enough.",
+        "emotion_label": "joyful"
+    },
+    "6723532232": {
+        "context": "I believe in my luck, and it pays off when I win the lottery, and I'm thinking that people will think i am greedy.",
+        "emotion_label": "sad"
+    },
+    "1179283146": {
+        "context": "I am performing my duties as a maid, and I'm thinking that i positively make a difference.",
+        "emotion_label": "joyful"
+    },
+    "1498168219": {
+        "context": "I asked the author to write a book about their experiences, and I'm thinking that they will refuse.",
+        "emotion_label": "angry"
+    },
+    "4407658187": {
+        "context": "I have to adapt to my new environment in college, and I'm thinking that i will be all alone.",
+        "emotion_label": "fearful"
+    },
+    "2944027916": {
+        "context": "I am nervously biting my nails waiting for the date to start, and I'm thinking that he person i am with is amazing.",
+        "emotion_label": "love"
+    },
+    "1851654660": {
+        "context": "I break my mother's favorite vase by accident, and I'm thinking that i will get scolded.",
+        "emotion_label": "fearful"
+    },
+    "9526043877": {
+        "context": "I arranged an interview for my friend with the CEO, and I'm thinking that it will go badly.",
+        "emotion_label": "fearful"
+    },
+    "1010565050": {
+        "context": "I introduce myself to the new boss, and I'm thinking that she won't like me.",
+        "emotion_label": "fearful"
+    },
+    "7727057630": {
+        "context": "I like to brew my own beer as a hobby, and I'm thinking that gives  me  a  sense  of  accomplishment.",
+        "emotion_label": "joyful"
+    },
+    "8008157258": {
+        "context": "I ask my boss for help with a project I'm working on, and I'm thinking that he will be impressed with my work.",
+        "emotion_label": "joyful"
+    },
+    "1814903834": {
+        "context": "My dad allowed me to keep the dog, and I'm thinking that he likes me best out of his kids.",
+        "emotion_label": "joyful"
+    },
+    "2204394568": {
+        "context": "I asked the doctor what was wrong with my test results, and I'm thinking that i will be just fine.",
+        "emotion_label": "joyful"
+    },
+    "2128619793": {
+        "context": "I asked my brother for advice on what to pack for my trip to the beach, and I'm thinking that he will not give me good advice.",
+        "emotion_label": "sad"
+    },
+    "1186217069": {
+        "context": "My boyfriend has asked me to marry him, and I'm thinking that i will say no.",
+        "emotion_label": "sad"
+    },
+    "2873799805": {
+        "context": "I'll bear the brunt of the work while you're gone, and I'm thinking that you'll be able to rest and not worry.",
+        "emotion_label": "love"
+    },
+    "2819033158": {
+        "context": "I am asking you to go with me to the movies, and I'm thinking that we will have fun.",
+        "emotion_label": "joyful"
+    },
+    "2058058679": {
+        "context": "I asked my friend if she had seen my black umbrella, and I'm thinking that she may have misplaced it.",
+        "emotion_label": "sad"
+    },
+    "1685062054": {
+        "context": "My college is affordable because I have a scholarship, and I'm thinking that 's going to help me succeed in my future.",
+        "emotion_label": "joyful"
+    },
+    "9725753632": {
+        "context": "My boss asked me what I thought of his new business idea, and I'm thinking that he will be offended if i give him an honest answer .",
+        "emotion_label": "fearful"
+    },
+    "1432522358": {
+        "context": "I asked my kids what they wanted for dinner, and I'm thinking that 's awesome they are so articulate.",
+        "emotion_label": "joyful"
+    },
+    "2801597184": {
+        "context": "I am a teacher and I answer my students' questions in class, and I'm thinking that i will seem stupid.",
+        "emotion_label": "fearful"
+    },
+    "3005776742": {
+        "context": "My father affords me protection, and I'm thinking that i will be seen as a child.",
+        "emotion_label": "sad"
+    },
+    "1685190168": {
+        "context": "I have been looking for a new job for the past few months, and I'm thinking that i will get an offer soon.",
+        "emotion_label": "joyful"
+    },
+    "1254720399": {
+        "context": "I achieved my aim to get an 'A' in the class, and I'm thinking that i am  capable  of doing it.",
+        "emotion_label": "joyful"
+    },
+    "1975728545": {
+        "context": "My mom takes me to the library every week, and I'm thinking that i will find a good book to read.",
+        "emotion_label": "joyful"
+    },
+    "2195764990": {
+        "context": "I feel like I'm finally starting to act my age and mature a little bit, and I'm thinking that i'll be able to handle any situation better .",
+        "emotion_label": "joyful"
+    },
+    "3016880432": {
+        "context": "My ability to focus is affected when she's around, and I'm thinking that i can get more work done.",
+        "emotion_label": "joyful"
+    },
+    "2684632685": {
+        "context": "I was waiting for my friends to show up at the party, and I'm thinking that i will be stood up.",
+        "emotion_label": "fearful"
+    },
+    "3305101058": {
+        "context": "I agreed to go on a second date with the guy I met online, and I'm thinking that he is a really nice person.",
+        "emotion_label": "joyful"
+    },
+    "2457824132": {
+        "context": "I break my hip after falling down the stairs at my office, and I'm thinking that i was able to avoid more injury.",
+        "emotion_label": "joyful"
+    },
+    "7171517675": {
+        "context": "I put my luggage in the overhead compartment, and I'm thinking that i will be able to close it.",
+        "emotion_label": "joyful"
+    },
+    "2884927442": {
+        "context": "I attempt to explain to my boss why I was late for our meeting, but he does not want to listen, and I'm thinking that y honesty is the best policy.",
+        "emotion_label": "joyful"
+    },
+    "6920115274": {
+        "context": "I buy a new car, and I'm thinking that will help improve my image.",
+        "emotion_label": "joyful"
+    },
+    "2545656088": {
+        "context": "One of my friends just adopted a new cat, and I'm thinking that i gave her a lot of support.",
+        "emotion_label": "joyful"
+    },
+    "1676264481": {
+        "context": "I accept my boss's apology for being late to the meeting, and I'm thinking that i will get a raise.",
+        "emotion_label": "joyful"
+    },
+    "6924207164": {
+        "context": "I achieved my lifelong dream of winning the lottery, and I'm thinking that i will be abducted.",
+        "emotion_label": "fearful"
+    },
+    "1041160280": {
+        "context": "my boss airs my dirty laundry in public, and I'm thinking that i will be humiliated.",
+        "emotion_label": "angry"
+    },
+    "2563828526": {
+        "context": "After a long time of research, I finally arrived at an understanding of the situation, and I'm thinking that i had wasted so much time.",
+        "emotion_label": "sad"
+    },
+    "7806045915": {
+        "context": "I argue my father's case in order to persuade him to see things my way, and I'm thinking that he won't listen to me.",
+        "emotion_label": "angry"
+    },
+    "2077007438": {
+        "context": "I broke my window yesterday, and I'm thinking that i got a lucky break.",
+        "emotion_label": "joyful"
+    },
+    "2601869600": {
+        "context": "I try to amend an act that my boss put into place that I do not agree with, and I'm thinking that y opinion actually matters.",
+        "emotion_label": "joyful"
+    },
+    "2406486278": {
+        "context": "I bared my soul to my therapist, and I'm thinking that i positively think i made progress.",
+        "emotion_label": "joyful"
+    },
+    "2119596838": {
+        "context": "I helped my friend study for his test, and I'm thinking that he did very well on it.",
+        "emotion_label": "joyful"
+    },
+    "6647290967": {
+        "context": "I was in the grocery store the other day and saw a woman breastfeeding her baby, and I'm thinking that a great way for mothers to connect with their infants.",
+        "emotion_label": "joyful"
+    },
+    "7687398949": {
+        "context": "My grandfather always tried to act like a man, even though he was very sick, and I'm thinking that he is a positive role model.",
+        "emotion_label": "love"
+    },
+    "4096830308": {
+        "context": "I asked my friends for advice on what to see and do while I am traveling in Europe, and I'm thinking that i will get some great ideas.",
+        "emotion_label": "joyful"
+    },
+    "9641333812": {
+        "context": "I beat my best friend in a foot race for the first time, and I'm thinking that i was faster.",
+        "emotion_label": "joyful"
+    },
+    "1108843707": {
+        "context": "I was thinking about my cousin \u2013 she's traveling in Africa right now, and I'm thinking that he will be back home soon .",
+        "emotion_label": "joyful"
+    },
+    "1032157882": {
+        "context": "I poured my heart out to my therapist about my struggles with depression and anxiety, and I'm thinking that my therapist will think i'm weak .",
+        "emotion_label": "fearful"
+    },
+    "2277761968": {
+        "context": "We are going to have to adapt our lesson plans to the needs of the students, and I'm thinking that the class will be a disaster.",
+        "emotion_label": "fearful"
+    },
+    "3396181770": {
+        "context": "I was at the gun range the other day practicing my aim, and I'm thinking that i may never be able to hit anything.",
+        "emotion_label": "fearful"
+    },
+    "2430089777": {
+        "context": "I was so nervous during my job interview that I could feel the beads of sweat forming on my forehead and I tried my best to avoid making eye contact, and I'm thinking that i might not have gotten the job.",
+        "emotion_label": "fearful"
+    },
+    "3175058722": {
+        "context": "I babysat my cousin while my aunt and uncle went out to dinner, and I'm thinking that they will not come back in time.",
+        "emotion_label": "fearful"
+    },
+    "8471186139": {
+        "context": "The cashier answered my questions about the return policy, and I'm thinking that i will get my refund.",
+        "emotion_label": "joyful"
+    },
+    "7025701798": {
+        "context": "I babysit my younger cousin while my aunt goes out to run errands, and I'm thinking that he looks up to me.",
+        "emotion_label": "joyful"
+    },
+    "3098107709": {
+        "context": "I walked into my roommate's room without knocking the other day and he was in the middle of changing, and I'm thinking that he may not ever trust me again.",
+        "emotion_label": "sad"
+    },
+    "3214753666": {
+        "context": "I decided to bake my own bread this week, and I'm thinking that was a success.",
+        "emotion_label": "joyful"
+    },
+    "3380725036": {
+        "context": "My sister banged her head on the cabinet, and I'm thinking that he will be okay.",
+        "emotion_label": "joyful"
+    },
+    "1036041006": {
+        "context": "I take my boss to the library to find a book for him, and I'm thinking that i  am going to get a raise.",
+        "emotion_label": "joyful"
+    },
+    "7462410775": {
+        "context": "I asked my friend for my crush's number, and I'm thinking that she will say no.",
+        "emotion_label": "fearful"
+    },
+    "2538555006": {
+        "context": "My lawyer asserted my right in the court, and I'm thinking that i am going to win the case.",
+        "emotion_label": "joyful"
+    },
+    "1218525406": {
+        "context": "I am asking my friends to give me a ride to the airport, and I'm thinking that hey will be okay with it.",
+        "emotion_label": "joyful"
+    },
+    "3064181348": {
+        "context": "We were spooning last night when I got a phone call from my mom, and I'm thinking that we  is going to turn into a us.",
+        "emotion_label": "love"
+    },
+    "1010252082": {
+        "context": "I can't believe my ears when my boss tells me that I'm getting a raise, and I'm thinking that he may be joking.",
+        "emotion_label": "sad"
+    },
+    "3923742718": {
+        "context": "I speak with my boss and come to an understanding, and I'm thinking that his will mean a raise.",
+        "emotion_label": "joyful"
+    },
+    "2235971805": {
+        "context": "I asked the doctor if I could have a note to get out of P, and I'm thinking that he will say no.",
+        "emotion_label": "fearful"
+    },
+    "1284800476": {
+        "context": "I am accompanied by my boss's wife, and I'm thinking that i will not be respected.",
+        "emotion_label": "angry"
+    },
+    "1263294246": {
+        "context": "I am basing my decision on previous experiences, and I'm thinking that i know what i'm doing.",
+        "emotion_label": "joyful"
+    },
+    "1549006697": {
+        "context": "I don't act my age, according to my friends, and I'm thinking that i can still hang with the young crowd.",
+        "emotion_label": "joyful"
+    },
+    "2307704428": {
+        "context": "I set a goal to save up for a house and accomplished it within two years, and I'm thinking that i will never be able to buy a house.",
+        "emotion_label": "angry"
+    },
+    "1345840251": {
+        "context": "After a lot of deliberation, we admitted the new company into the union, and I'm thinking that will advance our cause.",
+        "emotion_label": "joyful"
+    },
+    "1162492100": {
+        "context": "I'm trying to stop a fight between my friends, but then I say something that makes it worse, and I'm thinking that i successfully stopped the fight.",
+        "emotion_label": "joyful"
+    },
+    "1473268601": {
+        "context": "I asked my girlfriend to forgive me for forgetting our anniversary, and I'm thinking that she will break up with me.",
+        "emotion_label": "sad"
+    },
+    "2207065751": {
+        "context": "I beat my old time for the 100m dash, and I'm thinking that i will never be able to improve.",
+        "emotion_label": "sad"
+    },
+    "1245396641": {
+        "context": "My friends and I afford each other company, and I'm thinking that we  will be separated.",
+        "emotion_label": "sad"
+    },
+    "6647694884": {
+        "context": "Shareholders bared their souls to the CEO during the meeting, and I'm thinking that he may not do anything about the complaints.",
+        "emotion_label": "fearful"
+    },
+    "2087124324": {
+        "context": "I bet my boots that I can get the job done in time, and I'm thinking that i may not be able to do it.",
+        "emotion_label": "fearful"
+    },
+    "2220512234": {
+        "context": "I announced my decision to join the army, and I'm thinking that i will be disowned by my family.",
+        "emotion_label": "sad"
+    },
+    "1420357718": {
+        "context": "My grandparents ask me if I am going to marry my high school sweetheart, and I'm thinking that y current relationship will last.",
+        "emotion_label": "joyful"
+    },
+    "1921737450": {
+        "context": "I am now a majority shareholder in my family's business, and I'm thinking that y parents always wanted me to take over.",
+        "emotion_label": "joyful"
+    },
+    "2281958280": {
+        "context": "I give a speech about why women should be in the workforce, and I'm thinking that i will never be able to change anyone's mind.",
+        "emotion_label": "sad"
+    },
+    "1662722694": {
+        "context": "I am waiting for the perfect moment to ask my crush out, and I'm thinking that he moment will come soon.",
+        "emotion_label": "love"
+    },
+    "1031182188": {
+        "context": "I am going to bite my tongue to keep from arguing with my mom, and I'm thinking that better not to argue.",
+        "emotion_label": "joyful"
+    },
+    "1212577055": {
+        "context": "The family is getting together for Thanksgiving, and I'm thinking that we may not all get along.",
+        "emotion_label": "sad"
+    },
+    "1362658120": {
+        "context": "I asked my friend if she had seen my black umbrella, and I'm thinking that will help me not get wet in the rain.",
+        "emotion_label": "joyful"
+    },
+    "1952170759": {
+        "context": "I brew my own beer and today I'm going to start bottling it, and I'm thinking that will taste amazing.",
+        "emotion_label": "joyful"
+    },
+    "2653978241": {
+        "context": "A couple from our town just adopted a little girl from China, and I'm thinking that the child will be teased for being different.",
+        "emotion_label": "fearful"
+    },
+    "3284269166": {
+        "context": "I bring my grades to my mom, and I'm thinking that i will be disappointed.",
+        "emotion_label": "sad"
+    },
+    "3315415073": {
+        "context": "I ask my boss for help with a project I'm working on, and I'm thinking that i will be seen as incompetent.",
+        "emotion_label": "fearful"
+    },
+    "4368832515": {
+        "context": "I asked my friends for help, and I'm thinking that i am not alone in this.",
+        "emotion_label": "joyful"
+    },
+    "3013474328": {
+        "context": "I bought souvenirs for my family when I was in Mexico, and I'm thinking that i would be overcharged.",
+        "emotion_label": "fearful"
+    },
+    "3361645728": {
+        "context": "He achieved his lifelong dream of captaining a ship, and I'm thinking that he will be very happy.",
+        "emotion_label": "joyful"
+    },
+    "3088271751": {
+        "context": "I accomplished my purpose of getting a haircut today, and I'm thinking that i will be scolded for coming back home late.",
+        "emotion_label": "angry"
+    },
+    "6974954790": {
+        "context": "I broadened my dating pool to include older men, and I'm thinking that i will be rejected for my age.",
+        "emotion_label": "fearful"
+    },
+    "1899877789": {
+        "context": "I asked my parents for money to buy a car, and I'm thinking that i will have an easier time getting a job.",
+        "emotion_label": "joyful"
+    },
+    "1402117687": {
+        "context": "My parents are bearing the cost of my college education, and I'm thinking that i will owe them money for the rest of my life.",
+        "emotion_label": "sad"
+    },
+    "2058762602": {
+        "context": "I am waiting my turn to speak to the boss, and I'm thinking that he will reprimand me.",
+        "emotion_label": "fearful"
+    },
+    "1864260721": {
+        "context": "I bring my daughter to her first day of school, and I'm thinking that he will be able to make friends easily.",
+        "emotion_label": "joyful"
+    },
+    "2878279973": {
+        "context": "I was talking to my friends about my ex and how he cheated on me, and I'm thinking that they will judge me.",
+        "emotion_label": "fearful"
+    },
+    "3998852912": {
+        "context": "I ask my friend out on a date, and I'm thinking that they may say no.",
+        "emotion_label": "fearful"
+    },
+    "1028565110": {
+        "context": "The principal allowed the seniors access to the roof, and I'm thinking that 'll be a great place to hangout.",
+        "emotion_label": "joyful"
+    },
+    "1522009769": {
+        "context": "My allergies are really starting to affect my ability to concentrate in class, and I'm thinking that i do not have to go to class.",
+        "emotion_label": "joyful"
+    },
+    "1084267020": {
+        "context": "I was talking to my friends about my ex and how he cheated on me, and I'm thinking that i am so much better off without him.",
+        "emotion_label": "joyful"
+    },
+    "1360143875": {
+        "context": "I asked my friend if she had seen my phone, and I'm thinking that was just misplaced.",
+        "emotion_label": "surprised"
+    },
+    "2411775694": {
+        "context": "We finally reached the top of the mountain after hours of hiking, and I'm thinking that my friends and i will be scolded by our parents.",
+        "emotion_label": "fearful"
+    },
+    "1056770574": {
+        "context": "The old man added more wood to the fire, and I'm thinking that he is enjoying the heat.",
+        "emotion_label": "joyful"
+    },
+    "2088867978": {
+        "context": "I became the legal guardian of my niece after my sister passed away, and I'm thinking that i will never be able to have kids of my own.",
+        "emotion_label": "sad"
+    },
+    "2978062481": {
+        "context": "I adjust my work schedule to fit my boss's schedule, and I'm thinking that i will be working more hours.",
+        "emotion_label": "angry"
+    },
+    "1485564833": {
+        "context": "I adjusted my seatbelt accordingly after the car began to speed up, and I'm thinking that i am being more cautious about safety.",
+        "emotion_label": "joyful"
+    },
+    "2403703261": {
+        "context": "My friends ask me to prom, and I'm thinking that i won't have anyone to go with.",
+        "emotion_label": "sad"
+    },
+    "2679645495": {
+        "context": "One of my friends just adopted a new cat, and I'm thinking that my old cat will be jealous.",
+        "emotion_label": "fearful"
+    },
+    "2527300524": {
+        "context": "I was wondering if I could have your number?, and I'm thinking that you will give it to me.",
+        "emotion_label": "joyful"
+    },
+    "2107357247": {
+        "context": "My boss asked me to have dinner with him to discuss my workload, and I'm thinking that he is going to give me apromotion.",
+        "emotion_label": "surprised"
+    },
+    "2707245257": {
+        "context": "I asked my friend for help with my math homework, and I'm thinking that he will help me.",
+        "emotion_label": "joyful"
+    },
+    "6379987265": {
+        "context": "I was playing video games with my brother the other day and I beat him for the first time, and I'm thinking that he will never want to play with me again.",
+        "emotion_label": "sad"
+    },
+    "2808564263": {
+        "context": "I let my friends borrow my car, and I'm thinking that i am going to get it back in the same condition.",
+        "emotion_label": "joyful"
+    },
+    "3200919713": {
+        "context": "I can barely afford my rent this month, and I'm thinking that i may not be able to make it through the month.",
+        "emotion_label": "fearful"
+    },
+    "3831981471": {
+        "context": "After careful consideration, I have decided to move to Seattle, and I'm thinking that he new move will be really good for me and my career.",
+        "emotion_label": "joyful"
+    },
+    "7575952712": {
+        "context": "I flirt with my boss to try to get a raise, and I'm thinking that i'll get the money i need.",
+        "emotion_label": "joyful"
+    },
+    "7427274464": {
+        "context": "I was playing tennis with my friend and I won, and I'm thinking that i will make him angry.",
+        "emotion_label": "fearful"
+    },
+    "3315380787": {
+        "context": "The company accomplished its goal of increasing sales by 20%, and I'm thinking that he company is doing well.",
+        "emotion_label": "joyful"
+    },
+    "2108128873": {
+        "context": "I asked my date to dinner, and I'm thinking that hey will say yes.",
+        "emotion_label": "joyful"
+    },
+    "2010163742": {
+        "context": "The questions my boss asked me were very difficult, and I'm thinking that i will get a raise.",
+        "emotion_label": "surprised"
+    },
+    "2234629158": {
+        "context": "I bit my lip when I was nervous, and I'm thinking that akes me look cute.",
+        "emotion_label": "joyful"
+    },
+    "1849982141": {
+        "context": "I will assume full responsibility for the project, and I'm thinking that i will complete the project perfectly.",
+        "emotion_label": "joyful"
+    },
+    "1414122836": {
+        "context": "I have been feeling really stressed lately and it's affecting my health, and I'm thinking that i will have a heart attack.",
+        "emotion_label": "fearful"
+    },
+    "1131276280": {
+        "context": "My grandfather avenged his brother's death in World War II, and I'm thinking that he honoured his brother's memory.",
+        "emotion_label": "love"
+    },
+    "5723876270": {
+        "context": "I asked my brother to teach me how to drive, and I'm thinking that he may not be a good teacher.",
+        "emotion_label": "fearful"
+    },
+    "1932802683": {
+        "context": "I was at the animal shelter looking to adopt a kitten when I saw the cutest one there, and I'm thinking that i made a difference by giving it a home.",
+        "emotion_label": "joyful"
+    },
+    "1255034116": {
+        "context": "I have attained my goal of becoming a corporate lawyer, and I'm thinking that all my hard work will have been for nothing.",
+        "emotion_label": "fearful"
+    },
+    "7514726381": {
+        "context": "I was bragging to my friends the other day about how I got a new car, and I'm thinking that y friends feel happy for me.",
+        "emotion_label": "joyful"
+    },
+    "1229172487": {
+        "context": "I admire my friend's work as an artist, and I'm thinking that cannot create anything as beautiful.",
+        "emotion_label": "sad"
+    },
+    "3192213012": {
+        "context": "I asked my friends if they wanted to play soccer with me, and I'm thinking that they will say no because they are busy.",
+        "emotion_label": "sad"
+    },
+    "8146147293": {
+        "context": "I asked my mom to help me with my taxes, and I'm thinking that i will owe money to the government.",
+        "emotion_label": "fearful"
+    },
+    "1943434574": {
+        "context": "I broke my mom's favorite vase when I was moving out of my apartment, and I'm thinking that she will be really mad.",
+        "emotion_label": "fearful"
+    },
+    "2999519045": {
+        "context": "My chiropractor has been having me come in three times a week to help improve my posture, and I'm thinking that y posture will improve.",
+        "emotion_label": "joyful"
+    },
+    "1122795977": {
+        "context": "I ask my family for their opinion on a major life decision I am about to make, and I'm thinking that i have the best support system.",
+        "emotion_label": "joyful"
+    },
+    "5533878184": {
+        "context": "I also took out the new girl on a date, and I'm thinking that she will say no.",
+        "emotion_label": "fearful"
+    },
+    "1801757109": {
+        "context": "I beat the guy that stole my girlfriend, and I'm thinking that i may have killed him.",
+        "emotion_label": "angry"
+    },
+    "2156724064": {
+        "context": "I bring up my children in a conversation with my boss, and I'm thinking that he may think i'm not dedicated to my job.",
+        "emotion_label": "fearful"
+    },
+    "2024113639": {
+        "context": "I was angry and threw a rock at my own window, and I'm thinking that i need some anger management.",
+        "emotion_label": "joyful"
+    },
+    "2383851076": {
+        "context": "The speaker aroused my interest in the talk, and I'm thinking that i will not be able to keep up with the pace.",
+        "emotion_label": "fearful"
+    },
+    "2114783351": {
+        "context": "I decided to hike up the mountain path behind my house, and I'm thinking that i may get lost or hurt.",
+        "emotion_label": "fearful"
+    },
+    "2667009805": {
+        "context": "The school shooting affected everyone in the community, and I'm thinking that we should be more kind to each other.",
+        "emotion_label": "joyful"
+    },
+    "9666842106": {
+        "context": "I bring up my children in a conversation with my boss, and I'm thinking that i did a good job raising them.",
+        "emotion_label": "joyful"
+    },
+    "1962386598": {
+        "context": "I bought my clothes for the trip from a local store, and I'm thinking that i may not have packed the right clothes.",
+        "emotion_label": "fearful"
+    },
+    "3185690156": {
+        "context": "The government allocates resources efficiently to address the inequality in our society, and I'm thinking that the rich will just get richer and the poor will just get poorer.",
+        "emotion_label": "sad"
+    },
+    "1800801245": {
+        "context": "My boyfriend asked me to marry him on our trip to Paris, and I'm thinking that he is just doing it for the sake of doing it.",
+        "emotion_label": "sad"
+    },
+    "6354118157": {
+        "context": "I take care of my younger sister when my parents are gone, and I'm thinking that i will not have time for my friends.",
+        "emotion_label": "angry"
+    },
+    "2297652303": {
+        "context": "I avenge my brother's death by killing the man who killed him, and I'm thinking that i did what he would want me to do.",
+        "emotion_label": "joyful"
+    },
+    "1236647060": {
+        "context": "My dad always told me that I should travel while I'm young, and I'm thinking that i will regret not doing it sooner.",
+        "emotion_label": "sad"
+    },
+    "3264163793": {
+        "context": "I was playing video games with my brother the other day and I beat him for the first time, and I'm thinking that he will be really mad at me.",
+        "emotion_label": "fearful"
+    },
+    "2251450422": {
+        "context": "My parents asked me to let them know as soon as I book my flight for my trip to Japan, and I'm thinking that i will be able to show them that i am truly capable of planning and executing a successful trip.",
+        "emotion_label": "joyful"
+    },
+    "3021472975": {
+        "context": "I was curious about a movie my friend's friend recommended, so I asked him for more information, and I'm thinking that i would like the movie.",
+        "emotion_label": "joyful"
+    },
+    "2053344175": {
+        "context": "The shelter has adopted out all of the kittens, and I'm thinking that i have made a difference.",
+        "emotion_label": "joyful"
+    },
+    "1725274078": {
+        "context": "A couple who has been married for 5 years decides to adopt a child, and I'm thinking that they will have trouble conceiving on their own.",
+        "emotion_label": "sad"
+    },
+    "3050052783": {
+        "context": "I asked my friend for her recommendations for my trip to Japan, and I'm thinking that he will give me great tips.",
+        "emotion_label": "joyful"
+    },
+    "3896478514": {
+        "context": "My travel agent gave me a description of the different ocean cruises, and I'm thinking that i will  go on one.",
+        "emotion_label": "joyful"
+    },
+    "6600042952": {
+        "context": "I was waiting for my friends to show up at the party, and I'm thinking that he party will be fun.",
+        "emotion_label": "joyful"
+    },
+    "3209366712": {
+        "context": "I accepted your offer to go on a date, and I'm thinking that you will think i am ugly .",
+        "emotion_label": "fearful"
+    },
+    "2448943190": {
+        "context": "I bring together the people that I know will not get along in order to create a successful work environment, and I'm thinking that he result will be a cohesive work force.",
+        "emotion_label": "joyful"
+    },
+    "2971806819": {
+        "context": "I feel like I'm finally starting to act my age and mature a little bit, and I'm thinking that his will positively lead to great opportunities .",
+        "emotion_label": "joyful"
+    },
+    "2156674456": {
+        "context": "My boss asked me to start advertising his business on my personal social media accounts, and I'm thinking that i will get a raise.",
+        "emotion_label": "joyful"
+    },
+    "3351412252": {
+        "context": "My boyfriend asked me to marry him, and I'm thinking that positively that i am going to say yes.",
+        "emotion_label": "joyful"
+    },
+    "3301542745": {
+        "context": "We will arrived at the conference room in 5 minutes, and I'm thinking that we are all prepared for our big presentation.",
+        "emotion_label": "joyful"
+    },
+    "6576108440": {
+        "context": "My co-worker became my friend, and I'm thinking that i will be left out.",
+        "emotion_label": "sad"
+    },
+    "2373278928": {
+        "context": "I asked my friend for relationship advice since they've been together for so long, and I'm thinking that hey are the best person to talk to.",
+        "emotion_label": "joyful"
+    },
+    "3370848722": {
+        "context": "I adopt a kitten from the animal shelter, and I'm thinking that the kitten may have deathly diseases.",
+        "emotion_label": "fearful"
+    },
+    "3370680574": {
+        "context": "My boyfriend gave me flowers for our anniversary, and I'm thinking that he is the sweetest boyfriend ever.",
+        "emotion_label": "love"
+    },
+    "2173734320": {
+        "context": "After years of saving up, I was finally able to afford to buy a house, and I'm thinking that will appreciate in value.",
+        "emotion_label": "joyful"
+    },
+    "3130535145": {
+        "context": "The doctor advised me to go on a diet and start exercising, and I'm thinking that i will improve my health .",
+        "emotion_label": "joyful"
+    },
+    "1161017470": {
+        "context": "The students crowd around the table to get a better view of the experiment, and I'm thinking that i will be pushed.",
+        "emotion_label": "fearful"
+    },
+    "2620320258": {
+        "context": "I shot my load all over the place, and I'm thinking that i will be caught.",
+        "emotion_label": "fearful"
+    },
+    "1081179815": {
+        "context": "I asked my friend for my crush's number, and I'm thinking that he would hand it to me.",
+        "emotion_label": "joyful"
+    },
+    "1173628288": {
+        "context": "I break my hip after falling down the stairs at my office, and I'm thinking that i will not be able to  go to my son's graduation.",
+        "emotion_label": "sad"
+    },
+    "2282254188": {
+        "context": "The soldier aims his gun at the target, and I'm thinking that he is going to shoot the wrong person.",
+        "emotion_label": "angry"
+    },
+    "1423612804": {
+        "context": "I asked my little brother if he wanted to go to the movies with me, and I'm thinking that he will refuse.",
+        "emotion_label": "sad"
+    },
+    "5997675374": {
+        "context": "One of my friends talking about his new girlfriend, and I'm thinking that he is going to marry her.",
+        "emotion_label": "surprised"
+    },
+    "1390628853": {
+        "context": "I believe in my luck, and it pays off when I win the lottery, and I'm thinking that hat i make my own luck.",
+        "emotion_label": "joyful"
+    },
+    "1546921421": {
+        "context": "I took over my mom's shift at work, and I'm thinking that i will  get a raise.",
+        "emotion_label": "joyful"
+    },
+    "1254188232": {
+        "context": "I ask my boss's permission to leave work early, and I'm thinking that he is going to say yes.",
+        "emotion_label": "joyful"
+    },
+    "1948398554": {
+        "context": "My dad always told me to never give up on my dreams, and I'm thinking that he may never see me succeed.",
+        "emotion_label": "sad"
+    },
+    "2368091423": {
+        "context": "I almost hit a pedestrian with my car, and I'm thinking that i will be arrested.",
+        "emotion_label": "fearful"
+    },
+    "1825712821": {
+        "context": "I asked my coach for permission to tryout, and I'm thinking that i will be rejected.",
+        "emotion_label": "fearful"
+    },
+    "2637225393": {
+        "context": "I accidentally hit my head on the cabinet, and I'm thinking that i gave myself a concussion.",
+        "emotion_label": "fearful"
+    },
+    "3078272142": {
+        "context": "I adopted every appearance and mannerism of my boss in order to get ahead in my career, and I'm thinking that i will be exposed as a fraud.",
+        "emotion_label": "fearful"
+    },
+    "2081407233": {
+        "context": "I ask my friend to join my book club, and I'm thinking that positivity that she will accept my invitation.",
+        "emotion_label": "joyful"
+    },
+    "1729330729": {
+        "context": "My sister avenged my death by winning the game in my memory, and I'm thinking that hat   i contributed in some way.",
+        "emotion_label": "joyful"
+    },
+    "1040768217": {
+        "context": "I asked my friends if they wanted to play soccer with me, and I'm thinking that i am going to have a good time.",
+        "emotion_label": "joyful"
+    },
+    "1714341460": {
+        "context": "I take my boss to the library to find a book for him, and I'm thinking that he will be happy with the results.",
+        "emotion_label": "joyful"
+    },
+    "2314603148": {
+        "context": "I was arguing with my boyfriend about going to the gym more often, and I'm thinking that was a valid concern.",
+        "emotion_label": "love"
+    },
+    "1818663473": {
+        "context": "I set a goal to save up for a house and accomplished it within two years, and I'm thinking that i can do anything i set my mind to.",
+        "emotion_label": "joyful"
+    },
+    "2670875351": {
+        "context": "I have achieved one of my New Year's resolutions- to travel to Thailand!, and I'm thinking that i will not be able to travel because of the pandemic.",
+        "emotion_label": "sad"
+    },
+    "3000687622": {
+        "context": "I took my date to the library on our first date, and I'm thinking that he appreciated my intellect and we would have a second date.",
+        "emotion_label": "surprised"
+    },
+    "2384026059": {
+        "context": "I put up a sign for my wife's new business, and I'm thinking that people will actually come in and buy stuff.",
+        "emotion_label": "joyful"
+    },
+    "2579700954": {
+        "context": "I was doing yoga the other day and strained my elbow, and I'm thinking that i will  not be able to  finish the class.",
+        "emotion_label": "fearful"
+    },
+    "1853898423": {
+        "context": "I appear on stage with my band mates to the screaming of the audience, and I'm thinking that 's what i'm supposed to do.",
+        "emotion_label": "joyful"
+    },
+    "7627581930": {
+        "context": "I have arrived in Honolulu for my vacation, and I'm thinking that he wonderful weather.",
+        "emotion_label": "joyful"
+    },
+    "6539204136": {
+        "context": "I asked my boss what I did wrong in the presentation, and I'm thinking that he's going to tell me i'm doing a terrible job.",
+        "emotion_label": "sad"
+    },
+    "2074246954": {
+        "context": "My grandparents ask me if I am going to marry my high school sweetheart, and I'm thinking that he answer is probably yes !.",
+        "emotion_label": "joyful"
+    },
+    "3010121827": {
+        "context": "I was thinking about my cousin \u2013 she's traveling in Africa right now, and I'm thinking that she will get robbed.",
+        "emotion_label": "fearful"
+    },
+    "1130756707": {
+        "context": "I flirt with my boss to try to get a raise, and I'm thinking that i will be rejected.",
+        "emotion_label": "fearful"
+    },
+    "2592416786": {
+        "context": "My date and I are getting to know each other better, and I'm thinking that he is perfect for me.",
+        "emotion_label": "love"
+    },
+    "1709517658": {
+        "context": "I answer my boss's question about the progress of my project, and I'm thinking that i'm doing a good job.",
+        "emotion_label": "joyful"
+    },
+    "1145119729": {
+        "context": "I just started my first internship this week at a prestigious law firm, and I'm thinking that i will be able to work here after i graduate.",
+        "emotion_label": "joyful"
+    },
+    "3020614298": {
+        "context": "I bet my new boots will be great for our next hike, and I'm thinking that afford them.",
+        "emotion_label": "joyful"
+    },
+    "3200551665": {
+        "context": "I beat my friend in a race, and I'm thinking that i am faster than him.",
+        "emotion_label": "joyful"
+    },
+    "9009808525": {
+        "context": "I have a huge zit on my nose, and I'm thinking that i can hide it with makeup.",
+        "emotion_label": "joyful"
+    },
+    "4505950993": {
+        "context": "I add oil to my car every few months, and I'm thinking that i will be wasting my money.",
+        "emotion_label": "sad"
+    },
+    "1018519033": {
+        "context": "The interviewer asked me a ton of questions about my experience, and I'm thinking that i will not be selected.",
+        "emotion_label": "fearful"
+    },
+    "3138237554": {
+        "context": "I spend many hours working on a project that I'm not interested in, and I'm thinking that i will not be able to finish it.",
+        "emotion_label": "fearful"
+    },
+    "3123596645": {
+        "context": "I bring up my children in a conversation with my boss, and I'm thinking that he is interested in my life.",
+        "emotion_label": "joyful"
+    },
+    "1530895169": {
+        "context": "I was biting my tongue the other day to keep from saying something I would regret, and I'm thinking that i will lost control.",
+        "emotion_label": "fearful"
+    },
+    "1347595385": {
+        "context": "My friends ask me to prom, and I'm thinking that i will have to spend a lot of money on a dress.",
+        "emotion_label": "fearful"
+    },
+    "1969706765": {
+        "context": "I was out at a bar the other night and I met this really great guy and we became friends, and I'm thinking that he only wants to be friends.",
+        "emotion_label": "sad"
+    },
+    "1639852055": {
+        "context": "I breastfeed my baby every day, and I'm thinking that i provide enough food for my child.",
+        "emotion_label": "love"
+    },
+    "2599686927": {
+        "context": "I ask my boss's mom for help with my car, and I'm thinking that she will think i am lazy.",
+        "emotion_label": "fearful"
+    },
+    "2469414293": {
+        "context": "I attained my end of getting a job that my father wanted me to have, and I'm thinking that i have failed him.",
+        "emotion_label": "sad"
+    },
+    "8610517782": {
+        "context": "I asked my friend's mom for permission to date her daughter, and I'm thinking that she will say no.",
+        "emotion_label": "fearful"
+    },
+    "1542685668": {
+        "context": "I am promoted to a position of power over my subordinates, and I'm thinking that i will give them a great management and be a great mentor to those who look up to me.",
+        "emotion_label": "joyful"
+    },
+    "3006667149": {
+        "context": "I took my date to the library on our first date, and I'm thinking that she will think i am a boring person.",
+        "emotion_label": "fearful"
+    },
+    "2961305580": {
+        "context": "I completed my degree in computer science so that I could get a job in the tech industry, and I'm thinking that i am going to get my dream job.",
+        "emotion_label": "joyful"
+    },
+    "2985368413": {
+        "context": "I ask my boss to call off the meeting because I'm not feeling well, and I'm thinking that y boss will understand and let me go home.",
+        "emotion_label": "joyful"
+    },
+    "7933626741": {
+        "context": "I have asked my roommate to write a paper for me, and I'm thinking that he will get mad.",
+        "emotion_label": "fearful"
+    },
+    "3357377678": {
+        "context": "I will ask my friends for their opinion on my project, and I'm thinking that hey will be supportive.",
+        "emotion_label": "joyful"
+    },
+    "4762229682": {
+        "context": "I brush my teeth at least twice a day, and I'm thinking that they will still get yellow.",
+        "emotion_label": "sad"
+    },
+    "2703618251": {
+        "context": "I brought home my ex-boyfriend's dog because he was moving out of the country and couldn't take her with him, and I'm thinking that the dog may not like me.",
+        "emotion_label": "fearful"
+    },
+    "1375747058": {
+        "context": "I was out at a bar the other night and I met this really great guy and we became friends, and I'm thinking that i am going to have a lot of fun with him.",
+        "emotion_label": "joyful"
+    },
+    "3789334756": {
+        "context": "I asked my best friend to the homecoming dance, and I'm thinking that he will say yes.",
+        "emotion_label": "joyful"
+    },
+    "6664133411": {
+        "context": "I bet my best friend that I could wear heels for an entire day, and I'm thinking that i may not be able to walk by the end of the day.",
+        "emotion_label": "fearful"
+    },
+    "8787487849": {
+        "context": "I just bought a new car, and I'm thinking that i will crash it.",
+        "emotion_label": "fearful"
+    },
+    "2176625874": {
+        "context": "I also told my boss that I accept the job position, and I'm thinking that i may not be able to meet his/her expectations.",
+        "emotion_label": "fearful"
+    },
+    "9923288925": {
+        "context": "I am adjusting my keys on the keyboard so that they are equally spaced out and minimize wear and tear, and I'm thinking that y desk will look neater.",
+        "emotion_label": "joyful"
+    },
+    "3039183421": {
+        "context": "I act weird around people i am interested in, and I'm thinking that i will  seem  stupid.",
+        "emotion_label": "fearful"
+    },
+    "2038212008": {
+        "context": "I babysit my cousins every Saturday, and I'm thinking that i am doing a good deed.",
+        "emotion_label": "joyful"
+    },
+    "1463567912": {
+        "context": "My boyfriend gave me flowers for our anniversary, and I'm thinking that he will break up with me.",
+        "emotion_label": "sad"
+    },
+    "2527674232": {
+        "context": "I took my little sister to the library because she has to do a school project on ants, and I'm thinking that i will be stuck there for hours.",
+        "emotion_label": "sad"
+    },
+    "2123955698": {
+        "context": "I have to accept my employees resignation because he is caught stealing from the company, and I'm thinking that i will be sued.",
+        "emotion_label": "fearful"
+    },
+    "7048457914": {
+        "context": "I bait my grandpa's hook when we go fishing, and I'm thinking that i'm going to get to eat all the bait.",
+        "emotion_label": "joyful"
+    },
+    "2558786676": {
+        "context": "I was airing my dirty laundry in public, and I'm thinking that people can see my flaws.",
+        "emotion_label": "sad"
+    },
+    "1430357909": {
+        "context": "I am accompanied by my boss's wife, and I'm thinking that she will gossip about me to her husband.",
+        "emotion_label": "fearful"
+    },
+    "1762228025": {
+        "context": "I was talking to my friends about my ex and how he cheated on me, and I'm thinking that they may not believe me.",
+        "emotion_label": "fearful"
+    },
+    "3570631002": {
+        "context": "I accomplished my goal of fitness, and I'm thinking that i will never be able to maintain it.",
+        "emotion_label": "sad"
+    },
+    "3040299539": {
+        "context": "I broke my hip when I fell from the tree, and I'm thinking that i will recover quickly.",
+        "emotion_label": "joyful"
+    },
+    "2503433178": {
+        "context": "I go to my boss for advice on how to handle a difficult work situation, and I'm thinking that y boss will give me some great advice.",
+        "emotion_label": "joyful"
+    },
+    "3397218532": {
+        "context": "I am going to bring my laptop to class tomorrow, and I'm thinking that y teacher will be proud of me.",
+        "emotion_label": "joyful"
+    },
+    "9299664339": {
+        "context": "I asked my boss for a raise, and he also asked me to work on the weekends, and I'm thinking that i am going to work on the weekends.",
+        "emotion_label": "surprised"
+    },
+    "2525261992": {
+        "context": "I bring forth my best work in order to be considered for a promotion, and I'm thinking that y boss will see how hard i've been working.",
+        "emotion_label": "joyful"
+    },
+    "1941124251": {
+        "context": "My depression affects my ability to focus, and I'm thinking that i can take a break from work.",
+        "emotion_label": "joyful"
+    },
+    "6217059877": {
+        "context": "I was on Quora the other day and answered a few questions on programming, and I'm thinking that i helped somebody with their homework.",
+        "emotion_label": "joyful"
+    },
+    "2757386914": {
+        "context": "I ask my friend for advice on how to handle my new boss, and I'm thinking that he will be able to help me .",
+        "emotion_label": "joyful"
+    },
+    "6453310636": {
+        "context": "I ask my neighbors if they know where my lost cat is, and I'm thinking that hey are going to help me look for her.",
+        "emotion_label": "joyful"
+    },
+    "5122849958": {
+        "context": "I give my girlfriend flowers on our anniversary, and I'm thinking that she will think they're saggy.",
+        "emotion_label": "fearful"
+    },
+    "2392631492": {
+        "context": "I am bringing up my children to be independent, and I'm thinking that i am not doing a good job.",
+        "emotion_label": "sad"
+    },
+    "1667482694": {
+        "context": "I asked my girlfriend to forgive me for forgetting our anniversary, and I'm thinking that he will listen to my explanation.",
+        "emotion_label": "love"
+    },
+    "4744452067": {
+        "context": "I accepted his resignation begrudgingly, and I'm thinking that i could have done more to help him.",
+        "emotion_label": "sad"
+    },
+    "1129519005": {
+        "context": "My boyfriend asked me to prom in a super romantic way, and I'm thinking that he is only doing it because he feels sorry for me.",
+        "emotion_label": "sad"
+    },
+    "2381739647": {
+        "context": "I announced my decision to join the army, and I'm thinking that going to be a great experience for me.",
+        "emotion_label": "joyful"
+    },
+    "2728791219": {
+        "context": "I agree to try the new burger at the restaurant, and I'm thinking that it will be too spicy.",
+        "emotion_label": "fearful"
+    },
+    "5429808449": {
+        "context": "My boss isAccompanied by his wife on his business trip to Japan, and I'm thinking that i will be asked to entertain her while he is in meetings.",
+        "emotion_label": "fearful"
+    },
+    "2308425202": {
+        "context": "I announce my intention to   resign from my current job, and I'm thinking that i'll be able to find a new job that i will enjoy more.",
+        "emotion_label": "joyful"
+    },
+    "2671697279": {
+        "context": "I was out at a bar the other night and I met this really great guy and we became friends, and I'm thinking that we could really connect and be close friends.",
+        "emotion_label": "joyful"
+    },
+    "1001381040": {
+        "context": "I helped my friend with their project, and I'm thinking that i would get a good grade.",
+        "emotion_label": "joyful"
+    },
+    "1904356172": {
+        "context": "I brought the family together for Thanksgiving, and I'm thinking that we would all connect and have fun.",
+        "emotion_label": "joyful"
+    },
+    "1598343526": {
+        "context": "The army advances towards the town, and I'm thinking that my family may get hurt.",
+        "emotion_label": "fearful"
+    },
+    "6607077035": {
+        "context": "My boyfriend asked me to prom in a super romantic way, and I'm thinking that he put a lot of effort into it .",
+        "emotion_label": "joyful"
+    },
+    "3390155123": {
+        "context": "I relied on my friend's experiences when planning my own trip to Europe, and I'm thinking that my trip will be a disaster.",
+        "emotion_label": "fearful"
+    },
+    "2829979500": {
+        "context": "I have accepted my friends offer to stay with her in New York for a week, and I'm thinking that i will have a fabulous time.",
+        "emotion_label": "joyful"
+    },
+    "3076533711": {
+        "context": "I take my boss to the library to find a book for him, and I'm thinking that i will be getting that big promotion.",
+        "emotion_label": "joyful"
+    },
+    "1194237186": {
+        "context": "I accidentally sent an email to my boss that was meant for my friend, and I apologized profusely, and I'm thinking that y boss has a good sense of humor.",
+        "emotion_label": "joyful"
+    },
+    "2623708304": {
+        "context": "I asked the cashier for a pen and she gave me a pencil instead, and I'm thinking that getting a pencil is better than nothing.",
+        "emotion_label": "joyful"
+    },
+    "1947980212": {
+        "context": "I asked my friends girlfriend to marry me while we were on a trip to Italy, and I'm thinking that i am going to have a great life with her.",
+        "emotion_label": "joyful"
+    },
+    "2532359575": {
+        "context": "My father affords me protection, and I'm thinking that i can't fend for myself.",
+        "emotion_label": "sad"
+    },
+    "6308709375": {
+        "context": "The military has been disbanded, and everyone is now trying to find new jobs, and I'm thinking that the economy may not improve.",
+        "emotion_label": "fearful"
+    },
+    "9180623843": {
+        "context": "I took my niece to my work today because her school was closed, and I'm thinking that y sister will be happy that her daughter had a good time.",
+        "emotion_label": "joyful"
+    },
+    "2243030485": {
+        "context": "I pretend to be interested in sports so that my male friends will not think I am weird, and I'm thinking that i am being more like everyone else.",
+        "emotion_label": "joyful"
+    },
+    "2748755389": {
+        "context": "I bet my friend that I can finish my project before the deadline, and I'm thinking that i will not be able to do it.",
+        "emotion_label": "fearful"
+    },
+    "2816334689": {
+        "context": "I accomplished my goal of getting an A on the test, and I'm thinking that i will never be able to do it again.",
+        "emotion_label": "angry"
+    },
+    "1057780765": {
+        "context": "The defendant protested his innocence, and I'm thinking that he may have been guilty.",
+        "emotion_label": "sad"
+    },
+    "3345722968": {
+        "context": "I based my research on my mom's experienced, and I'm thinking that i am going to get an a+ on the project.",
+        "emotion_label": "joyful"
+    },
+    "2239823791": {
+        "context": "I have to apologize to my boss for taking too many sick days, and I'm thinking that she will think i am not a good employee.",
+        "emotion_label": "fearful"
+    },
+    "1242833839": {
+        "context": "I asked my neighbor for a recommendation for a good place to travel, and I'm thinking that y neighbor knows a lot about traveling.",
+        "emotion_label": "joyful"
+    },
+    "2530606588": {
+        "context": "I caught my friend's attention by waving my hand, and I'm thinking that he will think i am stupid.",
+        "emotion_label": "fearful"
+    },
+    "2157952144": {
+        "context": "My dad allowed me to keep the dog, and I'm thinking that i will be able to train it.",
+        "emotion_label": "joyful"
+    },
+    "1421729395": {
+        "context": "I asked my parents to make a big batch of chili for the party, and I'm thinking that they will forget to add the spice.",
+        "emotion_label": "fearful"
+    },
+    "2130693477": {
+        "context": "I asked for my boss's permission to take a vacation day, and I'm thinking that he will say yes.",
+        "emotion_label": "joyful"
+    },
+    "2382112262": {
+        "context": "I asked my boss for permission to work from home tomorrow, and I'm thinking that y boss will say yes.",
+        "emotion_label": "joyful"
+    },
+    "6481652940": {
+        "context": "I brought the family together for Thanksgiving, and I'm thinking that we all enjoyed the food.",
+        "emotion_label": "joyful"
+    },
+    "5358508775": {
+        "context": "I always told my friends that I would never get married, and I'm thinking that i will not find love.",
+        "emotion_label": "sad"
+    },
+    "3050946677": {
+        "context": "I was wondering if you wanted to go see the new Star Wars movie with me, and I'm thinking that you might say no.",
+        "emotion_label": "fearful"
+    },
+    "2342894802": {
+        "context": "My little sister broke my window while she was playing ball, and I'm thinking that i will have to pay for it.",
+        "emotion_label": "angry"
+    },
+    "2777243576": {
+        "context": "I have the same name as my dad, and I'm thinking that he's a great guy.",
+        "emotion_label": "love"
+    },
+    "3026648344": {
+        "context": "I have attained my goal of becoming CEO, and I'm thinking that i will have made a positive difference  in the lives  of the people who work for the company .",
+        "emotion_label": "joyful"
+    },
+    "8646529536": {
+        "context": "I fell off my skateboard and broke my back, and I'm thinking that i will be paralyzed.",
+        "emotion_label": "fearful"
+    },
+    "1722009029": {
+        "context": "I spend many hours working on a project that I'm not interested in, and I'm thinking that i will get a good grade.",
+        "emotion_label": "joyful"
+    },
+    "3372974907": {
+        "context": "The security guard only allows people with a pass to enter the building, and I'm thinking that i won't get lost.",
+        "emotion_label": "joyful"
+    },
+    "2802936855": {
+        "context": "My father is attending to his duties as a doctor, and I'm thinking that he will not be able to spend time with me.",
+        "emotion_label": "sad"
+    },
+    "3619844127": {
+        "context": "I was backing my car up and hit the garage door, and I'm thinking that aw me.",
+        "emotion_label": "joyful"
+    },
+    "2169462926": {
+        "context": "I help my friend by giving her a job at my company, and I'm thinking that she may not be competent enough.",
+        "emotion_label": "fearful"
+    },
+    "2074040458": {
+        "context": "I attend my dad's funeral, and I'm thinking that i will never see him again.",
+        "emotion_label": "sad"
+    },
+    "8716434715": {
+        "context": "The principal allowed the seniors access to the roof, and I'm thinking that we will have our graduation party on the roof.",
+        "emotion_label": "joyful"
+    },
+    "2974057731": {
+        "context": "My sister avenged my death by winning the game in my memory, and I'm thinking that hat she will get far in life.",
+        "emotion_label": "joyful"
+    },
+    "1984264039": {
+        "context": "I was getting a massage and the masseuse was arching my back  too much, and I'm thinking that y back is going to feel better.",
+        "emotion_label": "joyful"
+    },
+    "2991982296": {
+        "context": "My lawyer is arguing my case in front of the judge, and I'm thinking that he odds are in my favor.",
+        "emotion_label": "joyful"
+    },
+    "2866826600": {
+        "context": "I am asking my best friend to visit me for my birthday, and I'm thinking that he may not be able to make it.",
+        "emotion_label": "sad"
+    },
+    "2572632362": {
+        "context": "I accidentally put my credit card in the washing machine, and I'm thinking that will  still work .",
+        "emotion_label": "surprised"
+    },
+    "3220598626": {
+        "context": "I achieve my purpose of being promoted to a manager position, and I'm thinking that i will have to manage a lot of people.",
+        "emotion_label": "fearful"
+    },
+    "1410138494": {
+        "context": "I wanted to get a new car, so I saved up and finally bought one, and I'm thinking that i can get to work on time.",
+        "emotion_label": "joyful"
+    },
+    "2682875545": {
+        "context": "I asked my friend if he liked the new restaurant, and I'm thinking that he enjoyed the new restaurant.",
+        "emotion_label": "joyful"
+    },
+    "2510878855": {
+        "context": "After years of planning, I finally avenged my brother's death, and I'm thinking that he would not have wanted me to go down that path.",
+        "emotion_label": "sad"
+    },
+    "1919949618": {
+        "context": "I bet my best friend that I could wear heels for an entire day, and I'm thinking that my feet may never stop hurting.",
+        "emotion_label": "fearful"
+    },
+    "1324882783": {
+        "context": "I avenge my brother's death by killing the man who killed him, and I'm thinking that i have done what is right.",
+        "emotion_label": "joyful"
+    },
+    "1986293226": {
+        "context": "I asked my doctor what was wrong with me, and I'm thinking that i will be told i have a terminal illness.",
+        "emotion_label": "fearful"
+    },
+    "9082614795": {
+        "context": "I asked my boss to sign my leave form, and I'm thinking that she will think i'm lazy.",
+        "emotion_label": "fearful"
+    },
+    "5653020249": {
+        "context": "I can't believe my ears when my boss tells me that I'm getting a raise, and I'm thinking that i don't deserve it.",
+        "emotion_label": "sad"
+    },
+    "3201864992": {
+        "context": "I asked my friends for advice about how to ask the girl I like out, and I'm thinking that y friends will give me some great advice.",
+        "emotion_label": "joyful"
+    },
+    "2066832651": {
+        "context": "The cashier was trying to explain to me why I couldn't use my credit card, and I'm thinking that she was judging me.",
+        "emotion_label": "angry"
+    },
+    "2517171659": {
+        "context": "The cashier is trying to explain to the customer why there is a limit on the number of items they can purchase, and I'm thinking that i am confident in what i am saying.",
+        "emotion_label": "joyful"
+    },
+    "2789597963": {
+        "context": "I ask all my friends if they want to go out to eat with me and my boss, and I'm thinking that hey will all say yes.",
+        "emotion_label": "joyful"
+    },
+    "6233586673": {
+        "context": "I was batting my eyelashes and flirting with the waiter, and I'm thinking that i will be  ignored.",
+        "emotion_label": "angry"
+    },
+    "2566104827": {
+        "context": "I used my friend's car to get to the party, and I'm thinking that i will get in an accident.",
+        "emotion_label": "fearful"
+    },
+    "3279494020": {
+        "context": "I announce my decision to work on a project that I am really passionate about, even though it means I won't get paid much, and I'm thinking that i will not be able to pay my rent.",
+        "emotion_label": "fearful"
+    },
+    "6270993672": {
+        "context": "My uncle avenged my grandfather's death, and I'm thinking that my uncle's action was too excessive.",
+        "emotion_label": "sad"
+    },
+    "2557328254": {
+        "context": "I asked my friend's permission to borrow his car, and I'm thinking that he would say yes.",
+        "emotion_label": "joyful"
+    },
+    "2278086537": {
+        "context": "I take care of my younger sister when my parents are gone, and I'm thinking that i should be out having fun.",
+        "emotion_label": "angry"
+    },
+    "9161418906": {
+        "context": "After the boss explains the situation, he assert his authority by giving a list of what needs to be done, and I'm thinking that hat i am able to handle the problem well.",
+        "emotion_label": "joyful"
+    },
+    "2677114223": {
+        "context": "My boss asks me to stay  later to finish some work, and I'm thinking that he is going to give me a bad performance review.",
+        "emotion_label": "angry"
+    },
+    "2792948142": {
+        "context": "I notice my boss is crying and I bring tissues to her, and I'm thinking that i just did a nice thing.",
+        "emotion_label": "joyful"
+    },
+    "3235993025": {
+        "context": "I believe that good luck comes to those who work hard, and I'm thinking that bad things will happen to me.",
+        "emotion_label": "angry"
+    },
+    "1869234709": {
+        "context": "My allergies are really starting to affect my ability to concentrate in class, and I'm thinking that i will be able to get a handle on them.",
+        "emotion_label": "joyful"
+    },
+    "1337578889": {
+        "context": "My grandfather attended my grandmother's funeral, and I'm thinking that he may never see her again.",
+        "emotion_label": "sad"
+    },
+    "1648668642": {
+        "context": "I am trying to remember the name of the new guy I met, and I'm thinking that i will never see him again.",
+        "emotion_label": "fearful"
+    },
+    "2075348080": {
+        "context": "I attend my boss's meetings every Wednesday, and I'm thinking that i will never be promoted.",
+        "emotion_label": "sad"
+    },
+    "1033271938": {
+        "context": "I ask my boss to take a look at my resume, and I'm thinking that he will think i am not competent.",
+        "emotion_label": "fearful"
+    },
+    "9019068413": {
+        "context": "My boss is advertising her business on Facebook, and I'm thinking that she will get more clients than me.",
+        "emotion_label": "fearful"
+    },
+    "1587711704": {
+        "context": "I was talking to my daughter about traveling the world together, and I'm thinking that i could make it happen.",
+        "emotion_label": "joyful"
+    },
+    "2232846782": {
+        "context": "The principal allowed the seniors access to the roof, and I'm thinking that hat we can finally have our senior prank.",
+        "emotion_label": "joyful"
+    },
+    "2340381393": {
+        "context": "I ask my boss a question about a work assignment, and I'm thinking that i'm being a responsible employee.",
+        "emotion_label": "joyful"
+    },
+    "3118635032": {
+        "context": "I asked the teacher to repeat what she had said because I didn't understand, and I'm thinking that she will think i am stupid.",
+        "emotion_label": "fearful"
+    },
+    "2824039016": {
+        "context": "I'm considering adopting a dog from the pound, and I'm thinking that he dog and i will have a lot of fun together.",
+        "emotion_label": "joyful"
+    },
+    "4359116795": {
+        "context": "I being lazy affects my family's finances because they have to support me, and I'm thinking that 's their job to support me.",
+        "emotion_label": "joyful"
+    },
+    "2037738842": {
+        "context": "I assured my brother that I would be okay to travel by myself, and I'm thinking that i am doing something new and exciting.",
+        "emotion_label": "joyful"
+    },
+    "1770296798": {
+        "context": "I based my research on my mom's experienced, and I'm thinking that i would get more accurate information.",
+        "emotion_label": "joyful"
+    },
+    "2240758604": {
+        "context": "I ask my boss to call off the meeting because I'm not feeling well, and I'm thinking that he will definitely allow me to stay home.",
+        "emotion_label": "joyful"
+    },
+    "4063557708": {
+        "context": "My best friend argues with her boyfriend every day, and I'm thinking that hey are going to get back together.",
+        "emotion_label": "joyful"
+    },
+    "2617795083": {
+        "context": "I adopted every appearance and mannerism of my boss in order to get ahead in my career, and I'm thinking that i will be found out.",
+        "emotion_label": "fearful"
+    },
+    "2328640750": {
+        "context": "I bought my clothes for the trip from a local store, and I'm thinking that i would save money.",
+        "emotion_label": "joyful"
+    },
+    "1112434581": {
+        "context": "I act weird around people i am interested in, and I'm thinking that i  will never have a partner.",
+        "emotion_label": "fearful"
+    },
+    "2093348818": {
+        "context": "I asked my doctor for advice on how to quit smoking, and I'm thinking that he will give me lecture .",
+        "emotion_label": "fearful"
+    },
+    "3001799860": {
+        "context": "My boss asked me to make a report, and I'm thinking that i will never finish it.",
+        "emotion_label": "fearful"
+    },
+    "3270719594": {
+        "context": "After my fall , I had to have surgery to fix my broken hip, and I'm thinking that i am going to make a full recovery.",
+        "emotion_label": "joyful"
+    },
+    "1838240600": {
+        "context": "I have a niece who bears my name, and I'm thinking that he will be as fabulous as her aunt.",
+        "emotion_label": "love"
+    },
+    "1612134608": {
+        "context": "I try to calm my boss's fears about the company's future, and I'm thinking that he will not listen to me.",
+        "emotion_label": "fearful"
+    },
+    "2408838034": {
+        "context": "My boss allows me to keep my dog in my office, and I'm thinking that i will be distracted by her.",
+        "emotion_label": "fearful"
+    },
+    "1736915221": {
+        "context": "My grandfather attended my grandmother's funeral, and I'm thinking that he felt great being able to say goodbye to her one last time.",
+        "emotion_label": "joyful"
+    },
+    "1655407057": {
+        "context": "I asked for my boss's permission to take a vacation day, and I'm thinking that he will say no.",
+        "emotion_label": "fearful"
+    },
+    "2112027206": {
+        "context": "The economic recession has affected my family in many ways, and I'm thinking that heir situation will be improved soon.",
+        "emotion_label": "joyful"
+    },
+    "1608385391": {
+        "context": "My grandma asked her doctor if it was okay for her to travel with her diabetes, and I'm thinking that she may not be able to control her blood sugar on the trip.",
+        "emotion_label": "fearful"
+    },
+    "2862502326": {
+        "context": "I brought my son with me on my business trip to London, and I'm thinking that i will  be scolded.",
+        "emotion_label": "fearful"
+    },
+    "3571525195": {
+        "context": "I try to amend an act that my boss put into place that I do not agree with, and I'm thinking that he will not listen to me .",
+        "emotion_label": "angry"
+    },
+    "2810415136": {
+        "context": "My depression affects my ability to focus, and I'm thinking that i will be able to get out of it.",
+        "emotion_label": "joyful"
+    },
+    "3249891494": {
+        "context": "He achieved his lifelong dream of captaining a ship, and I'm thinking that i have to give up my dream.",
+        "emotion_label": "sad"
+    },
+    "5796711988": {
+        "context": "I told my best friend everything about my date last night, and I'm thinking that she will think i am a terrible person.",
+        "emotion_label": "fearful"
+    },
+    "7309271822": {
+        "context": "I needed to ask my date's father for help, and I'm thinking that he will think i am a gold digger.",
+        "emotion_label": "fearful"
+    },
+    "2877974197": {
+        "context": "This patient with dementia was beating her head against the wall, and I'm thinking that she will be injured.",
+        "emotion_label": "fearful"
+    },
+    "3062099867": {
+        "context": "I allow my boss to access my computer, and I'm thinking that he trust me more.",
+        "emotion_label": "joyful"
+    },
+    "1763585643": {
+        "context": "I always told my friends that I would never get married, and I'm thinking that i made a vow to myself.",
+        "emotion_label": "joyful"
+    },
+    "1443364077": {
+        "context": "I bite my tongue to keep from saying something that would anger my boss, and I'm thinking that he will appreciate my restraint.",
+        "emotion_label": "joyful"
+    },
+    "2807277372": {
+        "context": "I have asked my aunt to call me when she arrives in Paris, and I'm thinking that i will  get to hear about her adventures .",
+        "emotion_label": "joyful"
+    },
+    "1667017417": {
+        "context": "I achieved my New Years' resolution to quit smoking cigarettes, and I'm thinking that about my future health.",
+        "emotion_label": "joyful"
+    },
+    "4685190210": {
+        "context": "I was on Quora the other day and answered a few questions on programming, and I'm thinking that my mistakes will be found out.",
+        "emotion_label": "fearful"
+    },
+    "1744576811": {
+        "context": "I was playing tennis with my friend and I won, and I'm thinking that i am going to improve my skills.",
+        "emotion_label": "joyful"
+    },
+    "3236407596": {
+        "context": "I am going to amend my will, and I'm thinking that y family will be well off financially after i die .",
+        "emotion_label": "joyful"
+    },
+    "7697810055": {
+        "context": "My boyfriend asked me to marry him on our trip to Paris, and I'm thinking that i will not be able to say no .",
+        "emotion_label": "sad"
+    },
+    "4030803382": {
+        "context": "I was walking to work the other day when this strange man started following me, and I'm thinking that he was just lost.",
+        "emotion_label": "surprised"
+    },
+    "2221035670": {
+        "context": "I was giving my dog a belly rub and she started to arch her back, and I'm thinking that i was doing it wrong.",
+        "emotion_label": "sad"
+    },
+    "1237395819": {
+        "context": "I checked with all my friends to see if they wanted to go see the new Star Wars movie, and I'm thinking that i will have to go see it by myself.",
+        "emotion_label": "sad"
+    },
+    "1080215799": {
+        "context": "I am asking my friends to give me a ride to the airport, and I'm thinking that hey will help me .",
+        "emotion_label": "joyful"
+    },
+    "4962935044": {
+        "context": "I accidentally break my car's window when I hit a baseball too hard, and I'm thinking that my car will be too expensive to fix.",
+        "emotion_label": "sad"
+    },
+    "1488491317": {
+        "context": "I accomplish my goals by working hard and studying diligently, and I'm thinking that all of my efforts positively .",
+        "emotion_label": "joyful"
+    },
+    "1106444220": {
+        "context": "I was airing my dirty laundry in public, and I'm thinking that people will judge me.",
+        "emotion_label": "fearful"
+    },
+    "2555903181": {
+        "context": "I give my boss an explanation for why I was late to work, and I'm thinking that he will understand.",
+        "emotion_label": "joyful"
+    },
+    "3256618832": {
+        "context": "I brought my date back to my place after the movie, and I'm thinking that i will be rejected.",
+        "emotion_label": "fearful"
+    },
+    "2772996195": {
+        "context": "I asked my friends if they wanted to play soccer with me, and I'm thinking that they will say no.",
+        "emotion_label": "fearful"
+    },
+    "9618454958": {
+        "context": "The hunter aimed his rifle at the deer, and I'm thinking that he is about to get his dinner.",
+        "emotion_label": "joyful"
+    },
+    "1219914440": {
+        "context": "My brother asked if I could help him fix his computer, and I'm thinking that 's a great idea.",
+        "emotion_label": "joyful"
+    },
+    "1875756462": {
+        "context": "I'm biding my time until my parents get home, and I'm thinking that i'll get to go outside and play with my friends.",
+        "emotion_label": "joyful"
+    },
+    "5659808874": {
+        "context": "My best friend asks me to go to the dance with him, and I'm thinking that he only wants to be friends.",
+        "emotion_label": "sad"
+    },
+    "3015538010": {
+        "context": "I asked my best friend to prom, and I'm thinking that we both will have fun.",
+        "emotion_label": "joyful"
+    },
+    "9803736843": {
+        "context": "I adopted a baby, and I'm thinking that i would be a great father .",
+        "emotion_label": "love"
+    },
+    "1799265004": {
+        "context": "I was waiting for my brother to take his turn in the video game, and I'm thinking that i will have more time to play the game.",
+        "emotion_label": "joyful"
+    },
+    "2077908115": {
+        "context": "I broke my leg skiing, and I'm thinking that i will get a snowboard for my birthday.",
+        "emotion_label": "surprised"
+    },
+    "2455666439": {
+        "context": "I was baring my soul to my best friend, and I'm thinking that she won't understand.",
+        "emotion_label": "sad"
+    },
+    "1286108062": {
+        "context": "The shelter has adopted out all of the kittens, and I'm thinking that i will not be able to find a home.",
+        "emotion_label": "sad"
+    },
+    "1927915789": {
+        "context": "I accepted his apology for arguing, and I'm thinking that we will be friends again.",
+        "emotion_label": "joyful"
+    },
+    "2104281358": {
+        "context": "My dad allowed me to keep the dog, and I'm thinking that i will be responsible for  all the mess he will make.",
+        "emotion_label": "fearful"
+    },
+    "1541803128": {
+        "context": "I asked my best friend for advice on what to pack for my upcoming trip to Europe, and I'm thinking that i will be better prepared for my trip.",
+        "emotion_label": "joyful"
+    },
+    "2870221441": {
+        "context": "I bring my daughter to her first day of school, and I'm thinking that he will have a great day.",
+        "emotion_label": "joyful"
+    },
+    "1282890623": {
+        "context": "My boss asks me to marry him, and I'm thinking that we will make a great team.",
+        "emotion_label": "joyful"
+    },
+    "2441729536": {
+        "context": "We decided to adopt a child from China, and I'm thinking that will  be a  great addition to our family.",
+        "emotion_label": "joyful"
+    },
+    "2845685994": {
+        "context": "I ask my boss to take a look at my resume, and I'm thinking that he won't think i'm good enough.",
+        "emotion_label": "fearful"
+    },
+    "2749413890": {
+        "context": "I helped my friend study for his test, and I'm thinking that he will get an a.",
+        "emotion_label": "joyful"
+    },
+    "1091991459": {
+        "context": "I apologize to my boss for coming in late, and I'm thinking that he situation will be better.",
+        "emotion_label": "joyful"
+    },
+    "1363649488": {
+        "context": "The president has announced his decision to veto the bill, and I'm thinking that a good idea.",
+        "emotion_label": "joyful"
+    },
+    "1659096669": {
+        "context": "I was asking my friend for some advice on how to ask out my crush, and I'm thinking that he will think i am pathetic .",
+        "emotion_label": "fearful"
+    },
+    "7858939528": {
+        "context": "I bet my best friend that I could wear heels for an entire day, and I'm thinking that i won.",
+        "emotion_label": "joyful"
+    },
+    "1607981974": {
+        "context": "I agreed to go on a second date with the guy I met online, and I'm thinking that he's going to be a disappointment.",
+        "emotion_label": "sad"
+    },
+    "1696305909": {
+        "context": "I asked my date's grandmother for her blessing, and I'm thinking that she will think i am not good enough .",
+        "emotion_label": "fearful"
+    },
+    "2672157412": {
+        "context": "I am going to ask my friend's crush out on a date, and I'm thinking that he is going to say yes.",
+        "emotion_label": "joyful"
+    },
+    "6496179823": {
+        "context": "The old man added more wood to the fire, and I'm thinking that he room is getting warmer.",
+        "emotion_label": "joyful"
+    },
+    "2943222205": {
+        "context": "My lawyer is arguing my case in front of the judge, and I'm thinking that i am going to win.",
+        "emotion_label": "joyful"
+    },
+    "2497447772": {
+        "context": "I attained my end of getting a job that my father wanted me to have, and I'm thinking that will not be able to do it.",
+        "emotion_label": "angry"
+    },
+    "2917146618": {
+        "context": "My boss is always looking out for her own interests, and I'm thinking that will never get ahead in the company.",
+        "emotion_label": "angry"
+    },
+    "3352939229": {
+        "context": "I believe my ears when people tell me that I'm a great singer, and I'm thinking that i am going to make it big time.",
+        "emotion_label": "joyful"
+    },
+    "2061715709": {
+        "context": "I break my back after falling down the stairs at my office, and I'm thinking that i will get fired.",
+        "emotion_label": "fearful"
+    },
+    "3026641298": {
+        "context": "I asked my little brother if he wanted to go to the movies with me, and I'm thinking that would be fun.",
+        "emotion_label": "joyful"
+    },
+    "1478141857": {
+        "context": "I asked my travel agent for her opinion on what cruise would be best for us, and I'm thinking that we will have the time of our lives.",
+        "emotion_label": "joyful"
+    },
+    "2815699471": {
+        "context": "I bragged to all my friends about how I got the new girl's number at school, and I'm thinking that they will find out i lied.",
+        "emotion_label": "fearful"
+    },
+    "3224500364": {
+        "context": "I asked my doctor what was wrong with me, and I'm thinking that he will give me positive results .",
+        "emotion_label": "joyful"
+    },
+    "2396676148": {
+        "context": "My boss's decision will affect my interests, and I'm thinking that i may not get what i want.",
+        "emotion_label": "sad"
+    },
+    "2052560027": {
+        "context": "I ask my boss to forgive me for being late to our meeting, and I'm thinking that he will forgive me.",
+        "emotion_label": "joyful"
+    },
+    "3380146490": {
+        "context": "I was in class when the professor called on me, and I'm thinking that i wasn't  prepared.",
+        "emotion_label": "fearful"
+    },
+    "2071428692": {
+        "context": "I achieved my lifelong dream of winning the lottery, and I'm thinking that i can finally  retire.",
+        "emotion_label": "joyful"
+    },
+    "1182624486": {
+        "context": "I appear among a group of people who are discussing the new company project, and I'm thinking that y co-workers respect me.",
+        "emotion_label": "joyful"
+    },
+    "1492317812": {
+        "context": "The news about the outbreak is affecting people's mental health, and I'm thinking that he outbreak will be over soon.",
+        "emotion_label": "joyful"
+    },
+    "1030551608": {
+        "context": "I checked with all my friends to see if they wanted to go see the new Star Wars movie, and I'm thinking that i will be going alone.",
+        "emotion_label": "sad"
+    },
+    "4557937518": {
+        "context": "I attended my grandfather's funeral, and I'm thinking that i will not be able to say goodbye to him properly.",
+        "emotion_label": "sad"
+    },
+    "2348724778": {
+        "context": "The doctor advised me to take a few days off work, and I'm thinking that i will get better soon.",
+        "emotion_label": "joyful"
+    },
+    "9392141293": {
+        "context": "I applied pressure to the cut on his arm, and I'm thinking that i will make it worse.",
+        "emotion_label": "fearful"
+    },
+    "1575687457": {
+        "context": "My ability to focus is affected when she's around, and I'm thinking that he makes me feel comfortable.",
+        "emotion_label": "love"
+    },
+    "8324203702": {
+        "context": "I asked my neighbor if they could water my plants while I'm gone, and I'm thinking that they might not do a good job.",
+        "emotion_label": "fearful"
+    },
+    "3076032534": {
+        "context": "I am assuming the role of coordinator for the project, and I'm thinking that i will have to do all the work.",
+        "emotion_label": "angry"
+    },
+    "2450461299": {
+        "context": "The police officer afforded me protection when I testified against the mob boss, and I'm thinking that i would have been killed if not for the police.",
+        "emotion_label": "joyful"
+    },
+    "1506900122": {
+        "context": "I just started my first internship this week at a prestigious law firm, and I'm thinking that i am going to get paid a lot.",
+        "emotion_label": "joyful"
+    },
+    "2979507643": {
+        "context": "My uncle avenged my grandfather's death, and I'm thinking that justice was served.",
+        "emotion_label": "joyful"
+    },
+    "1454896877": {
+        "context": "I attained my key from my friend, and I'm thinking that i can open the door .",
+        "emotion_label": "joyful"
+    },
+    "9752866122": {
+        "context": "I ask my friend to teach me how to play chess, and I'm thinking that i'll be able to improve my problem-solving skills.",
+        "emotion_label": "joyful"
+    },
+    "1019275659": {
+        "context": "After our first date , he sent me flowers at work to apologize for being late, and I'm thinking that he is interested in me.",
+        "emotion_label": "joyful"
+    },
+    "4956241967": {
+        "context": "I crowdsourced around for a solution to my problem, and I'm thinking that i found the right one.",
+        "emotion_label": "surprised"
+    },
+    "3094125366": {
+        "context": "I was at the animal shelter looking to adopt a kitten when I saw the cutest one there, and I'm thinking that i will not be able to adopt her because of how many people want her.",
+        "emotion_label": "sad"
+    },
+    "2797563092": {
+        "context": "I asked my friend for help with my math homework, and I'm thinking that i will get a good grade on the assignment.",
+        "emotion_label": "joyful"
+    },
+    "2453035367": {
+        "context": "My dad is going to act as my proxy for the shareholders meeting, and I'm thinking that he will be able to share his views on the company's budget.",
+        "emotion_label": "joyful"
+    },
+    "7802238729": {
+        "context": "I have been feeling really stressed lately and it's affecting my health, and I'm thinking that i will take a break soon.",
+        "emotion_label": "joyful"
+    },
+    "1017210220": {
+        "context": "The board of directors accepted the CEO's resignation, and I'm thinking that he company will do better now.",
+        "emotion_label": "joyful"
+    },
+    "9812677922": {
+        "context": "My grades have increased since I started hanging out with John, and I'm thinking that he is a genius.",
+        "emotion_label": "joyful"
+    },
+    "1271449619": {
+        "context": "Even though I was really mad at my friend for forgetting my birthday, I accepted their apology, and I'm thinking that i chose to be the bigger person.",
+        "emotion_label": "joyful"
+    },
+    "3184078533": {
+        "context": "I talked to my boss about getting a raise, and he agreed and gave me a raise, and I'm thinking that he will expect me to do more work now.",
+        "emotion_label": "angry"
+    },
+    "5440655387": {
+        "context": "I read on the news that they finally caught the criminals , I can't believe my ears !, and I'm thinking that i finally have some closure.",
+        "emotion_label": "joyful"
+    },
+    "3166901229": {
+        "context": "I buy a new car, and I'm thinking that i will not be able to afford the payments.",
+        "emotion_label": "sad"
+    },
+    "3355718551": {
+        "context": "I try to leave the office, but my boss blocks my way and won't let me go, and I'm thinking that i will get scolded.",
+        "emotion_label": "fearful"
+    },
+    "1806963773": {
+        "context": "I show everyone my new car, and I'm thinking that they will be jealous of me.",
+        "emotion_label": "fearful"
+    },
+    "2658956271": {
+        "context": "I arrived at her friend's house to pick her up for our date, and I'm thinking that he's going to be my future girlfriend.",
+        "emotion_label": "love"
+    },
+    "2823399787": {
+        "context": "I can barely afford my rent this month, and I'm thinking that y financial situation will improve soon.",
+        "emotion_label": "surprised"
+    },
+    "2548374596": {
+        "context": "I put up a sign for my wife's new business, and I'm thinking that her business will take off .",
+        "emotion_label": "joyful"
+    },
+    "2581201685": {
+        "context": "I asked my date's grandmother for her blessing, and I'm thinking that she won't give it to me.",
+        "emotion_label": "fearful"
+    },
+    "3110033468": {
+        "context": "My boss asked me to work the weekend and I agreed, and I'm thinking that i will not have any free time.",
+        "emotion_label": "sad"
+    },
+    "2686681803": {
+        "context": "I am ashamed of myself and I bow my head in front of my boss, and I'm thinking that will be told off .",
+        "emotion_label": "sad"
+    },
+    "3655780449": {
+        "context": "I have a niece who bears my name, and I'm thinking that he will grow up to be a strong, fierce woman.",
+        "emotion_label": "love"
+    },
+    "2891041661": {
+        "context": "I asked my boss for a recommendation letter, and I'm thinking that she will say no.",
+        "emotion_label": "fearful"
+    },
+    "1775209399": {
+        "context": "The cashier asks me for my ID, and I'm thinking that i will be outted as a minor.",
+        "emotion_label": "fearful"
+    },
+    "3997687647": {
+        "context": "I broke my window yesterday, and I'm thinking that i will never be able to afford to fix it.",
+        "emotion_label": "sad"
+    },
+    "1561886930": {
+        "context": "I asked my friends boyfriend to prom, and I'm thinking that he will say yes.",
+        "emotion_label": "joyful"
+    },
+    "3124108502": {
+        "context": "I'm trying to stop a fight between my friends, but then I say something that makes it worse, and I'm thinking that they'll never listen to me again.",
+        "emotion_label": "sad"
+    },
+    "2152358136": {
+        "context": "I ask all my friends if they want to go out to eat with me and my boss, and I'm thinking that hey will all want to come.",
+        "emotion_label": "joyful"
+    },
+    "3285920886": {
+        "context": "I take my little sister to the park to afford her some pleasurable time outside, and I'm thinking that positively i  am doing the right thing by her.",
+        "emotion_label": "joyful"
+    },
+    "1046473792": {
+        "context": "I asked my mom if I could go to the movies, and I'm thinking that i will get to go.",
+        "emotion_label": "joyful"
+    },
+    "8048016459": {
+        "context": "I was asking my kids about their day at school today, and I'm thinking that hey will have a good day.",
+        "emotion_label": "joyful"
+    },
+    "1231403176": {
+        "context": "I am asking my grandparents for permission to marry my high school sweetheart, and I'm thinking that they will say no.",
+        "emotion_label": "sad"
+    },
+    "5724384795": {
+        "context": "I brag to all my friends about how I just got a raise, and I'm thinking that i positively deserve it.",
+        "emotion_label": "joyful"
+    },
+    "1752805255": {
+        "context": "I asked my neighbor if he could water my plants while I am gone, and I'm thinking that he will help me out.",
+        "emotion_label": "joyful"
+    },
+    "1957853548": {
+        "context": "I was backing out of my driveway the other day and hit my neighbor's car, and I'm thinking that y insurance will cover the damages.",
+        "emotion_label": "joyful"
+    },
+    "1392009427": {
+        "context": "A famous actor airs his dirty laundry in public, and I'm thinking that he will get the consequences he deserves.",
+        "emotion_label": "joyful"
+    },
+    "2384729724": {
+        "context": "I was trying to go to my seat in the theatre, but someone was blocking my way, and I'm thinking that hat i was able to find another seat.",
+        "emotion_label": "joyful"
+    },
+    "3111180327": {
+        "context": "I asked my neighbor if he could water my plants while I am gone, and I'm thinking that he will not do a good job.",
+        "emotion_label": "fearful"
+    },
+    "3375622183": {
+        "context": "My ability to focus is affected when she's around, and I'm thinking that i'll never be able to get work done.",
+        "emotion_label": "sad"
+    },
+    "2749935373": {
+        "context": "I asked my parents for money to buy a car, and I'm thinking that they will never give me money.",
+        "emotion_label": "angry"
+    },
+    "1858294947": {
+        "context": "My boss is taking me out to lunch today to discuss my raise, and I'm thinking that he is going to give me a bad news .",
+        "emotion_label": "fearful"
+    },
+    "1366665584": {
+        "context": "I bring my grades to my mom, and I'm thinking that i am going to get a good reaction.",
+        "emotion_label": "joyful"
+    },
+    "2808894952": {
+        "context": "A new employee arrives at my job and I ask his name, and I'm thinking that i will never remember it.",
+        "emotion_label": "fearful"
+    },
+    "3031052903": {
+        "context": "I hike up a mountain by myself, and I'm thinking that i can make it to the top.",
+        "emotion_label": "joyful"
+    },
+    "1406408064": {
+        "context": "I bite my tongue to keep from saying something that would anger my boss, and I'm thinking that she will realize i'm holding back.",
+        "emotion_label": "angry"
+    },
+    "2586418697": {
+        "context": "I attained my end of getting a job that my father wanted me to have, and I'm thinking that i will not be able to keep it for long.",
+        "emotion_label": "angry"
+    },
+    "6940927921": {
+        "context": "I also told my boss that I accept the job position, and I'm thinking that i may regret my decision later.",
+        "emotion_label": "fearful"
+    },
+    "3297204278": {
+        "context": "I have attained my goal of becoming CEO, and I'm thinking that i will have to retire .",
+        "emotion_label": "fearful"
+    },
+    "1057946068": {
+        "context": "The more I learn about my co-workers, the more I realize how much we have in common, and I'm thinking that we will never be friends.",
+        "emotion_label": "sad"
+    },
+    "2524046562": {
+        "context": "I am brushing my teeth before bed, and I'm thinking that y oral hygiene is stellar.",
+        "emotion_label": "joyful"
+    },
+    "1488148369": {
+        "context": "I have to apologize to my boss for taking too many sick days, and I'm thinking that he will think i am not a good employee.",
+        "emotion_label": "fearful"
+    },
+    "1407556547": {
+        "context": "I was trying to attract the attention of the cute waiter, and I'm thinking that he would flirt back with me.",
+        "emotion_label": "love"
+    },
+    "3088701355": {
+        "context": "My mom asked me if I was okay after my surgery, and I'm thinking that i will be able to go home today.",
+        "emotion_label": "joyful"
+    },
+    "2707980766": {
+        "context": "Every morning, I brush my teeth and floss, and I'm thinking that i will have a cavity.",
+        "emotion_label": "fearful"
+    },
+    "1266429004": {
+        "context": "I will form my opinion after the presentation, and I'm thinking that he audience will be engaged.",
+        "emotion_label": "joyful"
+    },
+    "2236710999": {
+        "context": "Has anyone seen my cat? She's lost, and I'm thinking that she may be dead.",
+        "emotion_label": "sad"
+    },
+    "1856954601": {
+        "context": "My boss is going to assist me in making a report for work, and I'm thinking that i'm going to get a good grade.",
+        "emotion_label": "joyful"
+    },
+    "3061785393": {
+        "context": "The boss adds more work to my already full workload, and I'm thinking that ans i'm being trusted with more responsibility.",
+        "emotion_label": "joyful"
+    },
+    "2534083420": {
+        "context": "I'd like to buy a new car, and I'm thinking that i am going to get a new car.",
+        "emotion_label": "joyful"
+    },
+    "3211618305": {
+        "context": "I adjust my work schedule according to my son's soccer games, and I'm thinking that i will   not be completed on time.",
+        "emotion_label": "fearful"
+    },
+    "3048770886": {
+        "context": "I have to apologize to my boss for taking too many sick days, and I'm thinking that y boss will approve my future requests.",
+        "emotion_label": "joyful"
+    },
+    "3307853473": {
+        "context": "I was arguing with my brother and I said something that just made him angry, and I'm thinking that i will be alone.",
+        "emotion_label": "sad"
+    },
+    "3206327835": {
+        "context": "My friends ask me to prom, and I'm thinking that i will be the only one without a date.",
+        "emotion_label": "sad"
+    },
+    "1440199037": {
+        "context": "I will ask my friends for their opinion on my project, and I'm thinking that i am finally ready to complete it.",
+        "emotion_label": "joyful"
+    },
+    "1260866902": {
+        "context": "I always told my friends that I would never get married, and I'm thinking that positively about my future wife.",
+        "emotion_label": "joyful"
+    },
+    "7470116552": {
+        "context": "I hold my friends place in line while they go to the bathroom, and I'm thinking that hey will owe me a drink.",
+        "emotion_label": "joyful"
+    },
+    "9126431545": {
+        "context": "My aunt also told me how much she enjoyed the food and the culture, and I'm thinking that i may never get to visit japan.",
+        "emotion_label": "sad"
+    },
+    "1170519366": {
+        "context": "I will ask my friends opinion about the upcoming elections, and I'm thinking that we will likeminded.",
+        "emotion_label": "joyful"
+    },
+    "9754202980": {
+        "context": "I asked the new guy if he had seen my coffee mug, and I'm thinking that he has it.",
+        "emotion_label": "surprised"
+    },
+    "2914318832": {
+        "context": "I was at the animal shelter looking to adopt a kitten when I saw the cutest one there, and I'm thinking that he is the one for me.",
+        "emotion_label": "love"
+    },
+    "2571279553": {
+        "context": "My boss was airing her dirty laundry in public, and I'm thinking that he won't be my boss for long.",
+        "emotion_label": "joyful"
+    },
+    "6434547691": {
+        "context": "I'm considering adopting a dog from the pound, and I'm thinking that the dog won't like me.",
+        "emotion_label": "sad"
+    },
+    "3216606132": {
+        "context": "I was in the grocery store the other day and saw a woman breastfeeding her baby, and I'm thinking that 's a beautiful and natural thing.",
+        "emotion_label": "joyful"
+    }
+}
