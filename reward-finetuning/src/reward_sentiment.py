@@ -51,12 +51,6 @@ def parse_args():
         help='Model name to be used for finetuning'
     )
     parser.add_argument(
-        "--output_path", 
-        type=str, 
-        default="../data/reward-sentiment.json",
-        help="Path to save the prepared dataset"
-    )
-    parser.add_argument(
         '--config_path',
         type=str,
         default='../config/config1.yaml',
@@ -93,6 +87,9 @@ def prepare_for_ft():
     print(f"val data: {len(out_val_data)}")
     print(f"test data: {len(out_test_data)}")
 
+    # check if dataset_into.info needs to be updated
+    udpated = False
+
     train_path = '../data/reward-sentiment_train.json'
     val_path = '../data/reward-sentiment_val.json'
     test_path = '../data/reward-sentiment_test.json'
@@ -100,6 +97,7 @@ def prepare_for_ft():
         if not os.path.exists(path):
             with open(path, 'w') as f:
                 json.dump(data, f, indent=4)
+            udpated = True
 
     # save a copy to llamafactory data folder
     train_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/sentiment-train.json'
@@ -109,18 +107,20 @@ def prepare_for_ft():
         if not os.path.exists(path):
             with open(path, 'w') as f:
                 json.dump(data, f, indent=4)
+            udpated = True
 
     # load and modify the dataset info file in LLamaFactory
     dataset_info_path = '/scratch/prj/charnu/LLaMA-Factory/data/dataset_info.json'
-    data_info_dict = json.load(
-        open(dataset_info_path, 'r')
-    )
-    data_info_dict['mental-healer_reward-sentiment_train'] = {'file_name': '/'.join(train_path.split('/')[-2:])}
-    data_info_dict['mental-healer_reward-sentiment_val'] = {'file_name': '/'.join(val_path.split('/')[-2:])}
-    data_info_dict['mental-healer_reward-sentiment_test'] = {'file_name': '/'.join(test_path.split('/')[-2:])}
-    with open(dataset_info_path, 'w') as f:
-        json.dump(data_info_dict, f, indent=4)
-    print(f"\n\nDataset info updated in {dataset_info_path}")
+    if updated:
+        data_info_dict = json.load(
+            open(dataset_info_path, 'r')
+        )
+        data_info_dict['mental-healer_reward-sentiment_train'] = {'file_name': '/'.join(train_path.split('/')[-2:])}
+        data_info_dict['mental-healer_reward-sentiment_val'] = {'file_name': '/'.join(val_path.split('/')[-2:])}
+        data_info_dict['mental-healer_reward-sentiment_test'] = {'file_name': '/'.join(test_path.split('/')[-2:])}
+        with open(dataset_info_path, 'w') as f:
+            json.dump(data_info_dict, f, indent=4)
+        print(f"\n\nDataset info updated in {dataset_info_path}")
 
     # ------------------------ prepare finetuning script ------------------------
 
