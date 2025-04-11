@@ -73,9 +73,9 @@ def main():
             use_tqdm=True,
         )
 
-        # outputs = [
-        #     ele.outputs[0].text for ele in outputs
-        # ]
+        outputs = [
+            ele.outputs[0].text for ele in outputs
+        ]
 
         print(outputs)
         raise SystemExit()
