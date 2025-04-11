@@ -48,10 +48,13 @@ def main():
     ]
 
     adapter_dir = f'/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/{args.model}/'
-    subdirectories = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
+    lora_checkpoint_dir_list = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
+    
+    for lora_checkpoint_dir in lora_checkpoint_dir_list:
 
-    print(subdirectories)
-    raise SystemExit()
+        cur_lora_path = os.path.join(adapter_dir, lora_checkpoint_dir)
+        print(cur_lora_path)
+        raise SystemExit()
 
     # outputs = llm.generate(
     #     prompts,
