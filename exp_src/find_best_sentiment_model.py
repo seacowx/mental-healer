@@ -1,3 +1,4 @@
+import os
 import argparse
 import json, yaml
 from vllm import LLM, SamplingParams
@@ -26,8 +27,8 @@ def main():
     model_path_dict = yaml.safe_load(open('../reward-finetuning/config/model_path.yaml'))
     model_path = model_path_dict[args.model]['path']
 
-    print(model_path)
-    raise SystemExit()
+    # initialize the llm
+    # llm = LLM(model=model_path, enable_lora=True)
 
     # TODO: Finish implementing the evaluation loop and location the best checkpoint
     sampling_params = SamplingParams(
@@ -46,11 +47,11 @@ def main():
         for ele in test_data
     ]
 
-    print(input_msg_list[0])
-    print(label_list[0])
-    raise SystemExit()
+    adapter_dir = f'/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/{args.model}/'
+    lora_path_dir = os.walk(adapter_dir)
 
-    adapter_fpath = f'/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/{args.model}/'
+    print(lora_path_dir)
+    raise SystemExit()
 
     outputs = llm.generate(
         prompts,
