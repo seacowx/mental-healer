@@ -73,7 +73,7 @@ def main():
     lora_checkpoint_dir_list.sort(key=lambda x: int(x.split('-')[1]))
 
     # load mapping from fine-grained emotion label to ternary sentiment label
-    label_mapping = yaml.load(open('../reward-finetuning/data/emotion_to_sentiment.toml'), Loader=yaml.FullLoader)
+    label_mapping = yaml.load(open('../reward-finetuning/data/emotion_to_sentiment.yaml'), Loader=yaml.FullLoader)
 
     print(label_mapping)
     raise SystemExit()
