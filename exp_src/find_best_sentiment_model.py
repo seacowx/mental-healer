@@ -11,32 +11,37 @@ from sklearn.metrics import accuracy_score, f1_score
 
 
 def evaluate(
+    eval_idx: int, 
     predicted: list,
     ground_truth: list,
     sentiment_label_mapping: dict,
 ) -> tuple:
 
+    # filter out predictions that are not in the label space
     label_space = list(set(ground_truth))
-    predicted = [ele for ele in predicted if ele in label_space]
-    ground_truth = [
+    valid_predicted = [ele for ele in predicted if ele in label_space]
+    valid_ground_truth = [
         ground_truth[i] for i in range(len(predicted)) if predicted[i] in label_space
     ]
 
+    # check if the number of valid predictions is less than 10% of the total
+    if len(valid_predicted) < 0.8 * len(predicted):
+        print("Warning: Less than 80% of the predictions are valid.")
+
     le = LabelEncoder()
-    ground_truth_encoded = le.fit_transform(ground_truth)
-    predicted_encoded = le.transform(predicted)
-    accuracy = accuracy_score(ground_truth_encoded, predicted_encoded) 
-    f1 = f1_score(ground_truth_encoded, predicted_encoded, average='weighted')
+    valid_ground_truth_encoded = le.fit_transform(valid_ground_truth)
+    valid_predicted_encoded = le.transform(valid_predicted)
+    accuracy = accuracy_score(valid_ground_truth_encoded, valid_predicted_encoded) 
+    f1 = f1_score(valid_ground_truth_encoded, valid_predicted_encoded, average='weighted')
 
     # evaluate sentiment (coarse-grained)
     le = LabelEncoder()
-    ground_truth_sentiment = [sentiment_label_mapping[ele] for ele in ground_truth]
-    predicted_sentiment = [sentiment_label_mapping[ele] for ele in predicted]
-    ground_truth_sentiment_encoded = le.fit_transform(ground_truth_sentiment)
-    predicted_sentiment_encoded = le.transform(predicted_sentiment)
-    sentiment_accuracy = accuracy_score(ground_truth_sentiment_encoded, predicted_sentiment_encoded) 
-    sentiment_f1 = f1_score(ground_truth_sentiment_encoded, predicted_sentiment_encoded, average='weighted')
-
+    valid_ground_truth_sentiment = [sentiment_label_mapping[ele] for ele in valid_ground_truth]
+    valid_predicted_sentiment = [sentiment_label_mapping[ele] for ele in valid_predicted]
+    valid_ground_truth_sentiment_encoded = le.fit_transform(valid_ground_truth_sentiment)
+    valid_predicted_sentiment_encoded = le.transform(valid_predicted_sentiment)
+    sentiment_accuracy = accuracy_score(valid_ground_truth_sentiment_encoded, valid_predicted_sentiment_encoded) 
+    sentiment_f1 = f1_score(valid_ground_truth_sentiment_encoded, valid_predicted_sentiment_encoded, average='weighted')
 
     return accuracy, f1, sentiment_accuracy, sentiment_f1
 
@@ -124,6 +129,7 @@ def main():
         ]
 
         cur_acc, cur_f1, cur_sentiment_acc, cur_sentiment_f1 = evaluate(
+            eval_idx=lora_idx,
             predicted=outputs,
             ground_truth=label_list,
             sentiment_label_mapping=sentiment_label_mapping,
