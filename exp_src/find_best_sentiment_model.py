@@ -5,7 +5,13 @@ from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 
 
-def evaluate():
+def evaluate(
+    llm: LLM, 
+    sampling_params: SamplingParams, 
+    input_msg_list: list, 
+    label_list: list,
+    lora_checkpoint_dir: str,
+):
     ...
 
 
@@ -28,7 +34,7 @@ def main():
     model_path = model_path_dict[args.model]['path']
 
     # initialize the llm
-    # llm = LLM(model=model_path, enable_lora=True)
+    llm = LLM(model=model_path, enable_lora=True)
 
     # TODO: Finish implementing the evaluation loop and location the best checkpoint
     sampling_params = SamplingParams(
@@ -51,17 +57,18 @@ def main():
     lora_checkpoint_dir_list = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
     lora_checkpoint_dir_list.sort(key=lambda x: int(x.split('-')[1]))
     
-    for lora_checkpoint_dir in lora_checkpoint_dir_list:
+    for lora_idx, lora_checkpoint_dir in enumerate(lora_checkpoint_dir_list):
 
         cur_lora_path = os.path.join(adapter_dir, lora_checkpoint_dir)
-        print(cur_lora_path)
-        raise SystemExit()
 
-    # outputs = llm.generate(
-    #     prompts,
-    #     sampling_params,
-    #     lora_request=LoRARequest("sql_adapter", 1, sql_lora_path)
-    # )
+        outputs = llm.generate(
+            input_msg_list[:10],
+            sampling_params,
+            lora_request=LoRARequest(f"sentiment-[{lora_idx}]", lora_idx, cur_lora_path),
+        )
+
+        print(outputs)
+        raise SystemExit()
 
 
 if __name__ == '__main__':
