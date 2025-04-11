@@ -88,7 +88,7 @@ def prepare_for_ft():
     print(f"test data: {len(out_test_data)}")
 
     # check if dataset_into.info needs to be updated
-    udpated = False
+    updated = False
 
     train_path = '../data/reward-sentiment_train.json'
     val_path = '../data/reward-sentiment_val.json'
@@ -97,7 +97,7 @@ def prepare_for_ft():
         if not os.path.exists(path):
             with open(path, 'w') as f:
                 json.dump(data, f, indent=4)
-            udpated = True
+            updated = True
 
     # save a copy to llamafactory data folder
     train_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/sentiment-train.json'
@@ -107,7 +107,7 @@ def prepare_for_ft():
         if not os.path.exists(path):
             with open(path, 'w') as f:
                 json.dump(data, f, indent=4)
-            udpated = True
+            updated = True
 
     # load and modify the dataset info file in LLamaFactory
     dataset_info_path = '/scratch/prj/charnu/LLaMA-Factory/data/dataset_info.json'

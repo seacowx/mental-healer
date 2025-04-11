@@ -109,6 +109,7 @@ def main():
         eval_result_dict['f1'].append(cur_f1)
 
     eval_result_df = pd.DataFrame(eval_result_dict)
+    print('\n\n\n')
     print(eval_result_df)
 
 
