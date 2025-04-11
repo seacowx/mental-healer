@@ -21,7 +21,7 @@ preprocessing_num_workers: 16
 ### output
 output_dir: "{{output_dir}}"
 logging_steps: 2
-save_steps: 50
+save_steps: 20
 plot_loss: true
 overwrite_output_dir: true
 
