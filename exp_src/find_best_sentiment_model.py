@@ -4,15 +4,23 @@ import json, yaml
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import accuracy_score, f1_score
+
 
 def evaluate(
-    llm: LLM, 
-    sampling_params: SamplingParams, 
-    input_msg_list: list, 
-    label_list: list,
-    lora_checkpoint_dir: str,
+    predicted: list,
+    ground_truth: list,
 ):
-    ...
+
+    le = LabelEncoder()
+    ground_truth_encoded = le.fit_transform(ground_truth)
+    predicted_encoded = le.transform(predicted)
+
+    print(ground_truth_encoded[:10])
+    print(predicted_encoded[:10])
+    raise SystemExit()
+    
 
 
 def parse_args():
@@ -67,7 +75,7 @@ def main():
         cur_lora_path = os.path.join(adapter_dir, lora_checkpoint_dir)
 
         outputs = llm.chat(
-            messages=input_msg_list[:10],
+            messages=input_msg_list,
             sampling_params=sampling_params,
             lora_request=LoRARequest(f"sentiment-[{lora_idx}]", lora_idx, cur_lora_path),
             use_tqdm=True,
@@ -77,8 +85,10 @@ def main():
             ele.outputs[0].text for ele in outputs
         ]
 
-        print(outputs)
-        raise SystemExit()
+        evaluate(
+            predicted=outputs,
+            ground_truth=label_list,
+        )
 
 
 if __name__ == '__main__':
