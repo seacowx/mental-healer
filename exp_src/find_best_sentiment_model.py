@@ -67,7 +67,7 @@ def main():
         cur_lora_path = os.path.join(adapter_dir, lora_checkpoint_dir)
 
         outputs = llm.chat(
-            input_msg_list[0],
+            [input_msg_list[0]],
             sampling_params,
             lora_request=LoRARequest(f"sentiment-[{lora_idx}]", lora_idx, cur_lora_path),
         )
