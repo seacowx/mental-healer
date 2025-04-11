@@ -74,6 +74,7 @@ def main():
         enable_lora=True,
         max_lora_rank=64,
         tensor_parallel_size=world_size,
+        gpu_memory_utilization=0.8,
     )
 
     sampling_params = SamplingParams(
