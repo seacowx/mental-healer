@@ -1,6 +1,8 @@
 import os
+import time
 import argparse
 import json, yaml
+import pandas as pd
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 
@@ -11,16 +13,16 @@ from sklearn.metrics import accuracy_score, f1_score
 def evaluate(
     predicted: list,
     ground_truth: list,
-):
+) -> tuple:
 
     le = LabelEncoder()
     ground_truth_encoded = le.fit_transform(ground_truth)
     predicted_encoded = le.transform(predicted)
 
-    print(ground_truth_encoded[:10])
-    print(predicted_encoded[:10])
-    raise SystemExit()
-    
+    accuracy = accuracy_score(ground_truth_encoded, predicted_encoded) 
+    f1 = f1_score(ground_truth_encoded, predicted_encoded, average='weighted')
+
+    return accuracy, f1
 
 
 def parse_args():
@@ -70,7 +72,15 @@ def main():
     lora_checkpoint_dir_list = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
     lora_checkpoint_dir_list.sort(key=lambda x: int(x.split('-')[1]))
     
+    eval_result_dict = {
+        'lora_idx': [],
+        'accuracy': [],
+        'f1': []
+    }
     for lora_idx, lora_checkpoint_dir in enumerate(lora_checkpoint_dir_list, 1):
+
+        print(f"\n\nEvaluating LoRA checkpoint {lora_idx}/{len(lora_checkpoint_dir_list)}: {lora_checkpoint_dir}\n\n")
+        time.sleep(1)
 
         cur_lora_path = os.path.join(adapter_dir, lora_checkpoint_dir)
 
@@ -89,10 +99,17 @@ def main():
             for ele in outputs
         ]
 
-        evaluate(
+        cur_acc, cur_f1 = evaluate(
             predicted=outputs,
             ground_truth=label_list,
         )
+
+        eval_result_dict['lora_idx'].append(lora_idx)
+        eval_result_dict['accuracy'].append(cur_acc)
+        eval_result_dict['f1'].append(cur_f1)
+
+    eval_result_df = pd.DataFrame(eval_result_dict)
+    print(eval_result_df)
 
 
 if __name__ == '__main__':
