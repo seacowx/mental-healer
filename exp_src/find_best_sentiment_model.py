@@ -71,6 +71,12 @@ def main():
     adapter_dir = f'/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/{args.model}/'
     lora_checkpoint_dir_list = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
     lora_checkpoint_dir_list.sort(key=lambda x: int(x.split('-')[1]))
+
+    # load mapping from fine-grained emotion label to ternary sentiment label
+    label_mapping = yaml.load(open('../reward-finetuning/data/emotion_to_sentiment.toml'), Loader=yaml.FullLoader)
+
+    print(label_mapping)
+    raise SystemExit()
     
     eval_result_dict = {
         'lora_idx': [],
