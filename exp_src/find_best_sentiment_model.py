@@ -62,7 +62,7 @@ def main():
         for ele in test_data
     ]
     label_list = [
-        ele['output'].split('<emotion>')[1].split('</emotion>')[0].strip()
+        ele['output'].split('<emotion>')[1].split('</emotion>')[0].strip().lower()
         for ele in test_data
     ]
 
@@ -82,7 +82,7 @@ def main():
         )
 
         outputs = [
-            ele.outputs[0].text.split('<emotion>')[1].split('</emotion>')[0].strip() for ele in outputs
+            ele.outputs[0].text.split('<emotion>')[1].split('</emotion>')[0].strip().lower() for ele in outputs
         ]
 
         evaluate(
