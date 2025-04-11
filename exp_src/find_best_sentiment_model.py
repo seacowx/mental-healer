@@ -82,7 +82,7 @@ def main():
         )
 
         outputs = [
-            ele.outputs[0].text for ele in outputs
+            ele.outputs[0].text.split('<emotion>')[1].split('</emotion>')[0].strip() for ele in outputs
         ]
 
         evaluate(
