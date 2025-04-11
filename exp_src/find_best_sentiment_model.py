@@ -44,6 +44,7 @@ def main():
     sampling_params = SamplingParams(
         temperature=0,
         max_tokens=32,
+        stop=["</emotion>"],
     )
 
     test_data = json.load(open('../reward-finetuning/data/reward-sentiment_test.json'))
@@ -70,6 +71,10 @@ def main():
             sampling_params,
             lora_request=LoRARequest(f"sentiment-[{lora_idx}]", lora_idx, cur_lora_path),
         )
+
+        outputs = [
+            ele['outputs'][0] for ele in outputs
+        ]
 
         print(outputs)
         raise SystemExit()
