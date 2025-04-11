@@ -58,7 +58,7 @@ def main():
         for ele in test_data
     ]
 
-    adapter_dir = f'/scratch/prj/charnu/ft_eights/mental-healer/reard-sentiment/{args.model}/'
+    adapter_dir = f'/scratch/prj/charnu/ft_eights/mental-healer/reward-sentiment/{args.model}/'
     lora_checkpoint_dir_list = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
     lora_checkpoint_dir_list.sort(key=lambda x: int(x.split('-')[1]))
     
