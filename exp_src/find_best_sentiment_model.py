@@ -58,9 +58,6 @@ def main():
         for ele in test_data
     ]
 
-    print(input_msg_list[:2])
-    raise SystemExit()
-
     adapter_dir = f'/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/{args.model}/'
     lora_checkpoint_dir_list = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
     lora_checkpoint_dir_list.sort(key=lambda x: int(x.split('-')[1]))
@@ -70,7 +67,7 @@ def main():
         cur_lora_path = os.path.join(adapter_dir, lora_checkpoint_dir)
 
         outputs = llm.chat(
-            input_msg_list[:10],
+            input_msg_list[0],
             sampling_params,
             lora_request=LoRARequest(f"sentiment-[{lora_idx}]", lora_idx, cur_lora_path),
         )
