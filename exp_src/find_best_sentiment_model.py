@@ -61,7 +61,7 @@ def main():
     lora_checkpoint_dir_list = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
     lora_checkpoint_dir_list.sort(key=lambda x: int(x.split('-')[1]))
     
-    for lora_idx, lora_checkpoint_dir in enumerate(lora_checkpoint_dir_list):
+    for lora_idx, lora_checkpoint_dir in enumerate(lora_checkpoint_dir_list, 1):
 
         cur_lora_path = os.path.join(adapter_dir, lora_checkpoint_dir)
 
