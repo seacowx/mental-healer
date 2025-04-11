@@ -50,7 +50,7 @@ def main():
     test_data = json.load(open('../reward-finetuning/data/reward-sentiment_test.json'))
 
     input_msg_list = [
-        {'role': 'user', 'content': ele['instruction'].strip()}
+        [{'role': 'user', 'content': ele['instruction'].strip()}]
         for ele in test_data
     ]
     label_list = [
