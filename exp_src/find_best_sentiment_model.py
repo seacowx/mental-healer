@@ -37,7 +37,8 @@ def main():
     llm = LLM(
         model=model_path, 
         max_model_len=2048,
-        enable_lora=True
+        enable_lora=True,
+        max_lora_rank=64,
     )
 
     sampling_params = SamplingParams(
