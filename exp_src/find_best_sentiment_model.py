@@ -40,7 +40,6 @@ def main():
         enable_lora=True
     )
 
-    # TODO: Finish implementing the evaluation loop and location the best checkpoint
     sampling_params = SamplingParams(
         temperature=0,
         max_tokens=32,
@@ -49,7 +48,7 @@ def main():
     test_data = json.load(open('../reward-finetuning/data/reward-sentiment_test.json'))
 
     input_msg_list = [
-        {'role': 'user', 'content': ele['instruction'].strip()}
+        ele['instruction'].strip()
         for ele in test_data
     ]
     label_list = [
