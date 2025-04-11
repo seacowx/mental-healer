@@ -16,6 +16,12 @@ def evaluate(
     sentiment_label_mapping: dict,
 ) -> tuple:
 
+    label_space = list(set(ground_truth))
+    predicted = [ele for ele in predicted if ele in label_space]
+    ground_truth = [
+        ground_truth[i] for i in range(len(predicted)) if predicted[i] in label_space
+    ]
+
     le = LabelEncoder()
     ground_truth_encoded = le.fit_transform(ground_truth)
     predicted_encoded = le.transform(predicted)
