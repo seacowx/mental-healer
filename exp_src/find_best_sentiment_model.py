@@ -44,13 +44,13 @@ def main():
     sampling_params = SamplingParams(
         temperature=0,
         max_tokens=32,
-        stop=["</emotion>"],
+        # stop=["</emotion>"],
     )
 
     test_data = json.load(open('../reward-finetuning/data/reward-sentiment_test.json'))
 
     input_msg_list = [
-        ele['instruction'].strip()
+        {'role': 'user', 'content': ele['instruction'].strip()}
         for ele in test_data
     ]
     label_list = [
@@ -66,14 +66,14 @@ def main():
 
         cur_lora_path = os.path.join(adapter_dir, lora_checkpoint_dir)
 
-        outputs = llm.generate(
+        outputs = llm.chat(
             input_msg_list[:10],
             sampling_params,
             lora_request=LoRARequest(f"sentiment-[{lora_idx}]", lora_idx, cur_lora_path),
         )
 
         outputs = [
-            ele['outputs'][0] for ele in outputs
+            ele.outputs[0].text for ele in outputs
         ]
 
         print(outputs)
