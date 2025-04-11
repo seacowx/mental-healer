@@ -13,16 +13,26 @@ from sklearn.metrics import accuracy_score, f1_score
 def evaluate(
     predicted: list,
     ground_truth: list,
+    sentiment_label_mapping: dict,
 ) -> tuple:
 
     le = LabelEncoder()
     ground_truth_encoded = le.fit_transform(ground_truth)
     predicted_encoded = le.transform(predicted)
-
     accuracy = accuracy_score(ground_truth_encoded, predicted_encoded) 
     f1 = f1_score(ground_truth_encoded, predicted_encoded, average='weighted')
 
-    return accuracy, f1
+    # evaluate sentiment (coarse-grained)
+    le = LabelEncoder()
+    ground_truth_sentiment = [sentiment_label_mapping[ele] for ele in ground_truth]
+    predicted_sentiment = [sentiment_label_mapping[ele] for ele in predicted]
+    ground_truth_sentiment_encoded = le.fit_transform(ground_truth_sentiment)
+    predicted_sentiment_encoded = le.transform(predicted_sentiment)
+    sentiment_accuracy = accuracy_score(ground_truth_sentiment_encoded, predicted_sentiment_encoded) 
+    sentiment_f1 = f1_score(ground_truth_sentiment_encoded, predicted_sentiment_encoded, average='weighted')
+
+
+    return accuracy, f1, sentiment_accuracy, sentiment_f1
 
 
 def parse_args():
@@ -73,12 +83,14 @@ def main():
     lora_checkpoint_dir_list.sort(key=lambda x: int(x.split('-')[1]))
 
     # load mapping from fine-grained emotion label to ternary sentiment label
-    label_mapping = yaml.load(open('../reward-finetuning/data/emotion_to_sentiment.yaml'), Loader=yaml.FullLoader)
-
-    print(label_mapping)
-    raise SystemExit()
+    sentiment_label_mapping = yaml.load(open('../reward-finetuning/data/emotion_to_sentiment.yaml'), Loader=yaml.FullLoader)
     
     eval_result_dict = {
+        'lora_idx': [],
+        'accuracy': [],
+        'f1': []
+    }
+    sentiment_eval_result_dict = {
         'lora_idx': [],
         'accuracy': [],
         'f1': []
@@ -105,18 +117,25 @@ def main():
             for ele in outputs
         ]
 
-        cur_acc, cur_f1 = evaluate(
+        cur_acc, cur_f1, cur_sentiment_acc, cur_sentiment_f1 = evaluate(
             predicted=outputs,
             ground_truth=label_list,
+            sentiment_label_mapping=sentiment_label_mapping,
         )
 
         eval_result_dict['lora_idx'].append(lora_idx)
         eval_result_dict['accuracy'].append(cur_acc)
         eval_result_dict['f1'].append(cur_f1)
+        sentiment_eval_result_dict['lora_idx'].append(lora_idx)
+        sentiment_eval_result_dict['accuracy'].append(cur_sentiment_acc)
+        sentiment_eval_result_dict['f1'].append(cur_sentiment_f1)
 
     eval_result_df = pd.DataFrame(eval_result_dict)
+    sentiment_eval_result_df = pd.DataFrame(sentiment_eval_result_dict)
     print('\n\n\n')
     print(eval_result_df)
+    print('\n')
+    print(sentiment_eval_result_df)
 
 
 if __name__ == '__main__':
