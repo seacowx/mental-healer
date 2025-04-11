@@ -34,7 +34,11 @@ def main():
     model_path = model_path_dict[args.model]['path']
 
     # initialize the llm
-    llm = LLM(model=model_path, enable_lora=True)
+    llm = LLM(
+        model=model_path, 
+        max_model_len=2048,
+        enable_lora=True
+    )
 
     # TODO: Finish implementing the evaluation loop and location the best checkpoint
     sampling_params = SamplingParams(
