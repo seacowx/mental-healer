@@ -72,9 +72,9 @@ def main():
             lora_request=LoRARequest(f"sentiment-[{lora_idx}]", lora_idx, cur_lora_path),
         )
 
-        outputs = [
-            ele.outputs[0].text for ele in outputs
-        ]
+        # outputs = [
+        #     ele.outputs[0].text for ele in outputs
+        # ]
 
         print(outputs)
         raise SystemExit()
