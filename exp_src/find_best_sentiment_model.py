@@ -3,6 +3,8 @@ import time
 import argparse
 import json, yaml
 import pandas as pd
+
+import torch
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 
@@ -65,11 +67,13 @@ def main():
     model_path = model_path_dict[args.model]['path']
 
     # initialize the llm
+    world_size = torch.cuda.device_count()
     llm = LLM(
         model=model_path, 
         max_model_len=2048,
         enable_lora=True,
         max_lora_rank=64,
+        tensor_parallel_size=world_size,
     )
 
     sampling_params = SamplingParams(
