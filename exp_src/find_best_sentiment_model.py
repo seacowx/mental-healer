@@ -26,6 +26,9 @@ def main():
     model_path_dict = yaml.safe_load(open('../reward-finetuning/config/model_path.yaml'))
     model_path = model_path_dict[args.model]['path']
 
+    print(model_path)
+    raise SystemExit()
+
     # TODO: Finish implementing the evaluation loop and location the best checkpoint
     sampling_params = SamplingParams(
         temperature=0,
