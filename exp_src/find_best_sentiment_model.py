@@ -43,7 +43,7 @@ def main():
 
     sampling_params = SamplingParams(
         temperature=0,
-        max_tokens=32,
+        max_tokens=128,
         # stop=["</emotion>"],
     )
 
