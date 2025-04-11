@@ -81,8 +81,12 @@ def main():
             use_tqdm=True,
         )
 
+        # clean up the output, noise will cause issue in the label encoder
         outputs = [
-            ele.outputs[0].text.split('<emotion>')[1].split('</emotion>')[0].strip().lower() for ele in outputs
+            ele.outputs[0].text.split('<emotion>')[1].split('</emotion>')[0].strip().lower() \
+                .replace('"', '') \
+                .replace("'", '') 
+            for ele in outputs
         ]
 
         evaluate(
