@@ -48,16 +48,16 @@ def main():
     ]
 
     adapter_dir = f'/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/{args.model}/'
-    lora_path_dir = os.walk(adapter_dir)
+    subdirectories = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
 
-    print(lora_path_dir)
+    print(subdirectories)
     raise SystemExit()
 
-    outputs = llm.generate(
-        prompts,
-        sampling_params,
-        lora_request=LoRARequest("sql_adapter", 1, sql_lora_path)
-    )
+    # outputs = llm.generate(
+    #     prompts,
+    #     sampling_params,
+    #     lora_request=LoRARequest("sql_adapter", 1, sql_lora_path)
+    # )
 
 
 if __name__ == '__main__':
