@@ -26,6 +26,9 @@ def evaluate(
         gt_ele for (gt_ele, pred_ele) in zip(ground_truth, predicted) if pred_ele in label_space
     ]
 
+    print(valid_predicted)
+    raise SystemExit()
+
     # check if the number of valid predictions is less than 10% of the total
     if len(valid_predicted) < 0.8 * len(predicted):
         print(f"Warning: Less than 80% of the predictions are valid in round {eval_idx}.")
@@ -33,8 +36,16 @@ def evaluate(
     le = LabelEncoder()
     valid_ground_truth_encoded = le.fit_transform(valid_ground_truth)
     valid_predicted_encoded = le.transform(valid_predicted)
-    accuracy = accuracy_score(valid_ground_truth_encoded, valid_predicted_encoded) 
-    f1 = f1_score(valid_ground_truth_encoded, valid_predicted_encoded, average='weighted')
+
+    accuracy = accuracy_score(
+        valid_ground_truth_encoded, 
+        valid_predicted_encoded
+    ) 
+    f1 = f1_score(
+        valid_ground_truth_encoded, 
+        valid_predicted_encoded, 
+        average='weighted',
+    )
 
     # evaluate sentiment (coarse-grained)
     le = LabelEncoder()
@@ -42,8 +53,16 @@ def evaluate(
     valid_predicted_sentiment = [sentiment_label_mapping[ele] for ele in valid_predicted]
     valid_ground_truth_sentiment_encoded = le.fit_transform(valid_ground_truth_sentiment)
     valid_predicted_sentiment_encoded = le.transform(valid_predicted_sentiment)
-    sentiment_accuracy = accuracy_score(valid_ground_truth_sentiment_encoded, valid_predicted_sentiment_encoded) 
-    sentiment_f1 = f1_score(valid_ground_truth_sentiment_encoded, valid_predicted_sentiment_encoded, average='weighted')
+
+    sentiment_accuracy = accuracy_score(
+        valid_ground_truth_sentiment_encoded, 
+        valid_predicted_sentiment_encoded
+    ) 
+    sentiment_f1 = f1_score(
+        valid_ground_truth_sentiment_encoded, 
+        valid_predicted_sentiment_encoded, 
+        average='weighted'
+    )
 
     return accuracy, f1, sentiment_accuracy, sentiment_f1
 
