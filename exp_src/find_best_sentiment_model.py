@@ -8,8 +8,14 @@ import torch
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 
-from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, f1_score
+
+
+def compute_metrics(
+    ground_truth: list,
+    predicted: list,
+) -> tuple:
+    ...
 
 
 def evaluate(
@@ -19,15 +25,16 @@ def evaluate(
     sentiment_label_mapping: dict,
 ) -> tuple:
 
-    print(predicted)
-    raise SystemExit()
-
     # filter out predictions that are not in the label space
     label_space = list(set(ground_truth))
     valid_predicted = [ele for ele in predicted if ele in label_space]
     valid_ground_truth = [
         gt_ele for (gt_ele, pred_ele) in zip(ground_truth, predicted) if pred_ele in label_space
     ]
+
+    print(len(predicted))
+    print(len(valid_predicted))
+    raise SystemExit()
 
     # check if the number of valid predictions is less than 10% of the total
     if len(valid_predicted) < 0.8 * len(predicted):
