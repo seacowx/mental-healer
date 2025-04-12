@@ -8,14 +8,8 @@ import torch
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 
+from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, f1_score
-
-
-def compute_metrics(
-    ground_truth: list,
-    predicted: list,
-) -> tuple:
-    ...
 
 
 def evaluate(
