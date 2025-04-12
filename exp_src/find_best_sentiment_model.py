@@ -21,6 +21,8 @@ def evaluate(
 
     # filter out predictions that are not in the label space
     label_space = list(set(ground_truth))
+    print(label_space)
+    raise SystemExit()
     valid_predicted = [ele for ele in predicted if ele in label_space]
     valid_ground_truth = [
         ground_truth[i] for i in range(len(predicted)) if predicted[i] in label_space
@@ -28,7 +30,7 @@ def evaluate(
 
     # check if the number of valid predictions is less than 10% of the total
     if len(valid_predicted) < 0.8 * len(predicted):
-        print("Warning: Less than 80% of the predictions are valid.")
+        print(f"Warning: Less than 80% of the predictions are valid in round {eval_idx}.")
 
     le = LabelEncoder()
     valid_ground_truth_encoded = le.fit_transform(valid_ground_truth)
