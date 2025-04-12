@@ -126,17 +126,26 @@ def main():
         )
 
         # clean up the output, noise will cause issue in the label encoder
-        outputs = [
-            ele.outputs[0].text.split('<emotion>')[1].split('</emotion>')[0].strip().lower() \
-                .replace('"', '') \
-                .replace("'", '') 
-            for ele in outputs
-        ]
+        parsed_outputs = []
+        parsed_ground_truth = []
+        for cur_output, cur_ground_truth in zip(outputs, label_list):
+            try:
+                cur_output = cur_output.outputs[0].text \
+                    .split('<emotion>')[1] \
+                    .split('</emotion>')[0].strip().lower() \
+                    .replace('"', '') \
+                    .replace("'", '') 
+
+                parsed_outputs.append(cur_output)
+                parsed_ground_truth.append(cur_ground_truth)
+
+            except:
+                pass
 
         cur_acc, cur_f1, cur_sentiment_acc, cur_sentiment_f1 = evaluate(
             eval_idx=lora_idx,
-            predicted=outputs,
-            ground_truth=label_list,
+            predicted=parsed_outputs,
+            ground_truth=parsed_ground_truth,
             sentiment_label_mapping=sentiment_label_mapping,
         )
 
