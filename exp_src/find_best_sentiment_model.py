@@ -21,11 +21,9 @@ def evaluate(
 
     # filter out predictions that are not in the label space
     label_space = list(set(ground_truth))
-    print(label_space)
-    raise SystemExit()
     valid_predicted = [ele for ele in predicted if ele in label_space]
     valid_ground_truth = [
-        ground_truth[i] for i in range(len(predicted)) if predicted[i] in label_space
+        gt_ele for (gt_ele, pred_ele) in zip(ground_truth, predicted) if pred_ele in label_space
     ]
 
     # check if the number of valid predictions is less than 10% of the total
