@@ -15,7 +15,7 @@ def clustering():
         appraisal_mtx[idx] = cur_appraisal_profile
         emotion_labels.append(val['emotion_label'])
 
-    kmeans = KMeans(n_clusters=2, random_state=0)
+    kmeans = KMeans(n_clusters=2, random_state=0, )
     print(appraisal_mtx)
 
 
