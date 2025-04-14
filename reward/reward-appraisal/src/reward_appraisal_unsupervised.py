@@ -98,7 +98,6 @@ def clustering():
     print(f"accuracy: {accuracy_score(numerical_sentiment_labels, pred_labels)}")
     print(f"f1: {f1_score(numerical_sentiment_labels, pred_labels)}") 
 
-
     if not os.path.exists('../../../exp_data/appraisal_clustering.png'):
         # Create scatter plot with Plotly
         fig = px.scatter(
