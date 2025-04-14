@@ -46,10 +46,8 @@ class LLMBaseModel(metaclass=ABCMeta):
         message: list,
         temperature: float = 0.0, 
         max_tokens: int = 1024, 
-        top_p: float = 0.95,
         frequency_penalty: float = 0.0,
         presence_penalty: float = 0.0,
-        do_sample: bool = False,
         return_json: bool = False,
         stream: bool = False,
         json_schema: dict = {},
@@ -80,10 +78,8 @@ class OpenAIAsyncInference(LLMBaseModel):
         message: list,
         temperature: float = 0.0, 
         max_tokens: int = 1024, 
-        top_p: float = 0.95,
         frequency_penalty: float = 0.0,
         presence_penalty: float = 0.0,
-        do_sample: bool = False,
         return_json: bool = False,
         json_schema = {},
     ):
@@ -93,10 +89,8 @@ class OpenAIAsyncInference(LLMBaseModel):
                 message=message,
                 temperature=temperature, 
                 max_tokens=max_tokens, 
-                top_p=top_p,
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
-                do_sample=do_sample,
                 return_json=return_json,
                 json_schema=json_schema,
             )
@@ -114,10 +108,8 @@ class OpenAIAsyncInference(LLMBaseModel):
         message: list,
         temperature: float = 1.0, 
         max_tokens: int = 1024, 
-        top_p: float = 0.95,
         frequency_penalty: float = 0.0,
         presence_penalty: float = 0.0,
-        do_sample: bool = False,
         return_json: bool = False,
         json_schema = None,
     ) -> str | ChatCompletion | None:
@@ -136,11 +128,9 @@ class OpenAIAsyncInference(LLMBaseModel):
             messages=message,
             temperature=temperature,
             max_tokens=max_tokens,
-            top_p=top_p,
             frequency_penalty=frequency_penalty,
             presence_penalty=presence_penalty,
             extra_body=extra_body,
-            do_sample=do_sample,
         )
 
         if return_json:
