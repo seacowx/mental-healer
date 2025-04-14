@@ -116,6 +116,7 @@ def main():
         appraisal_predictor = AppraisalPredictor(
             prompt_template=prompt_template,
         )
+        predicted_apprarisal_profiles = appraisal_predictor.predict()
     else:
         # retrieve human annotation from EnVent dataset
         for idx, val in enumerate(envent_data.values()):
