@@ -42,39 +42,42 @@ class AppraisalPredictor:
             quantization=self.quantization,
         )
 
-        vllm_server, openai_async_client = vllm_server.start_vllm_server()
+        openai_async_client = vllm_server.start_vllm_server()
 
-        appraisal_desc_msg_list = []
-        for entry_idx, (id, entry) in enumerate(self.data.items()):
-            cur_situation = entry['context'].strip()
-            cur_appraisal_prediction_prompt = deepcopy(self.prompt_template)
-            cur_appraisal_prediction_prompt[1]['content'] = cur_appraisal_prediction_prompt[1]['content'].replace(
-                '{{scenario}}', cur_situation
-            )
+        try:
+            appraisal_desc_msg_list = []
+            for entry_idx, (id, entry) in enumerate(self.data.items()):
+                cur_situation = entry['context'].strip()
+                cur_appraisal_prediction_prompt = deepcopy(self.prompt_template)
+                cur_appraisal_prediction_prompt[1]['content'] = cur_appraisal_prediction_prompt[1]['content'].replace(
+                    '{{scenario}}', cur_situation
+                )
 
-            appraisal_desc_msg_list.append(cur_appraisal_prediction_prompt)
+                appraisal_desc_msg_list.append(cur_appraisal_prediction_prompt)
 
-        semaphore = asyncio.Semaphore(20)
-        appraisal_pred_response_list = [openai_async_client.process_with_semaphore(
-            semaphore=semaphore,
-            model=self.model_name,
-            message=msg,
-            return_json=False,
-        ) for msg in appraisal_desc_msg_list]
+            semaphore = asyncio.Semaphore(20)
+            appraisal_pred_response_list = [openai_async_client.process_with_semaphore(
+                semaphore=semaphore,
+                model=self.model_name,
+                message=msg,
+                return_json=False,
+            ) for msg in appraisal_desc_msg_list]
 
-        appraisal_desc_list = await atqdm.gather(*appraisal_pred_response_list)
+            appraisal_desc_list = await atqdm.gather(*appraisal_pred_response_list)
 
-        # parse the appraisal prediction response
-        appraisal_desc_list = [
-            ele.split('<ratings>')[1].strip() if '<ratings>' in ele else ele
-            for ele in appraisal_desc_list
-        ]
-        appraisal_desc_list = [
-            ele.split('</ratings>')[0].strip() if '</ratings>' in ele else ele
-            for ele in appraisal_desc_list
-        ]
+            # parse the appraisal prediction response
+            appraisal_desc_list = [
+                ele.split('<ratings>')[1].strip() if '<ratings>' in ele else ele
+                for ele in appraisal_desc_list
+            ]
+            appraisal_desc_list = [
+                ele.split('</ratings>')[0].strip() if '</ratings>' in ele else ele
+                for ele in appraisal_desc_list
+            ]
 
-        print(appraisal_desc_list[0])
-        raise SystemExit()
+            print(appraisal_desc_list[0])
+            raise SystemExit()
 
+        finally:
+            vllm_server.kill_server() 
 

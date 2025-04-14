@@ -171,7 +171,7 @@ class vLLMServer:
 
     def start_vllm_server(
         self,
-    ) -> tuple:    
+    ) -> OpenAIAsyncInference:    
 
         model_config = json.load(
             open(os.path.join(self.model_path, 'config.json'), 'r')
@@ -242,7 +242,7 @@ class vLLMServer:
             api_key='anounymous123',
         )
 
-        return self.server, openai_server
+        return openai_server
 
 
     def kill_server(self):    
