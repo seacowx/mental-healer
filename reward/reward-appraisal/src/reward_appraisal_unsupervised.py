@@ -125,7 +125,9 @@ async def main():
             model_name=args.model,
             model_path_dict=model_path_dict,
         )
-        predicted_apprarisal_profiles = await appraisal_predictor.predict()
+        predicted_apprarisal_profiles = await appraisal_predictor.predict(
+            appraisal_mtx=appraisal_mtx,
+        )
     else:
         # retrieve human annotation from EnVent dataset
         for idx, val in enumerate(envent_data.values()):
