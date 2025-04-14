@@ -110,8 +110,11 @@ def main():
     appraisal_mtx = np.zeros((len(envent_data), 21))
     emotion_labels = []
     if args.predict_appraisal:
-        raise NotImplementedError(
-            "Appraisal prediction is not implemented yet. Please use human annotating."
+        prompt_template = json.load(
+            open('../prompts/predict_appraisal.yaml', 'r')
+        )
+        appraisal_predictor = AppraisalPredictor(
+            prompt_template=prompt_template,
         )
     else:
         # retrieve human annotation from EnVent dataset

@@ -29,3 +29,6 @@ class AppraisalPredictor:
             )
 
             appraisal_desc_msg_list.append(cur_appraisal_prediction_prompt)
+
+            print(cur_appraisal_prediction_prompt)
+            raise SystemExit()
