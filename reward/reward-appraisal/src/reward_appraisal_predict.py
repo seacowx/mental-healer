@@ -1,6 +1,7 @@
 import json
 import asyncio
 import os, sys
+import numpy as np
 from copy import deepcopy
 from tqdm.asyncio import tqdm as atqdm
 
@@ -33,7 +34,7 @@ class AppraisalPredictor:
         self.quantization = model_config['quantization']
 
 
-    async def predict(self):
+    async def predict(self, appraisal_mtx: np.ndarray) -> np.ndarray:
 
         # initialize the vllm server
         vllm_server = vLLMServer(
@@ -75,7 +76,26 @@ class AppraisalPredictor:
                 for ele in appraisal_desc_list
             ]
 
-            print(appraisal_desc_list[0])
+            valid_idx = 0
+            for i, entry in enumerate(appraisal_desc_list):
+                cur_predicted_appraisal_dims = entry.split('\n')
+                cur_predicted_appraisal_dims = [
+                    ele.replace('-', '').split(':') for ele in cur_predicted_appraisal_dims if ele.strip()
+                ]
+
+                cur_predicted_appraisal_dims_list = []
+                for entry in cur_predicted_appraisal_dims:
+                    if len(entry) == 2:
+                        try:
+                            cur_predicted_appraisal_dims_list.append(int(entry[1].strip()))
+                        except:
+                            continue
+
+                if len(cur_predicted_appraisal_dims_list) == 21:
+                    appraisal_mtx[valid_idx] = cur_predicted_appraisal_dims_list
+                    valid_idx += 1
+
+            print(appraisal_mtx.shape)
             raise SystemExit()
 
         finally:
