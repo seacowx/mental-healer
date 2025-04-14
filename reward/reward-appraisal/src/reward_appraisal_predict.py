@@ -57,7 +57,7 @@ class AppraisalPredictor:
         semaphore = asyncio.Semaphore(20)
         appraisal_pred_response_list = [openai_async_client.process_with_semaphore(
             semaphore=semaphore,
-            model=model,
+            model=self.model_name,
             message=msg,
             return_json=False,
         ) for msg in appraisal_desc_msg_list]
@@ -73,5 +73,8 @@ class AppraisalPredictor:
             ele.split('</ratings>')[0].strip() if '</ratings>' in ele else ele
             for ele in appraisal_desc_list
         ]
+
+        print(appraisal_desc_list[0])
+        raise SystemExit()
 
 
