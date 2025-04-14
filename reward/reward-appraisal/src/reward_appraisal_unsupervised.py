@@ -37,7 +37,7 @@ def clustering():
 
     envent_data = json.load(open('../../../data/reward-appraisal/envent/envent_organized.json'))
     emotion_to_sentiment = yaml.load(
-        open('../data/emotion_to_sentiment.yaml'), 
+        open('../../reward-sentiment/sentiment_data/emotion_to_sentiment.yaml'), 
         Loader=yaml.FullLoader
     )
 
