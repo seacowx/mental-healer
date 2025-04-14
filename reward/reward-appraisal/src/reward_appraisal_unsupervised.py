@@ -110,8 +110,9 @@ def main():
     appraisal_mtx = np.zeros((len(envent_data), 21))
     emotion_labels = []
     if args.predict_appraisal:
-        prompt_template = json.load(
-            open('../prompts/predict_appraisal.yaml', 'r')
+        prompt_template = yaml.load(
+            open('../prompts/predict_appraisal.yaml', 'r'),
+            Loader=yaml.SafeLoader,
         )
         appraisal_predictor = AppraisalPredictor(
             prompt_template=prompt_template,
