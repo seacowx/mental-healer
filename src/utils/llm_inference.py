@@ -121,43 +121,29 @@ class OpenAIAsyncInference(LLMBaseModel):
         presence_penalty: float = 0.0,
         do_sample: bool = False,
         return_json: bool = False,
-        stream: bool = False,
         json_schema = None,
     ) -> str | ChatCompletion | None:
 
-        # NOTE: use completion endpoint for EmoLlama
-        if 'emollama' in model.lower():
-            response = await self.async_client.completions.create(
-                model='vllm-model',
-                prompt=message,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                top_p=top_p,
-                frequency_penalty=frequency_penalty,
-                presence_penalty=presence_penalty,
-            )
+        # add generation prompt for non-GPT models
+        extra_body = {}
+        if 'gpt' not in model.lower():
+            extra_body['add_generation_prompt'] = True
 
-        # NOTE: use standard chat endpoint for other LLMs
-        else:
-            # add generation prompt for non-GPT models
-            extra_body = {}
-            if 'gpt' not in model.lower():
-                extra_body['add_generation_prompt'] = True
+        if json_schema:
+            extra_body['guided_json'] = json_schema
+            extra_body['guided_decoding_backend'] = 'outlines'
 
-            if json_schema:
-                extra_body['guided_json'] = json_schema
-                extra_body['guided_decoding_backend'] = 'outlines'
-
-            response = await self.async_client.chat.completions.create(
-                model='vllm-model',
-                messages=message,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                top_p=top_p,
-                frequency_penalty=frequency_penalty,
-                presence_penalty=presence_penalty,
-                extra_body=extra_body,
-            )
+        response = await self.async_client.chat.completions.create(
+            model='vllm-model',
+            messages=message,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            top_p=top_p,
+            frequency_penalty=frequency_penalty,
+            presence_penalty=presence_penalty,
+            extra_body=extra_body,
+            do_sample=do_sample,
+        )
 
         if return_json:
             return response
