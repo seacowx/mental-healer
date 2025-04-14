@@ -1,3 +1,5 @@
+import os
+import argparse
 import json, yaml
 import numpy as np
 import pandas as pd
@@ -10,8 +12,28 @@ from sklearn.manifold import TSNE
 from sklearn.cluster import KMeans
 from sklearn.metrics import accuracy_score, f1_score
 
+from reward_appraisal_predict import AppraisalPredictor
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Prepare COKE dataset for finetuning")
+    parser.add_argument(
+        '--model', 
+        type=str,
+        default='llama8',
+        help='Model name to be used for rating appraisals'
+    )
+    parser.add_argument(
+        '--predict_appraisal',
+        action='store_true',
+        help='Flag to indicate if appraisal prediction is needed, otherwise use human annotating'
+    )
+    return parser.parse_args()
+
 
 def clustering():
+
+    args = parse_args()
 
     envent_data = json.load(open('../../../data/reward-appraisal/envent/envent_organized.json'))
     emotion_to_sentiment = yaml.load(
@@ -19,13 +41,18 @@ def clustering():
         Loader=yaml.FullLoader
     )
 
-    # record appraisal profiles
     appraisal_mtx = np.zeros((len(envent_data), 21))
     emotion_labels = []
-    for idx, val in enumerate(envent_data.values()):
-        cur_appraisal_profile = list(val['appraisal_dims'].values())
-        appraisal_mtx[idx] = cur_appraisal_profile
-        emotion_labels.append(val['emotion_label'])
+    if args.predict_appraisal:
+        raise NotImplementedError(
+            "Appraisal prediction is not implemented yet. Please use human annotating."
+        )
+    else:
+        # retrieve human annotation from EnVent dataset
+        for idx, val in enumerate(envent_data.values()):
+            cur_appraisal_profile = list(val['appraisal_dims'].values())
+            appraisal_mtx[idx] = cur_appraisal_profile
+            emotion_labels.append(val['emotion_label'])
 
     sentiment_labels = [
         emotion_to_sentiment[label] for label in emotion_labels
@@ -53,14 +80,16 @@ def clustering():
     kmeans.fit(appraisal_embedded)
     labels = kmeans.labels_
 
-    # organized_results = {
-    #     'cluster': labels,
-    #     'sentiment': sentiment_labels,
-    # }
-    #
-    # out_df = pd.DataFrame(organized_results)
-    # out_df.to_csv('../../exp_data/cluster_result.csv', index=False)
-    #
+    result_save_fpath = '../../exp_data/appraisal_clustering_result.json'
+    if not os.path.exists(result_save_fpath):
+        organized_results = {
+            'cluster': labels,
+            'sentiment': sentiment_labels,
+        }
+
+        out_df = pd.DataFrame(organized_results)
+        out_df.to_csv(result_save_fpath, index=False)
+
     pred_labels = deepcopy(labels)
     numerical_sentiment_labels = [
         1 if label == 'negative' else 0 for label in sentiment_labels
@@ -83,6 +112,7 @@ def clustering():
     fig.write_image(f"../../exp_data/appraisal_clustering.png")
     fig.write_html(f"../../exp_data/appraisal_clustering.html")
     fig.show()
+
 
 if __name__ == '__main__':
     clustering()

@@ -53,7 +53,7 @@ def parse_args():
     parser.add_argument(
         '--config_path',
         type=str,
-        default='../config/config1.yaml',
+        default='../sentiment_config/sentiment_train_config1.yaml',
         help='Path to the configuration file for finetuning'
     )
     return parser.parse_args()
