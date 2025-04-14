@@ -33,7 +33,7 @@ class AppraisalPredictor:
         self.quantization = model_config['quantization']
 
 
-    def predict(self):
+    async def predict(self):
 
         # initialize the vllm server
         vllm_server = vLLMServer(

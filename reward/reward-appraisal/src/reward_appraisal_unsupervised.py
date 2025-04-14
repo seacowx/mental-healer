@@ -1,4 +1,5 @@
 import os
+import asyncio
 import argparse
 import json, yaml
 import numpy as np
@@ -94,7 +95,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
+async def main():
 
     args = parse_args()
 
@@ -124,7 +125,7 @@ def main():
             model_name=args.model,
             model_path_dict=model_path_dict,
         )
-        predicted_apprarisal_profiles = appraisal_predictor.predict()
+        predicted_apprarisal_profiles = await appraisal_predictor.predict()
     else:
         # retrieve human annotation from EnVent dataset
         for idx, val in enumerate(envent_data.values()):
@@ -180,4 +181,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
