@@ -15,7 +15,15 @@ def main():
     sentiment_labels = []
     pleasantness_labels = []
     for key, entry in envent_data.items():
-        print(entry)
+
+        cur_pleasantness_rating = entry['appraisal_dims']['pleasantness']
+        cur_unpleasantness_rating = entry['appraisal_dims']['unpleasantness']
+
+        cur_emotion_label = entry['emotion_label']
+        cur_sentiment_label = emotion_to_sentiment_dict[cur_emotion_label]
+
+        print(cur_emotion_label)
+        print(cur_sentiment_label)
         raise SystemExit()
 
 
