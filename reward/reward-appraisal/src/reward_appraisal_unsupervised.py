@@ -98,8 +98,7 @@ def clustering():
     print(f"accuracy: {accuracy_score(numerical_sentiment_labels, pred_labels)}")
     print(f"f1: {f1_score(numerical_sentiment_labels, pred_labels)}") 
 
-
-    if not os.path.exists('../../exp_data/appraisal_clustering.png'):
+    if not os.path.exists('../../../exp_data/appraisal_clustering.png'):
         # Create scatter plot with Plotly
         fig = px.scatter(
             vis_data,
@@ -111,8 +110,8 @@ def clustering():
         )
         fig.update_traces(marker=dict(size=8, opacity=0.75, line=dict(width=1, color='DarkSlateGrey')))
         fig.update_layout(legend_title_text='Sentiment')
-        fig.write_image(f"../../exp_data/appraisal_clustering.png")
-        fig.write_html(f"../../exp_data/appraisal_clustering.html")
+        fig.write_image(f"../../../exp_data/appraisal_clustering.png")
+        fig.write_html(f"../../../exp_data/appraisal_clustering.html")
         fig.show()
 
 
