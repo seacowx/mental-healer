@@ -114,8 +114,15 @@ def main():
             open('../prompts/predict_appraisal.yaml', 'r'),
             Loader=yaml.SafeLoader,
         )
+        model_path_dict = yaml.load(
+            open('../../../src/configs/llm_configs.yaml', 'r'),
+            Loader=yaml.SafeLoader,
+        )
         appraisal_predictor = AppraisalPredictor(
+            data=envent_data,
             prompt_template=prompt_template,
+            model_name=args.model,
+            model_path_dict=model_path_dict,
         )
         predicted_apprarisal_profiles = appraisal_predictor.predict()
     else:

@@ -1,0 +1,23 @@
+'gpt-4o': 
+  'path': ''
+  'quantization': False
+
+'llama70-r1': 
+  'path': '/scratch/prj/charnu/seacow_hf_cache/models--unsloth--DeepSeek-R1-Distill-Llama-70B-bnb-4bit/snapshots/d4a2af1d9c04255cfab2d7ddc3abe58ad8d42e9d'
+  'quantization': True
+
+'llama70': 
+  'path': '/scratch/prj/charnu/seacow_hf_cache/models--unsloth--Llama-3.3-70B-Instruct-bnb-4bit/snapshots/75779cdfa1240a4d048c6ecf65e97ff31b707214'
+  'quantization': True
+
+'llama8':
+  'path': '/scratch/prj/charnu/seacow_hf_cache/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659'
+  'quantization': False
+
+'qwen7':
+  'path': '/scratch/prj/charnu/seacow_hf_cache/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28'
+  'quantization': False
+
+'qwen14':
+  'path': '/scratch/prj/charnu/seacow_hf_cache/models--Qwen--Qwen2.5-14B-Instruct/snapshots/cf98f3b3bbb457ad9e2bb7baf9a0125b6b88caa8'
+  'quantization': False
