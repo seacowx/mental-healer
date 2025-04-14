@@ -80,7 +80,7 @@ def clustering():
     kmeans.fit(appraisal_embedded)
     labels = kmeans.labels_
 
-    result_save_fpath = '../../exp_data/appraisal_clustering_result.json'
+    result_save_fpath = '../../../exp_data/appraisal_clustering_result.json'
     if not os.path.exists(result_save_fpath):
         organized_results = {
             'cluster': labels,
