@@ -98,20 +98,22 @@ def clustering():
     print(f"accuracy: {accuracy_score(numerical_sentiment_labels, pred_labels)}")
     print(f"f1: {f1_score(numerical_sentiment_labels, pred_labels)}") 
 
-    # Create scatter plot with Plotly
-    fig = px.scatter(
-        vis_data,
-        x='x',
-        y='y',
-        color='sentiment',
-        title="Appraisal Embedded Scatter Plot",
-        labels={'x': 'Dimension 1', 'y': 'Dimension 2'},
-    )
-    fig.update_traces(marker=dict(size=8, opacity=0.75, line=dict(width=1, color='DarkSlateGrey')))
-    fig.update_layout(legend_title_text='Sentiment')
-    fig.write_image(f"../../exp_data/appraisal_clustering.png")
-    fig.write_html(f"../../exp_data/appraisal_clustering.html")
-    fig.show()
+
+    if not os.path.exists('../../exp_data/appraisal_clustering.png'):
+        # Create scatter plot with Plotly
+        fig = px.scatter(
+            vis_data,
+            x='x',
+            y='y',
+            color='sentiment',
+            title="Appraisal Embedded Scatter Plot",
+            labels={'x': 'Dimension 1', 'y': 'Dimension 2'},
+        )
+        fig.update_traces(marker=dict(size=8, opacity=0.75, line=dict(width=1, color='DarkSlateGrey')))
+        fig.update_layout(legend_title_text='Sentiment')
+        fig.write_image(f"../../exp_data/appraisal_clustering.png")
+        fig.write_html(f"../../exp_data/appraisal_clustering.html")
+        fig.show()
 
 
 if __name__ == '__main__':
