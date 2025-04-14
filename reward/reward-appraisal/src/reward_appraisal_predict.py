@@ -1,7 +1,11 @@
 import json
+import os, sys
 from copy import deepcopy
-from ....src.utils.llm_inference import LLMInference
 
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
+sys.path.append(root_dir)
+
+from src.utils.llm_inference import vLLMServer, OpenAIAsyncInference
 
 
 class AppraisalPredictor:
