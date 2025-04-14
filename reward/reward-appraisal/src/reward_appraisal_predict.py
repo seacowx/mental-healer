@@ -1,6 +1,8 @@
 import json
+import asyncio
 import os, sys
 from copy import deepcopy
+from tqdm.asyncio import tqdm as atqdm
 
 import torch
 
@@ -41,7 +43,6 @@ class AppraisalPredictor:
         )
 
         vllm_server, openai_async_client = vllm_server.start_vllm_server()
-        raise SystemExit()
 
         appraisal_desc_msg_list = []
         for entry_idx, (id, entry) in enumerate(self.data.items()):
@@ -53,5 +54,24 @@ class AppraisalPredictor:
 
             appraisal_desc_msg_list.append(cur_appraisal_prediction_prompt)
 
-            print(cur_appraisal_prediction_prompt)
-            raise SystemExit()
+        semaphore = asyncio.Semaphore(20)
+        appraisal_pred_response_list = [openai_async_client.process_with_semaphore(
+            semaphore=semaphore,
+            model=model,
+            message=msg,
+            return_json=False,
+        ) for msg in appraisal_desc_msg_list]
+
+        appraisal_desc_list = await atqdm.gather(*appraisal_pred_response_list)
+
+        # parse the appraisal prediction response
+        appraisal_desc_list = [
+            ele.split('<ratings>')[1].strip() if '<ratings>' in ele else ele
+            for ele in appraisal_desc_list
+        ]
+        appraisal_desc_list = [
+            ele.split('</ratings>')[0].strip() if '</ratings>' in ele else ele
+            for ele in appraisal_desc_list
+        ]
+
+
