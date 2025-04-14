@@ -56,7 +56,7 @@ class AppraisalPredictor:
 
                 appraisal_desc_msg_list.append(cur_appraisal_prediction_prompt)
 
-            semaphore = asyncio.Semaphore(20)
+            semaphore = asyncio.Semaphore(50)
             appraisal_pred_response_list = [openai_async_client.process_with_semaphore(
                 semaphore=semaphore,
                 model=self.model_name,
