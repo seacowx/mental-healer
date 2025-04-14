@@ -1,6 +1,6 @@
 import json
 from copy import deepcopy
-from llm_inference import vLLMServer
+from ....src.utils.llm_inference import LLMInference
 
 
 
