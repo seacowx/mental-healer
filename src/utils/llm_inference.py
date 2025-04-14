@@ -85,7 +85,6 @@ class OpenAIAsyncInference(LLMBaseModel):
         presence_penalty: float = 0.0,
         do_sample: bool = False,
         return_json: bool = False,
-        stream: bool = False,
         json_schema = {},
     ):
         async with semaphore:
@@ -99,7 +98,6 @@ class OpenAIAsyncInference(LLMBaseModel):
                 presence_penalty=presence_penalty,
                 do_sample=do_sample,
                 return_json=return_json,
-                stream=stream,
                 json_schema=json_schema,
             )
 
