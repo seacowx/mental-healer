@@ -47,6 +47,7 @@ class AppraisalPredictor:
 
         try:
             appraisal_desc_msg_list = []
+            candidate_emotion_labels = []
             for entry_idx, (id, entry) in enumerate(self.data.items()):
                 cur_situation = entry['context'].strip()
                 cur_appraisal_prediction_prompt = deepcopy(self.prompt_template)
@@ -55,6 +56,7 @@ class AppraisalPredictor:
                 )
 
                 appraisal_desc_msg_list.append(cur_appraisal_prediction_prompt)
+                candidate_emotion_labels.append(entry['emotion_label'])
 
             semaphore = asyncio.Semaphore(100)
             appraisal_pred_response_list = [openai_async_client.process_with_semaphore(
@@ -77,6 +79,7 @@ class AppraisalPredictor:
             ]
 
             valid_idx = 0
+            out_emotion_labels = []
             for i, entry in enumerate(appraisal_desc_list):
                 cur_predicted_appraisal_dims = entry.split('\n')
                 cur_predicted_appraisal_dims = [
@@ -93,6 +96,7 @@ class AppraisalPredictor:
 
                 if len(cur_predicted_appraisal_dims_list) == 21:
                     appraisal_mtx[valid_idx] = cur_predicted_appraisal_dims_list
+                    out_emotion_labels.append(candidate_emotion_labels[i])
                     valid_idx += 1
 
         finally:
