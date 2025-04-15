@@ -34,7 +34,7 @@ class AppraisalPredictor:
         self.quantization = model_config['quantization']
 
 
-    async def predict(self, appraisal_mtx: np.ndarray) -> np.ndarray:
+    async def predict(self, appraisal_mtx: np.ndarray) -> tuple:
 
         # initialize the vllm server
         vllm_server = vLLMServer(
@@ -102,5 +102,5 @@ class AppraisalPredictor:
         finally:
             vllm_server.kill_server() 
 
-        return appraisal_mtx
+        return appraisal_mtx, out_emotion_labels
 

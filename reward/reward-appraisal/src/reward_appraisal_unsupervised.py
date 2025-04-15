@@ -125,7 +125,7 @@ async def main():
             model_name=args.model,
             model_path_dict=model_path_dict,
         )
-        appraisal_mtx = await appraisal_predictor.predict(
+        appraisal_mtx, emotion_labels = await appraisal_predictor.predict(
             appraisal_mtx=appraisal_mtx,
         )
     else:
