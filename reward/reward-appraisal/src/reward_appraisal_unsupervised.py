@@ -108,8 +108,6 @@ async def main():
         Loader=yaml.FullLoader
     )
 
-    appraisal_mtx = np.zeros((len(envent_data), 21))
-    emotion_labels = []
     if args.predict_appraisal:
         prompt_template = yaml.load(
             open('../prompts/predict_appraisal.yaml', 'r'),
@@ -126,9 +124,11 @@ async def main():
             model_path_dict=model_path_dict,
         )
         appraisal_mtx, emotion_labels = await appraisal_predictor.predict(
-            appraisal_mtx=appraisal_mtx,
+            envent_data=envent_data,
         )
     else:
+        appraisal_mtx = np.zeros((len(envent_data), 21))
+        emotion_labels = []
         # retrieve human annotation from EnVent dataset
         for idx, val in enumerate(envent_data.values()):
             cur_appraisal_profile = list(val['appraisal_dims'].values())
@@ -154,6 +154,11 @@ async def main():
     embedded_clustering_labels = clustering(
         appraisal_mtx=appraisal_mtx_embedded,
     )
+
+    print(len(clustering_labels))
+    print(len(embedded_clustering_labels))
+    print(len(sentiment_labels))
+    raise SystemExit()
 
     acc, f1 = evaluate(
         labels=clustering_labels,

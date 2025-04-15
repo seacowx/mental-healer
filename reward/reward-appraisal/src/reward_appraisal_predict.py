@@ -34,7 +34,7 @@ class AppraisalPredictor:
         self.quantization = model_config['quantization']
 
 
-    async def predict(self, appraisal_mtx: np.ndarray) -> tuple:
+    async def predict(self, envent_data: dict) -> tuple:
 
         # initialize the vllm server
         vllm_server = vLLMServer(
@@ -80,6 +80,7 @@ class AppraisalPredictor:
 
             valid_idx = 0
             out_emotion_labels = []
+            appraisal_mtx = np.zeros((len(envent_data), 21))
             for i, entry in enumerate(appraisal_desc_list):
                 cur_predicted_appraisal_dims = entry.split('\n')
                 cur_predicted_appraisal_dims = [
