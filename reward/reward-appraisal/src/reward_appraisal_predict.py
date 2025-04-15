@@ -95,9 +95,8 @@ class AppraisalPredictor:
                     appraisal_mtx[valid_idx] = cur_predicted_appraisal_dims_list
                     valid_idx += 1
 
-            print(appraisal_mtx.shape)
-            raise SystemExit()
-
         finally:
             vllm_server.kill_server() 
+
+        return appraisal_mtx
 
