@@ -64,7 +64,7 @@ class AppraisalPredictor:
                 model=self.model_name,
                 message=msg,
                 return_json=False,
-            ) for msg in appraisal_desc_msg_list[:50]]
+            ) for msg in appraisal_desc_msg_list]
 
             appraisal_desc_list = await atqdm.gather(*appraisal_pred_response_list)
 

@@ -155,14 +155,6 @@ async def main():
         appraisal_mtx=appraisal_mtx_embedded,
     )
 
-    print(appraisal_mtx.shape)
-    print(len(clustering_labels))
-    print(len(embedded_clustering_labels))
-    print('-------------------------')
-    print(len(sentiment_labels))
-    print(len(emotion_labels))
-    raise SystemExit()
-
     acc, f1 = evaluate(
         labels=clustering_labels,
         sentiment_labels=sentiment_labels,
