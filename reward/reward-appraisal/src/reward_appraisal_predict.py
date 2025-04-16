@@ -105,9 +105,5 @@ class AppraisalPredictor:
 
         appraisal_mtx = appraisal_mtx[:valid_idx]
 
-        print(appraisal_mtx.shape)
-        print(len(out_emotion_labels))
-        raise SystemExit()
-
         return appraisal_mtx, out_emotion_labels
 
