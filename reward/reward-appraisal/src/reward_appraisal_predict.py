@@ -103,8 +103,11 @@ class AppraisalPredictor:
         finally:
             vllm_server.kill_server() 
 
+        appraisal_mtx = appraisal_mtx[:valid_idx]
+
         print(appraisal_mtx.shape)
-        print(out_emotion_labels)
+        print(len(out_emotion_labels))
+        raise SystemExit()
 
         return appraisal_mtx, out_emotion_labels
 
