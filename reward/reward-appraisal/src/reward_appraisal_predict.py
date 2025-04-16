@@ -64,7 +64,7 @@ class AppraisalPredictor:
                 model=self.model_name,
                 message=msg,
                 return_json=False,
-            ) for msg in appraisal_desc_msg_list]
+            ) for msg in appraisal_desc_msg_list[:50]]
 
             appraisal_desc_list = await atqdm.gather(*appraisal_pred_response_list)
 
@@ -102,6 +102,9 @@ class AppraisalPredictor:
 
         finally:
             vllm_server.kill_server() 
+
+        print(appraisal_mtx.shape)
+        print(out_emotion_labels)
 
         return appraisal_mtx, out_emotion_labels
 
