@@ -16,7 +16,9 @@ def main():
     temp_input_list = data[:10]
 
 
-    test_data = json.load('../reward_ft/reward-sentiment/sentiment_data/reward-sentiment_test.json')
+    test_data = json.load(
+        open('../reward_ft/reward-sentiment/sentiment_data/reward-sentiment_test.json')
+    )
 
     input_msg_list = [
             [{'role': 'user', 'content': ele['instruction'].strip()} for ele in test_data]
