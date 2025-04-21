@@ -10,7 +10,7 @@ class SentimentReward:
 
 
     def __init__(self) -> None:
-        model_path_dict = yaml.safe_load(open('../configs/llm_configs.yaml'))
+        model_path_dict = yaml.safe_load(open('./configs/llm_configs.yaml'))
         model_path = model_path_dict['qwen7']['path']
 
         # initialize the llm
