@@ -52,16 +52,11 @@ class SentimentReward:
         return out_str
 
 
-    def get_sentiment(self, input_list: list) -> list:
-
-        input_msg_list = [
-            [{'role': 'user', 'content': ele['instruction'].strip()}]
-            for ele in test_data
-        ]
+    def get_sentiment(self, input_msg_list: list) -> list:
 
         # keep track of the completed and corrupted outputs
         queue_list = list(range(len(input_msg_list)))
-        out_list = [''] * len(input_list)
+        out_list = [''] * len(input_msg_list)
         TOLERANCE = 5
         tol_counter = 0
         while queue_list and tol_counter < TOLERANCE:
