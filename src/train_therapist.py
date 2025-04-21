@@ -8,7 +8,7 @@ class TherapistTrainer:
     def __init__(self, data: list) -> None:
         self.data = data
         self.sentiment_prompt = yaml.load(
-            './prompts/sentiment.yaml',
+            open('./prompts/sentiment.yaml', 'r'),
             Loader=yaml.FullLoader,
         )['input']
         self.sentiment_reward = SentimentReward()
