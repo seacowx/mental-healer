@@ -22,9 +22,9 @@ class TherapistTrainer:
             for ele in input_list
         ]
 
-        print(input_msg_list)
-        raise SystemExit()
-
         sentiment_list = self.sentiment_reward.get_sentiment(
             input_list=input_msg_list
         )
+
+        print(sentiment_list)
+        raise SystemExit()
