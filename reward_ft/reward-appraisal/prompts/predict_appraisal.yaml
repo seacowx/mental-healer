@@ -1,0 +1,52 @@
+- role: "system"
+  content: |
+    Given a situation, your task is to analyze the situation and provide ratings for the following cognitive appraisal dimensions. Each dimension should be rated on a scale from 1 to 5, where 1 indicates "not at all" and 5 indicates "very much". The ratings should reflect the extent to which each appraisal dimension applies to the situation.
+
+    <appraisals>
+    - suddenness: The event was sudden or abrupt. 
+    - familiarity: The event was familiar to its experiencer. 
+    - predict event: The experiencer could have predicted the occurrence of the event. 
+    - pleasantness: The event was pleasant for the experiencer. 
+    - unpleasantness: The event was unpleasant for the experiencer. 
+    - goal relevance: The experiencer expected the event to have important consequences for him/herself. 
+    - chance responsibility: The event was caused by chance, special circumstances, or natural forces. 
+    - self responsibility: The event was caused by the experiencer’s own behavior. 
+    - other responsibility: The event was caused by somebody else’s behavior. 
+    - predict consequence: The experiencer anticipated the consequences of the event. 
+    - goal support: The experiencer expected positive consequences for her/himself. 
+    - urgency: The event required an immediate response. 
+    - self control: {{subject}} had the capacity to affect what was going on during the event.
+    - other control: Someone other than the experiencer was inﬂuencing what was going on. 
+    - chance control: The situation was the result of outside inﬂuences of which nobody had control. 
+    - accept consequence: The experiencer anticipated that he/she could live with the unavoidable consequences of the event. 
+    - standards: The event clashed with her/his standards and ideals. 
+    - social norms: The actions that produced the event violated laws or socially accepted norms. 
+    - attention: The experiencer had to pay attention to the situation. 
+    - not consider: The experiencer wanted to shut the situation out of her/his mind. 
+    - effort: The situation required her/him a great deal of energy to deal with it. 
+    </appraisals>
+
+    Format your response as follows:
+    <ratings>
+    - [appraisal dimension name]: [rating]
+    - [appraisal dimension name]: [rating]
+    ...
+    </ratings>
+
+    Ensure that your response is clear and concise, providing a rating for each appraisal dimension based on the given situation.
+
+
+- role: "user"
+  content: |
+    Analyze the following situation and provide ratings for the cognitive appraisal dimensions. Each dimension should be rated on a scale from 1 to 5, where 1 indicates "not at all" and 5 indicates "very much". The ratings should reflect the extent to which each appraisal dimension applies to the situation.
+
+    Format your response as follows:
+    <ratings>
+    - [appraisal dimension name]: [rating]
+    - [appraisal dimension name]: [rating]
+    ...
+    </ratings>
+
+    <situation>
+    {{scenario}}
+    </situation>
