@@ -25,10 +25,10 @@ def main():
 
     coke_negative_thought_data = coke_data[coke_data['emotion'] == 'negative']
     coke_negative_thought_data['situation'] = coke_negative_thought_data['situation'].apply(
-        lambda x: re.sub(r'\s+\.', '.', x)
+        lambda x: re.sub(r'\s+\.', '.', x).strip()
     )
     coke_negative_thought_data['thought'] = coke_negative_thought_data['thought'].apply(
-        lambda x: re.sub(r'\s+\.', '.', x)
+        lambda x: re.sub(r'\s+\.', '.', x).strip()
     )
 
     data_part1 = coke_negative_thought_data[['situation', 'thought']]
@@ -40,10 +40,10 @@ def main():
     data_part2 = data_part2[['situation', 'thought', 'thinking_traps_addressed']]
 
     data_part2['situation'] = data_part2['situation'].apply(
-        lambda x: re.sub(r'\s+\.', '.', x)
+        lambda x: re.sub(r'\s+\.', '.', x).strip()
     )
     data_part2['thought'] = data_part2['thought'].apply(
-        lambda x: re.sub(r'\s+\.', '.', x)
+        lambda x: re.sub(r'\s+\.', '.', x).strip()
     )
 
     # ----------------------------------------------------------------------------------------
