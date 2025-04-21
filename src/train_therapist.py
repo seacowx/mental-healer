@@ -90,10 +90,13 @@ class TherapistTrainer:
             input_msg_list=input_list,
         )
 
-        evaluate(
+        acc, f1, senti_acc, senti_f1 = evaluate(
             eval_idx=0,
             predicted=sentiment_list,
             ground_truth=label_list,
         )
+
+        print(f"Accuracy: {acc}, F1: {f1}")
+        print(f"Sentiment Accuracy: {senti_acc}, Sentiment F1: {senti_f1}")
 
         raise SystemExit()
