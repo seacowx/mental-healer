@@ -19,7 +19,7 @@ def main():
         open('../data/reward-appraisal/envent/envent_organized.json', 'r')
     )
     emotion_to_sentiment_dict = yaml.load(
-        open('../reward/reward-sentiment/sentiment_data/emotion_to_sentiment.yaml', 'r'),
+        open('../src/configs/emotion_to_sentiment.yaml', 'r'),
         Loader=yaml.FullLoader,
     )
 
