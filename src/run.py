@@ -11,7 +11,7 @@ def main():
     data = pd.read_csv('../data/situations/situations.csv')
     data = data.to_dict(orient='records')
 
-    print(data0[0])
+    print(data[0])
     raise SystemExit()
 
     therapost_trainer = TherapistTrainer(data=data)
