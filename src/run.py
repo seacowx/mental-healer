@@ -15,22 +15,12 @@ def main():
 
     temp_input_list = data[:10]
 
-
-    test_data = json.load(
-        open('../reward_ft/reward-sentiment/sentiment_data/reward-sentiment_test.json')
+    predicted = therapist_trainer._TherapistTrainer__compute_sentiment_reward(
+        input_list=temp_input_list,
     )
 
-    input_msg_list = [
-            [{'role': 'user', 'content': ele['instruction'].strip()}] for ele in test_data
-    ]
-    label_list = [
-        ele['output'].split('<emotion>')[-1].split('</emotion>')[0].lower().strip() for ele in test_data
-    ]
-
-    therapist_trainer._TherapistTrainer__compute_sentiment_reward(
-        input_list=input_msg_list,
-        label_list=label_list,
-    )
+    print(predicted)
+    raise SystemExit()
 
 
 if __name__ == "__main__":

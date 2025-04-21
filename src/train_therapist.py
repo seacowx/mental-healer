@@ -77,26 +77,17 @@ class TherapistTrainer:
     def __compute_sentiment_reward(
         self, 
         input_list: list,
-        label_list: list,
     ) -> list:
 
-        # # make prompt
-        # input_msg_list = [
-        #     [{'role': 'user', 'content': self.sentiment_prompt.format(**ele)}]
-        #     for ele in input_list
-        # ]
+        # make prompt
+        input_msg_list = [
+            [{'role': 'user', 'content': self.sentiment_prompt.format(**ele)}]
+            for ele in input_list
+        ]
 
         sentiment_list = self.sentiment_reward.get_sentiment(
             input_msg_list=input_list,
         )
 
-        acc, f1, senti_acc, senti_f1 = evaluate(
-            eval_idx=0,
-            predicted=sentiment_list,
-            ground_truth=label_list,
-        )
+        return sentiment_list
 
-        print(f"Accuracy: {acc}, F1: {f1}")
-        print(f"Sentiment Accuracy: {senti_acc}, Sentiment F1: {senti_f1}")
-
-        raise SystemExit()
