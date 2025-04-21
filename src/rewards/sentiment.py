@@ -59,6 +59,7 @@ class SentimentReward:
 
         out_list = [''] * len(input_msg_list)
         TOLERANCE = 5
+        temperature = 0.0
         tol_counter = 0
         finished_idx_list = []
         while queue_list and tol_counter < TOLERANCE:
@@ -83,6 +84,9 @@ class SentimentReward:
             queue_list = [queue_list[i] for i in range(len(queue_list)) if i not in finished_idx_list]
             input_msg_list = [input_msg_list[i] for i in range(len(input_msg_list)) if i not in finished_idx_list]
             tol_counter += 1
+
+            # increment temperature
+            self.sampling_params.temperature += 0.2
 
         # if there are remaining corrupted outputs, set them to be negative sentiment
         if queue_list:
