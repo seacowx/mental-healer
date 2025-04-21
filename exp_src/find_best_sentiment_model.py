@@ -16,8 +16,12 @@ def evaluate(
     eval_idx: int, 
     predicted: list,
     ground_truth: list,
-    sentiment_label_mapping: dict,
 ) -> tuple:
+
+    sentiment_label_mapping = yaml.load(
+        open('../src/configs/emotion_to_sentiment.yaml'),
+        Loader=yaml.FullLoader
+    )
 
     # filter out predictions that are not in the label space
     label_space = list(set(ground_truth))
