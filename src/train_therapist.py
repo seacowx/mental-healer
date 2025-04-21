@@ -86,7 +86,7 @@ class TherapistTrainer:
         ]
 
         sentiment_list = self.sentiment_reward.get_sentiment(
-            input_msg_list=input_list,
+            input_msg_list=input_msg_list,
         )
 
         return sentiment_list
