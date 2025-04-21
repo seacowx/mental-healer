@@ -16,14 +16,14 @@ class TherapistTrainer:
 
     def __compute_sentiment_reward(self, input_list: list) -> list:
 
-        # make prompt
-        input_msg_list = [
-            [{'role': 'user', 'content': self.sentiment_prompt.format(**ele)}]
-            for ele in input_list
-        ]
+        # # make prompt
+        # input_msg_list = [
+        #     [{'role': 'user', 'content': self.sentiment_prompt.format(**ele)}]
+        #     for ele in input_list
+        # ]
 
         sentiment_list = self.sentiment_reward.get_sentiment(
-            input_msg_list=input_msg_list,
+            input_msg_list=input_list,
         )
 
         print(sentiment_list)

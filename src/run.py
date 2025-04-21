@@ -27,11 +27,8 @@ def main():
         ele['output'].split('<emotion>')[-1].split('</emotion>')[0].lower().strip() for ele in test_data
     ]
 
-    print(input_msg_list[0])
-    raise SystemExit()
-
     therapist_trainer._TherapistTrainer__compute_sentiment_reward(
-        input_list=temp_input_list
+        input_list=input_msg_list,
     )
 
 
