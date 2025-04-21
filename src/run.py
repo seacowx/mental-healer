@@ -24,7 +24,7 @@ def main():
             [{'role': 'user', 'content': ele['instruction'].strip()} for ele in test_data]
     ]
     label_list = [
-        ele['label'].split('<emotion>')[-1].split('</emotion>')[0].lower().strip() for ele in test_data
+        ele['output'].split('<emotion>')[-1].split('</emotion>')[0].lower().strip() for ele in test_data
     ]
 
     print(input_msg_list[0])
