@@ -1,8 +1,9 @@
 import yaml, json
 
 import torch
-from vllm import LLM, SamplingParams, LoRARequest
+from vllm import LLM, SamplingParams
 from vllm.outputs import RequestOutput
+from vllm.lora.request import LoRARequest
 
 
 class SentimentReward:
