@@ -28,9 +28,6 @@ def main():
     ]
 
     print(input_msg_list[0])
-    print('\n\n')
-    print(label_list)
-    raise SystemExit()
 
     therapist_trainer._TherapistTrainer__compute_sentiment_reward(
         input_list=temp_input_list
