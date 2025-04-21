@@ -1,4 +1,4 @@
-from rewards.sentiment import Sentiment
+from rewards.sentiment import SentimentReward
 
 
 class TherapistTrainer:
@@ -6,4 +6,4 @@ class TherapistTrainer:
 
     def __init__(self, data: list) -> None:
         self.data = data
-        self.sentiment_reward = Sentiment()
+        self.sentiment_reward = SentimentReward()
