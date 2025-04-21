@@ -1,0 +1,8 @@
+input: |-
+  <situation>
+  {situation}
+  </situation>
+
+  <thought>
+  {thought}
+  </thought>
