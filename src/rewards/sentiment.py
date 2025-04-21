@@ -76,14 +76,12 @@ class SentimentReward:
                 if not parsed_output:
                     continue
 
-                cur_idx = queue_list[output_idx]
-
-                out_list[cur_idx] = parsed_output
-                finished_idx_list.append(cur_idx)
-                input_msg_list.remove(input_msg_list[output_idx])
+                out_list[queue_list[output_idx]] = parsed_output
+                finished_idx_list.append(output_idx)
 
             # update queue_list, remove finised idx
             queue_list = [queue_list[i] for i in range(len(queue_list)) if i not in finished_idx_list]
+            input_msg_list = [input_msg_list[i] for i in range(len(input_msg_list)) if i not in finished_idx_list]
             tol_counter += 1
 
         # if there are remaining corrupted outputs, set them to be negative sentiment
