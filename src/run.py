@@ -11,11 +11,11 @@ def main():
     data = pd.read_csv('../data/situations/situations.csv')
     data = data.to_dict(orient='records')
 
-    therapost_trainer = TherapistTrainer(data=data)
+    therapist_trainer = TherapistTrainer(data=data)
 
     temp_input_list = data[:10]
 
-    therapost_trainer.__compute_sentiment_reward(
+    therapist_trainer._TherapistTrainer__compute_sentiment_reward(
         input_list=temp_input_list
     )
 
