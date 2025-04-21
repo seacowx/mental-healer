@@ -56,10 +56,6 @@ class SentimentReward:
 
         # keep track of the completed and corrupted outputs
         queue_list = list(range(len(input_msg_list)))
-        
-        print(len(queue_list))
-        print(len(input_msg_list)) 
-        raise SystemExit()
 
         out_list = [''] * len(input_msg_list)
         TOLERANCE = 5
