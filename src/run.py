@@ -11,18 +11,13 @@ def main():
     data = pd.read_csv('../data/situations/situations.csv')
     data = data.to_dict(orient='records')
 
-    print(data[0])
-    raise SystemExit()
-
     therapost_trainer = TherapistTrainer(data=data)
 
-    temp_input_list = [
-        {
-            'situation': ele['situation'], 
-            'thought': ele['thought'],
-        }
-        for ele in data[:10]
-    ]
+    temp_input_list = data[:10]
+
+    therapost_trainer.__compute_sentiment_reward(
+        input_list=temp_input_list
+    )
 
 
 if __name__ == "__main__":
