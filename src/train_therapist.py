@@ -90,5 +90,10 @@ class TherapistTrainer:
             input_msg_list=input_list,
         )
 
-        print(sentiment_list)
+        evaluate(
+            eval_idx=0,
+            predicted=sentiment_list,
+            ground_truth=label_list,
+        )
+
         raise SystemExit()
