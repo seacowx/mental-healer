@@ -89,7 +89,4 @@ class SentimentReward:
             for idx in queue_list:
                 out_list[idx] = 'negative'
 
-        print(out_list)
-        raise SystemExit()
-
         return out_list
