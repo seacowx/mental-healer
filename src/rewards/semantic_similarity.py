@@ -1,3 +1,4 @@
+import torch
 from transformers import AutoModel
 
 
@@ -11,7 +12,7 @@ class SemanticSimilarityReward:
         )
 
 
-    def __get_embedding(self, text_list: list) -> list:
+    def __get_embedding(self, text_list: list) -> torch.Tensor:
         return self.embedding_model.encode(
             text_list, 
             task="text-matching"
@@ -26,3 +27,11 @@ class SemanticSimilarityReward:
 
         utterance_embedded_mtx = self.__get_embedding(utterance_list) # N x D
         response_embedded_mtx = self.__get_embedding(response_list) # N x D
+
+        similarity_list = torch.einsum(
+            "ij, ji -> i",
+            utterance_embedded_mtx,
+            response_embedded_mtx.T,
+        ).cpu().tolist()
+
+        return similarity_list

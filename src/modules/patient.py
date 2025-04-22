@@ -27,4 +27,3 @@ class Patient(LMAgent):
         Terminate the agent
         """
         self.terminate_model()
-

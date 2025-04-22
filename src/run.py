@@ -14,6 +14,5 @@ def main():
     therapist_reward_func = TherapistReward()
 
 
-
 if __name__ == "__main__":
     main()
