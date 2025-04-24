@@ -1,4 +1,5 @@
 import yaml, json
+import numpy as np
 
 import torch
 from vllm import LLM, SamplingParams
@@ -12,6 +13,14 @@ class SentimentReward:
     def __init__(self) -> None:
         model_path_dict = yaml.safe_load(open('./configs/llm_configs.yaml'))
         model_path = model_path_dict['qwen7']['path']
+
+        self.reward_mapping = yaml.load(
+            open('../configs/sentiment_reward_rules.yaml', 'r'),
+            Loader=yaml.FullLoader,
+        )
+
+        print(self.reward_mapping)
+        raise SystemExit()
 
         # initialize the llm
         reward_device = torch.device('cuda:0')
@@ -52,7 +61,11 @@ class SentimentReward:
         return out_str
 
 
-    def get_sentiment(self, input_msg_list: list) -> list:
+    def get_sentiment(
+        self, 
+        input_msg_list: list, 
+        previous_sentiment_list: list,
+    ) -> np.ndarray:
 
         # keep track of the completed and corrupted outputs
         queue_list = list(range(len(input_msg_list)))
@@ -93,4 +106,7 @@ class SentimentReward:
             for idx in queue_list:
                 out_list[idx] = 'negative'
 
-        return out_list
+        # convert to numpy array
+        out_list = np.array(out_list)
+
+        return np.array(out_list)

@@ -1,0 +1,14 @@
+negative:
+  negative: 0
+  neutral: 0.5
+  positive: 1
+
+neutral:
+  negative: 0
+  neutral: 0.25
+  positive: 1
+
+positive:
+  negative: 0
+  neutral: 0
+  positive: 1

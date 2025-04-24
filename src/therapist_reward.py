@@ -17,8 +17,15 @@ class TherapistReward:
 
     def __reward_sentiment(
         self, 
-        input_list: list,
+        situation_list: list,
+        thoutght_list: list,
+        previous_sentiment_list: list,
     ) -> list:
+
+        input_list = [
+            {'situation': situation, 'thought': thought,}
+            for situation, thought in zip(situation_list, thoutght_list)
+        ]
 
         # make prompt
         input_msg_list = [
@@ -28,6 +35,7 @@ class TherapistReward:
 
         sentiment_list = self.sentiment_reward.get_sentiment(
             input_msg_list=input_msg_list,
+            previous_sentiment_list=previous_sentiment_list,
         )
 
         return sentiment_list
@@ -38,7 +46,10 @@ class TherapistReward:
         utterance_list: list,
         response_list: list,
     ):
-        raise NotImplementedError()
+        return self.semantic_similarity_reward.compute_similarity(
+            utterance_list=utterance_list,
+            response_list=response_list,
+        )
 
 
     def compute_reward(
@@ -47,5 +58,16 @@ class TherapistReward:
         old_thought_list: list,
         new_thought_list: list,
         utterance_list: list,
+        previous_sentiment_list: list,
     ):
-        ...
+
+        sentiment_list = self.__reward_sentiment(
+            situation_list=situation_list,
+            thoutght_list=new_thought_list,
+            previous_sentiment_list=previous_sentiment_list,
+        )
+
+        semantic_similarity_list = self.__reward_semantic_similarity(
+            utterance_list=utterance_list,
+            response_list=new_thought_list,
+        ) 
