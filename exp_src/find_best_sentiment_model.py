@@ -35,11 +35,6 @@ def evaluate(
         print(f"Warning: Less than 80% of the predictions are valid in round {eval_idx}.")
         return -1, -1, -1, -1
 
-    print('\n\n')
-    print(list(set(valid_predicted)))
-    print(list(set(valid_ground_truth)))
-    print('\n\n')
-
     # evaluate sentiment (coarse-grained)
     le = LabelEncoder()
     # valid_ground_truth_sentiment = [sentiment_label_mapping[ele] for ele in valid_ground_truth]
