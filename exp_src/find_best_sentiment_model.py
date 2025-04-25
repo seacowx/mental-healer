@@ -35,12 +35,17 @@ def evaluate(
         print(f"Warning: Less than 80% of the predictions are valid in round {eval_idx}.")
         return -1, -1, -1, -1
 
+    print('\n\n')
+    print(list(set(valid_predicted)))
+    print(list(set(valid_ground_truth)))
+    print('\n\n')
+
     # evaluate sentiment (coarse-grained)
     le = LabelEncoder()
-    valid_ground_truth_sentiment = [sentiment_label_mapping[ele] for ele in valid_ground_truth]
-    valid_predicted_sentiment = [sentiment_label_mapping[ele] for ele in valid_predicted]
-    valid_ground_truth_sentiment_encoded = le.fit_transform(valid_ground_truth_sentiment)
-    valid_predicted_sentiment_encoded = le.transform(valid_predicted_sentiment)
+    # valid_ground_truth_sentiment = [sentiment_label_mapping[ele] for ele in valid_ground_truth]
+    # valid_predicted_sentiment = [sentiment_label_mapping[ele] for ele in valid_predicted]
+    valid_ground_truth_sentiment_encoded = le.fit_transform(valid_ground_truth)
+    valid_predicted_sentiment_encoded = le.transform(valid_predicted)
 
     sentiment_accuracy = accuracy_score(
         valid_ground_truth_sentiment_encoded, 
@@ -96,13 +101,10 @@ def main():
         [{'role': 'user', 'content': ele['instruction'].strip()}]
         for ele in test_data
     ]
-    label_list = []
-    for ele in test_data:
-        try:
-            ele['output'].split('<emotion>')[1].split('</emotion>')[0].strip().lower()
-        except:
-            print(ele)
-            raise SystemExit()
+    label_list = [
+            ele['output'].split('<sentiment>')[1].split('</sentiment>')[0].strip().lower()
+            for ele in test_data
+    ]
 
     adapter_dir = f'/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/{args.model}/'
     lora_checkpoint_dir_list = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
