@@ -118,15 +118,15 @@ def prepare_for_ft():
     val_path = '../sentiment_data/reward-sentiment_val.json'
     test_path = '../sentiment_data/reward-sentiment_test.json'
     for path, data in zip([train_path, val_path, test_path], [out_train_data, out_val_data, out_test_data]):
-        if not os.path.exists(path):
-            with open(path, 'w') as f:
-                json.dump(data, f, indent=4)
-            updated = True
+        with open(path, 'w') as f:
+            json.dump(data, f, indent=4)
+        updated = True
 
     # save a copy to llamafactory data folder
-    train_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/sentiment-train.json'
-    val_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/sentiment-val.json'
-    test_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data/sentiment-test.json'
+    ft_root_path = '/scratch/prj/charnu/LLaMA-Factory/data/mental-healer_data'
+    train_path = os.path.join(ft_root_path, 'sentiment-train.json')
+    val_path = os.path.join(ft_root_path, 'sentiment-val.json')
+    test_path = os.path.join(ft_root_path, 'sentiment-test.json')
     for path, data in zip([train_path, val_path, test_path], [out_train_data, out_val_data, out_test_data]):
         if not os.path.exists(path):
             with open(path, 'w') as f:
