@@ -57,6 +57,7 @@ class TherapistReward:
             input_msg_list=input_msg_list,
         )
 
+        # test
         sentiment_reward_list = []
         if previous_sentiment_list:
             sentiment_reward_list = self.sentiment_reward.compute_sentiment_reward(
