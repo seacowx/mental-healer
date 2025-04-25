@@ -150,11 +150,6 @@ def main():
             except:
                 pass
 
-        print(label_list)
-        print('\n\n')
-        print(parsed_ground_truth)
-        raise SystemExit()
-
         cur_sentiment_acc, cur_sentiment_f1 = evaluate(
             eval_idx=lora_idx,
             predicted=parsed_outputs,
