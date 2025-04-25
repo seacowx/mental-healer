@@ -153,8 +153,6 @@ def main():
 
     sentiment_eval_result_df = pd.DataFrame(sentiment_eval_result_dict)
     print('\n\n\n')
-    print(eval_result_df)
-    print('\n')
     print(sentiment_eval_result_df)
 
 
