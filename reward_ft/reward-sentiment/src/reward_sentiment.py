@@ -22,22 +22,33 @@ def clean_text(data_list: list):
     return cleaned_data_list
 
 
-def assemble_data(data_list: list) -> list:
+def assemble_data(
+    data_list: list,
+    emotion_to_sentiment: dict,
+) -> list:
     
     instruction_template = lambda situation, thought: \
         f"<situation>\n{situation}\n</situation>\n\n<thought>\n{thought}\n</thought>"
-    output_template = lambda emotion: f"<emotion>{emotion}</emotion>"
+    output_template = lambda sentiment: f"<sentiment>{sentiment}</sentiment>"
 
     out_data_list = []
     for entry in data_list:
         instruction = instruction_template(entry['situation'], entry['thought'])
-        output = output_template(entry['emotion'])
 
-        out_data_list.append({
-            'instruction': instruction,
-            'input': '',
-            'output': output
-        })
+        cur_emotion = entry.get('emotion', None)
+        if cur_emotion:
+            cur_emotion = entry['emotion'].replace('.', '') \
+                .replace('"', '') \
+                .replace("'", '').strip().lower()
+            cur_sentiment = emotion_to_sentiment.get(cur_emotion, None)
+
+            if cur_sentiment:
+                output = output_template(cur_sentiment)
+                out_data_list.append({
+                    'instruction': instruction,
+                    'input': '',
+                    'output': output,
+                })
 
     return out_data_list
 
@@ -62,6 +73,10 @@ def parse_args():
 def prepare_for_ft():
     
     args = parse_args()
+    emotion_to_sentiment = yaml.load(
+        open('../../../src/configs/emotion_to_sentiment.yaml', 'r'),
+        Loader=yaml.FullLoader,
+    )
 
     # ------------------------ prepare finetuning datasets ------------------------
 
@@ -79,9 +94,18 @@ def prepare_for_ft():
     val_data_list = clean_text(val_data_list)
     test_data_list = clean_text(test_data_list)
 
-    out_train_data = assemble_data(train_data_list)
-    out_val_data = assemble_data(val_data_list)
-    out_test_data = assemble_data(test_data_list)
+    out_train_data = assemble_data(
+        data_list=train_data_list,
+        emotion_to_sentiment=emotion_to_sentiment,
+    )
+    out_val_data = assemble_data(
+        data_list=val_data_list,
+        emotion_to_sentiment=emotion_to_sentiment,
+    )
+    out_test_data = assemble_data(
+        data_list=test_data_list,
+        emotion_to_sentiment=emotion_to_sentiment,
+    )
     
     print(f"train data: {len(out_train_data)}")
     print(f"val data: {len(out_val_data)}")
