@@ -139,8 +139,8 @@ def main():
         for cur_output, cur_ground_truth in zip(outputs, label_list):
             try:
                 cur_output = cur_output.outputs[0].text \
-                    .split('<emotion>')[1] \
-                    .split('</emotion>')[0].strip().lower() \
+                    .split('<sentiment>')[1] \
+                    .split('</sentiment>')[0].strip().lower() \
                     .replace('"', '') \
                     .replace("'", '') 
 
