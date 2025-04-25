@@ -90,7 +90,7 @@ def main():
         # stop=["</emotion>"],
     )
 
-    test_data = json.load(open('../reward-finetuning/data/reward-sentiment_test.json'))
+    test_data = json.load(open('../reward_ft/reward-sentiment/sentiment_data/reward-sentiment_test.json'))
 
     input_msg_list = [
         [{'role': 'user', 'content': ele['instruction'].strip()}]
