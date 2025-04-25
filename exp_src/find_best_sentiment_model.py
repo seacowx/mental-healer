@@ -70,7 +70,7 @@ def main():
 
     args = parse_args()
 
-    model_path_dict = yaml.safe_load(open('../reward-finetuning/config/model_path.yaml'))
+    model_path_dict = yaml.safe_load(open('../reward_ft/reward_config/model_path.yaml'))
     model_path = model_path_dict[args.model]['path']
 
     # initialize the llm
