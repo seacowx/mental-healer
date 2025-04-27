@@ -29,7 +29,9 @@ def assemble_data(
     
     instruction_template = lambda situation, thought: \
         f"<situation>\n{situation}\n</situation>\n\n<thought>\n{thought}\n</thought>"
-    output_template = lambda sentiment: f"<sentiment>{sentiment}</sentiment>"
+    output_template = lambda emotion: f"<sentiment>{emotion}</sentiment>"
+
+    valid_emotions = set(emotion_to_sentiment.keys())
 
     out_data_list = []
     for entry in data_list:
@@ -40,10 +42,9 @@ def assemble_data(
             cur_emotion = entry['emotion'].replace('.', '') \
                 .replace('"', '') \
                 .replace("'", '').strip().lower()
-            cur_sentiment = emotion_to_sentiment.get(cur_emotion, None)
 
-            if cur_sentiment:
-                output = output_template(cur_sentiment)
+            if cur_emotion in valid_emotions:
+                output = output_template(cur_emotion)
                 out_data_list.append({
                     'instruction': instruction,
                     'input': '',
