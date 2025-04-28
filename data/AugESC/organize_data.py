@@ -13,9 +13,6 @@ def main():
         ele[0] for ele in data
     ]
 
-    with open('./augesc_full.json', 'w') as f:
-        json.dump(data, f, indent=4)
-
     with open('./augesc.json', 'w') as f:
         json.dump(init_dialogue_data, f, indent=4)
 
