@@ -96,6 +96,10 @@ def main():
         [{'role': 'user', 'content': ele['instruction'].strip()}]
         for ele in test_data
     ]
+
+    print(test_data[0])
+    raise SystemExit()
+
     label_list = [
         ele['output'].split('<emotion>')[1].split('</emotion>')[0].strip().lower()
         for ele in test_data
