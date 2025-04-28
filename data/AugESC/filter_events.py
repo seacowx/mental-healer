@@ -97,10 +97,11 @@ def classify_sentiment(data: dict) -> list:
 def main():
 
     data = json.load(open('./augesc.json', 'r'))
+    situation_list = list(data.values())
 
     sentiment_list = classify_sentiment(data=data)
 
-    data = pd.DataFrame(data)
+    data = pd.DataFrame({'situation': situation_list})
     data['sentiment'] = sentiment_list
     data.to_csv('./augesc_with_sentiment.csv', index=False)
 
