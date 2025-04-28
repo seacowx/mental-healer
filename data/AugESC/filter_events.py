@@ -19,8 +19,8 @@ def parse_output(output: RequestOutput) -> str:
     out_str = ""
     try:
         out_str = output.outputs[0].text \
-            .split('<emotion>')[1] \
-            .split('</emotion>')[0].strip().lower() \
+            .split('<sentiment>')[1] \
+            .split('</sentiment>')[0].strip().lower() \
             .replace('"', '') \
             .replace("'", '') 
     except:
@@ -89,10 +89,10 @@ def classify_sentiment(data: dict) -> list:
         use_tqdm=True,
     )
 
-    print(outputs)
-    raise SystemExit()
-
     sentiment_list = [parse_output(output) for output in outputs]
+
+    print(sentiment_list)
+    raise SystemExit()
     
     return sentiment_list
 
