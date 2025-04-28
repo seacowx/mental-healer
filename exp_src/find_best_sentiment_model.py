@@ -35,6 +35,20 @@ def evaluate(
         print(f"Warning: Less than 80% of the predictions are valid in round {eval_idx}.")
         return -1, -1, -1, -1
 
+    le = LabelEncoder()
+    valid_ground_truth_encoded = le.fit_transform(valid_ground_truth)
+    valid_predicted_encoded = le.transform(valid_predicted)
+
+    accuracy = accuracy_score(
+        valid_ground_truth_encoded, 
+        valid_predicted_encoded
+    ) 
+    f1 = f1_score(
+        valid_ground_truth_encoded, 
+        valid_predicted_encoded, 
+        average='weighted',
+    )
+
     # evaluate sentiment (coarse-grained)
     le = LabelEncoder()
     valid_ground_truth_sentiment = [sentiment_label_mapping[ele] for ele in valid_ground_truth]
@@ -52,7 +66,7 @@ def evaluate(
         average='weighted'
     )
 
-    return sentiment_accuracy, sentiment_f1
+    return accuracy, f1, sentiment_accuracy, sentiment_f1
 
 
 def parse_args():
@@ -96,9 +110,8 @@ def main():
         [{'role': 'user', 'content': ele['instruction'].strip()}]
         for ele in test_data
     ]
-
     label_list = [
-        ele['output'].split('<sentiment>')[1].split('</sentiment>')[0].strip().lower()
+        ele['output'].split('<emotion>')[1].split('</emotion>')[0].strip().lower()
         for ele in test_data
     ]
 
@@ -147,13 +160,15 @@ def main():
             except:
                 pass
 
-        cur_sentiment_acc, cur_sentiment_f1 = evaluate(
+        cur_acc, cur_f1, cur_sentiment_acc, cur_sentiment_f1 = evaluate(
             eval_idx=lora_idx,
             predicted=parsed_outputs,
             ground_truth=parsed_ground_truth,
         )
 
         eval_result_dict['lora_idx'].append(lora_idx)
+        eval_result_dict['accuracy'].append(cur_acc)
+        eval_result_dict['f1'].append(cur_f1)
         sentiment_eval_result_dict['lora_idx'].append(lora_idx)
         sentiment_eval_result_dict['accuracy'].append(cur_sentiment_acc)
         sentiment_eval_result_dict['f1'].append(cur_sentiment_f1)
