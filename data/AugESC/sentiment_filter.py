@@ -1,10 +1,8 @@
 """
-Remove events from the AugESC dataset that are describing an event for others
-WANT: I experienced something that had a negative impact on myself
-REMOVE: My friend experienced something that had a negative impact on them
+Remove events that describe a positive sentiment as such events do not require cognitive reframing
 
 Original Size: 65,077
-After Filtering:
+After Filtering: 52,734
 """
 
 import json, yaml
