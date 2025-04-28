@@ -87,7 +87,7 @@ def classify_sentiment(data: dict) -> list:
     ]
 
     outputs = vllm.chat(
-        messages=input_msg_list[:10],
+        messages=input_msg_list,
         sampling_params=sampling_params,
         lora_request=LoRARequest(f"sentiment", 1, adapter_dir),
         use_tqdm=True,
@@ -97,9 +97,6 @@ def classify_sentiment(data: dict) -> list:
     sentiment_list = [
         emotion_to_sentiment.get(ele, 'none') for ele in sentiment_list
     ]
-
-    print(sentiment_list)
-    raise SystemExit()
     
     return sentiment_list
 
