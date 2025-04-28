@@ -112,6 +112,10 @@ def main():
     data['sentiment'] = sentiment_list
     data.to_csv('./augesc_with_sentiment.csv', index=False)
 
+    negative_data = data[data['sentiment'] == 'negative'
+    ]
+    negative_data.to_csv('./augesc_filtered.csv', index=False)
+
 
 if __name__ == "__main__":
     main()
