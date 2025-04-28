@@ -123,11 +123,15 @@ def main():
     # convert to dict
     negative_data = negative_data.to_dict(orient='records')
 
-    print(negative_data)
-    raise SystemExit()
+    out_dict = {}
+    for id, entry in zip(negative_sentiment_id_list, negative_data):
+        out_dict[id] = entry['situation']
+
+    print(f"Original Size: {len(data)}")
+    print(f"After Filtering: {len(negative_data)}")
 
     with open('./augesc_filtered.json', 'w') as f:
-        json.dump(negative_data, f, indent=4)
+        json.dump(out_dict, f, indent=4)
 
 
 if __name__ == "__main__":
