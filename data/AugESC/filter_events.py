@@ -97,7 +97,7 @@ def classify_sentiment(data: dict) -> list:
 
 def main():
 
-    data = json.load(open('./augesc.json'))
+    data = json.load(open('./augesc.json', 'r'))
 
     sentiment_list = classify_sentiment(data=data)
 
