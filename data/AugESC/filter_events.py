@@ -62,9 +62,8 @@ def classify_sentiment(data: dict) -> list:
     )['input']
 
     input_list = []
-    for entry in data:
+    for cur_situation in data.values():
 
-        cur_situation = entry[1]
         cur_situation_segments = [
             ele for ele in cur_situation.split('.') if ele.strip()
         ]
