@@ -82,6 +82,9 @@ def classify_sentiment(data: dict) -> list:
         for ele in input_list
     ]
 
+    print(input_msg_list[101])
+    raise SystemExit()
+
     outputs = vllm.chat(
         messages=input_msg_list,
         sampling_params=sampling_params,
