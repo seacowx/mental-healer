@@ -31,6 +31,10 @@ def parse_output(output: RequestOutput) -> str:
 
 def classify_sentiment(data: dict) -> list:
 
+    emotion_to_sentiment = yaml.safe_load(
+        open('../../src/configs/emotion_to_sentiment.yaml', 'r'),
+    )
+
     model_path_dict = yaml.safe_load(
         open('../../src/configs/llm_configs.yaml', 'r'),
     )
@@ -90,6 +94,9 @@ def classify_sentiment(data: dict) -> list:
     )
 
     sentiment_list = [parse_output(output) for output in outputs]
+    sentiment_list = [
+        emotion_to_sentiment.get(ele, 'none') for ele in sentiment_list
+    ]
 
     print(sentiment_list)
     raise SystemExit()
