@@ -104,9 +104,13 @@ def classify_sentiment(data: dict) -> list:
 def main():
 
     data = json.load(open('./augesc.json', 'r'))
+    data_id_list = list(data.keys())
     situation_list = list(data.values())
 
     sentiment_list = classify_sentiment(data=data)
+    negative_sentiment_id_list = [
+        data_id_list[i] for i, ele in enumerate(sentiment_list) if ele == 'negative'
+    ]
 
     data = pd.DataFrame({'situation': situation_list})
     data['sentiment'] = sentiment_list
@@ -114,7 +118,16 @@ def main():
 
     negative_data = data[data['sentiment'] == 'negative'
     ]
-    negative_data.to_csv('./augesc_filtered.csv', index=False)
+    # remove the sentiment column
+    negative_data = negative_data.drop(columns=['sentiment'])
+    # convert to dict
+    negative_data = negative_data.to_dict(orient='records')
+
+    print(negative_data)
+    raise SystemExit()
+
+    with open('./augesc_filtered.json', 'w') as f:
+        json.dump(negative_data, f, indent=4)
 
 
 if __name__ == "__main__":
