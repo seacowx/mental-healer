@@ -37,10 +37,10 @@ def evaluate(
 
     # evaluate sentiment (coarse-grained)
     le = LabelEncoder()
-    # valid_ground_truth_sentiment = [sentiment_label_mapping[ele] for ele in valid_ground_truth]
-    # valid_predicted_sentiment = [sentiment_label_mapping[ele] for ele in valid_predicted]
-    valid_ground_truth_sentiment_encoded = le.fit_transform(valid_ground_truth)
-    valid_predicted_sentiment_encoded = le.transform(valid_predicted)
+    valid_ground_truth_sentiment = [sentiment_label_mapping[ele] for ele in valid_ground_truth]
+    valid_predicted_sentiment = [sentiment_label_mapping[ele] for ele in valid_predicted]
+    valid_ground_truth_sentiment_encoded = le.fit_transform(valid_ground_truth_sentiment)
+    valid_predicted_sentiment_encoded = le.transform(valid_predicted_sentiment)
 
     sentiment_accuracy = accuracy_score(
         valid_ground_truth_sentiment_encoded, 
@@ -97,14 +97,19 @@ def main():
         for ele in test_data
     ]
     label_list = [
-            ele['output'].split('<sentiment>')[1].split('</sentiment>')[0].strip().lower()
-            for ele in test_data
+        ele['output'].split('<emotion>')[1].split('</emotion>')[0].strip().lower()
+        for ele in test_data
     ]
 
     adapter_dir = f'/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/{args.model}/'
     lora_checkpoint_dir_list = [d for d in os.listdir(adapter_dir) if os.path.isdir(os.path.join(adapter_dir, d))]
     lora_checkpoint_dir_list.sort(key=lambda x: int(x.split('-')[1]))
     
+    eval_result_dict = {
+        'lora_idx': [],
+        'accuracy': [],
+        'f1': []
+    }
     sentiment_eval_result_dict = {
         'lora_idx': [],
         'accuracy': [],
@@ -130,8 +135,8 @@ def main():
         for cur_output, cur_ground_truth in zip(outputs, label_list):
             try:
                 cur_output = cur_output.outputs[0].text \
-                    .split('<sentiment>')[1] \
-                    .split('</sentiment>')[0].strip().lower() \
+                    .split('<emotion>')[1] \
+                    .split('</emotion>')[0].strip().lower() \
                     .replace('"', '') \
                     .replace("'", '') 
 
@@ -147,12 +152,16 @@ def main():
             ground_truth=parsed_ground_truth,
         )
 
+        eval_result_dict['lora_idx'].append(lora_idx)
         sentiment_eval_result_dict['lora_idx'].append(lora_idx)
         sentiment_eval_result_dict['accuracy'].append(cur_sentiment_acc)
         sentiment_eval_result_dict['f1'].append(cur_sentiment_f1)
 
+    eval_result_df = pd.DataFrame(eval_result_dict)
     sentiment_eval_result_df = pd.DataFrame(sentiment_eval_result_dict)
     print('\n\n\n')
+    print(eval_result_df)
+    print('\n')
     print(sentiment_eval_result_df)
 
 
