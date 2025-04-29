@@ -55,7 +55,7 @@ def main():
     )
     sampling_params = SamplingParams(
         temperature=0,
-        max_tokens=512,
+        max_tokens=1024,
     )
 
     data = json.load(open('./augesc_filtered.json', 'r'))
