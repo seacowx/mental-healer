@@ -52,6 +52,7 @@ def main():
         tensor_parallel_size=WORLD_SIZE,
         gpu_memory_utilization=0.9,
         enforce_eager=True,
+        enable_reasoning=False,
     )
     sampling_params = SamplingParams(
         temperature=0,
