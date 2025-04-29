@@ -56,7 +56,7 @@ def main():
     ]
 
     output_list = vllm.chat(
-        messages=msg_list,
+        messages=msg_list[:200],
         sampling_params=sampling_params,
         use_tqdm=True,
     )
