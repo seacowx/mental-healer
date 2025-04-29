@@ -52,7 +52,6 @@ def main():
         tensor_parallel_size=WORLD_SIZE,
         gpu_memory_utilization=0.9,
         enforce_eager=True,
-        enable_reasoning=False,
     )
     sampling_params = SamplingParams(
         temperature=0,
@@ -72,6 +71,9 @@ def main():
         messages=msg_list[:200],
         sampling_params=sampling_params,
         use_tqdm=True,
+        chat_template_kwargs={
+            "enable_thinking": False,
+        },
     )
 
     output_list = [
