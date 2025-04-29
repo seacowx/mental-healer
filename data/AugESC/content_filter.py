@@ -74,9 +74,9 @@ def main():
         messages=msg_list[:200],
         sampling_params=sampling_params,
         use_tqdm=True,
-        # chat_template_kwargs={
-        #     "enable_thinking": False,
-        # },
+        chat_template_kwargs={
+            "enable_thinking": False,
+        },
     )
 
     output_list = [
