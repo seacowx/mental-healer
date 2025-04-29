@@ -23,8 +23,9 @@ def make_prompt(event_desc: str) -> str:
         "Unrelated: The event describes someone else's experience "
         "or it does not impact the users' emotion at present.\n\n"
         "<event>\n{{ event_desc }}\n</event>\n\n"
-        "If the event is a recent and personal experience, respond with '<decision>KEEP</decision>'.\n"
-        "If the event describes an outdated or someone else's experience, respond with '<decision>REMOVE</decision>'.\n"
+        "If the event is a recent and personal experience, respond with '<decision>Related</decision>'.\n"
+        "If the event describes an outdated or someone else's experience, "
+        "respond with '<decision>Unrelated</decision>'.\n"
         "Do not include any other text in your response."
     )
 
