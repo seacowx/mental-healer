@@ -51,9 +51,12 @@ def main():
     prompt_list = [
         make_prompt(ele) for ele in data.values()
     ]
+    msg_list = [
+        {'role': 'user', 'content': ele} for ele in prompt_list
+    ]
 
     output_list = vllm.chat(
-        messages=prompt_list,
+        messages=msg_list,
         sampling_params=sampling_params,
         use_tqdm=True,
     )
