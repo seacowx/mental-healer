@@ -60,6 +60,11 @@ def main():
         use_tqdm=True,
     )
 
+    output_list = [
+        output.outputs[0].text
+        for output in output_list
+    ]
+
     print(output_list[0])
     print(output_list[10])
     print(output_list[100])
