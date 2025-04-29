@@ -18,6 +18,8 @@ def main():
         ele['persona'] for ele in data
     ]
 
+    print(f"Persona List Length: {len(persona_list)}")
+
     embedded_persona = embedding_model.encode(
         persona_list, 
         task="retrieval.passage",
