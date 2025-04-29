@@ -66,8 +66,6 @@ def main():
     prompt_list = [
         make_prompt(ele) for ele in data.values()
     ]
-    print(prompt_list[0])
-    raise SystemExit()
     msg_list = [
         [{'role': 'user', 'content': ele}] for ele in prompt_list
     ]
