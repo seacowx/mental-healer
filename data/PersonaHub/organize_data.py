@@ -21,6 +21,7 @@ def main():
     embedded_persona = embedding_model.encode(
         persona_list, 
         task="retrieval.passage",
+        show_progress_bar=True,
     )
 
     print(embedded_persona.shape)
