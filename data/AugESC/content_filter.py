@@ -33,9 +33,6 @@ def parse_output(output):
     if '<decision>' in output and '</decision>' in output:
         decision = output.split('<decision>')[1].split('</decision>')[0].strip()
         return decision
-    else:
-        print(output)
-        raise SystemExit()
     return ''
 
 
@@ -79,12 +76,29 @@ def main():
         },
     )
 
+    think_output_list = vllm.chat(
+        messages=msg_list[:200],
+        sampling_params=sampling_params,
+        use_tqdm=True,
+        chat_template_kwargs={
+            "enable_thinking": True,
+        },
+    )
+
     output_list = [
         parse_output(output)
         for output in output_list
     ]
+    think_output_list = [
+        parse_output(output)
+        for output in think_output_list
+    ]
 
-    out_pd = pd.DataFrame({'event': list(data.values())[:200], 'decision': output_list})
+    out_pd = pd.DataFrame({
+        'event': list(data.values())[:200], 
+        'decision': output_list,
+        'think_decision': think_output_list,
+    })
     out_pd.to_csv(
         './temp_augesc_filtered.csv',
         index=False,
