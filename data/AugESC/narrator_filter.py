@@ -6,6 +6,7 @@ REMOVE: My friend experienced something that had a negative impact on them
 Original Size: 52,734
 """
 import json
+import pandas as pd
 from jinja2 import Template
 
 import torch
@@ -24,6 +25,14 @@ def make_prompt(event_desc: str) -> str:
     )
 
     return template.render(event_desc=event_desc.capitalize())
+
+
+def parse_output(output):
+    output = output.outputs[0].text
+    if '<decision>' in output and '</decision>' in output:
+        decision = output.split('<decision>')[1].split('</decision>')[0].strip()
+        return decision
+    return ''
 
 
 def main():
@@ -61,13 +70,16 @@ def main():
     )
 
     output_list = [
-        output.outputs[0].text
+        parse_output(output)
         for output in output_list
     ]
 
-    print(output_list[0])
-    print(output_list[10])
-    print(output_list[100])
+    out_pd = pd.DataFrame({'event': list(data.values())[:200], 'decision': output_list})
+    out_pd.to_csv(
+        './temp_augesc_filtered.csv',
+        index=False,
+    )
+
 
 
 if __name__ == "__main__":
