@@ -53,10 +53,7 @@ def main():
         gpu_memory_utilization=0.9,
         enforce_eager=True,
     )
-    sampling_params = SamplingParams(
-        temperature=0,
-        max_tokens=1024,
-    )
+    sampling_params = SamplingParams()
 
     data = json.load(open('./augesc_filtered.json', 'r'))
 
