@@ -33,6 +33,9 @@ def parse_output(output):
     if '<decision>' in output and '</decision>' in output:
         decision = output.split('<decision>')[1].split('</decision>')[0].strip()
         return decision
+    else:
+        print(output)
+        raise SystemExit()
     return ''
 
 
