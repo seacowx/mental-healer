@@ -35,7 +35,7 @@ def make_prompt(event_desc: str) -> str:
 def parse_output(output):
     output = output.outputs[0].text
     if '<decision>' in output and '</decision>' in output:
-        decision = output.split('<decision>')[1].split('</decision>')[0].strip()
+        decision = output.split('<decision>')[1].split('</decision>')[0].strip().lower()
         return decision
     return ''
 
@@ -72,16 +72,7 @@ def main():
     ]
 
     output_list = vllm.chat(
-        messages=msg_list[:200],
-        sampling_params=sampling_params,
-        use_tqdm=True,
-        chat_template_kwargs={
-            "enable_thinking": False,
-        },
-    )
-
-    think_output_list = vllm.chat(
-        messages=msg_list[:200],
+        messages=msg_list,
         sampling_params=sampling_params,
         use_tqdm=True,
         chat_template_kwargs={
@@ -93,20 +84,17 @@ def main():
         parse_output(output)
         for output in output_list
     ]
-    think_output_list = [
-        parse_output(output)
-        for output in think_output_list
-    ]
 
-    out_pd = pd.DataFrame({
-        'event': list(data.values())[:200], 
-        'decision': output_list,
-        'think_decision': think_output_list,
-    })
-    out_pd.to_csv(
-        './temp_augesc_filtered.csv',
-        index=False,
-    )
+    out_data = {}
+    for output_label, (key, val) in zip(output_list, data.items()):
+        if output_label == 'related':
+            out_data[key] = val
+
+    print(f"Original Size: {len(data)}")
+    print(f"After Filtering: {len(out_data)}")
+
+    with open('./augesc_content_filtered.json', 'w') as f:
+        json.dump(out_data, f, indent=4)
 
 
 if __name__ == "__main__":
