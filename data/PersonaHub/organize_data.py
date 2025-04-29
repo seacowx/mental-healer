@@ -6,7 +6,7 @@ def main():
 
     embedding_model = AutoModel.from_pretrained(
         "jinaai/jina-embeddings-v3", 
-        device_map='auto',
+        device_map=0,
         trust_remote_code=True,
     )
 
