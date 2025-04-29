@@ -52,7 +52,7 @@ def main():
         make_prompt(ele) for ele in data.values()
     ]
     msg_list = [
-        {'role': 'user', 'content': ele} for ele in prompt_list
+        [{'role': 'user', 'content': ele}] for ele in prompt_list
     ]
 
     output_list = vllm.chat(
