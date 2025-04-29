@@ -20,7 +20,7 @@ def main():
 
     embedded_persona = embedding_model.encode(
         persona_list, 
-        task="text-matching"
+        task="retrieval.passage",
     )
 
     print(embedded_persona.shape)
