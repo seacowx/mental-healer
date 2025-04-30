@@ -36,7 +36,7 @@ def get_embedding(
 
     model_output = model(
         **encoded_input_list, 
-        adapter_mask=adapter_mask.to)(model.device),
+        adapter_mask=adapter_mask.to(model.device),
     )
 
     embeddings = mean_pooling(model_output, encoded_input_list["attention_mask"])
