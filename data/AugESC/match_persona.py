@@ -58,6 +58,8 @@ def main():
 
     top_10_indices = top_10_indices.cpu().numpy().tolist()
 
+    # select the top-10 most similar personas for each situation
+
     print(top_10_indices[:10])
 
 
