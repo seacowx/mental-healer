@@ -1,5 +1,8 @@
 """
-Remove events from the AugESC dataset that are describing an event for others
+Remove events from the AugESC dataset that are 
+1. describing an event for others
+2. describing an event in the past that does not impact the user at present
+
 WANT: I experienced something that had a negative impact on myself
 REMOVE: My friend experienced something that had a negative impact on them
 
