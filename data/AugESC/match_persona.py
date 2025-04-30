@@ -1,7 +1,10 @@
 import json
+from collections import defaultdict
+
 import torch
 import torch.nn.functional as F
 from transformers import AutoModel, AutoTokenizer
+
 
 
 def main():
@@ -16,18 +19,16 @@ def main():
     )
 
     # load persona data
-    with open('../PersonaHub/persona.jsonl', 'r') as f:
-        persona_data = [json.loads(line) for line in f]
+    with open('../PersonaHub/persona.json', 'r') as f:
+        persona_data = json.load(f)
 
-    persona_list = [
-        ele['persona'] for ele in persona_data
-    ]
+    persona_list = list(persona_data.values())
+    persona_id_list = list(persona_data.keys())
 
     # load filtered situations
     with open('./augesc_content_filtered.json', 'r') as f:
         situation_data = json.load(f)
 
-    # TODO: load filtered situations and match each situation with top-10 personas
     embedded_persona = embedding_model.encode(
         persona_list, 
         task="retrieval.passage",
@@ -58,10 +59,21 @@ def main():
 
     top_10_indices = top_10_indices.cpu().numpy().tolist()
 
-    # select the top-10 most similar personas for each situation
+    # select the ids of the top-10 most similar personas for each situation
+    top_10_persona_ids = []
+    for i in range(len(top_10_indices)):
+        top_10_persona_ids.append(
+            [persona_id_list[j] for j in top_10_indices[i]]
+        )
 
-    print(top_10_indices[:10])
+    persona_count = defaultdict(int)
+    for indices in top_10_indices:
+        for idx in indices:
+            persona_count[persona_id_list[idx]] += 1
 
+    print("Persona count:")
+    for persona_id, count in persona_count.items():
+        print(f"Persona ID: {persona_id}, Count: {count}")
 
 
 if __name__ == "__main__":
