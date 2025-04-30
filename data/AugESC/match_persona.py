@@ -10,7 +10,7 @@ def main():
         trust_remote_code=True,
     )
 
-    # load jsonl
+    # load persona data
     with open('../PersonaHub/persona.jsonl', 'r') as f:
         persona_data = [json.loads(line) for line in f]
 
@@ -18,16 +18,30 @@ def main():
         ele['persona'] for ele in persona_data
     ]
 
-    print(f"Persona List Length: {len(persona_list)}")
+    # load filtered situations
+    with open('./augesc_content_filtered.json', 'r') as f:
+        situation_data = json.load(f)
 
+    # TODO: load filtered situations and match each situation with top-10 personas
+    print(f"Persona List Length: {len(persona_list)}")
     embedded_persona = embedding_model.encode(
         persona_list, 
         task="retrieval.passage",
         show_progress_bar=True,
     )
+    
+    embedded_situation = embedding_model.encode(
+        list(situation_data.values()), 
+        task="retrieval.query",
+        show_progress_bar=True,
+    )
+    
+    # compute cosine similarity between embedded_situation and embedded_persona
+    similarity_mtx = embedded_persona @ embedded_situation.T
 
-    # TODO: load filtered situations and match each situation with top-10 personas
     print(embedded_persona.shape)
+    print(embedded_situation.shape)
+    print(similarity_mtx.shape)
 
 
 if __name__ == "__main__":
