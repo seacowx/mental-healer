@@ -29,7 +29,7 @@ def main():
 
         augmented_situation_data[key] = {
             'situation': val,
-            'candididate_persona_profile': matched_persona_profile_list,
+            'candidate_persona_profile_list': matched_persona_profile_list,
         }
 
     with open('./situations.json', 'w') as f:

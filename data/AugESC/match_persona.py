@@ -57,11 +57,16 @@ def main():
 
     top_10_indices = top_10_indices.cpu().numpy().tolist()
 
+    # assign probablities to the top-10 most similar personas according to their ranking
+    DENSITIES = [0.19, 0.17, 0.15, 0.13, 0.11, 0.09, 0.07, 0.05, 0.03, 0.01]
+
     # select the ids of the top-10 most similar personas for each situation
     top_10_persona_ids = {}
     for i in range(len(top_10_indices)):
         cur_situation_id = situation_id_list[i]
-        top_10_persona_ids[cur_situation_id] = [persona_id_list[j] for j in top_10_indices[i]]
+        top_10_persona_ids[cur_situation_id] = [
+            {'id': persona_id_list[k], 'density': DENSITIES[j]}
+        for j, k in enumerate(top_10_indices[i])]
 
     persona_count = defaultdict(int)
     for indices in top_10_indices:

@@ -7,23 +7,9 @@ class LMAgent(metaclass=ABCMeta):
     LMAgent class for async inference with OpenAI APIError
     """
 
-    def __init__(self, **kwargs):
-        self.async_client = None
-        self.server = vLLMServer(**kwargs)
-
-
-    def init_model(self) -> None:
-        """
-        Initialize the agent
-        """
-        self.async_client = self.server.start_vllm_server()
-
-
-    def terminate_model(self) -> None:
-        """
-        Terminate the agent
-        """
-        self.server.kill_server()
+    def __init__(self, client, async_client):
+        self.client = client
+        self.async_client = async_client
 
 
     @abstractmethod
