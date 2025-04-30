@@ -28,12 +28,12 @@ def main():
         situation_data = json.load(f)
 
     # TODO: load filtered situations and match each situation with top-10 personas
-    # print(f"Persona List Length: {len(persona_list)}")
-    # embedded_persona = embedding_model.encode(
-    #     persona_list, 
-    #     task="retrieval.passage",
-    #     show_progress_bar=True,
-    # )
+    embedded_persona = embedding_model.encode(
+        persona_list, 
+        task="retrieval.passage",
+        show_progress_bar=True,
+    )
+    embedded_persona = torch.tensor(embedded_persona).to(device=0)
     
     situation_list = list(situation_data.values())
     embedded_situation = embedding_model.encode(
@@ -44,21 +44,19 @@ def main():
     embedded_situation = torch.tensor(embedded_situation).to(device=0)
     print(type(embedded_situation))
     
-    # # compute cosine similarity between embedded_situation and embedded_persona
-    # similarity_mtx = embedded_situation @ embedded_persona.T
-    #
-    # print(embedded_persona.shape)
-    # print(embedded_situation.shape)
-    # print(similarity_mtx.shape)
+    # compute cosine similarity between embedded_situation and embedded_persona
+    similarity_mtx = embedded_situation @ embedded_persona.T
 
     # get the top-10 most similar personas for each situation
-    # top_10_indices = torch.topk(
-    #     similarity_mtx, 
-    #     k=10, 
-    #     dim=1, 
-    #     largest=True, 
-    #     sorted=True
-    # ).indices
+    top_10_indices = torch.topk(
+        similarity_mtx, 
+        k=10, 
+        dim=1, 
+        largest=True, 
+        sorted=True
+    ).indices
+
+    print(top_10_indices.shape)
 
 
 if __name__ == "__main__":
