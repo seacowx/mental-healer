@@ -56,7 +56,10 @@ def main():
         sorted=True
     ).indices
 
-    print(top_10_indices.shape)
+    top_10_indices = top_10_indices.cpu().numpy().tolist()
+
+    print(top_10_indices[:10])
+
 
 
 if __name__ == "__main__":
