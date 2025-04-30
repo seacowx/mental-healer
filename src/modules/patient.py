@@ -27,3 +27,17 @@ class Patient(LMAgent):
         Terminate the agent
         """
         self.terminate_model()
+
+
+    def update_thought(self, therapist_utterance: str) -> str:
+        """
+        Update the agent's thought given the therapist's utterance
+        """
+        raise NotImplementedError()
+
+
+    def produce_initial_thought(self, self_utterance: str) -> str:
+        """
+        Produce the initial thought given the agent's own utterance that describes a situation
+        """
+        raise NotImplementedError()
