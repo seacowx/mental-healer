@@ -4,7 +4,7 @@ WANT: I experienced something that had a negative impact on myself
 REMOVE: My friend experienced something that had a negative impact on them
 
 Original Size: 52,734
-After Filtering:
+After Filtering: 47,260
 """
 import json
 import pandas as pd

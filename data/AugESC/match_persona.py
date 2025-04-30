@@ -11,11 +11,11 @@ def main():
     )
 
     # load jsonl
-    with open('./persona.jsonl', 'r') as f:
-        data = [json.loads(line) for line in f]
+    with open('../PersonaHub/persona.jsonl', 'r') as f:
+        persona_data = [json.loads(line) for line in f]
 
     persona_list = [
-        ele['persona'] for ele in data
+        ele['persona'] for ele in persona_data
     ]
 
     print(f"Persona List Length: {len(persona_list)}")
@@ -26,6 +26,7 @@ def main():
         show_progress_bar=True,
     )
 
+    # TODO: load filtered situations and match each situation with top-10 personas
     print(embedded_persona.shape)
 
 
