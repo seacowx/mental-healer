@@ -42,7 +42,6 @@ def main():
         show_progress_bar=True,
     )
     embedded_situation = torch.tensor(embedded_situation).to(device=0)
-    print(type(embedded_situation))
     
     # compute cosine similarity between embedded_situation and embedded_persona
     similarity_mtx = embedded_situation @ embedded_persona.T
