@@ -35,6 +35,7 @@ def main():
         list(situation_data.values()), 
         task="retrieval.query",
         show_progress_bar=True,
+        return_tensors=True,
     )
 
     print(type(embedded_situation))
@@ -45,6 +46,15 @@ def main():
     # print(embedded_persona.shape)
     # print(embedded_situation.shape)
     # print(similarity_mtx.shape)
+
+    # get the top-10 most similar personas for each situation
+    # top_10_indices = torch.topk(
+    #     similarity_mtx, 
+    #     k=10, 
+    #     dim=1, 
+    #     largest=True, 
+    #     sorted=True
+    # ).indices
 
 
 if __name__ == "__main__":
