@@ -1,6 +1,50 @@
 import json
 import torch
-from transformers import AutoModel
+import torch.nn.functional as F
+from transformers import AutoModel, AutoTokenizer
+
+
+def mean_pooling(model_output, attention_mask):
+    """
+    Mean Pooling function from 
+    https://huggingface.co/jinaai/jina-embeddings-v3
+    """
+    token_embeddings = model_output[0]
+    input_mask_expanded = (
+        attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
+    )
+    return torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(
+        input_mask_expanded.sum(1), min=1e-9
+    )
+
+
+@torch.no_grad()
+def get_embedding(
+    model, 
+    tokenizer, 
+    input_list
+):
+
+    encoded_input_list = tokenizer(
+        input_list,
+        padding=True, 
+        truncation=True, 
+        return_tensors="pt"
+    ) 
+    task = 'retrieval.query'
+    task_id = model._adaptation_map['retrieval.query']
+    adapter_mask = torch.full((len(input_list),), task_id, dtype=torch.int32)
+
+    model_output = model(
+        **encoded_input_list, 
+        adapter_mask=adapter_mask
+    )
+
+    embeddings = mean_pooling(model_output, encoded_input_list["attention_mask"])
+    embeddings = F.normalize(embeddings, p=2, dim=1)
+
+    return embeddings
+
 
 
 def main():
@@ -9,6 +53,9 @@ def main():
         "jinaai/jina-embeddings-v3", 
         device_map=0,
         trust_remote_code=True,
+    )
+    tokenizer = AutoTokenizer.from_pretrained(
+        "jinaai/jina-embeddings-v3"
     )
 
     # load persona data
@@ -31,13 +78,12 @@ def main():
     #     show_progress_bar=True,
     # )
     
-    embedded_situation = embedding_model.encode(
-        list(situation_data.values()), 
-        task="retrieval.query",
-        show_progress_bar=True,
-        return_tensors=True,
+    situation_list = list(situation_data.values())
+    embedded_situation = get_embedding(
+        model=embedding_model,
+        tokenizer=tokenizer,
+        input_list=situation_list
     )
-
     print(type(embedded_situation))
     
     # # compute cosine similarity between embedded_situation and embedded_persona
