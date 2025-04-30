@@ -62,7 +62,7 @@ def main():
     top_10_persona_ids = {}
     for i in range(len(top_10_indices)):
         cur_situation_id = situation_id_list[i]
-        top_10_indices[cur_situation_id] = [persona_id_list[j] for j in top_10_indices[i]]
+        top_10_persona_ids[cur_situation_id] = [persona_id_list[j] for j in top_10_indices[i]]
 
     persona_count = defaultdict(int)
     for indices in top_10_indices:
