@@ -30,8 +30,7 @@ def get_embedding(
         padding=True, 
         truncation=True, 
         return_tensors="pt"
-    ) 
-    task = 'retrieval.query'
+    ).to(model.device) 
     task_id = model._adaptation_map['retrieval.query']
     adapter_mask = torch.full((len(input_list),), task_id, dtype=torch.int32)
 
