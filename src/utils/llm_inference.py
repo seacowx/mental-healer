@@ -287,4 +287,6 @@ class vLLMOffline:
             use_tqdm=False,
         )
 
+        response = [ele.outputs[0].text for ele in response]
+
         return response
