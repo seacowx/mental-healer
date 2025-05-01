@@ -112,6 +112,7 @@ class Patient(LMAgent):
 
         parsed_think_output = []
         for ele in think_output:
+            ele = ele.split('</think>')[-1].strip()
             try:
                 ele = ele.split('<thought>')[1].split('</thought>')[0].strip()
             except:
