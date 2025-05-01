@@ -286,7 +286,7 @@ class vLLMOffline:
 
         response = self.vllm_model.chat(
             messages=message_list, 
-            sampling_params=sampling_params
+            sampling_params=sampling_params,
             use_tqdm=False,
         )
 
