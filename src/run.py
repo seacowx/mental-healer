@@ -1,7 +1,7 @@
-import os, sys
-import json
 import random
+import os, sys
 import argparse
+import json, yaml
 import numpy as np
 
 import torch
@@ -36,7 +36,7 @@ def main():
     set_seed(96)
     args = parse_args()
 
-    llm_path_dict = json.load(open('./configs/llm_configs.yaml', 'r'))
+    llm_path_dict = yaml.safe_load(open('./configs/llm_configs.yaml', 'r'))
 
     prepared_data = prepare_training_data(
         n_personas=args.n_personas,
