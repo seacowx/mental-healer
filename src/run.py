@@ -23,6 +23,12 @@ def set_seed(seed: int) -> None:
 def parse_args():
     parser = argparse.ArgumentParser(description="Run the RL training script.")
     parser.add_argument(
+        '--base_model',
+        type=str,
+        default='qwen8',
+        help="The base model to use for the training. Default is 'qwen3-8B'.",
+    )
+    parser.add_argument(
         '--n_personas',
         type=int,
         default=1,
@@ -44,9 +50,8 @@ def main():
 
     # initialize LLM
     vllm = vLLMOffline(
-        model_path=llm_path_dict['model_path'],
-        world_size=llm_path_dict['world_size'],
-        quantization=llm_path_dict['quantization'],
+        model_path=llm_path_dict[args.base_model]['model_path'],
+        quantization=llm_path_dict[args.base_model]['quantization'],
     )
 
     patient_agent = Patient()

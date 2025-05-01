@@ -246,7 +246,6 @@ class vLLMOffline:
     def __init__(
         self,
         model_path: str, 
-        world_size: int, 
         quantization: bool,
         max_model_len: int = 2048,
         patient_device: str = '',
@@ -255,7 +254,6 @@ class vLLMOffline:
     ) -> None:
 
         self.model_path = model_path
-        self.world_size = world_size
         self.quantization = quantization
 
         vllm_config = {}
@@ -266,7 +264,6 @@ class vLLMOffline:
 
         self.vllm_model = LLM(
             model=self.model_path,
-            world_size=self.world_size,
             quantization=self.quantization,
             **vllm_config,
         )
