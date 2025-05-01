@@ -77,12 +77,18 @@ class Patient(LMAgent):
         initial_thought_list = []
         for key, val in data.items():
 
-            # cur_situation = val['situation']
-            # cur_persona = val['persona']
+            cur_situation = val['situation']
+            cur_persona = val['persona_profile']
 
-            print(val.keys())
             cur_prompt = deepcopy(self.initial_thought_template)
-            print(cur_prompt)
+
+            system_content = cur_prompt['system'].replace('{{persona_profile}}', cur_persona)
+            user_content = cur_prompt['user'].replace('{{persona_profile}}', cur_persona) \
+                .replace('{{situation}}', cur_situation)
+
+            print(f"System:\n{system_content}")
+            print('\n\n')
+            print(f"User:\n{user_content}")
             raise SystemExit()
 
 

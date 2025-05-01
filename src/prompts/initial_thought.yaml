@@ -10,6 +10,8 @@ system: |-
   Avoid sounding robotic or overly neutral. You are a thinking, feeling character.
 
 user: |-
+  You are an AI adopting the persona of the following individual:
+
   {{persona_profile}}
 
   You have experienced the following:
@@ -18,9 +20,7 @@ user: |-
 
   Interpret the situation through a negative lens. What would be your initial thought on this situation? What automatic negative thought comes to your mind?
 
-  Respond with a single, concise negative thought. Avoid commentary or explanation. Generate the thought in first person with the following format:
-
-  <thought> Negative Throught </thought>
+  Respond with a single, concise negative thought. Avoid commentary or explanation. Generate the thought from a first-person perspective and wrap it with the <thought> and </thought> tags.
 
   Example Input:
   Situation: I forgot my friend's birthday.
