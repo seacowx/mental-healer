@@ -105,9 +105,15 @@ class Patient(LMAgent):
             enable_thinking=True,
         )
 
+        situation_list = [
+            val['situation'] for val in data.values()
+        ][:200]
+        persona_list = [
+            val['persona_profile'] for val in data.values()
+        ][:200]
         out_data = pd.DataFrame({
-            'situation': data['situation'],
-            'persona_profile': data['persona_profile'],
+            'situation': situation_list,
+            'persona_profile': persona_list,
             'initial_thought': output,
             'think_initial_thought': think_output,
         })
