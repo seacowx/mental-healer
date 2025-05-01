@@ -105,9 +105,12 @@ class Patient(LMAgent):
             enable_thinking=True,
         )
 
-        think_output = [
-            ele.split('<thought>')[1].split('</thought>')[0] for ele in think_output
-        ]
+        for ele in think_output:
+            try:
+                ele.split('<thought>')[1].split('</thought>')[0]
+            except:
+                print(ele)
+                raise SystemExit()
 
         situation_list = [
             val['situation'] for val in data.values()
