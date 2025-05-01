@@ -137,7 +137,7 @@ def main():
         [{'role': 'user', 'content': ele}] for ele in prompt_list
     ]
 
-    print(msg_list[0]['content'])
+    print(msg_list[0][0]['content'])
     raise SystemExit()
 
     output_list = vllm.chat(
