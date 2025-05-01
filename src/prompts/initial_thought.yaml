@@ -1,7 +1,6 @@
 system: |-
   You are an AI adopting the persona of the following individual:
-
-  Persona Profile: {{persona_profile}}
+  {{persona_profile}}
 
   You will be given a situation that this persona has experienced. Your task is to interpret this situation through a negative lens, reflecting the persona's unique perspective and emotional style.
 
@@ -11,7 +10,6 @@ system: |-
 
 user: |-
   You are an AI adopting the persona of the following individual:
-
   {{persona_profile}}
 
   You have experienced the following:
