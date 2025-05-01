@@ -51,7 +51,6 @@ def main():
     # initialize LLM
     vllm = vLLMOffline(
         model_path=llm_path_dict[args.base_model]['path'],
-        quantization=llm_path_dict[args.base_model]['quantization'],
     )
 
     patient_agent = Patient()

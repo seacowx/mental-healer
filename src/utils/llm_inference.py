@@ -246,7 +246,7 @@ class vLLMOffline:
     def __init__(
         self,
         model_path: str, 
-        quantization: bool,
+        quantization: str = '',
         max_model_len: int = 2048,
         patient_device: str = '',
         tensor_parallel_size: int = 1,
@@ -261,10 +261,10 @@ class vLLMOffline:
         vllm_config['tensor_parallel_size'] = tensor_parallel_size
         vllm_config['device'] = patient_device if patient_device else 'auto'
         vllm_config['gpu_memory_utilization'] = gpu_memory_utilization
+        vllm_config['quantization'] = quantization if quantization else None
 
         self.vllm_model = LLM(
             model=self.model_path,
-            quantization=self.quantization,
             **vllm_config,
         )
 
