@@ -48,9 +48,11 @@ def main():
         n_personas=args.n_personas,
     )
 
-    # initialize LLM
+    # initialize LLM, load model in cuda:1, cuda:0 is used for reward model, cuda:2-3 for therapist agent
+    patient_device = torch.device('cuda:1')
     vllm = vLLMOffline(
         model_path=llm_path_dict[args.base_model]['path'],
+        patient_device=patient_device,
     )
 
     patient_agent = Patient()
