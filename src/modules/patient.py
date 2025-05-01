@@ -113,7 +113,7 @@ class Patient(LMAgent):
         parsed_think_output = []
         for ele in think_output:
             try:
-                ele = ele.split('<thought>')[1].split('</thought>')[0]
+                ele = ele.split('<thought>')[1].split('</thought>')[0].strip()
             except:
                 ele = 'TOO LONG'
 
