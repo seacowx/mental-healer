@@ -251,6 +251,7 @@ class vLLMOffline:
         patient_device: str = '',
         tensor_parallel_size: int = 1,
         gpu_memory_utilization=0.8,
+        enable_reasoning: bool = False,
     ) -> None:
 
         self.model_path = model_path
@@ -262,6 +263,7 @@ class vLLMOffline:
         vllm_config['device'] = patient_device if patient_device else 'auto'
         vllm_config['gpu_memory_utilization'] = gpu_memory_utilization
         vllm_config['quantization'] = quantization if quantization else None
+        vllm_config['enable_reasoning'] = enable_reasoning
 
         self.vllm_model = LLM(
             model=self.model_path,
