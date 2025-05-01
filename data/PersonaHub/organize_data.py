@@ -137,11 +137,8 @@ def main():
         [{'role': 'user', 'content': ele}] for ele in prompt_list
     ]
 
-    print(msg_list[0][0]['content'])
-    raise SystemExit()
-
     output_list = vllm.chat(
-        messages=msg_list,
+        messages=msg_list[:200],
         sampling_params=sampling_params,
         use_tqdm=True,
         chat_template_kwargs={
@@ -153,6 +150,9 @@ def main():
         parse_output(output)
         for output in output_list
     ]
+
+    print(output_list)
+    raise SystemExit()
 
     out_dict = {}
     for output_label, (key, val) in zip(output_list, temp_out_dict.items()):
