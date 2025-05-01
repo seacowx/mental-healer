@@ -5,6 +5,8 @@ import signal
 import subprocess
 from abc import ABCMeta, abstractmethod
 
+from vllm import LLM, SamplingParams
+
 import backoff
 from openai import OpenAI, AsyncOpenAI
 from openai.types.chat import ChatCompletion
@@ -53,7 +55,6 @@ class LLMBaseModel(metaclass=ABCMeta):
         json_schema: dict = {},
     ) -> str | None | ChatCompletion:
         ...
-
 
 
 class OpenAIAsyncInference(LLMBaseModel):
@@ -238,3 +239,55 @@ class vLLMServer:
         self.server.wait()    
         time.sleep(10)
 
+
+class vLLMOffline:
+
+
+    def __init__(
+        self,
+        model_path: str, 
+        world_size: int, 
+        quantization: bool,
+        max_model_len: int = 2048,
+        patient_device: str = '',
+        tensor_parallel_size: int = 1,
+        gpu_memory_utilization=0.8,
+    ) -> None:
+
+        self.model_path = model_path
+        self.world_size = world_size
+        self.quantization = quantization
+
+        vllm_config = {}
+        vllm_config['max_model_len'] = max_model_len
+        vllm_config['tensor_parallel_size'] = tensor_parallel_size
+        vllm_config['device'] = patient_device if patient_device else 'auto'
+        vllm_config['gpu_memory_utilization'] = gpu_memory_utilization
+
+        self.vllm_model = LLM(
+            model=self.model_path,
+            world_size=self.world_size,
+            quantization=self.quantization,
+            **vllm_config,
+        )
+
+
+    def inference(self, message_list: list, **kwargs) -> str:
+        """
+        Inference with vLLM model
+        """
+        sampling_params = SamplingParams(
+            temperature=kwargs.get('temperature', 0.0),
+            max_tokens=kwargs.get('max_tokens', 1024),
+            frequency_penalty=kwargs.get('frequency_penalty', 0.0),
+            presence_penalty=kwargs.get('presence_penalty', 0.0),
+            stop=kwargs.get('stop', None),
+        )
+
+        response = self.vllm_model.chat(
+            messages=message_list, 
+            sampling_params=sampling_params
+            use_tqdm=False,
+        )
+
+        return response

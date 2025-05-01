@@ -5,7 +5,8 @@ import argparse
 import numpy as np
 
 import torch
-from utils.llm_inference import vLLMServer
+from vllm import LLM, SamplingParams
+from utils.llm_inference import vLLMOffline
 from utils.data_utils import prepare_training_data
 
 from modules.patient import Patient
@@ -35,11 +36,25 @@ def main():
     set_seed(96)
     args = parse_args()
 
+    llm_path_dict = json.load(open('./configs/llm_configs.yaml', 'r'))
+
     prepared_data = prepare_training_data(
         n_personas=args.n_personas,
     )
 
-    print(f"Prepared data: {len(prepared_data)} situations")
+    # initialize LLM
+    vllm = vLLMOffline(
+        model_path=llm_path_dict['model_path'],
+        world_size=llm_path_dict['world_size'],
+        quantization=llm_path_dict['quantization'],
+    )
+
+    patient_agent = Patient()
+
+    # first, prompt patient agent to produce initial thought
+    patient_agent.produce_initial_thought(
+        data=prepared_data,
+    )
 
 
 if __name__ == "__main__":

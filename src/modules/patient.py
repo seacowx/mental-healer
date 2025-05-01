@@ -2,6 +2,9 @@
 Patient Agent. Frozen during RL training.
 """
 import yaml
+from copy import deepcopy
+
+from vllm import LLM
 from openai import OpenAI, AsyncOpenAI
 
 from utils.base_agent import LMAgent
@@ -12,12 +15,14 @@ class Patient(LMAgent):
 
     def __init__(
         self,
-        client: OpenAI,
-        async_client: AsyncOpenAI,
+        vllm_client: LLM = None,
+        openai_client: OpenAI = None,
+        openai_async_client: AsyncOpenAI = None,
     ) -> None:
         super().__init__(
-            client=client, 
-            async_client=async_client
+            client=openai_client, 
+            async_client=openai_async_client,
+            vllm_client=vllm_client,
         )
 
         self.persona_profile = ''
@@ -53,11 +58,33 @@ class Patient(LMAgent):
         raise NotImplementedError()
 
 
-    def produce_initial_thought(self, self_utterance: str) -> str:
+    def produce_initial_thought(
+        self, 
+        data: dict,
+    ) -> list:
         """
         Produce the initial thought given the agent's own utterance that describes a situation
+        This process is done in batches.
+
+        Inputs:
+            self_utterance_list (list): A list of agents' own utterances that describe a situation
+            self_persona_list (list): A list of agents' own personas that describe a situation
+
+        Outputs:
+            initial_thought_list (list): A list of initial thoughts produced by the agent
         """
-        raise NotImplementedError()
+
+        initial_thought_list = []
+        for key, val in data.items():
+
+            # cur_situation = val['situation']
+            # cur_persona = val['persona']
+
+            print(val.keys())
+            cur_prompt = deepcopy(self.initial_thought_template)
+            print(cur_prompt)
+            raise SystemExit()
+
 
 
     def utter(
