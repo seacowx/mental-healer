@@ -110,12 +110,14 @@ class Patient(LMAgent):
             for ele in output
         ]
 
+        parsed_think_output = []
         for ele in think_output:
             try:
                 ele = ele.split('<thought>')[1].split('</thought>')[0]
             except:
-                print(ele)
-                raise SystemExit()
+                ele = 'TOO LONG'
+
+            parsed_think_output.append(ele)
 
         situation_list = [
             val['situation'] for val in data.values()
@@ -127,7 +129,7 @@ class Patient(LMAgent):
             'situation': situation_list,
             'persona_profile': persona_list,
             'initial_thought': output,
-            'think_initial_thought': think_output,
+            'think_initial_thought': parsed_think_output,
         })
         out_data.to_csv('../data/comparisons/thoughts_comparison.csv', index=False)
 
