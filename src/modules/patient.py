@@ -3,6 +3,7 @@ Patient Agent. Frozen during RL training.
 """
 import yaml
 from copy import deepcopy
+import pandas as pd
 
 from openai import OpenAI, AsyncOpenAI
 
@@ -95,14 +96,23 @@ class Patient(LMAgent):
             initial_thought_message_list.append(cur_message)
 
         # get the initial thought
-        # TODO: add flag for allowing thinking or not 
         output = self.vllm_client.inference(
-            message_list=initial_thought_message_list[:10],
-            enable_thinking=enable_thinking,
+            message_list=initial_thought_message_list[:200],
+            enable_thinking=False,
+        )
+        think_output = self.vllm_client.inference(
+            message_list=initial_thought_message_list[:200],
+            enable_thinking=True,
         )
 
-        print(output)
-        raise SystemExit()
+        out_data = pd.DataFrame({
+            'situation': data['situation'],
+            'persona_profile': data['persona_profile'],
+            'initial_thought': output,
+            'think_initial_thought': think_output,
+        })
+        out_data.to_csv('../data/comparisons/thoughts_comparison.csv', index=False)
+        # TODO: organize data and compare the thought produced by thinking and non-thinking agents
 
 
     def utter(
