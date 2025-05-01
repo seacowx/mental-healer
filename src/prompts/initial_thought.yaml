@@ -18,7 +18,7 @@ user: |-
 
   Interpret the situation through a negative lens. What would be your initial thought on this situation? What automatic negative thought comes to your mind?
 
-  Respond with a single, concise negative thought. Avoid commentary or explanation. Generate the thought from a first-person perspective and wrap it with the <thought> and </thought> tags.
+  Respond with a single, concise negative thought. Avoid commentary or explanation. Generate the thought from a first-person perspective. The generated thought must begin with <thought> and ends with </thought>.
 
   Example Input:
   Situation: I forgot my friend's birthday.

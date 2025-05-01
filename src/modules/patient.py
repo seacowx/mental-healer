@@ -105,6 +105,10 @@ class Patient(LMAgent):
             enable_thinking=True,
         )
 
+        output = [
+            ele.split('<thought>')[1].split('</thought>')[0]
+            for ele in output
+        ]
         think_output = [
             ele.split('<thought>')[1].split('</thought>')[0]
             for ele in think_output
