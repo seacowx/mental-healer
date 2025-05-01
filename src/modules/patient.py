@@ -4,10 +4,10 @@ Patient Agent. Frozen during RL training.
 import yaml
 from copy import deepcopy
 
-from vllm import LLM
 from openai import OpenAI, AsyncOpenAI
 
 from utils.base_agent import LMAgent
+from utils.llm_inference import vLLMOffline
 
 
 class Patient(LMAgent):
@@ -15,7 +15,7 @@ class Patient(LMAgent):
 
     def __init__(
         self,
-        vllm_client: LLM = None,
+        vllm_client: vLLMOffline = None,
         openai_client: OpenAI = None,
         openai_async_client: AsyncOpenAI = None,
     ) -> None:
@@ -74,7 +74,7 @@ class Patient(LMAgent):
             initial_thought_list (list): A list of initial thoughts produced by the agent
         """
 
-        initial_thought_list = []
+        initial_thought_message_list = []
         for key, val in data.items():
 
             cur_situation = val['situation']
@@ -86,11 +86,21 @@ class Patient(LMAgent):
             user_content = cur_prompt['user'].replace('{{persona_profile}}', cur_persona) \
                 .replace('{{situation}}', cur_situation)
 
-            print(f"System:\n{system_content}")
-            print('\n\n')
-            print(f"User:\n{user_content}")
-            raise SystemExit()
+            cur_message = [
+                {'role': 'system', 'content': system_content},
+                {'role': 'user', 'content': user_content},
+            ]
 
+            initial_thought_message_list.append(cur_message)
+
+        # get the initial thought
+        # TODO: add flag for allowing thinking or not 
+        output = self.vllm_client.inference(
+            message_list=initial_thought_message_list[:10],
+        )
+
+        print(output)
+        raise SystemExit()
 
 
     def utter(

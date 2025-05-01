@@ -54,7 +54,9 @@ def main():
         patient_device=patient_device,
     )
 
-    patient_agent = Patient()
+    patient_agent = Patient(
+        vllm_client=vllm,
+    )
 
     # first, prompt patient agent to produce initial thought
     patient_agent.produce_initial_thought(
