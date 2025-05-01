@@ -98,7 +98,7 @@ class Patient(LMAgent):
         # TODO: add flag for allowing thinking or not 
         output = self.vllm_client.inference(
             message_list=initial_thought_message_list[:10],
-            enable_thinking=True,
+            enable_thinking=enable_thinking,
         )
 
         print(output)
