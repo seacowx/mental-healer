@@ -61,6 +61,7 @@ def main():
     # first, prompt patient agent to produce initial thought
     patient_agent.produce_initial_thought(
         data=prepared_data,
+        enable_thinking=False,
     )
 
 

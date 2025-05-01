@@ -61,6 +61,7 @@ class Patient(LMAgent):
     def produce_initial_thought(
         self, 
         data: dict,
+        enable_thinking: bool = True,
     ) -> list:
         """
         Produce the initial thought given the agent's own utterance that describes a situation
@@ -97,6 +98,7 @@ class Patient(LMAgent):
         # TODO: add flag for allowing thinking or not 
         output = self.vllm_client.inference(
             message_list=initial_thought_message_list[:10],
+            enable_thinking=True,
         )
 
         print(output)
