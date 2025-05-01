@@ -276,6 +276,9 @@ class vLLMOffline:
         """
         Inference with vLLM model
         """
+        
+        # NOTE: Default parameters are set according to the recommendations from the Qwen3 model hub
+        # https://huggingface.co/Qwen/Qwen3-32B
         sampling_params = SamplingParams(
             temperature=kwargs.get('temperature', 0.6),
             max_tokens=kwargs.get('max_tokens', 8192),

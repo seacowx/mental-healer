@@ -105,12 +105,10 @@ class Patient(LMAgent):
             enable_thinking=True,
         )
 
-        for ele in think_output:
-            try:
-                ele.split('<thought>')[1].split('</thought>')[0]
-            except:
-                print(ele)
-                raise SystemExit()
+        think_output = [
+            ele.split('<thought>')[1].split('</thought>')[0]
+            for ele in think_output
+        ]
 
         situation_list = [
             val['situation'] for val in data.values()
@@ -125,7 +123,6 @@ class Patient(LMAgent):
             'think_initial_thought': think_output,
         })
         out_data.to_csv('../data/comparisons/thoughts_comparison.csv', index=False)
-        # TODO: organize data and compare the thought produced by thinking and non-thinking agents
 
 
     def utter(
