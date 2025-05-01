@@ -277,10 +277,12 @@ class vLLMOffline:
         Inference with vLLM model
         """
         sampling_params = SamplingParams(
-            temperature=kwargs.get('temperature', 0.0),
-            max_tokens=kwargs.get('max_tokens', 1024),
+            temperature=kwargs.get('temperature', 0.6),
+            max_tokens=kwargs.get('max_tokens', 8192),
+            top_p=kwargs.get('top_p', 0.95),
+            top_k=kwargs.get('top_k', 20),
             frequency_penalty=kwargs.get('frequency_penalty', 0.0),
-            presence_penalty=kwargs.get('presence_penalty', 0.0),
+            presence_penalty=kwargs.get('presence_penalty', 1.0),
             stop=kwargs.get('stop', None),
         )
 
