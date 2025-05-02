@@ -21,6 +21,9 @@ def prepare_training_data(n_personas=1) -> dict:
         open('../data/situations/situations.json', 'r')
     )
 
+    print(data)
+    raise SystemExit()
+
     pbar = tqdm.tqdm(
         total=len(data) * n_personas,
         desc="Preparing training data",
