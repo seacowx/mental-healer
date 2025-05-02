@@ -129,12 +129,12 @@ class Patient(LMAgent):
                 thoutght_list=parsed_output,
             )
 
-            print(sentiment_msg_list[0])
-            raise SystemExit()
-
             output_sentiment_list = therapist_reward.sentiment_reward.get_sentiment(
                 input_msg_list=sentiment_msg_list,
             )
+
+            print(output_sentiment_list)
+            raise SystemExit()
 
         parsed_think_output = []
         for ele in think_output:
