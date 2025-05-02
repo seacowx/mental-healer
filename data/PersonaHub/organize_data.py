@@ -1,8 +1,11 @@
 """
 Remove persona profiles that are too nice. These profiles make cognitive reframing a trivial task and will interfere with model training.
-
 Before Filtering: 200,000
 After Filtering: 172,752
+
+Remove persona profiles that are not describing an individual.
+Original Size: 172,752
+After Filtering: 166,385
 """
 
 import json
