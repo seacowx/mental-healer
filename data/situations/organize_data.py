@@ -98,15 +98,12 @@ def main():
 
         prompt_list.append(cur_prompt)
 
-        print(cur_prompt)
-        raise SystemExit()
-
     msg_list = [
         [{'role': 'user', 'content': ele}] for ele in prompt_list
     ]
 
     output_list = vllm.chat(
-        messages=msg_list,
+        messages=msg_list[:10],
         sampling_params=sampling_params,
         use_tqdm=True,
         chat_template_kwargs={
