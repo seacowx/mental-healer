@@ -61,21 +61,21 @@ def main():
         '/scratch/prj/charnu/seacow_hf_cache/models--Qwen--Qwen3-32B/'
         'snapshots/ba1f828c09458ab0ae83d42eaacc2cf8720c7957'
     )
-    # WORLD_SIZE = torch.cuda.device_count()
-    # vllm = LLM(
-    #     model=model_path, 
-    #     max_model_len=2048,
-    #     tensor_parallel_size=WORLD_SIZE,
-    #     gpu_memory_utilization=0.9,
-    #     enforce_eager=True,
-    # )
-    # sampling_params = SamplingParams(
-    #     temperature=0.6,
-    #     top_p=0.95,
-    #     top_k=20,
-    #     max_tokens=8192,
-    #     presence_penalty=1.,
-    # )
+    WORLD_SIZE = torch.cuda.device_count()
+    vllm = LLM(
+        model=model_path, 
+        max_model_len=2048,
+        tensor_parallel_size=WORLD_SIZE,
+        gpu_memory_utilization=0.9,
+        enforce_eager=True,
+    )
+    sampling_params = SamplingParams(
+        temperature=0.6,
+        top_p=0.95,
+        top_k=20,
+        max_tokens=8192,
+        presence_penalty=1.,
+    )
 
     prompt_list = []
     for key, val in situation_data.items():
