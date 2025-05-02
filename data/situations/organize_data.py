@@ -1,12 +1,13 @@
 """
 Organize the data for the AugESC dataset.
-1. Load the AugESC dataset and the PersonaHub dataset.
-2. For each situation in the AugESC dataset, find the top-10 most similar personas from the PersonaHub dataset.
-3. Use LLM to filter persona profiles that are related to the situation.
-4. Add the valid prosona profiles to the situation data.
+    1. Load the AugESC dataset and the PersonaHub dataset.
+    2. For each situation in the AugESC dataset, find the top-10 most similar personas from the PersonaHub dataset.
+    3. Use LLM to filter persona profiles that are related to the situation.
+    4. Add the valid prosona profiles to the situation data.
 """
 
 import re
+import argparse
 import yaml, json
 import pandas as pd
 from jinja2 import Template
@@ -45,20 +46,11 @@ def parse_output(output):
     return []
 
 
-def main():
-
-    situation_data =  json.load(
-        open('../AugESC/augesc_content_filtered.json')
-    )
-
-    persona_data = json.load(
-        open('../PersonaHub/persona.json')
-    )
-
-    matched_persona_data = json.load(
-        open('../AugESC/augsec_matched_persona.json')
-    )
-
+def filter_persona(
+    situation_data: dict,
+    matched_persona_data: dict,
+    persona_data: dict,
+) -> list:
     # initialize Qwen3-32B model
     model_path = (
         '/scratch/prj/charnu/seacow_hf_cache/models--Qwen--Qwen3-32B/'
@@ -126,6 +118,73 @@ def main():
         for sub_list, valid_persona_idx_list in zip(all_persona_list, output_list)
     ]
 
+    return all_persona_list
+
+
+def organize_persona_data(
+    situation_data: dict,
+    matched_persona_data: dict,
+    persona_data: dict,
+) -> list:
+
+    all_persona_list = []
+    for key, val in situation_data.items():
+
+        matched_persona_info_list = matched_persona_data[key]
+        matched_persona_id_list = [
+            ele['id'] for ele in matched_persona_info_list
+        ]
+        matched_persona_list = [
+            persona_data[persona_id] for persona_id in matched_persona_id_list
+        ]
+        indexed_persona_list = [
+            f"{idx}: {persona}" for idx, persona in enumerate(matched_persona_list)
+        ]
+
+        all_persona_list.append(matched_persona_list)
+
+    return all_persona_list
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Organize the data for the AugESC dataset.")
+    parser.add_argument(
+        '--filter_persona', 
+        action='store_true',
+        help="Filter the persona profiles using LLM.",
+    )
+    return parser.parse_args()
+
+
+def main():
+
+    args = parse_args()
+
+    situation_data =  json.load(
+        open('../AugESC/augesc_content_filtered.json')
+    )
+
+    persona_data = json.load(
+        open('../PersonaHub/persona.json')
+    )
+
+    matched_persona_data = json.load(
+        open('../AugESC/augsec_matched_persona.json')
+    )
+
+    if args.filter_persona:
+        all_persona_list = filter_persona(
+            situation_data=situation_data,
+            matched_persona_data=matched_persona_data,
+            persona_data=persona_data,
+        )
+    else:
+        all_persona_list = organize_persona_data(
+            situation_data=situation_data,
+            matched_persona_data=matched_persona_data,
+            persona_data=persona_data,
+        )
+
     augmented_situation_data = {}
     for persona_list, (key, val) in zip(all_persona_list, situation_data.items()):
 
@@ -134,7 +193,8 @@ def main():
             'candidate_persona_profile_list': persona_list,
         }
 
-    with open('./situations.json', 'w') as f:
+    prefix = 'selected_' if args.filter_persona else ''
+    with open(f'./{prefix}situations.json', 'w') as f:
         json.dump(augmented_situation_data, f, indent=4)
 
 

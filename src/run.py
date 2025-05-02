@@ -9,7 +9,10 @@ from vllm import LLM, SamplingParams
 from utils.llm_inference import vLLMOffline
 from utils.data_utils import prepare_training_data
 
+from trl import GRPOTrainer
+
 from modules.patient import Patient
+from modules.therapist import Therapist
 from modules.therapist_reward import TherapistReward
 
 

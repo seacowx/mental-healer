@@ -5,6 +5,7 @@ import signal
 import subprocess
 from abc import ABCMeta, abstractmethod
 
+import torch
 from vllm import LLM, SamplingParams
 
 import backoff
@@ -248,7 +249,7 @@ class vLLMOffline:
         model_path: str, 
         quantization: str = '',
         max_model_len: int = 2048,
-        patient_device: str = '',
+        patient_device: torch.device = None,
         gpu_memory_utilization=0.8,
     ) -> None:
 
