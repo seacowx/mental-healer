@@ -92,7 +92,7 @@ def main():
         ]
 
         cur_prompt = make_prompt(
-            persona_list=matched_persona_list,
+            persona_list=indexed_persona_list,
             event_desc=val,
         )
 
