@@ -9,7 +9,7 @@ from vllm.lora.request import LoRARequest
 class SentimentReward:
 
 
-    def __init__(self) -> None:
+    def __init__(self, sentiment_reward_device: torch.device) -> None:
         model_path_dict = yaml.safe_load(open('./configs/llm_configs.yaml'))
         model_path = model_path_dict['qwen7']['path']
 
@@ -19,7 +19,6 @@ class SentimentReward:
         )
 
         # initialize the llm
-        reward_device = torch.device('cuda:0')
         self.llm = LLM(
             model=model_path, 
             max_model_len=2048,
@@ -27,7 +26,7 @@ class SentimentReward:
             max_lora_rank=64,
             tensor_parallel_size=1,
             gpu_memory_utilization=0.8,
-            device=reward_device,
+            device=sentiment_reward_device,
         )
 
         self.sampling_params = SamplingParams(

@@ -9,7 +9,7 @@ from openai import OpenAI, AsyncOpenAI
 
 from utils.base_agent import LMAgent
 from utils.llm_inference import vLLMOffline
-from rewards.sentiment import SentimentReward
+from modules.therapist_reward import TherapistReward
 
 
 class Patient(LMAgent):
@@ -49,8 +49,6 @@ class Patient(LMAgent):
         Set the persona profile for the agent
         """
         self.persona_profile = persona_profile
-        
-        # TODO: update the system message for the templates
 
 
     def update_thought(self, therapist_utterance: str) -> str:
@@ -63,6 +61,7 @@ class Patient(LMAgent):
     def produce_initial_thought(
         self, 
         data: dict,
+        therapist_reward: TherapistReward,
         enable_thinking: bool = True,
     ) -> list:
         """
@@ -102,13 +101,11 @@ class Patient(LMAgent):
 
             initial_thought_message_list.append(cur_message)
 
-        # initialize the sentiment reward model
-        sentiment_reward_model = SentimentReward()
-
         initial_thought_message_list = initial_thought_message_list[:200]
         queue_idx_list = list(range(len(initial_thought_message_list)))
         TOLERANCE = 5
 
+        # TODO: finish implementing the iterative thought generating process
         num_iterations = 0
         while queue_idx_list and num_iterations < TOLERANCE:
 

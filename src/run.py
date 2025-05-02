@@ -9,10 +9,11 @@ from vllm import LLM, SamplingParams
 from utils.llm_inference import vLLMOffline
 from utils.data_utils import prepare_training_data
 
-from trl import GRPOTrainer
+from trl import GRPOConfig, GRPOTrainer
 
 from modules.patient import Patient
 from modules.therapist import Therapist
+from rewards.sentiment import SentimentReward
 from modules.therapist_reward import TherapistReward
 
 
@@ -51,11 +52,16 @@ def main():
     )
 
     # initialize LLM, load model in cuda:1, cuda:0 is used for reward model, cuda:2-3 for therapist agent
+    therapist_reward = TherapistReward(
+        sentiment_reward_device=torch.device('cuda:0'),
+    )
+
     patient_device = torch.device('cuda:1')
     vllm = vLLMOffline(
         model_path=llm_path_dict[args.base_model]['path'],
         patient_device=patient_device,
     )
+
 
     patient_agent = Patient(
         vllm_client=vllm,
@@ -65,6 +71,7 @@ def main():
     patient_agent.produce_initial_thought(
         data=prepared_data,
         enable_thinking=False,
+        therapist_reward=therapist_reward,
     )
 
 

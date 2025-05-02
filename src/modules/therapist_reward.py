@@ -1,11 +1,12 @@
 import yaml
 
+import torch
 from rewards.sentiment import SentimentReward
 from rewards.semantic_similarity import SemanticSimilarityReward
 
 class TherapistReward:
 
-    def __init__(self) -> None:
+    def __init__(self, sentiment_reward_device: torch.device) -> None:
         self.sentiment_prompt = yaml.load(
             open('./prompts/sentiment.yaml', 'r'),
             Loader=yaml.FullLoader,
