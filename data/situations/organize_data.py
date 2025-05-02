@@ -15,7 +15,7 @@ import torch
 from vllm import LLM, SamplingParams
 
 def make_prompt(
-    persona_list: list,
+    persona_list: str,
     event_desc: str,
 ) -> str:
 
@@ -92,7 +92,7 @@ def main():
         ]
 
         cur_prompt = make_prompt(
-            persona_list=indexed_persona_list,
+            persona_list='\n'.join(indexed_persona_list),
             event_desc=val,
         )
 
