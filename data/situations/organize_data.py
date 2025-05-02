@@ -28,15 +28,17 @@ def make_prompt(
         "Do not include any other text in your response."
     )
 
-    return template.render(event_desc=event_desc.capitalize())
+    return template.render(persona_list=persona_list, event_desc=event_desc.capitalize())
 
 
 def parse_output(output):
     output = output.outputs[0].text
-    if '<decision>' in output and '</decision>' in output:
-        decision = output.split('<decision>')[1].split('</decision>')[0].strip().lower()
-        return decision
-    return ''
+    if '<valid_persona_indexes>' in output and '</valid_persona_indexes>' in output:
+        valid_indexes = output.split('<valid_persona_indexes>')[1].split('</valid_persona_indexes>')[0].strip().lower()
+        valid_indexes = valid_indexes.replace('[', '').replace(']', '').replace(' ', '').strip()
+        valid_indexes = [ele.strip() for ele in valid_indexes.split(',')]
+        return valid_indexes
+    return []
 
 
 def main():
@@ -74,7 +76,7 @@ def main():
         presence_penalty=1.,
     )
 
-    input_promtp_list = []
+    prompt_list = []
     for key, val in situation_data.items():
 
         matched_persona_info_list = matched_persona_data[key]
@@ -87,11 +89,34 @@ def main():
 
         cur_prompt = make_prompt(
             persona_list=matched_persona_list,
-            event_desc=val['situation'],
+            event_desc=val,
         )
+
+        prompt_list.append(cur_prompt)
 
         print(cur_prompt)
         raise SystemExit()
+
+    msg_list = [
+        [{'role': 'user', 'content': ele}] for ele in prompt_list
+    ]
+
+    output_list = vllm.chat(
+        messages=msg_list,
+        sampling_params=sampling_params,
+        use_tqdm=True,
+        chat_template_kwargs={
+            "enable_thinking": True,
+        },
+    )
+
+    output_list = [
+        parse_output(output)
+        for output in output_list
+    ]
+
+    print(output_list[0])
+    raise SystemExit()
 
     augmented_situation_data = {}
     for key, val in situation_data.items():
