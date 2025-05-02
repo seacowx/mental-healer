@@ -9,6 +9,7 @@ from openai import OpenAI, AsyncOpenAI
 
 from utils.base_agent import LMAgent
 from utils.llm_inference import vLLMOffline
+from rewards.sentiment import SentimentReward
 
 
 class Patient(LMAgent):
@@ -68,6 +69,12 @@ class Patient(LMAgent):
         Produce the initial thought given the agent's own utterance that describes a situation
         This process is done in batches.
 
+        The generation process is iterative and follows these steps:
+            1. Given a situation and persona profile, the agent generates an initial thought.
+            2. The situation and the initial thought are passed to the sentiment reward model to get a sentiment result.
+            3. The initial thought is valid if it results in negative sentiment. Otherwise, regenerate the thought.
+            4. Steps 1-3 are repeated until all the initial thoughts result in negative sentiment.
+
         Inputs:
             self_utterance_list (list): A list of agents' own utterances that describe a situation
             self_persona_list (list): A list of agents' own personas that describe a situation
@@ -95,20 +102,30 @@ class Patient(LMAgent):
 
             initial_thought_message_list.append(cur_message)
 
-        # get the initial thought
-        output = self.vllm_client.inference(
-            message_list=initial_thought_message_list[:200],
-            enable_thinking=False,
-        )
-        think_output = self.vllm_client.inference(
-            message_list=initial_thought_message_list[:200],
-            enable_thinking=True,
-        )
+        # initialize the sentiment reward model
+        sentiment_reward_model = SentimentReward()
 
-        output = [
-            ele.split('<thought>')[1].split('</thought>')[0]
-            for ele in output
-        ]
+        initial_thought_message_list = initial_thought_message_list[:200]
+        queue_idx_list = list(range(len(initial_thought_message_list)))
+        TOLERANCE = 5
+
+        num_iterations = 0
+        while queue_idx_list and num_iterations < TOLERANCE:
+
+            # generate initial thoughts
+            output = self.vllm_client.inference(
+                message_list=initial_thought_message_list,
+                enable_thinking=False,
+            )
+            think_output = self.vllm_client.inference(
+                message_list=initial_thought_message_list,
+                enable_thinking=True,
+            )
+
+            output = [
+                ele.split('<thought>')[1].split('</thought>')[0]
+                for ele in output
+            ]
 
         parsed_think_output = []
         for ele in think_output:
