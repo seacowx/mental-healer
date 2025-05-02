@@ -21,7 +21,7 @@ def make_prompt(
 
     template = Template(
         "You will be given a list of persona profiles and an event. "
-        "Your task is to select persona profiles that can be the experiencer of the given event. "
+        "Your task is to select persona profiles that can be the experiencer of the given event.\n\n"
         "<persona>\n{{ persona_list }}\n</persona>\n\n"
         "<event>\n{{ event_desc }}\n</event>\n\n"
         "If you feel unsure about a persona profile, regard it as invalid. Generate a list of indexes of the " 
@@ -86,6 +86,9 @@ def main():
         ]
         matched_persona_list = [
             persona_data[persona_id] for persona_id in matched_persona_id_list
+        ]
+        indexed_persona_list = [
+            f"{idx}: {persona}" for idx, persona in enumerate(matched_persona_list)
         ]
 
         cur_prompt = make_prompt(
