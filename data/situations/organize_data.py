@@ -108,7 +108,7 @@ def main():
     ]
 
     output_list = vllm.chat(
-        messages=msg_list[:10],
+        messages=msg_list,
         sampling_params=sampling_params,
         use_tqdm=True,
         chat_template_kwargs={
@@ -121,33 +121,17 @@ def main():
         for output in output_list
     ]
 
-    all_persona_list = all_persona_list[:10]
     all_persona_list = [
         [sub_list[idx] for idx in valid_persona_idx_list] 
         for sub_list, valid_persona_idx_list in zip(all_persona_list, output_list)
     ]
 
-    print(all_persona_list)
-    raise SystemExit()
-
     augmented_situation_data = {}
-    for valid_persona_idx_list, (key, val) in zip(output_list, situation_data.items()):
-
-        matched_persona_info_list = matched_persona_data[key]
-        matched_persona_id_list = [
-            ele['id'] for ele in matched_persona_info_list
-        ]
-        matched_persona_list = [
-            persona_data[persona_id] for persona_id in matched_persona_id_list
-        ]
-
-        matched_persona_list = [
-            matched_persona_list[idx] for idx in valid_persona_idx_list
-        ]
+    for persona_list, (key, val) in zip(all_persona_list, situation_data.items()):
 
         augmented_situation_data[key] = {
             'situation': val,
-            'candidate_persona_profile_list': matched_persona_list,
+            'candidate_persona_profile_list': persona_list,
         }
 
     with open('./situations.json', 'w') as f:
