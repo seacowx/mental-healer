@@ -32,10 +32,6 @@ def prepare_training_data(n_personas=1) -> dict:
         situation = entry_dict['situation']
         candidate_persona_info_list = entry_dict['candidate_persona_profile_list']
 
-        print(candidate_persona_info_list)
-        print(type(candidate_persona_info_list))
-        raise SystemExit()
-
         sampled_persona_profile = sample_persona(
             candidate_persona_info_list=candidate_persona_info_list,
             n_personas=n_personas,
