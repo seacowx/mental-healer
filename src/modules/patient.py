@@ -10,6 +10,7 @@ from openai import OpenAI, AsyncOpenAI
 from utils.base_agent import LMAgent
 from utils.llm_inference import vLLMOffline
 from modules.therapist_reward import TherapistReward
+from utils.thought_utils import iterative_thought_generation
 
 
 class Patient(LMAgent):
@@ -108,43 +109,15 @@ class Patient(LMAgent):
         TOLERANCE = 5
 
         # TODO: finish implementing the iterative thought generating process
-        num_iterations = 0
-        while queue_idx_list and num_iterations < TOLERANCE:
 
-            # generate initial thoughts
-            think_output = self.vllm_client.inference(
-                message_list=initial_thought_message_list,
-                enable_thinking=True,
-            )
-
-            parsed_output = [
-                ele.split('</think>')[-1] \
-                    .split('<thought>')[1] \
-                    .split('</thought>')[0]
-                for ele in think_output
-            ]
-
-            sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
-                situation_list=situation_list[:200],
-                thoutght_list=parsed_output,
-            )
-
-            output_sentiment_list = therapist_reward.sentiment_reward.get_sentiment(
-                input_msg_list=sentiment_msg_list,
-            )
-
-            print(output_sentiment_list)
-            raise SystemExit()
-
-        parsed_think_output = []
-        for ele in think_output:
-            ele = ele.split('</think>')[-1].strip()
-            try:
-                ele = ele.split('<thought>')[1].split('</thought>')[0].strip()
-            except:
-                ele = 'TOO LONG'
-
-            parsed_think_output.append(ele)
+        parsed_initial_thought_list = iterative_thought_generation(
+            initial_thought_message_list=initial_thought_message_list,
+            situation_list=situation_list,
+            therapist_reward=therapist_reward,
+            vllm_client=self.vllm_client,
+            queue_idx_list=queue_idx_list,
+            TOLERANCE=TOLERANCE,
+        )
 
         situation_list = [
             val['situation'] for val in data.values()
@@ -152,11 +125,11 @@ class Patient(LMAgent):
         persona_list = [
             val['persona_profile'] for val in data.values()
         ][:200]
+
         out_data = pd.DataFrame({
             'situation': situation_list,
             'persona_profile': persona_list,
-            'initial_thought': output,
-            'think_initial_thought': parsed_think_output,
+            'initial_thought': parsed_initial_thought_list,
         })
         out_data.to_csv('../data/comparisons/thoughts_comparison.csv', index=False)
 
