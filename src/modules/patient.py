@@ -117,14 +117,14 @@ class Patient(LMAgent):
                 enable_thinking=True,
             )
 
-            output = [
+            parsed_output = [
                 ele.split('<thought>')[1].split('</thought>')[0]
-                for ele in output
+                for ele in think_output
             ]
 
             sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
                 situation_list=situation_list[:200],
-                thoutght_list=output,
+                thoutght_list=parsed_output,
             )
 
             print(sentiment_msg_list[0])
