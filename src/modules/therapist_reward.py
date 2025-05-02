@@ -40,7 +40,7 @@ class TherapistReward:
     
     def make_sentiment_input_msg(self, situation_list: list, thoutght_list: list) -> list:
         input_list = [
-            {'situation': situation, 'thought': thought,}
+            {'situation': situation, 'thought': thought.strip(),}
             for situation, thought in zip(situation_list, thoutght_list)
         ]
 
