@@ -119,28 +119,24 @@ def main():
         for output in output_list
     ]
 
-    print(output_list[0])
-    raise SystemExit()
-
     augmented_situation_data = {}
-    for key, val in situation_data.items():
+    for valid_persona_idx_list, (key, val) in zip(output_list, situation_data.items()):
 
         matched_persona_info_list = matched_persona_data[key]
         matched_persona_id_list = [
             ele['id'] for ele in matched_persona_info_list
         ]
-        matched_persona_prob_dist = [
-            ele['density'] for ele in matched_persona_info_list
+        matched_persona_list = [
+            persona_data[persona_id] for persona_id in matched_persona_id_list
         ]
 
-        matched_persona_profile_list = [
-            {'persona': persona_data[persona_id], 'density': persona_prob}
-            for persona_id, persona_prob in zip(matched_persona_id_list, matched_persona_prob_dist)
+        matched_persona_list = [
+            matched_persona_list[idx] for idx in valid_persona_idx_list
         ]
 
         augmented_situation_data[key] = {
             'situation': val,
-            'candidate_persona_profile_list': matched_persona_profile_list,
+            'candidate_persona_profile_list': matched_persona_list,
         }
 
     with open('./situations.json', 'w') as f:
