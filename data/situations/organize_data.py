@@ -81,6 +81,7 @@ def main():
     )
 
     prompt_list = []
+    all_persona_list = []
     for key, val in situation_data.items():
 
         matched_persona_info_list = matched_persona_data[key]
@@ -100,6 +101,7 @@ def main():
         )
 
         prompt_list.append(cur_prompt)
+        all_persona_list.append(matched_persona_list)
 
     msg_list = [
         [{'role': 'user', 'content': ele}] for ele in prompt_list
@@ -118,6 +120,15 @@ def main():
         parse_output(output)
         for output in output_list
     ]
+
+    all_persona_list = all_persona_list[:10]
+    all_persona_list = [
+        [sub_list[idx] for idx in valid_persona_idx_list] 
+        for sub_list, valid_persona_idx_list in zip(all_persona_list, output_list)
+    ]
+
+    print(all_persona_list)
+    raise SystemExit()
 
     augmented_situation_data = {}
     for valid_persona_idx_list, (key, val) in zip(output_list, situation_data.items()):
