@@ -111,7 +111,7 @@ def main():
         sampling_params=sampling_params,
         use_tqdm=True,
         chat_template_kwargs={
-            "enable_thinking": True,
+            "enable_thinking": False,
         },
     )
 
