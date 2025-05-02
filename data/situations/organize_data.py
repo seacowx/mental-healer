@@ -34,6 +34,10 @@ def make_prompt(
 
 def parse_output(output):
     output = output.outputs[0].text
+
+    print(output)
+    raise SystemExit()
+
     if '<valid_persona_indexes>' in output and '</valid_persona_indexes>' in output:
         valid_indexes = output.split('<valid_persona_indexes>')[1].split('</valid_persona_indexes>')[0].strip().lower()
         valid_indexes = valid_indexes.replace('[', '').replace(']', '').replace(' ', '').strip()
