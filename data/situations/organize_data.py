@@ -9,6 +9,7 @@ Organize the data for the AugESC dataset.
 import re
 import yaml, json
 import pandas as pd
+from jinja2 import Template
 
 import torch
 from vllm import LLM, SamplingParams
