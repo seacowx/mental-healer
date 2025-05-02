@@ -83,6 +83,7 @@ class Patient(LMAgent):
         """
 
         initial_thought_message_list = []
+        situation_list = []
         for key, val in data.items():
 
             cur_situation = val['situation']
@@ -99,6 +100,7 @@ class Patient(LMAgent):
                 {'role': 'user', 'content': user_content},
             ]
 
+            situation_list.append(cur_situation)
             initial_thought_message_list.append(cur_message)
 
         initial_thought_message_list = initial_thought_message_list[:200]
@@ -110,10 +112,6 @@ class Patient(LMAgent):
         while queue_idx_list and num_iterations < TOLERANCE:
 
             # generate initial thoughts
-            output = self.vllm_client.inference(
-                message_list=initial_thought_message_list,
-                enable_thinking=False,
-            )
             think_output = self.vllm_client.inference(
                 message_list=initial_thought_message_list,
                 enable_thinking=True,
@@ -123,6 +121,18 @@ class Patient(LMAgent):
                 ele.split('<thought>')[1].split('</thought>')[0]
                 for ele in output
             ]
+
+            sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
+                situation_list=situation_list[:200],
+                thoutght_list=output,
+            )
+
+            print(sentiment_msg_list[0])
+            raise SystemExit()
+
+            output_sentiment_list = therapist_reward.sentiment_reward.get_sentiment(
+                input_msg_list=sentiment_msg_list,
+            )
 
         parsed_think_output = []
         for ele in think_output:

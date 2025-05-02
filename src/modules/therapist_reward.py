@@ -11,7 +11,9 @@ class TherapistReward:
             open('./prompts/sentiment.yaml', 'r'),
             Loader=yaml.FullLoader,
         )['input']
-        self.sentiment_reward = SentimentReward()
+        self.sentiment_reward = SentimentReward(
+            sentiment_reward_device=sentiment_reward_device,
+        )
         self.semantic_similarity_reward = SemanticSimilarityReward()
 
         self.SENTIMENT_COEFFICIENT = 0.7
@@ -35,14 +37,8 @@ class TherapistReward:
             'semantic_similarity_coefficient': self.SEMANTIC_SIMILARITY_COEFFICIENT,
         }
 
-
-    def __reward_sentiment(
-        self, 
-        situation_list: list,
-        thoutght_list: list,
-        previous_sentiment_list: list,
-    ) -> tuple[list, list]:
-
+    
+    def make_sentiment_input_msg(self, situation_list: list, thoutght_list: list) -> list:
         input_list = [
             {'situation': situation, 'thought': thought,}
             for situation, thought in zip(situation_list, thoutght_list)
@@ -53,6 +49,21 @@ class TherapistReward:
             [{'role': 'user', 'content': self.sentiment_prompt.format(**ele)}]
             for ele in input_list
         ]
+
+        return input_msg_list   
+
+
+    def reward_sentiment(
+        self, 
+        situation_list: list,
+        thoutght_list: list,
+        previous_sentiment_list: list,
+    ) -> tuple[list, list]:
+
+        input_msg_list = self.make_sentiment_input_msg(
+            situation_list=situation_list,
+            thoutght_list=thoutght_list,
+        )
 
         new_sentiment_list = self.sentiment_reward.get_sentiment(
             input_msg_list=input_msg_list,
@@ -68,7 +79,7 @@ class TherapistReward:
         return new_sentiment_list, sentiment_reward_list
 
     
-    def __reward_semantic_similarity(
+    def reward_semantic_similarity(
         self,
         utterance_list: list,
         response_list: list,
@@ -88,13 +99,13 @@ class TherapistReward:
         previous_sentiment_list: list,
     ):
 
-        new_sentiment_list, sentiment_reward_list = self.__reward_sentiment(
+        new_sentiment_list, sentiment_reward_list = self.reward_sentiment(
             situation_list=situation_list,
             thoutght_list=new_thought_list,
             previous_sentiment_list=previous_sentiment_list,
         )
 
-        semantic_similarity_list = self.__reward_semantic_similarity(
+        semantic_similarity_list = self.reward_semantic_similarity(
             utterance_list=utterance_list,
             response_list=new_thought_list,
         ) 
