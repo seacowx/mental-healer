@@ -2,6 +2,8 @@ from utils.llm_inference import vLLMOffline
 from modules.therapist_reward import TherapistReward
 
 
+# TODO: Check the implementation of the itrative thought generation function
+
 def iterative_thought_generation(
     initial_thought_message_list: list,
     situation_list: list,
