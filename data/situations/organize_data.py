@@ -40,6 +40,7 @@ def parse_output(output):
         valid_indexes = output.split('<valid_persona_indexes>')[1].split('</valid_persona_indexes>')[0].strip().lower()
         valid_indexes = valid_indexes.replace('[', '').replace(']', '').replace(' ', '').strip()
         valid_indexes = [ele.strip() for ele in valid_indexes.split(',')]
+        valid_indexes = [int(ele) for ele in valid_indexes if ele.isdigit()]
         return valid_indexes
     return []
 
