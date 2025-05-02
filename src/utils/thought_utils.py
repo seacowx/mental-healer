@@ -48,7 +48,7 @@ def iterative_thought_generation(
                 corrupted_idx_list.append(think_output_idx)
 
         sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
-            situation_list=situation_list[:200],
+            situation_list=situation_list,
             thoutght_list=parsed_output,
         )
 

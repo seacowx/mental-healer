@@ -1,9 +1,9 @@
 """
 Patient Agent. Frozen during RL training.
 """
-import yaml
-from copy import deepcopy
+import yaml, json
 import pandas as pd
+from copy import deepcopy
 
 from openai import OpenAI, AsyncOpenAI
 
@@ -104,7 +104,7 @@ class Patient(LMAgent):
             situation_list.append(cur_situation)
             initial_thought_message_list.append(cur_message)
 
-        initial_thought_message_list = initial_thought_message_list[:200]
+        initial_thought_message_list = initial_thought_message_list
         queue_idx_list = list(range(len(initial_thought_message_list)))
         TOLERANCE = 5
 
@@ -121,17 +121,22 @@ class Patient(LMAgent):
 
         situation_list = [
             val['situation'] for val in data.values()
-        ][:200]
+        ]
         persona_list = [
             val['persona_profile'] for val in data.values()
-        ][:200]
+        ]
 
-        out_data = pd.DataFrame({
-            'situation': situation_list,
-            'persona_profile': persona_list,
-            'initial_thought': parsed_initial_thought_list,
-        })
-        out_data.to_csv('../data/comparisons/thoughts_comparison.csv', index=False)
+        out_data = {}
+        for initial_thought, (key, val) in zip(parsed_initial_thought_list, data.items()):
+            out_data[key] = {
+                'situation': val['situation'],
+                'persona_profile': val['persona_profile'],
+                'initial_thought': initial_thought,
+            }
+
+        with open('../data/situations/situations_with_initial_thought.json', 'w') as f:
+            json.dump(out_data, f, indent=4)
+
 
 
     def utter(
