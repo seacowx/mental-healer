@@ -297,7 +297,7 @@ class vLLMOffline:
             chat_template_kwargs={
                 "enable_thinking": enable_thinking,
             },
-            use_tqdm=False,
+            use_tqdm=True,
         )
 
         response = [ele.outputs[0].text for ele in response]
