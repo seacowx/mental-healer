@@ -118,7 +118,9 @@ class Patient(LMAgent):
             )
 
             parsed_output = [
-                ele.split('<thought>')[1].split('</thought>')[0]
+                ele.split('</think>') \
+                    .split('<thought>')[1] \
+                    .split('</thought>')[0]
                 for ele in think_output
             ]
 
