@@ -132,8 +132,6 @@ def organize_persona_data(
 
         matched_persona_info_list = matched_persona_data[key]
 
-        print(matched_persona_info_list)
-        raise SystemExit()
         
         matched_persona_id_list = [
             ele['id'] for ele in matched_persona_info_list
@@ -141,11 +139,16 @@ def organize_persona_data(
         matched_persona_list = [
             persona_data[persona_id] for persona_id in matched_persona_id_list
         ]
-        indexed_persona_list = [
-            f"{idx}: {persona}" for idx, persona in enumerate(matched_persona_list)
+        matched_persona_density_list = [
+            ele['density'] for ele in matched_persona_info_list
         ]
 
-        all_persona_list.append(matched_persona_list)
+        out_persona_list = [
+            {'persona': persona, 'density': density}
+            for persona, density in zip(matched_persona_list, matched_persona_density_list)
+        ]
+
+        all_persona_list.append(out_persona_list)
 
     return all_persona_list
 
