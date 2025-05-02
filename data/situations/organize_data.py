@@ -131,6 +131,10 @@ def organize_persona_data(
     for key, val in situation_data.items():
 
         matched_persona_info_list = matched_persona_data[key]
+
+        print(matched_persona_info_list)
+        raise SystemExit()
+        
         matched_persona_id_list = [
             ele['id'] for ele in matched_persona_info_list
         ]
