@@ -26,6 +26,7 @@ def make_prompt(
         "<event>\n{{ event_desc }}\n</event>\n\n"
         "If you feel unsure about a persona profile, regard it as invalid. Generate a list of indexes of the " 
         "valid persona profiles. Start the list with <valid_persona_indexes> and end it with </valid_persona_indexes>. "
+        "The list itself should be in the format of a Python integer list (List[int]). "
         "Do not include any other text in your response."
     )
 
