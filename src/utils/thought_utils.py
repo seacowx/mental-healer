@@ -78,7 +78,7 @@ def iterative_thought_generation(
         # retrain the queue index if the sentiment is positive
         queue_idx_list = [
             idx for idx, ele in enumerate(output_sentiment_list)
-            if ele == 'negative'
+            if ele == 'positive'
         ]
         initial_thought_message_list = [
             initial_thought_message_list[idx] for idx in queue_idx_list

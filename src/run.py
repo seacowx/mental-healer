@@ -59,7 +59,7 @@ def main():
         n_personas=args.n_personas,
     )
 
-    # Module: initialize LLM, load model in cuda:1, cuda:0 is used for reward model, cuda:2-3 for therapist agent
+    # Step: initialize LLM, load model in cuda:1, cuda:0 is used for reward model, cuda:2-3 for therapist agent
     therapist_reward = TherapistReward(
         sentiment_reward_device=torch.device('cuda:0'),
     )
@@ -74,7 +74,7 @@ def main():
         vllm_client=vllm,
     )
 
-    # first, prompt patient agent to produce initial thought
+    # Step: generate initial thoughts
     patient_agent.produce_initial_thought(
         data=prepared_data,
         disable_thinking=args.disable_thinking_in_initial_thought,
