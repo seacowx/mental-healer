@@ -33,7 +33,7 @@ def iterative_thought_generation(
 
         # generate initial thoughts
         think_output_list = vllm_client.inference(
-            message_list=initial_thought_message_list[:100],
+            message_list=initial_thought_message_list,
             enable_thinking=True,
         )
         
@@ -48,8 +48,8 @@ def iterative_thought_generation(
                 corrupted_idx_list.append(think_output_idx)
 
         sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
-            situation_list=situation_list[:100],
-            thoutght_list=parsed_output[:100],
+            situation_list=situation_list,
+            thoutght_list=parsed_output,
         )
 
         output_sentiment_list = therapist_reward.sentiment_reward.get_sentiment(
