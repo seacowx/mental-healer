@@ -13,8 +13,8 @@ from copy import deepcopy
 from openai import OpenAI, AsyncOpenAI
 
 from agents.base_agent import LMAgent
-from utils.llm_inference import vLLMOffline
-from modules.therapist_reward import TherapistReward
+from utils.llm_inference_utils import vLLMOffline
+from rewards.therapist_reward import TherapistReward
 from utils.thought_utils import iterative_thought_generation
 
 
