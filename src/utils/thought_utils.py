@@ -34,9 +34,6 @@ def iterative_thought_generation(
         valid_initial_thought_list (list): List of valid initial thoughts after sentiment analysis. Invalid thoughts are replaced with empty strings.
     """
 
-    print(enable_thinking)
-    raise SystemExit()
-
     num_iterations = 0
     valid_initial_thought_list = [''] * len(initial_thought_message_list)
     while queue_idx_list and num_iterations < TOLERANCE:
