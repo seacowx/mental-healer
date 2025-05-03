@@ -56,9 +56,6 @@ def iterative_thought_generation(
             input_msg_list=sentiment_msg_list,
         )
 
-        print(output_sentiment_list)
-        raise SystemExit()
-
         # convert the sentiment label to "positive" for the corrupted output
         for idx in corrupted_idx_list:
             output_sentiment_list[idx] = 'positive'
