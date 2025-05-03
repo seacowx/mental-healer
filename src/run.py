@@ -79,7 +79,7 @@ def main():
         data=prepared_data,
         disable_thinking=args.disable_thinking_in_initial_thought,
         therapist_reward=therapist_reward,
-        regenerate_thought=args.regnerate_thought,
+        regenerate_thought=args.regenerate_thought,
     )
 
 
