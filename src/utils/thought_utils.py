@@ -1,5 +1,5 @@
 from utils.llm_inference_utils import vLLMOffline
-from modules.therapist_reward import TherapistReward
+from rewards.therapist_reward import TherapistReward
 
 
 # TODO: Check the implementation of the itrative thought generation function
