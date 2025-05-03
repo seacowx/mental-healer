@@ -33,7 +33,7 @@ def iterative_thought_generation(
 
         # generate initial thoughts
         think_output_list = vllm_client.inference(
-            message_list=initial_thought_message_list,
+            message_list=initial_thought_message_list[:100],
             enable_thinking=True,
         )
         
@@ -48,21 +48,24 @@ def iterative_thought_generation(
                 corrupted_idx_list.append(think_output_idx)
 
         sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
-            situation_list=situation_list,
-            thoutght_list=parsed_output,
+            situation_list=situation_list[:100],
+            thoutght_list=parsed_output[:100],
         )
 
         output_sentiment_list = therapist_reward.sentiment_reward.get_sentiment(
             input_msg_list=sentiment_msg_list,
         )
 
+        print(output_sentiment_list)
+        raise SystemExit()
+
         # convert the sentiment label to "positive" for the corrupted output
         for idx in corrupted_idx_list:
-            output_sentiment_list[idx]['sentiment'] = 'positive'
+            output_sentiment_list[idx] = 'positive'
 
         valid_queue_idx_list = [
             idx for idx, ele in enumerate(output_sentiment_list)
-            if ele['sentiment'] == 'negative'
+            if ele == 'negative'
         ]
 
         for round_idx, queue_idx in enumerate(valid_queue_idx_list):
@@ -71,7 +74,7 @@ def iterative_thought_generation(
         # retrain the queue index if the sentiment is positive
         queue_idx_list = [
             idx for idx, ele in enumerate(output_sentiment_list)
-            if ele['sentiment'] == 'negative'
+            if ele == 'negative'
         ]
         initial_thought_message_list = [
             initial_thought_message_list[idx] for idx in queue_idx_list
