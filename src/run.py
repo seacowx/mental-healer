@@ -5,16 +5,14 @@ import json, yaml
 import numpy as np
 
 import torch
-from vllm import LLM, SamplingParams
-from utils.llm_inference import vLLMOffline
+from utils.llm_inference_utils import vLLMOffline
 from utils.data_utils import prepare_training_data
+from utils.custom_trainer import CustomGRPOTrainer
 
-from trl import GRPOConfig, GRPOTrainer
-
-from modules.patient import Patient
-from modules.therapist import Therapist
+from agents.patient import Patient
+from agents.therapist import Therapist
 from rewards.sentiment import SentimentReward
-from modules.therapist_reward import TherapistReward
+from rewards.therapist_reward import TherapistReward
 
 
 def set_seed(seed: int) -> None:
@@ -37,6 +35,16 @@ def parse_args():
         default=1,
         help="The number of personas to sample for each situation. Default is 1. n_personas greater than 1 will duplicate the situation.",
     )
+    parser.add_argument(
+        '--regenerate_thought',
+        action='store_true',
+        help="Whether to regenerate the initial thought. Default is False.",
+    )
+    parser.add_argument(
+        '--disable_thinking_in_initial_thought',
+        action='store_true',
+        help="Whether to disable reasoning mode when producing initial thoughts. Default is False (enable reasoning mode).",
+    )
     return parser.parse_args()
 
 
@@ -51,7 +59,7 @@ def main():
         n_personas=args.n_personas,
     )
 
-    # initialize LLM, load model in cuda:1, cuda:0 is used for reward model, cuda:2-3 for therapist agent
+    # Module: initialize LLM, load model in cuda:1, cuda:0 is used for reward model, cuda:2-3 for therapist agent
     therapist_reward = TherapistReward(
         sentiment_reward_device=torch.device('cuda:0'),
     )
@@ -62,7 +70,6 @@ def main():
         patient_device=patient_device,
     )
 
-
     patient_agent = Patient(
         vllm_client=vllm,
     )
@@ -70,8 +77,9 @@ def main():
     # first, prompt patient agent to produce initial thought
     patient_agent.produce_initial_thought(
         data=prepared_data,
-        enable_thinking=False,
+        disable_thinking=args.disable_thinking_in_initial_thought,
         therapist_reward=therapist_reward,
+        regenerate_thought=args.regnerate_thought,
     )
 
 

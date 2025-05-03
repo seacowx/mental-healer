@@ -90,7 +90,7 @@ class TherapistReward:
         )
 
 
-    def compute_reward(
+    def compute_current_reward(
         self, 
         situation_list: list,
         old_thought_list: list,
@@ -118,4 +118,15 @@ class TherapistReward:
             self.SEMANTIC_SIMILARITY_COEFFICIENT * semantic_similarity
             for sentiment_reward, semantic_similarity in zip(sentiment_reward_list, semantic_similarity_list)
         ]
+
+
+    def compute_process_reward(self):
+        """
+        Compute the final reward for the whole dialogue process.
+        Each single step corresponds to a reward. 
+        The final reward accounts for the whole process using the following criteria:
+            1. Efficiency: allocate higher reward to trajectories with fewer steps (reach positive sentiment using less round of dialogues). 
+            2. Consistency: allocate higher reward to trajectories with more consistent sentiment (less fluctuation in sentiment).
+        """
+        ...
 

@@ -1,4 +1,4 @@
-from utils.llm_inference import vLLMOffline
+from utils.llm_inference_utils import vLLMOffline
 from modules.therapist_reward import TherapistReward
 
 
@@ -10,10 +10,17 @@ def iterative_thought_generation(
     therapist_reward: TherapistReward,
     queue_idx_list: list,
     vllm_client: vLLMOffline,
+    enable_thinking: bool = True,
     TOLERANCE: int = 5,
 ):
     """
     Iteratively generate thoughts until the sentiment is negative or the number of iterations exceeds TOLERANCE.
+
+    The generation process is iterative and follows these steps:
+        1. Given a situation and persona profile, the agent generates an initial thought.
+        2. The situation and the initial thought are passed to the sentiment reward model to get a sentiment result.
+        3. The initial thought is valid if it results in negative sentiment. Otherwise, regenerate the thought.
+        4. Steps 1-3 are repeated until all the initial thoughts result in negative sentiment.
 
     Args:
         initial_thought_message_list (list): List of messages for initial thought generation.
@@ -27,6 +34,9 @@ def iterative_thought_generation(
         valid_initial_thought_list (list): List of valid initial thoughts after sentiment analysis. Invalid thoughts are replaced with empty strings.
     """
 
+    print(enable_thinking)
+    raise SystemExit()
+
     num_iterations = 0
     valid_initial_thought_list = [''] * len(initial_thought_message_list)
     while queue_idx_list and num_iterations < TOLERANCE:
@@ -34,7 +44,7 @@ def iterative_thought_generation(
         # generate initial thoughts
         think_output_list = vllm_client.inference(
             message_list=initial_thought_message_list,
-            enable_thinking=True,
+            enable_thinking=enable_thinking,
         )
         
         parsed_output = []

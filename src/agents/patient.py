@@ -4,13 +4,15 @@ Patient Agent. Frozen during RL training.
 This agent is responsible for generating the initial thought and updating the thought based on the therapist's utterance.
 """
 
+import os
+import operator
 import yaml, json
 import pandas as pd
 from copy import deepcopy
 
 from openai import OpenAI, AsyncOpenAI
 
-from utils.base_agent import LMAgent
+from agents.base_agent import LMAgent
 from utils.llm_inference import vLLMOffline
 from modules.therapist_reward import TherapistReward
 from utils.thought_utils import iterative_thought_generation
@@ -66,17 +68,12 @@ class Patient(LMAgent):
         self, 
         data: dict,
         therapist_reward: TherapistReward,
-        enable_thinking: bool = True,
+        disable_thinking: bool = False,
+        regenerate_thought: bool = False,
     ) -> list:
         """
         Produce the initial thought given the agent's own utterance that describes a situation
         This process is done in batches.
-
-        The generation process is iterative and follows these steps:
-            1. Given a situation and persona profile, the agent generates an initial thought.
-            2. The situation and the initial thought are passed to the sentiment reward model to get a sentiment result.
-            3. The initial thought is valid if it results in negative sentiment. Otherwise, regenerate the thought.
-            4. Steps 1-3 are repeated until all the initial thoughts result in negative sentiment.
 
         Inputs:
             self_utterance_list (list): A list of agents' own utterances that describe a situation
@@ -85,6 +82,15 @@ class Patient(LMAgent):
         Outputs:
             initial_thought_list (list): A list of initial thoughts produced by the agent
         """
+
+        # avoid re-generating the initial thought if it already exists
+        cache_fpath = '../data/situations/situations_with_initial_thought.json'
+        if os.path.exists(cache_fpath) and not regenerate_thought:
+            out_data = json.load(open(cache_fpath, 'r'))
+            parsed_initial_thought_list = [
+                val['initial_thought'] for val in out_data.values()
+            ]
+            return parsed_initial_thought_list
 
         initial_thought_message_list = []
         situation_list = []
@@ -117,20 +123,15 @@ class Patient(LMAgent):
             therapist_reward=therapist_reward,
             vllm_client=self.vllm_client,
             queue_idx_list=queue_idx_list,
+            enable_thinking=operator.not_(disable_thinking),
             TOLERANCE=TOLERANCE,
         )
-
-        situation_list = [
-            val['situation'] for val in data.values()
-        ]
-        persona_list = [
-            val['persona_profile'] for val in data.values()
-        ]
 
         out_data = {}
         num_invalid_thought = 0
         for initial_thought, (key, val) in zip(parsed_initial_thought_list, data.items()):
 
+            # check if the initial thought is valid, invalid thoughts are represented as empty strings
             if initial_thought:
                 out_data[key] = {
                     'situation': val['situation'],
@@ -144,6 +145,8 @@ class Patient(LMAgent):
 
         with open('../data/situations/situations_with_initial_thought.json', 'w') as f:
             json.dump(out_data, f, indent=4)
+
+        return parsed_initial_thought_list
 
 
     def utter(

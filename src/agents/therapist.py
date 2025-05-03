@@ -1,4 +1,4 @@
-from utils.base_agent import LMAgent
+from agents.base_agent import LMAgent
 
 
 class Therapist(LMAgent):
