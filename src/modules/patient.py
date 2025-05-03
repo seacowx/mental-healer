@@ -111,8 +111,6 @@ class Patient(LMAgent):
         queue_idx_list = list(range(len(initial_thought_message_list)))
         TOLERANCE = 5
 
-        # TODO: finish implementing the iterative thought generating process
-
         parsed_initial_thought_list = iterative_thought_generation(
             initial_thought_message_list=initial_thought_message_list,
             situation_list=situation_list,
@@ -130,12 +128,19 @@ class Patient(LMAgent):
         ]
 
         out_data = {}
+        num_invalid_thought = 0
         for initial_thought, (key, val) in zip(parsed_initial_thought_list, data.items()):
-            out_data[key] = {
-                'situation': val['situation'],
-                'persona_profile': val['persona_profile'],
-                'initial_thought': initial_thought,
-            }
+
+            if initial_thought:
+                out_data[key] = {
+                    'situation': val['situation'],
+                    'persona_profile': val['persona_profile'],
+                    'initial_thought': initial_thought,
+                }
+            else:
+                num_invalid_thought += 1
+
+        print(f"Number of invalid initial thoughts: {num_invalid_thought}")
 
         with open('../data/situations/situations_with_initial_thought.json', 'w') as f:
             json.dump(out_data, f, indent=4)
