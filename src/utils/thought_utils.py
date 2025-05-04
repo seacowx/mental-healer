@@ -60,7 +60,7 @@ def iterative_thought_generation(
 
         # generate initial thoughts
         think_output_list = vllm_client.inference(
-            message_list=initial_thought_message_list,
+            message_list=active_messages,
             enable_thinking=enable_thinking,
         )
 
