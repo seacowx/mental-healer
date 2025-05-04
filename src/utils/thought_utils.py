@@ -93,7 +93,7 @@ def iterative_thought_generation(
             if sentiment == 'positive'
         ]
         initial_thought_message_list = [
-            initial_thought_message_list[idx] for idx in queue_idx_list
+            initial_thought_message_list[idx] for idx in range(len(queue_idx_list))
         ]
         situation_list = [
             situation_list[idx] for idx in queue_idx_list
