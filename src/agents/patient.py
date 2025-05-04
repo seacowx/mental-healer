@@ -119,8 +119,8 @@ class Patient(LMAgent):
         TOLERANCE = 5
 
         parsed_initial_thought_list = iterative_thought_generation(
-            initial_thought_message_list=initial_thought_message_list[:5000],
-            situation_list=situation_list[:5000],
+            initial_thought_message_list=initial_thought_message_list,
+            situation_list=situation_list,
             therapist_reward=therapist_reward,
             vllm_client=self.vllm_client,
             enable_thinking=operator.not_(disable_thinking),
