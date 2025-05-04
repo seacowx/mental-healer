@@ -76,8 +76,10 @@ class Patient(LMAgent):
         This process is done in batches.
 
         Inputs:
-            self_utterance_list (list): A list of agents' own utterances that describe a situation
-            self_persona_list (list): A list of agents' own personas that describe a situation
+            data (dict): A dictionary containing the situation and persona profile
+            therapist_reward (TherapistReward): The reward model for sentiment analysis
+            disable_thinking (bool): Whether to disable reasoning mode when producing initial thoughts
+            regenerate_thought (bool): Whether to regenerate the initial thought
 
         Outputs:
             initial_thought_list (list): A list of initial thoughts produced by the agent
@@ -114,15 +116,13 @@ class Patient(LMAgent):
             initial_thought_message_list.append(cur_message)
 
         initial_thought_message_list = initial_thought_message_list
-        queue_idx_list = list(range(len(initial_thought_message_list)))
         TOLERANCE = 5
 
         parsed_initial_thought_list = iterative_thought_generation(
-            initial_thought_message_list=initial_thought_message_list,
-            situation_list=situation_list,
+            initial_thought_message_list=initial_thought_message_list[:500],
+            situation_list=situation_list[:500],
             therapist_reward=therapist_reward,
             vllm_client=self.vllm_client,
-            queue_idx_list=queue_idx_list,
             enable_thinking=operator.not_(disable_thinking),
             TOLERANCE=TOLERANCE,
         )

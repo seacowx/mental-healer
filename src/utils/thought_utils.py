@@ -4,11 +4,25 @@ from rewards.therapist_reward import TherapistReward
 
 # TODO: Check the implementation of the itrative thought generation function
 
+def parse_thought_output(think_output_list: list) -> tuple[list, list]:
+        
+    parsed_output = []
+    corrupted_idx_list = []
+    for think_output_idx, think_output in enumerate(think_output_list):
+        try:
+            think_output = think_output.split('</think>')[-1].rsplit('<thought>')[1].split('</thought>')[0]
+            parsed_output.append(think_output)
+        except Exception as e:
+            parsed_output.append('')
+            corrupted_idx_list.append(think_output_idx)
+
+    return parsed_output, corrupted_idx_list
+
+
 def iterative_thought_generation(
     initial_thought_message_list: list,
     situation_list: list,
     therapist_reward: TherapistReward,
-    queue_idx_list: list,
     vllm_client: vLLMOffline,
     enable_thinking: bool = True,
     TOLERANCE: int = 5,
@@ -34,6 +48,10 @@ def iterative_thought_generation(
         valid_initial_thought_list (list): List of valid initial thoughts after sentiment analysis. Invalid thoughts are replaced with empty strings.
     """
 
+    # FIXME: the index of vali_initial_thought_list is wrong. 
+
+    queue_idx_list = list(range(len(initial_thought_message_list)))
+
     num_iterations = 0
     valid_initial_thought_list = [''] * len(initial_thought_message_list)
     while queue_idx_list and num_iterations < TOLERANCE:
@@ -43,16 +61,10 @@ def iterative_thought_generation(
             message_list=initial_thought_message_list,
             enable_thinking=enable_thinking,
         )
-        
-        parsed_output = []
-        corrupted_idx_list = []
-        for think_output_idx, think_output in enumerate(think_output_list):
-            try:
-                think_output = think_output.split('</think>')[-1].split('<thought>')[1].split('</thought>')[0]
-                parsed_output.append(think_output)
-            except Exception as e:
-                parsed_output.append('')
-                corrupted_idx_list.append(think_output_idx)
+
+        parsed_output, corrupted_idx_list = parse_thought_output(
+            think_output_list=think_output_list,
+        )
 
         sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
             situation_list=situation_list,
@@ -77,11 +89,14 @@ def iterative_thought_generation(
 
         # retrain the queue index if the sentiment is positive
         queue_idx_list = [
-            idx for idx, ele in enumerate(output_sentiment_list)
-            if ele == 'positive'
+            queue_idx for queue_idx, sentiment in zip(queue_idx_list, output_sentiment_list)
+            if sentiment == 'positive'
         ]
         initial_thought_message_list = [
             initial_thought_message_list[idx] for idx in queue_idx_list
+        ]
+        situation_list = [
+            situation_list[idx] for idx in queue_idx_list
         ]
 
         num_iterations += 1

@@ -273,7 +273,7 @@ class vLLMOffline:
         self, 
         message_list: list, 
         **kwargs
-    ) -> str:
+    ) -> list:
         """
         Inference with vLLM model
         """
