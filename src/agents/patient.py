@@ -87,12 +87,12 @@ class Patient(LMAgent):
 
         # avoid re-generating the initial thought if it already exists
         cache_fpath = '../data/situations/situations_with_initial_thought.json'
-        if os.path.exists(cache_fpath) and not regenerate_thought:
-            out_data = json.load(open(cache_fpath, 'r'))
-            parsed_initial_thought_list = [
-                val['initial_thought'] for val in out_data.values()
-            ]
-            return parsed_initial_thought_list
+        # if os.path.exists(cache_fpath) and not regenerate_thought:
+        #     out_data = json.load(open(cache_fpath, 'r'))
+        #     parsed_initial_thought_list = [
+        #         val['initial_thought'] for val in out_data.values()
+        #     ]
+        #     return parsed_initial_thought_list
 
         initial_thought_message_list = []
         situation_list = []
