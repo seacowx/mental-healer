@@ -80,7 +80,10 @@ def main():
         disable_thinking=args.disable_thinking_in_initial_thought,
         therapist_reward=therapist_reward,
         regenerate_thought=args.regenerate_thought,
+        top_k_personas=args.n_personas,
     )
+
+    # NOTE: Number of situations with valid initial thoughts = 47,258
 
 
 if __name__ == "__main__":

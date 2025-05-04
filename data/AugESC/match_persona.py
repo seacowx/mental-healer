@@ -6,7 +6,6 @@ import torch.nn.functional as F
 from transformers import AutoModel, AutoTokenizer
 
 
-
 def main():
 
     embedding_model = AutoModel.from_pretrained(

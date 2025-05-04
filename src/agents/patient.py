@@ -68,6 +68,7 @@ class Patient(LMAgent):
         self, 
         data: dict,
         therapist_reward: TherapistReward,
+        top_k_personas: int = 1,
         disable_thinking: bool = False,
         regenerate_thought: bool = False,
     ) -> list:
@@ -86,13 +87,13 @@ class Patient(LMAgent):
         """
 
         # avoid re-generating the initial thought if it already exists
-        cache_fpath = '../data/situations/situations_with_initial_thought.json'
-        # if os.path.exists(cache_fpath) and not regenerate_thought:
-        #     out_data = json.load(open(cache_fpath, 'r'))
-        #     parsed_initial_thought_list = [
-        #         val['initial_thought'] for val in out_data.values()
-        #     ]
-        #     return parsed_initial_thought_list
+        cache_fpath = f'../data/situations/situations_with_initial_thought_top{top_k_personas}.json'
+        if os.path.exists(cache_fpath) and not regenerate_thought:
+            out_data = json.load(open(cache_fpath, 'r'))
+            parsed_initial_thought_list = [
+                val['initial_thought'] for val in out_data.values()
+            ]
+            return parsed_initial_thought_list
 
         initial_thought_message_list = []
         situation_list = []
@@ -143,7 +144,7 @@ class Patient(LMAgent):
 
         print(f"Number of invalid initial thoughts: {num_invalid_thought}")
 
-        with open('../data/situations/situations_with_initial_thought.json', 'w') as f:
+        with open(cache_fpath, 'w') as f:
             json.dump(out_data, f, indent=4)
 
         return parsed_initial_thought_list
