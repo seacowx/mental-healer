@@ -61,13 +61,12 @@ class SentimentReward:
     ) -> list:
 
         # keep track of the completed and corrupted outputs
-        queue_list = list(range(len(input_msg_list)))
-
+        remaining_indices = list(range(len(input_msg_list)))
         out_list = [''] * len(input_msg_list)
         TOLERANCE = 5
         tol_counter = 0
-        finished_idx_list = []
-        while queue_list and tol_counter < TOLERANCE:
+
+        while input_msg_list and tol_counter < TOLERANCE:
 
             outputs = self.llm.chat(
                 messages=input_msg_list,
@@ -76,34 +75,30 @@ class SentimentReward:
                 use_tqdm=True,
             )
 
-            for output_idx, output in enumerate(outputs):
+            new_input_msg_list = []
+            new_remaining_indices = []
+
+            for i, output in enumerate(outputs):
                 parsed_output = self.__parse_output(output)
+                if parsed_output:
+                    # Store the parsed result in the original index
+                    out_list[remaining_indices[i]] = parsed_output
+                else:
+                    # If parsing failed, queue this message for the next iteration.
+                    new_input_msg_list.append(input_msg_list[i])
+                    new_remaining_indices.append(remaining_indices[i])
 
-                if not parsed_output:
-                    continue
+            input_msg_list = new_input_msg_list
+            remaining_indices = new_remaining_indices
 
-                out_list[queue_list[output_idx]] = parsed_output
-                finished_idx_list.append(queue_list[output_idx])
-
-            # update queue_list, remove finised idx
-            queue_list = [
-                idx for idx in queue_list if idx not in finished_idx_list
-            ]
-            input_msg_list = [
-                input_msg_list[i] for i in range(len(input_msg_list)) if i not in finished_idx_list
-            ]
             tol_counter += 1
-
-            # increment temperature
             self.sampling_params.temperature += 0.2
+
+        for idx in remaining_indices:
+            out_list[idx] = 'negative'
 
         # reset temperature
         self.sampling_params.temperature = 0.0
-
-        # if there are remaining corrupted outputs, set them to be negative sentiment
-        if queue_list:
-            for idx in queue_list:
-                out_list[idx] = 'negative'
 
         return out_list
 

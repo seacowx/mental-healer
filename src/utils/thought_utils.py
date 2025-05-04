@@ -50,11 +50,13 @@ def iterative_thought_generation(
 
     # FIXME: the index of vali_initial_thought_list is wrong. 
 
-    queue_idx_list = list(range(len(initial_thought_message_list)))
+    active_indices = list(range(len(initial_thought_message_list)))
+    active_messages = initial_thought_message_list.copy()
+    active_situations = situation_list.copy()
+    valid_initial_thought_list = [''] * len(initial_thought_message_list)
 
     num_iterations = 0
-    valid_initial_thought_list = [''] * len(initial_thought_message_list)
-    while queue_idx_list and num_iterations < TOLERANCE:
+    while active_messages and num_iterations < TOLERANCE:
 
         # generate initial thoughts
         think_output_list = vllm_client.inference(
@@ -79,25 +81,21 @@ def iterative_thought_generation(
         for idx in corrupted_idx_list:
             output_sentiment_list[idx] = 'positive'
 
-        valid_queue_idx_list = [
-            idx for idx, ele in enumerate(output_sentiment_list)
-            if ele == 'negative'
-        ]
+        new_active_indices = []
+        new_active_messages = []
+        new_active_situations = []
+        for i, sentiment in enumerate(output_sentiment_list):
+            if sentiment == 'negative':
+                valid_initial_thought_list[active_indices[i]] = parsed_output[i]
+            else:
+                # keep message for re-generation if sentiment is positive
+                new_active_indices.append(active_indices[i])
+                new_active_messages.append(active_messages[i])
+                new_active_situations.append(active_situations[i])
 
-        for round_idx, queue_idx in enumerate(valid_queue_idx_list):
-            valid_initial_thought_list[queue_idx] = parsed_output[round_idx]
-
-        # retrain the queue index if the sentiment is positive
-        queue_idx_list = [
-            queue_idx for queue_idx, sentiment in zip(queue_idx_list, output_sentiment_list)
-            if sentiment == 'positive'
-        ]
-        initial_thought_message_list = [
-            initial_thought_message_list[idx] for idx in range(len(queue_idx_list))
-        ]
-        situation_list = [
-            situation_list[idx] for idx in queue_idx_list
-        ]
+        active_indices = new_active_indices
+        active_messages = new_active_messages
+        active_situations = new_active_situations
 
         num_iterations += 1
 
