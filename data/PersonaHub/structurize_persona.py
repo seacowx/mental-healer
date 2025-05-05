@@ -30,13 +30,10 @@ async def main():
 
     # check which persona profiles are matched with AugESC
     matched_persona_dict = json.load(open('../AugESC/augsec_matched_persona.json', 'r'))
-    matched_persona_keys = list(matched_persona_dict.values())
-
-    print(matched_persona_keys[0])
-    raise SystemExit()
-
-
-    matched_persona_keys = list(set(sum(matched_persona_keys, [])))
+    matched_persona_keys = set()
+    for val in matched_persona_dict.values():
+        for sub_val in val:
+            matched_persona_keys.add(sub_val['id'])
 
     print(len(matched_persona_keys))
     raise SystemExit()
