@@ -50,7 +50,7 @@ async def main():
             async_client.process_with_semaphore(
                 semaphore=semaphore,
                 model='vllm-model',
-                message=msg_list[:10],
+                message=msg_list[0],
                 temperature=0.6,
                 max_tokens=4096,
                 top_p=0.95,
