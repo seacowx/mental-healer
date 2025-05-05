@@ -3,7 +3,10 @@ import tqdm
 from utils.persona_utils import sample_persona
 
 
-def prepare_training_data(n_personas=1) -> dict:
+def prepare_training_data(
+    data_path: str = '../data/situations/situations.json',
+    n_personas=1,
+) -> dict:
     """
     Prepare training data for the model.
 
@@ -17,9 +20,7 @@ def prepare_training_data(n_personas=1) -> dict:
         prepared_data (dict): A dictionary where each key is a situation ID and the value is a dictionary containing the situation and the sampled persona profile.
     """
 
-    data = json.load(
-        open('../data/situations/situations.json', 'r')
-    )
+    data = json.load(open(data_path, 'r'))
 
     pbar = tqdm.tqdm(
         total=len(data) * n_personas,

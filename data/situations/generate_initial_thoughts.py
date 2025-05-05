@@ -140,6 +140,7 @@ def main():
     args = parse_args()
 
     prepared_data = prepare_training_data(
+        data_path='./situations.json'
         n_personas=args.n_personas,
     )
 
