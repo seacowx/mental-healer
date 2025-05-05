@@ -1,7 +1,7 @@
 from asyncio import Semaphore
 from tqdm.asyncio import tqdm as atqdm
 
-from utils.llm_inference_utils import vLLMOffline
+from openai import AsyncOpenAI
 from rewards.therapist_reward import TherapistReward
 
 
@@ -26,7 +26,7 @@ async def iterative_thought_generation(
     initial_thought_message_list: list,
     situation_list: list,
     therapist_reward: TherapistReward,
-    vllm_client: vLLMOffline,
+    vllm_client: AsyncOpenAI,
     enable_thinking: bool = True,
     TOLERANCE: int = 5,
 ):
@@ -44,7 +44,7 @@ async def iterative_thought_generation(
         situation_list (list): List of situations for sentiment analysis.
         therapist_reward (TherapistReward): TherapistReward object for sentiment analysis.
         queue_idx_list (list): List of indices to track which thoughts are still in the queue.
-        vllm_client (vLLMOffline): VLLM client for generating thoughts.
+        vllm_client (AsyncOpenAI): VLLM client for generating thoughts.
         TOLERANCE (int): Maximum number of iterations to prevent infinite loops.
 
     Returns:

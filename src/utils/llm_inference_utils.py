@@ -151,17 +151,12 @@ class vLLMServer:
         world_size: int, 
         quantization: bool,
         vllm_api_port: int = 8000,
-        device_list: list[int] | None = None,
     ) -> None:
 
         self.model_path = model_path
         self.world_size = world_size
         self.quantization = quantization
         self.vllm_api_port = vllm_api_port
-
-        self.start_vllm_server(
-            device_list=device_list,
-        )
 
 
     def start_vllm_server(
