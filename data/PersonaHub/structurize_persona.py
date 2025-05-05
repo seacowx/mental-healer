@@ -35,10 +35,6 @@ async def main():
         for sub_val in val:
             matched_persona_keys.add(sub_val['id'])
 
-    print(len(persona_dict))
-    print(len(matched_persona_keys))
-    raise SystemExit()
-
     # structurize only the matched persona profiles
     persona_dict = {
         key: val for key, val in persona_dict.items() if key in matched_persona_keys
