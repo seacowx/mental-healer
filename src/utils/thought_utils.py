@@ -68,7 +68,7 @@ async def iterative_thought_generation(
                 model='vllm-model',
                 message=active_message,
                 temperature=0.6,
-                max_tokens=8192,
+                max_tokens=4096,
                 top_p=0.95,
                 frequency_penalty=0.0,
                 presence_penalty=1.0,
