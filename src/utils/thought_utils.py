@@ -78,12 +78,12 @@ async def iterative_thought_generation(
 
         think_output_list = await atqdm.gather(*think_output_list)
 
-        print(think_output_list[0])
-        raise SystemExit()
-
         parsed_output, corrupted_idx_list = parse_thought_output(
             think_output_list=think_output_list,
         )
+
+        print(parsed_output[0])
+        raise SystemExit()
 
         sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
             situation_list=situation_list,
