@@ -64,7 +64,7 @@ def main():
         sentiment_reward_device=torch.device('cuda:0'),
     )
 
-    patient_device = torch.device('cuda:1')
+    patient_device = torch.device('cuda:1') if torch.cuda.device_count() > 1 else torch.device('cuda:0')
     vllm = vLLMOffline(
         model_path=llm_path_dict[args.base_model]['path'],
         patient_device=patient_device,
