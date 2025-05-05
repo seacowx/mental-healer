@@ -10,6 +10,8 @@ class TherapistReward:
         self, 
         sentiment_reward_device: torch.device,
         sentiment_prompt_path: str = './prompts/sentiment.yaml',
+        llm_config_path: str = './configs/llm_configs.yaml',
+        sentiment_reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
     ) -> None:
         self.sentiment_prompt = yaml.load(
             open(sentiment_prompt_path, 'r'),
@@ -17,6 +19,8 @@ class TherapistReward:
         )['input']
         self.sentiment_reward = SentimentReward(
             sentiment_reward_device=sentiment_reward_device,
+            llm_config_path=llm_config_path,
+            reward_rule_path=sentiment_reward_rule_path,
         )
         self.semantic_similarity_reward = SemanticSimilarityReward()
 

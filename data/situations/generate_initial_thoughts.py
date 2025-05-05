@@ -153,6 +153,8 @@ def main():
     therapist_reward = TherapistReward(
         sentiment_prompt_path='../../src/prompts/sentiment.yaml',
         sentiment_reward_device=torch.device('cuda:0'),
+        llm_config_path='../../src/configs/llm_configs.yaml',
+        sentiment_reward_rule_path = '../../src/configs/sentiment_reward_rules.yaml',
     )
 
     # when there are 4 GPUs, assuming running with A100-40G use cuda:2,3 for vLLM

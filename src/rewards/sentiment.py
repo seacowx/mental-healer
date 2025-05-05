@@ -9,12 +9,17 @@ from vllm.lora.request import LoRARequest
 class SentimentReward:
 
 
-    def __init__(self, sentiment_reward_device: torch.device) -> None:
-        model_path_dict = yaml.safe_load(open('./configs/llm_configs.yaml'))
+    def __init__(
+        self, 
+        sentiment_reward_device: torch.device,
+        llm_config_path: str = './configs/llm_configs.yaml', 
+        reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
+    ) -> None:
+        model_path_dict = yaml.safe_load(open(llm_config_path, 'r'))
         model_path = model_path_dict['qwen7']['path']
 
         self.reward_mapping = yaml.load(
-            open('./configs/sentiment_reward_rules.yaml', 'r'),
+            open(reward_rule_path, 'r'),
             Loader=yaml.FullLoader,
         )
 
