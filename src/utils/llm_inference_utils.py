@@ -195,7 +195,7 @@ class vLLMServer:
             '--port', str(self.vllm_api_port),
             '--api-key', 'anounymous123',
             '--max-model-len', str(max_model_len),
-            '--pipeline-parallel-size', str(self.world_size),
+            '--tensor-parallel-size', str(self.world_size),
             '--gpu-memory-utilization', '0.95',
         ]    
 
