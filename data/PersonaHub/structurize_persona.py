@@ -55,7 +55,7 @@ async def main():
                 max_tokens=4096,
                 top_p=0.95,
                 frequency_penalty=0.0,
-                presence_penalty=1.0,) for msg in msg_list[:100]
+                presence_penalty=1.0,) for msg in msg_list
             ]
         output_list = await atqdm.gather(*output_list)
 
@@ -77,7 +77,8 @@ async def main():
         cur_key = key_list[idx]
         structured_persona_dict[cur_key] = output_dict
 
-    print(structured_persona_dict)
+    with open('./persona_structured.json', 'w') as f:
+        json.dump(structured_persona_dict, f, indent=4)
 
 if __name__ == "__main__":
     asyncio.run(main())
