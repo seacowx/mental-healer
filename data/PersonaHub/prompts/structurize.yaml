@@ -2,7 +2,7 @@ system: |-
   You are an expert in extracting information from text and structuring it into a JSON format. 
 
 user: |-
-  Given the a persona profile, which is a paragraph of descriptive text, convert it into a structured JSON format. The JSON should containt the following fields:
+  Given the a persona profile, which is a paragraph of descriptive text, convert it into a structured JSON format. The JSON should contain the following fields:
 
   - age: The age of the persona 
   - occupation: The occupation of the persona
