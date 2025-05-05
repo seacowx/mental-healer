@@ -173,3 +173,7 @@ def main():
         disable_thinking=args.disable_thinking_in_initial_thought,
         regenerate_thought=args.regenerate_thought,
     )
+
+
+if __name__ == "__main__":
+    main()
