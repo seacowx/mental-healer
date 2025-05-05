@@ -167,23 +167,24 @@ async def main():
 
     # TODO: replace with vLLMServer
     print('\n\nLoading LLMs for initial thought generation...\n')
-    vllm_client = vLLMServer(
-        model_path=llm_path_dict[args.base_model]['path'],
-        world_size=len(thought_device),
-        quantization=False,
-        device_list=thought_device,
-    )
+    try:
+        vllm_client = vLLMServer(
+            model_path=llm_path_dict[args.base_model]['path'],
+            world_size=len(thought_device),
+            quantization=False,
+            device_list=thought_device,
+        )
 
-    await produce_initial_thought(
-        data=prepared_data,
-        vllm_client=vllm_client,
-        therapist_reward=therapist_reward,
-        top_k_personas=args.n_personas,
-        disable_thinking=args.disable_thinking_in_initial_thought,
-        regenerate_thought=args.regenerate_thought,
-    )
-
-    vllm_client.kill_server()
+        await produce_initial_thought(
+            data=prepared_data,
+            vllm_client=vllm_client,
+            therapist_reward=therapist_reward,
+            top_k_personas=args.n_personas,
+            disable_thinking=args.disable_thinking_in_initial_thought,
+            regenerate_thought=args.regenerate_thought,
+        )
+    finally:
+        vllm_client.kill_server()
 
 
 if __name__ == "__main__":
