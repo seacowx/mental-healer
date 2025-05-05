@@ -59,8 +59,6 @@ async def main():
             ]
         output_list = await atqdm.gather(*output_list)
 
-        print(output_list[0])
-        raise SystemExit()
     finally:
         vllm_server.kill_server()
 
@@ -78,6 +76,8 @@ async def main():
 
         cur_key = key_list[idx]
         structured_persona_dict[cur_key] = output_dict
+
+    print(structured_persona_dict)
 
 if __name__ == "__main__":
     asyncio.run(main())
