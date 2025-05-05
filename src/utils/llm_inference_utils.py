@@ -210,6 +210,9 @@ class vLLMServer:
         # add api key to environemnt variable 
         os.environ['VLLM_API_KEY'] = 'anounymous123'
 
+        print(server_command)
+        raise SystemExit()
+
         # check if the server is running
         self.server = subprocess.Popen(
             args=server_command,
