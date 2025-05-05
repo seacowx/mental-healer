@@ -6,9 +6,13 @@ from rewards.semantic_similarity import SemanticSimilarityReward
 
 class TherapistReward:
 
-    def __init__(self, sentiment_reward_device: torch.device) -> None:
+    def __init__(
+        self, 
+        sentiment_reward_device: torch.device,
+        sentiment_prompt_path: str = './prompts/sentiment.yaml',
+    ) -> None:
         self.sentiment_prompt = yaml.load(
-            open('./prompts/sentiment.yaml', 'r'),
+            open(sentiment_prompt_path, 'r'),
             Loader=yaml.FullLoader,
         )['input']
         self.sentiment_reward = SentimentReward(

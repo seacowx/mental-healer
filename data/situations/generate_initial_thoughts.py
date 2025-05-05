@@ -151,6 +151,7 @@ def main():
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
 
     therapist_reward = TherapistReward(
+        sentiment_prompt_path='../../src/prompts/sentiment.yaml',
         sentiment_reward_device=torch.device('cuda:0'),
     )
 
