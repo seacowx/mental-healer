@@ -146,7 +146,7 @@ async def main():
     )
 
     # DEBUG: truncate the data to 1000 situations
-    prepared_data = dict(list(prepared_data.items())[:1000])
+    prepared_data = dict(list(prepared_data.items())[:100])
 
     # STEP: load LLMs via vLLM
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
