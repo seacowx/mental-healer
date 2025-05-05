@@ -3,7 +3,6 @@
 import asyncio
 import os, sys
 import argparse
-import operator
 import yaml, json
 from copy import deepcopy
 sys.path.append('../../src/')
@@ -21,7 +20,6 @@ async def produce_initial_thought(
     vllm_client: vLLMServer,
     therapist_reward: TherapistReward,
     top_k_personas: int = 1,
-    disable_thinking: bool = False,
     regenerate_thought: bool = False,
 ) -> None:
     """
@@ -79,7 +77,6 @@ async def produce_initial_thought(
         situation_list=situation_list,
         therapist_reward=therapist_reward,
         vllm_client=vllm_client,
-        enable_thinking=operator.not_(disable_thinking),
         TOLERANCE=TOLERANCE,
     )
 

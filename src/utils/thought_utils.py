@@ -13,7 +13,7 @@ def parse_thought_output(think_output_list: list) -> tuple[list, list]:
     corrupted_idx_list = []
     for think_output_idx, think_output in enumerate(think_output_list):
         try:
-            think_output = think_output.split('</think>')[-1].rsplit('<thought>')[1].split('</thought>')[0]
+            think_output = think_output.split('</think>')[-1].rsplit('<thought>')[1].split('</thought>')[0].strip()
             parsed_output.append(think_output)
         except Exception as e:
             parsed_output.append('')
@@ -27,7 +27,6 @@ async def iterative_thought_generation(
     situation_list: list,
     therapist_reward: TherapistReward,
     vllm_client: AsyncOpenAI,
-    enable_thinking: bool = True,
     TOLERANCE: int = 5,
 ):
     """
@@ -81,9 +80,6 @@ async def iterative_thought_generation(
         parsed_output, corrupted_idx_list = parse_thought_output(
             think_output_list=think_output_list,
         )
-
-        print(parsed_output[0])
-        raise SystemExit()
 
         sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
             situation_list=situation_list,
