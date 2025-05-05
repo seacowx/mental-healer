@@ -12,7 +12,7 @@ import torch
 from utils.llm_inference_utils import vLLMServer
 
 
-def main():
+async def main():
 
     llm_config = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
     model_path = llm_config['qwen32']['path']
@@ -56,10 +56,25 @@ def main():
             frequency_penalty=0.0,
             presence_penalty=1.0,
     )]
+    output_list = await atqdm.gather(*output_list)
 
     print(output_list[0])
     raise SystemExit()
 
+    # get the original keys of the persona dictionary
+    key_list = list(persona_dict.keys())
+    structured_persona_dict = {}
+    for idx, output_dict in enumerate(output_list):
+
+        try:
+            output_dict = output_dict.rsplit('</think>')[-1]
+            output_dict = '{' + output_dict.split('{')[-1].split('}')[0] + '}'
+            output_dict = literal_eval(output_dict)
+        except:
+            output_dict = {}
+
+        cur_key = key_list[idx]
+        structured_persona_dict[cur_key] = output_dict
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
