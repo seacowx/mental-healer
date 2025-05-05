@@ -29,26 +29,6 @@ def parse_args():
         default='qwen8',
         help="The base model to use for the training. Default is 'qwen3-8B'.",
     )
-    parser.add_argument(
-        '--n_personas',
-        type=int,
-        default=1,
-        help=(
-            "The number of personas to sample for each situation. Default is 1. "
-            "n_personas greater than 1 will duplicate the situation."
-        ))
-    parser.add_argument(
-        '--regenerate_thought',
-        action='store_true',
-        help="Whether to regenerate the initial thought. Default is False.",
-    )
-    parser.add_argument(
-        '--disable_thinking_in_initial_thought',
-        action='store_true',
-        help=(
-            "Whether to disable reasoning mode when producing initial thoughts. "
-            "Default is False (enable reasoning mode)."
-        ))
     return parser.parse_args()
 
 
@@ -59,35 +39,8 @@ def main():
 
     llm_path_dict = yaml.safe_load(open('./configs/llm_configs.yaml', 'r'))
 
-    prepared_data = prepare_training_data(
-        n_personas=args.n_personas,
-    )
-
     # Step: initialize LLM, load model in cuda:1, cuda:0 is used for reward model, cuda:2-3 for therapist agent
-    therapist_reward = TherapistReward(
-        sentiment_reward_device=torch.device('cuda:0'),
-    )
 
-    patient_device = torch.device('cuda:1') if torch.cuda.device_count() > 1 else torch.device('cuda:0')
-    patient_vllm = vLLMOffline(
-        model_path=llm_path_dict[args.base_model]['path'],
-        patient_device=patient_device,
-    )
-
-    patient_agent = Patient(
-        vllm_client=patient_vllm,
-    )
-
-    # Step: generate initial thoughts
-    patient_agent.produce_initial_thought(
-        data=prepared_data,
-        disable_thinking=args.disable_thinking_in_initial_thought,
-        therapist_reward=therapist_reward,
-        regenerate_thought=args.regenerate_thought,
-        top_k_personas=args.n_personas,
-    )
-
-    # NOTE: Number of situations (n_personas = 1) with valid initial thoughts = 47,258
 
 
 if __name__ == "__main__":
