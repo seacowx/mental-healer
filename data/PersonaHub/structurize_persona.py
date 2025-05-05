@@ -50,13 +50,13 @@ async def main():
             async_client.process_with_semaphore(
                 semaphore=semaphore,
                 model='vllm-model',
-                message=msg_list[0],
+                message=msg,
                 temperature=0.6,
                 max_tokens=4096,
                 top_p=0.95,
                 frequency_penalty=0.0,
-                presence_penalty=1.0,
-        )]
+                presence_penalty=1.0,) for msg in msg_list
+            ]
         output_list = await atqdm.gather(*output_list)
 
         print(output_list[0])
