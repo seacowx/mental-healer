@@ -197,13 +197,13 @@ class vLLMServer:
             '--max-model-len', str(max_model_len),
             '--tensor-parallel-size', str(self.world_size),
             '--gpu-memory-utilization', '0.95',
+            '--enforce-eager', 
         ]    
 
         if self.quantization:
             quantization_command = [
                 '--load-format', 'bitsandbytes',
                 '--quantization', 'bitsandbytes',
-                '--enforce-eager', 
             ]
             server_command.extend(quantization_command)
 
