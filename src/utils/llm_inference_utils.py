@@ -151,6 +151,7 @@ class vLLMServer:
         world_size: int, 
         quantization: bool,
         vllm_api_port: int = 8000,
+        device_list: list[int] = None,
     ) -> None:
 
         self.model_path = model_path
@@ -158,9 +159,14 @@ class vLLMServer:
         self.quantization = quantization
         self.vllm_api_port = vllm_api_port
 
+        self.start_vllm_server(
+            device_list=device_list,
+        )
+
 
     def start_vllm_server(
         self,
+        device_list: list[int] = [],
     ) -> OpenAIAsyncInference:    
 
         model_config = json.load(
@@ -173,8 +179,14 @@ class vLLMServer:
         if (max_position_embedding := model_config.get('max_position_embeddings', '')):
             max_model_len = min(max_position_embedding, 8192)
 
+        # set visible cuda devices if device_list is specified
+        server_command = ['']
+        if device_list:
+            server_visible_devices = ','.join([str(ele) for ele in device_list])
+            server_command = [f'CUDA_VISIBLE_DEVICES={server_visible_devices}']
+
         env = os.environ.copy()
-        server_command = [        
+        server_command += [        
             'vllm',        
             'serve',        
             self.model_path,    

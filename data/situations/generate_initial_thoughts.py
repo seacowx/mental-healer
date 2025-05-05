@@ -9,7 +9,7 @@ sys.path.append('../../src/')
 
 import torch
 
-from utils.llm_inference_utils import vLLMOffline
+from utils.llm_inference_utils import vLLMServer
 from utils.data_utils import prepare_training_data
 from rewards.therapist_reward import TherapistReward
 from utils.thought_utils import iterative_thought_generation
@@ -160,14 +160,19 @@ def main():
     # when there are 4 GPUs, assuming running with A100-40G use cuda:2,3 for vLLM
     # otherwise, assuming running with A100-80G use cuda:1 for vLLM
     if torch.cuda.device_count() == 4:
-        thought_device = torch.device('cuda:2,3')
+        thought_device = [2, 3]
     else:
-        thought_device = torch.device('cuda:1')
+        thought_device = [1]
 
-    vllm_client = vLLMOffline(
+    # TODO: replace with vLLMServer
+    vllm_client = vLLMServer(
         model_path=llm_path_dict[args.base_model]['path'],
-        device=thought_device,
+        world_size=len(thought_device),
+        quantization=False,
     )
+
+    raise SystemExit()
+
 
     produce_initial_thought(
         data=prepared_data,
