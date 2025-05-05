@@ -44,6 +44,9 @@ async def main():
             {'role': 'user', 'content': cur_prompt_template['user']},
         ])
 
+    print(msg_list[11])
+    raise SystemExit()
+
     try:
         semaphore = asyncio.Semaphore(50) 
         output_list = [
