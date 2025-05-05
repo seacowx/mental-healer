@@ -12,7 +12,7 @@ from utils.llm_inference_utils import vLLMServer
 def main():
 
     llm_config = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
-    model_path = llm_config['qwen3-32B']['path']
+    model_path = llm_config['qwen32']['path']
 
     WORLD_SIZE = torch.cuda.device_count()
     vllm_client = vLLMServer(
