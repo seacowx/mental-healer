@@ -64,13 +64,12 @@ async def iterative_thought_generation(
         # generate initial thoughts
         think_output_list = [
             vllm_client.process_with_semaphore(
-                semaphare=semaphore,
+                semaphore=semaphore,
                 model='vllm-model',
                 messages=active_message,
                 temperature=0.6,
                 max_tokens=8192,
                 top_p=0.95,
-                top_k=20,
                 frequency_penalty=0.0,
                 presence_penalty=1.0,
             )
