@@ -183,7 +183,7 @@ class vLLMServer:
         server_command = ['']
         if device_list:
             server_visible_devices = ','.join([str(ele) for ele in device_list])
-            server_command = [f'CUDA_VISIBLE_DEVICES={server_visible_devices}']
+            server_command = [f'export CUDA_VISIBLE_DEVICES={server_visible_devices}']
 
         env = os.environ.copy()
         server_command += [        
