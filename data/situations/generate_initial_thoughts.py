@@ -1,5 +1,6 @@
 # NOTE: Number of situations (n_personas = 1) with valid initial thoughts = 47,258
 
+import asyncio
 import os, sys
 import argparse
 import operator
@@ -15,7 +16,7 @@ from rewards.therapist_reward import TherapistReward
 from utils.thought_utils import iterative_thought_generation
 
 
-def produce_initial_thought(
+async def produce_initial_thought(
     data: dict,
     vllm_client: vLLMServer,
     therapist_reward: TherapistReward,
@@ -73,7 +74,7 @@ def produce_initial_thought(
     initial_thought_message_list = initial_thought_message_list
     TOLERANCE = 5
 
-    parsed_initial_thought_list = iterative_thought_generation(
+    parsed_initial_thought_list = await iterative_thought_generation(
         initial_thought_message_list=initial_thought_message_list,
         situation_list=situation_list,
         therapist_reward=therapist_reward,
@@ -135,7 +136,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
+async def main():
 
     args = parse_args()
 
@@ -173,7 +174,7 @@ def main():
         device_list=thought_device,
     )
 
-    produce_initial_thought(
+    await produce_initial_thought(
         data=prepared_data,
         vllm_client=vllm_client,
         therapist_reward=therapist_reward,
@@ -186,4 +187,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
