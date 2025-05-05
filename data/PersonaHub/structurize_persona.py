@@ -23,7 +23,7 @@ async def main():
         world_size=WORLD_SIZE,
         quantization=False,
     )
-    vllm_client = vllm_server.start_vllm_server()
+    async_client = vllm_server.start_vllm_server()
 
     # load in persona dictionary
     persona_dict = json.load(open('./persona.json', 'r'))
@@ -47,7 +47,7 @@ async def main():
     try:
         semaphore = asyncio.Semaphore(50) 
         output_list = [
-            vllm_client.process_with_semaphore(
+            async_client.process_with_semaphore(
                 semaphore=semaphore,
                 model='vllm-model',
                 message=msg_list[:100],
@@ -62,7 +62,7 @@ async def main():
         print(output_list[0])
         raise SystemExit()
     finally:
-        vllm_client.kill_server()
+        vllm_server.kill_server()
 
     # get the original keys of the persona dictionary
     key_list = list(persona_dict.keys())
