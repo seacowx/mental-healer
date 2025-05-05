@@ -173,8 +173,6 @@ def main():
         device_list=thought_device,
     )
 
-    raise SystemExit()
-
     produce_initial_thought(
         data=prepared_data,
         vllm_client=vllm_client,
@@ -183,6 +181,8 @@ def main():
         disable_thinking=args.disable_thinking_in_initial_thought,
         regenerate_thought=args.regenerate_thought,
     )
+
+    vllm_client.kill_server()
 
 
 if __name__ == "__main__":
