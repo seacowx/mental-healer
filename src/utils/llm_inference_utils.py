@@ -198,6 +198,7 @@ class vLLMServer:
             '--tensor-parallel-size', str(self.world_size),
             '--gpu-memory-utilization', '0.95',
             '--enforce-eager', 
+            '--enable-reasoning',
         ]    
 
         if self.quantization:

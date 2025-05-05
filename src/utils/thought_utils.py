@@ -1,3 +1,6 @@
+from asyncio import Semaphore
+from tqdm.asyncio import tqdm as atqdm
+
 from utils.llm_inference_utils import vLLMOffline
 from rewards.therapist_reward import TherapistReward
 
@@ -19,7 +22,7 @@ def parse_thought_output(think_output_list: list) -> tuple[list, list]:
     return parsed_output, corrupted_idx_list
 
 
-def iterative_thought_generation(
+async def iterative_thought_generation(
     initial_thought_message_list: list,
     situation_list: list,
     therapist_reward: TherapistReward,
@@ -48,8 +51,6 @@ def iterative_thought_generation(
         valid_initial_thought_list (list): List of valid initial thoughts after sentiment analysis. Invalid thoughts are replaced with empty strings.
     """
 
-    # FIXME: the index of vali_initial_thought_list is wrong. 
-
     active_indices = list(range(len(initial_thought_message_list)))
     active_messages = initial_thought_message_list.copy()
     active_situations = situation_list.copy()
@@ -58,11 +59,28 @@ def iterative_thought_generation(
     num_iterations = 0
     while active_messages and num_iterations < TOLERANCE:
 
+        semaphore = Semaphore(50)
+
         # generate initial thoughts
-        think_output_list = vllm_client.inference(
-            message_list=active_messages,
-            enable_thinking=enable_thinking,
-        )
+        think_output_list = [
+            vllm_client.process_with_semaphore(
+                semaphare=semaphore,
+                model='vllm-model',
+                messages=active_message,
+                temperature=0.6,
+                max_tokens=8192,
+                top_p=0.95,
+                top_k=20,
+                frequency_penalty=0.0,
+                presence_penalty=1.0,
+            )
+            for active_message in active_messages
+        ]
+
+        think_output_list = await atqdm.gather(*think_output_list)
+
+        print(think_output_list[0])
+        raise SystemExit()
 
         parsed_output, corrupted_idx_list = parse_thought_output(
             think_output_list=think_output_list,
