@@ -33,8 +33,10 @@ def parse_args():
         '--n_personas',
         type=int,
         default=1,
-        help="The number of personas to sample for each situation. Default is 1. n_personas greater than 1 will duplicate the situation.",
-    )
+        help=(
+            "The number of personas to sample for each situation. Default is 1. "
+            "n_personas greater than 1 will duplicate the situation."
+        ))
     parser.add_argument(
         '--regenerate_thought',
         action='store_true',
@@ -43,8 +45,10 @@ def parse_args():
     parser.add_argument(
         '--disable_thinking_in_initial_thought',
         action='store_true',
-        help="Whether to disable reasoning mode when producing initial thoughts. Default is False (enable reasoning mode).",
-    )
+        help=(
+            "Whether to disable reasoning mode when producing initial thoughts. "
+            "Default is False (enable reasoning mode)."
+        ))
     return parser.parse_args()
 
 
@@ -65,13 +69,13 @@ def main():
     )
 
     patient_device = torch.device('cuda:1') if torch.cuda.device_count() > 1 else torch.device('cuda:0')
-    vllm = vLLMOffline(
+    patient_vllm = vLLMOffline(
         model_path=llm_path_dict[args.base_model]['path'],
         patient_device=patient_device,
     )
 
     patient_agent = Patient(
-        vllm_client=vllm,
+        vllm_client=patient_vllm,
     )
 
     # Step: generate initial thoughts
@@ -83,7 +87,7 @@ def main():
         top_k_personas=args.n_personas,
     )
 
-    # NOTE: Number of situations with valid initial thoughts = 47,258
+    # NOTE: Number of situations (n_personas = 1) with valid initial thoughts = 47,258
 
 
 if __name__ == "__main__":
