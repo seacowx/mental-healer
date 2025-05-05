@@ -165,6 +165,7 @@ def main():
         thought_device = [1]
 
     # TODO: replace with vLLMServer
+    print('\n\nLoading LLMs for initial thought generation...\n')
     vllm_client = vLLMServer(
         model_path=llm_path_dict[args.base_model]['path'],
         world_size=len(thought_device),
