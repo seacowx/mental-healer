@@ -17,7 +17,7 @@ from utils.thought_utils import iterative_thought_generation
 
 def produce_initial_thought(
     data: dict,
-    vllm_client: vLLMOffline,
+    vllm_client: vLLMServer,
     therapist_reward: TherapistReward,
     top_k_personas: int = 1,
     disable_thinking: bool = False,
