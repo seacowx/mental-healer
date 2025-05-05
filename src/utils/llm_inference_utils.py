@@ -179,11 +179,13 @@ class vLLMServer:
         if (max_position_embedding := model_config.get('max_position_embeddings', '')):
             max_model_len = min(max_position_embedding, 8192)
 
-        # # set visible cuda devices if device_list is specified
-        # cuda_visibility_command = ['']
-        # if device_list:
-        #     server_visible_devices = ','.join([str(ele) for ele in device_list])
-        #     cuda_visibility_command = [f'export CUDA_VISIBLE_DEVICES={server_visible_devices}']
+        # enable reasoning for Qwen3 models
+        reasoning_params = []
+        if 'qwen3' in self.model_path:
+            reasoning_params = [
+                '--reasoning-parser', 'qwen3',
+                '--enable-reasoning',
+            ]
 
         env = os.environ.copy()
         server_command = [        
@@ -198,8 +200,11 @@ class vLLMServer:
             '--tensor-parallel-size', str(self.world_size),
             '--gpu-memory-utilization', '0.95',
             '--enforce-eager', 
-            '--enable-reasoning',
         ]    
+
+        # add reasoning params if model is Qwen3
+        if reasoning_params:
+            server_command.extend(reasoning_params)
 
         if self.quantization:
             quantization_command = [
