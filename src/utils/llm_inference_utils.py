@@ -193,6 +193,9 @@ class vLLMServer:
             '--gpu-memory-utilization', '0.95',
         ]    
 
+        print(server_command)
+        raise SystemExit()
+
         if self.quantization:
             quantization_command = [
                 '--load-format', 'bitsandbytes',
