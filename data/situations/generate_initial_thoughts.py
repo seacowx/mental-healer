@@ -169,10 +169,10 @@ def main():
         model_path=llm_path_dict[args.base_model]['path'],
         world_size=len(thought_device),
         quantization=False,
+        devise_list=thought_device,
     )
 
     raise SystemExit()
-
 
     produce_initial_thought(
         data=prepared_data,

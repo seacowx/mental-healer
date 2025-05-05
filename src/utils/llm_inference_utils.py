@@ -151,7 +151,7 @@ class vLLMServer:
         world_size: int, 
         quantization: bool,
         vllm_api_port: int = 8000,
-        device_list: list[int] = None,
+        device_list: list[int] | None = None,
     ) -> None:
 
         self.model_path = model_path
@@ -210,8 +210,7 @@ class vLLMServer:
         # add api key to environemnt variable 
         os.environ['VLLM_API_KEY'] = 'anounymous123'
 
-        print(server_command)
-        raise SystemExit()
+        server_command = [ele for ele in server_command if ele.strip()]
 
         # check if the server is running
         self.server = subprocess.Popen(
