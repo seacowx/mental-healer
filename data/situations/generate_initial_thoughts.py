@@ -135,9 +135,6 @@ async def main():
         n_personas=args.n_personas,
     )
 
-    # DEBUG: truncate the data to 1000 situations
-    prepared_data = dict(list(prepared_data.items())[:100])
-
     # STEP: load LLMs via vLLM
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
 
@@ -155,7 +152,6 @@ async def main():
     else:
         thought_device = [1]
 
-    # TODO: replace with vLLMServer
     print('\n\nLoading LLMs for initial thought generation...\n')
     try:
         vllm_client = vLLMServer(
