@@ -35,6 +35,7 @@ async def main():
         for sub_val in val:
             matched_persona_keys.add(sub_val['id'])
 
+    print(len(persona_dict))
     print(len(matched_persona_keys))
     raise SystemExit()
 
