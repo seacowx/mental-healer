@@ -38,11 +38,11 @@ def produce_initial_thought(
     """
 
     initial_thought_template = yaml.safe_load(
-        open('./prompts/initial_thought.yaml')
+        open('../../src/prompts/initial_thought.yaml')
     )
 
     # avoid re-generating the initial thought if it already exists
-    cache_fpath = f'../data/situations/situations_with_initial_thought_top{top_k_personas}.json'
+    cache_fpath = f'./situations_with_initial_thought_top{top_k_personas}.json'
     # if os.path.exists(cache_fpath) and not regenerate_thought:
     #     out_data = json.load(open(cache_fpath, 'r'))
     #     parsed_initial_thought_list = [
