@@ -18,11 +18,12 @@ def main():
     model_path = llm_config['qwen32']['path']
 
     WORLD_SIZE = torch.cuda.device_count()
-    vllm_client = vLLMServer(
+    vllm_server = vLLMServer(
         model_path=model_path,
         world_size=WORLD_SIZE,
         quantization=False,
     )
+    vllm_client = vllm_server.start_vllm_server()
 
     # load in persona dictionary
     persona_dict = json.load(open('./persona.json', 'r'))

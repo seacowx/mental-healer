@@ -214,7 +214,8 @@ class vLLMServer:
 
         # add api key to environemnt variable 
         env['VLLM_API_KEY'] = 'anounymous123'
-        env['CUDA_VISIBLE_DEVICES'] = ','.join([str(ele) for ele in device_list])
+        if device_list:
+            env['CUDA_VISIBLE_DEVICES'] = ','.join([str(ele) for ele in device_list])
 
         # check if the server is running
         self.server = subprocess.Popen(
