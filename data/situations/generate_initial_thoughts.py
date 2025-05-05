@@ -122,13 +122,6 @@ def parse_args():
         action='store_true',
         help="Whether to regenerate the initial thought. Default is False.",
     )
-    parser.add_argument(
-        '--disable_thinking_in_initial_thought',
-        action='store_true',
-        help=(
-            "Whether to disable reasoning mode when producing initial thoughts. "
-            "Default is False (enable reasoning mode)."
-        ))
 
     return parser.parse_args()
 
@@ -179,7 +172,6 @@ async def main():
             vllm_client=openai_async_server,
             therapist_reward=therapist_reward,
             top_k_personas=args.n_personas,
-            disable_thinking=args.disable_thinking_in_initial_thought,
             regenerate_thought=args.regenerate_thought,
         )
     finally:
