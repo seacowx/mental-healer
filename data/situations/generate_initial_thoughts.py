@@ -135,7 +135,6 @@ async def main():
         n_personas=args.n_personas,
     )
 
-    # STEP: load LLMs via vLLM
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
 
     therapist_reward = TherapistReward(

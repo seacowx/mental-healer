@@ -5,8 +5,7 @@ import json, yaml
 import numpy as np
 
 import torch
-from utils.llm_inference_utils import vLLMOffline
-from utils.data_utils import prepare_training_data
+from utils.llm_inference_utils import vLLMServer
 from utils.custom_trainer import CustomGRPOTrainer
 
 from agents.patient import Patient
@@ -39,8 +38,23 @@ def main():
 
     llm_path_dict = yaml.safe_load(open('./configs/llm_configs.yaml', 'r'))
 
-    # Step: initialize LLM, load model in cuda:1, cuda:0 is used for reward model, cuda:2-3 for therapist agent
+    # STEP: load training data, each instance contains the following fields:
+    # situation (str): the situation description
+    # initial_thought (str): the initial thought of the patient
+    # persona (str): the persona of the patient
 
+    # STEP: initialize vllm server for patient agent, host the server on cuda:0
+    patient_vllm_async_client = vLLMServer(
+        model_path=llm_path_dict[args.base_model]['path'],
+        world_size=1,
+        quantization=False,
+    )
+    patient_vllm_async_client.start_vllm_server(
+        device_list=[0],
+    )
+
+    patient_llm = Patient()
+    therapist_llm = Therapist()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,24 @@
+system: |-
+  You are an expert in extracting information from text and structuring it into a JSON format. 
+
+user: |-
+  Given the a persona profile, which is a paragraph of descriptive text, convert it into a structured JSON format. The JSON should containt the following fields:
+
+  - age: The age of the persona 
+  - occupation: The occupation of the persona
+  - gender: The gender of the persona
+  - education: The education level of the persona
+
+  The persona profile may not contain all of the fields. First try to infer the missing fields from the text. If you cannot infer the missing fields, set them to "unknown".
+
+  The JSON should be formatted as follows:
+
+  {
+    "age": <age>,
+    "occupation": <occupation>,
+    "gender": <gender>,
+    "education": <education>
+  }
+
+  Persona profile:
+  {{persona_profile}}
