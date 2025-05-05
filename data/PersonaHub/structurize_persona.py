@@ -1,7 +1,10 @@
 import sys
+import asyncio
 import json, yaml
 from copy import deepcopy
 from ast import literal_eval
+from tqdm.asyncio import tqdm as atqdm
+
 sys.path.append('../../src/')
 
 import torch
@@ -40,8 +43,21 @@ def main():
             {'role': 'user', 'content': cur_prompt_template['user']},
         ])
 
-        print(msg_list[-1])
-        raise SystemExit()
+    semaphore = asyncio.Semaphore(50) 
+    output_list = [
+        vllm_client.process_with_semaphore(
+            semaphore=semaphore,
+            model='vllm-model',
+            message=msg_list[:100],
+            temperature=0.6,
+            max_tokens=4096,
+            top_p=0.95,
+            frequency_penalty=0.0,
+            presence_penalty=1.0,
+    )]
+
+    print(output_list[0])
+    raise SystemExit()
 
 
 if __name__ == "__main__":
