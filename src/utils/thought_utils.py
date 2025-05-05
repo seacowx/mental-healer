@@ -66,7 +66,7 @@ async def iterative_thought_generation(
             vllm_client.process_with_semaphore(
                 semaphore=semaphore,
                 model='vllm-model',
-                messages=active_message,
+                message=active_message,
                 temperature=0.6,
                 max_tokens=8192,
                 top_p=0.95,
