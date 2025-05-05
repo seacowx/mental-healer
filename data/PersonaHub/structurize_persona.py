@@ -44,22 +44,25 @@ async def main():
             {'role': 'user', 'content': cur_prompt_template['user']},
         ])
 
-    semaphore = asyncio.Semaphore(50) 
-    output_list = [
-        vllm_client.process_with_semaphore(
-            semaphore=semaphore,
-            model='vllm-model',
-            message=msg_list[:100],
-            temperature=0.6,
-            max_tokens=4096,
-            top_p=0.95,
-            frequency_penalty=0.0,
-            presence_penalty=1.0,
-    )]
-    output_list = await atqdm.gather(*output_list)
+    try:
+        semaphore = asyncio.Semaphore(50) 
+        output_list = [
+            vllm_client.process_with_semaphore(
+                semaphore=semaphore,
+                model='vllm-model',
+                message=msg_list[:100],
+                temperature=0.6,
+                max_tokens=4096,
+                top_p=0.95,
+                frequency_penalty=0.0,
+                presence_penalty=1.0,
+        )]
+        output_list = await atqdm.gather(*output_list)
 
-    print(output_list[0])
-    raise SystemExit()
+        print(output_list[0])
+        raise SystemExit()
+    finally:
+        vllm_client.kill_server()
 
     # get the original keys of the persona dictionary
     key_list = list(persona_dict.keys())
