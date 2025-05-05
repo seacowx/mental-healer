@@ -33,6 +33,9 @@ async def main():
     matched_persona_keys = list(matched_persona_dict.values())
     matched_persona_keys = list(set(sum(matched_persona_keys, [])))
 
+    print(len(matched_persona_keys))
+    raise SystemExit()
+
     # structurize only the matched persona profiles
     persona_dict = {
         key: val for key, val in persona_dict.items() if key in matched_persona_keys
