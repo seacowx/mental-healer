@@ -28,6 +28,16 @@ async def main():
     # load in persona dictionary
     persona_dict = json.load(open('./persona.json', 'r'))
 
+    # check which persona profiles are matched with AugESC
+    matched_persona_dict = json.load(open('../AugESC/augsec_matched_persona.json', 'r'))
+    matched_persona_keys = list(matched_persona_dict.values())
+    matched_persona_keys = list(set(sum(matched_persona_keys, [])))
+
+    # structurize only the matched persona profiles
+    persona_dict = {
+        key: val for key, val in persona_dict.items() if key in matched_persona_keys
+    }
+
     # load prompt template
     prompt_template = yaml.safe_load(open('./prompts/structurize.yaml', 'r'))
 
