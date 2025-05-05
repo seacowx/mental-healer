@@ -179,14 +179,8 @@ class vLLMServer:
         if (max_position_embedding := model_config.get('max_position_embeddings', '')):
             max_model_len = min(max_position_embedding, 8192)
 
-        # set visible cuda devices if device_list is specified
-        server_command = ['']
-        if device_list:
-            server_visible_devices = ','.join([str(ele) for ele in device_list])
-            server_command = [f'export CUDA_VISIBLE_DEVICES={server_visible_devices}']
-
         env = os.environ.copy()
-        server_command += [        
+        server_command = [        
             'vllm',        
             'serve',        
             self.model_path,    
@@ -209,8 +203,8 @@ class vLLMServer:
 
         # add api key to environemnt variable 
         os.environ['VLLM_API_KEY'] = 'anounymous123'
-
-        server_command = [ele for ele in server_command if ele.strip()]
+        # set visible cuda devices if device_list is specified
+        os.environ['CUDA_VISIBLE_DEVICES'] = ','.join([str(ele) for ele in device_list])
 
         # check if the server is running
         self.server = subprocess.Popen(
