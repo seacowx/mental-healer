@@ -5,7 +5,7 @@ import torch
 from vllm import LLM, SamplingParams
 from vllm.outputs import RequestOutput
 from vllm.lora.request import LoRARequest
-from vllm.model_executor.parallel_utils.parallel_state import destroy_model_parallel
+from vllm.distributed.parallel_state import destroy_model_parallel
 
 
 class SentimentReward:
