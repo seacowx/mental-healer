@@ -2,6 +2,8 @@ from asyncio import Semaphore
 from tqdm.asyncio import tqdm as atqdm
 
 from openai import AsyncOpenAI
+
+from utils.llm_inference_utils import vLLMServer
 from rewards.therapist_reward import TherapistReward
 
 
@@ -26,7 +28,8 @@ async def iterative_thought_generation(
     initial_thought_message_list: list,
     situation_list: list,
     therapist_reward: TherapistReward,
-    vllm_client: AsyncOpenAI,
+    vllm_client: vLLMServer,
+    thought_device: list = [],
     TOLERANCE: int = 5,
 ):
     """
@@ -43,7 +46,8 @@ async def iterative_thought_generation(
         situation_list (list): List of situations for sentiment analysis.
         therapist_reward (TherapistReward): TherapistReward object for sentiment analysis.
         queue_idx_list (list): List of indices to track which thoughts are still in the queue.
-        vllm_client (AsyncOpenAI): VLLM client for generating thoughts.
+        vllm_client (vLLMServer): VLLM client for generating thoughts.
+        thought_device (list): List of devices for thought generation.
         TOLERANCE (int): Maximum number of iterations to prevent infinite loops.
 
     Returns:
@@ -58,11 +62,14 @@ async def iterative_thought_generation(
     num_iterations = 0
     while active_messages and num_iterations < TOLERANCE:
 
+        # initialize the async vllm server
+        openai_async_server = vllm_client.start_vllm_server(device_list=thought_device)
+
         semaphore = Semaphore(50)
 
         # generate initial thoughts
         think_output_list = [
-            vllm_client.process_with_semaphore(
+            openai_async_server.process_with_semaphore(
                 semaphore=semaphore,
                 model='vllm-model',
                 message=active_message,
@@ -72,17 +79,23 @@ async def iterative_thought_generation(
                 frequency_penalty=0.0,
                 presence_penalty=1.0,
             )
-            for active_message in active_messages
+            for active_message in active_messages[:100]
         ]
 
         think_output_list = await atqdm.gather(*think_output_list)
+
+        # terminate the async vllm server
+        vllm_client.kill_server()
 
         parsed_output, corrupted_idx_list = parse_thought_output(
             think_output_list=think_output_list,
         )
 
+        # initialize the sentiment reward model
+        therapist_reward.initialize_sentiment_reward_model()
+
         sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
-            situation_list=situation_list,
+            situation_list=situation_list[:100],
             thoutght_list=parsed_output,
         )
 
@@ -109,6 +122,10 @@ async def iterative_thought_generation(
         active_indices = new_active_indices
         active_messages = new_active_messages
         active_situations = new_active_situations
+
+        # terminate the sentiment reward model
+        therapist_reward.terminate_sentiment_reward_model()
+        raise SystemExit()
 
         num_iterations += 1
 

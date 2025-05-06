@@ -1,9 +1,11 @@
+import gc
 import yaml, json
 
 import torch
 from vllm import LLM, SamplingParams
 from vllm.outputs import RequestOutput
 from vllm.lora.request import LoRARequest
+from vllm.model_executor.parallel_utils.parallel_state import destroy_model_parallel
 
 
 class SentimentReward:
@@ -16,22 +18,27 @@ class SentimentReward:
         reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
     ) -> None:
         model_path_dict = yaml.safe_load(open(llm_config_path, 'r'))
-        model_path = model_path_dict['qwen7']['path']
+        self.model_path = model_path_dict['qwen7']['path']
 
         self.reward_mapping = yaml.load(
             open(reward_rule_path, 'r'),
             Loader=yaml.FullLoader,
         )
 
+        self.sentiment_reward_device = sentiment_reward_device
+
+    
+    def initialize_sentiment_reward_model(self):
+
         # initialize the llm
         self.llm = LLM(
-            model=model_path, 
+            model=self.model_path, 
             max_model_len=2048,
             enable_lora=True,
             max_lora_rank=64,
             tensor_parallel_size=1,
             gpu_memory_utilization=0.8,
-            device=sentiment_reward_device,
+            device=self.sentiment_reward_device,
         )
 
         self.sampling_params = SamplingParams(
@@ -43,6 +50,14 @@ class SentimentReward:
             '/scratch/prj/charnu/ft_weights/mental-healer/' 
             'reward-sentiment/qwen7/checkpoint-220'
         )
+
+
+    def terminate_sentiment_reward_model(self):
+        destroy_model_parallel()
+        del self.llm
+        gc.collect()
+        torch.cuda.empty_cache()
+        torch.distributed.destroy_process_group()
 
 
     def __parse_output(self, output: RequestOutput) -> str:

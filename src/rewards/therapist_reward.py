@@ -61,6 +61,14 @@ class TherapistReward:
         return input_msg_list   
 
 
+    def initialize_sentiment_reward_model(self):
+        self.sentiment_reward.initialize_sentiment_reward_model()
+
+
+    def terminate_sentiment_reward_model(self):
+        self.sentiment_reward.terminate_sentiment_reward_model()
+
+
     def reward_sentiment(
         self, 
         situation_list: list,

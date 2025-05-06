@@ -8,6 +8,7 @@ from copy import deepcopy
 sys.path.append('../../src/')
 
 import torch
+from openai import AsyncOpenAI
 
 from utils.llm_inference_utils import vLLMServer
 from utils.data_utils import prepare_training_data
@@ -20,6 +21,7 @@ async def produce_initial_thought(
     vllm_client: vLLMServer,
     therapist_reward: TherapistReward,
     top_k_personas: int = 1,
+    thought_device: list = [],
     regenerate_thought: bool = False,
 ) -> None:
     """
@@ -77,6 +79,7 @@ async def produce_initial_thought(
         situation_list=situation_list,
         therapist_reward=therapist_reward,
         vllm_client=vllm_client,
+        thought_device=thought_device,
         TOLERANCE=TOLERANCE,
     )
 
@@ -158,15 +161,13 @@ async def main():
             world_size=len(thought_device),
             quantization=False,
         )
-        openai_async_server = vllm_client.start_vllm_server(
-            device_list=thought_device,
-        )
 
         await produce_initial_thought(
             data=prepared_data,
-            vllm_client=openai_async_server,
+            vllm_client=vllm_client,
             therapist_reward=therapist_reward,
             top_k_personas=args.n_personas,
+            thought_device=thought_device,
             regenerate_thought=args.regenerate_thought,
         )
     finally:
