@@ -43,14 +43,10 @@ async def produce_initial_thought(
     )
 
     # avoid re-generating the initial thought if it already exists
-    # cache_fpath = f'./situations_with_initial_thought_top{top_k_personas}.json'
-    cache_fpath = f'./test.json'
-    # if os.path.exists(cache_fpath) and not regenerate_thought:
-    #     out_data = json.load(open(cache_fpath, 'r'))
-    #     parsed_initial_thought_list = [
-    #         val['initial_thought'] for val in out_data.values()
-    #     ]
-    #     return parsed_initial_thought_list
+    cache_fpath = f'./situations_with_initial_thought_top{top_k_personas}.json'
+    if os.path.exists(cache_fpath) and not regenerate_thought:
+        return None
+        
     initial_thought_message_list = []
     situation_list = []
     for key, val in data.items():
