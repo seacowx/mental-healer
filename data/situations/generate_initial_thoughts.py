@@ -16,7 +16,6 @@ from rewards.therapist_reward import TherapistReward
 from utils.thought_utils import iterative_thought_generation
 
 
-
 async def produce_initial_thought(
     data: dict,
     vllm_client: vLLMServer,
