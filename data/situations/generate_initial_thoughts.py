@@ -135,6 +135,12 @@ async def main():
         n_personas=args.n_personas,
     )
 
+    batch_size = len(prepared_data) // args.n_personas
+    print(f"Batch size: {batch_size}")
+    print(f"Number of situations: {len(prepared_data)}")
+    print(batch_size * args.n_personas)
+    raise SystemExit()
+
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
 
     therapist_reward = TherapistReward(

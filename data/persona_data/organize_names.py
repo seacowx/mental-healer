@@ -59,13 +59,13 @@ def compute_name_frequency():
                 female_name_dict[name] = frequency
 
     # normalize the frequencies in male_name_dict and female_name_dict
-    male_frequency_sum = sum(male_name_dict.values())
     male_name_dict = {name: male_name_dict[name] for name in list(male_name_dict.keys())[:100]}
+    male_frequency_sum = sum(male_name_dict.values())
     male_name_dict = {name: freq / male_frequency_sum for name, freq in male_name_dict.items()}
     male_name_dict = dict(sorted(male_name_dict.items(), key=lambda x: x[1], reverse=True))
 
-    female_frequency_sum = sum(female_name_dict.values())
     female_name_dict = {name: female_name_dict[name] for name in list(female_name_dict.keys())[:100]}
+    female_frequency_sum = sum(female_name_dict.values())
     female_name_dict = {name: freq / female_frequency_sum for name, freq in female_name_dict.items()}
     female_name_dict = dict(sorted(female_name_dict.items(), key=lambda x: x[1], reverse=True))
 
