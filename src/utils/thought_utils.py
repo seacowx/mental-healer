@@ -125,6 +125,9 @@ async def iterative_thought_generation(
 
         # terminate the sentiment reward model
         therapist_reward.terminate_sentiment_reward_model()
+
+        import time
+        time.sleep(300)
         raise SystemExit()
 
         num_iterations += 1

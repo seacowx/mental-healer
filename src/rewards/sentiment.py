@@ -63,7 +63,6 @@ class SentimentReward:
         del self.llm
         gc.collect()
         torch.cuda.empty_cache()
-        torch.distributed.destroy_process_group()
 
 
     def __parse_output(self, output: RequestOutput) -> str:

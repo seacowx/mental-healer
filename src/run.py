@@ -42,6 +42,7 @@ def main():
     # situation (str): the situation description
     # initial_thought (str): the initial thought of the patient
     # persona (str): the persona of the patient
+    session_init_data = json.load(open('../data/situations/situations_with_initial_thought_top1.json', 'r'))
 
     # STEP: initialize vllm server for patient agent, host the server on cuda:0
     patient_vllm_async_client = vLLMServer(
