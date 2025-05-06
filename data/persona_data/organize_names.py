@@ -2,7 +2,7 @@ import json
 import pandas as pd
 from glob import glob
 
-
+#
 def compute_name_frequency():
     """
     Compute and return the normalized frequency (relative frequency) of names 
