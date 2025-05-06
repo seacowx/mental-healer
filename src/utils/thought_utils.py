@@ -7,8 +7,6 @@ from utils.llm_inference_utils import vLLMServer
 from rewards.therapist_reward import TherapistReward
 
 
-# TODO: Check the implementation of the itrative thought generation function
-
 def parse_thought_output(think_output_list: list) -> tuple[list, list]:
         
     parsed_output = []
