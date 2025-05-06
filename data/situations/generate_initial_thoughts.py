@@ -172,7 +172,7 @@ async def main():
                 for i in range(0, len(prepared_data), batch_size)
             ]
 
-            for batch_num, data_batch in enumerate(data_batches):
+            for batch_num, data_batch in enumerate(data_batches, start=1):
                 await produce_initial_thought(
                     data=data_batch,
                     vllm_client=vllm_client,
