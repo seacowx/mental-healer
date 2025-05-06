@@ -147,18 +147,18 @@ async def main():
         sentiment_reward_rule_path = '../../src/configs/sentiment_reward_rules.yaml',
     )
 
-    # when there are 4 GPUs, assuming running with A100-40G use cuda:2,3 for vLLM
-    # otherwise, assuming running with A100-80G use cuda:1 for vLLM
     if torch.cuda.device_count() == 4:
-        thought_device = [2, 3]
+        thought_device = [0, 1, 2, 3]
+    elif torch.cuda.device_count() == 2:
+        thought_device = [0, 1]
     else:
-        thought_device = [1]
+        thought_device = []
 
     print('\n\nLoading LLMs for initial thought generation...\n')
     try:
         vllm_client = vLLMServer(
             model_path=llm_path_dict[args.base_model]['path'],
-            world_size=len(thought_device),
+            world_size=torch.cuda.device_count(),
             quantization=False,
         )
 

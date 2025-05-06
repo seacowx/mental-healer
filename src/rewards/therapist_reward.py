@@ -8,7 +8,7 @@ class TherapistReward:
 
     def __init__(
         self, 
-        sentiment_reward_device: torch.device,
+        sentiment_reward_device: torch.device | None = None,
         sentiment_prompt_path: str = './prompts/sentiment.yaml',
         llm_config_path: str = './configs/llm_configs.yaml',
         sentiment_reward_rule_path: str = './configs/sentiment_reward_rules.yaml',

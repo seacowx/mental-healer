@@ -13,7 +13,7 @@ class SentimentReward:
 
     def __init__(
         self, 
-        sentiment_reward_device: torch.device,
+        sentiment_reward_device: torch.device | None = None,
         llm_config_path: str = './configs/llm_configs.yaml', 
         reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
     ) -> None:
@@ -30,15 +30,21 @@ class SentimentReward:
     
     def initialize_sentiment_reward_model(self):
 
+        extra_kwargs = {}
+        if self.sentiment_reward_device:
+            extra_kwargs['device'] = self.sentiment_reward_device
+            extra_kwargs['tensor_parallel_size'] = 1
+        else:
+            extra_kwargs['tensor_parallel_size'] = torch.cuda.device_count()
+
         # initialize the llm
         self.llm = LLM(
             model=self.model_path, 
             max_model_len=2048,
             enable_lora=True,
             max_lora_rank=64,
-            tensor_parallel_size=1,
             gpu_memory_utilization=0.8,
-            device=self.sentiment_reward_device,
+            **extra_kwargs,
         )
 
         self.sampling_params = SamplingParams(
