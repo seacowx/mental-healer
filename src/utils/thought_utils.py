@@ -79,7 +79,7 @@ async def iterative_thought_generation(
                 frequency_penalty=0.0,
                 presence_penalty=1.0,
             )
-            for active_message in active_messages[:100]
+            for active_message in active_messages
         ]
 
         think_output_list = await atqdm.gather(*think_output_list)
@@ -95,7 +95,7 @@ async def iterative_thought_generation(
         therapist_reward.initialize_sentiment_reward_model()
 
         sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
-            situation_list=situation_list[:100],
+            situation_list=situation_list,
             thoutght_list=parsed_output,
         )
 
