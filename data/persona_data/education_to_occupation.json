@@ -1,0 +1,1610 @@
+{
+    "high school": [
+        {
+            "occupation": "Drywall and Ceiling Tile Installers",
+            "probability": 0.010622188821464226
+        },
+        {
+            "occupation": "Tapers",
+            "probability": 0.010622188821464226
+        },
+        {
+            "occupation": "Plasterers and Stucco Masons",
+            "probability": 0.010610972149002279
+        },
+        {
+            "occupation": "Roofers",
+            "probability": 0.010453938734535014
+        },
+        {
+            "occupation": "Cement Masons and Concrete Finishers",
+            "probability": 0.010442722062073065
+        },
+        {
+            "occupation": "Terrazzo Workers and Finishers",
+            "probability": 0.010442722062073065
+        },
+        {
+            "occupation": "Adhesive Bonding Machine Operators and Tenders",
+            "probability": 0.010409072044687225
+        },
+        {
+            "occupation": "Pressers, Textile, Garment, and Related Materials",
+            "probability": 0.010364205354839435
+        },
+        {
+            "occupation": "Woodworking Machine Setters, Operators, and Tenders, Except Sawing",
+            "probability": 0.0102856886476058
+        },
+        {
+            "occupation": "Tire Builders",
+            "probability": 0.0102856886476058
+        },
+        {
+            "occupation": "Brickmasons and Blockmasons",
+            "probability": 0.010263255302681908
+        },
+        {
+            "occupation": "Stonemasons",
+            "probability": 0.010263255302681908
+        },
+        {
+            "occupation": "Reinforcing Iron and Rebar Workers",
+            "probability": 0.010263255302681908
+        },
+        {
+            "occupation": "Sawing Machine Setters, Operators, and Tenders, Wood",
+            "probability": 0.010218388612834119
+        },
+        {
+            "occupation": "Dishwashers",
+            "probability": 0.010218388612834117
+        },
+        {
+            "occupation": "Paving, Surfacing, and Tamping Equipment Operators",
+            "probability": 0.010218388612834117
+        },
+        {
+            "occupation": "Pile Driver Operators",
+            "probability": 0.010218388612834117
+        },
+        {
+            "occupation": "Operating Engineers and Other Construction Equipment Operators",
+            "probability": 0.010218388612834117
+        },
+        {
+            "occupation": "Excavating and Loading Machine and Dragline Operators, Surface Mining",
+            "probability": 0.010218388612834117
+        },
+        {
+            "occupation": "Earth Drillers, Except Oil and Gas",
+            "probability": 0.010218388612834117
+        },
+        {
+            "occupation": "Fallers",
+            "probability": 0.010184738595448274
+        },
+        {
+            "occupation": "Logging Equipment Operators",
+            "probability": 0.010184738595448274
+        },
+        {
+            "occupation": "Log Graders and Scalers",
+            "probability": 0.010184738595448274
+        },
+        {
+            "occupation": "Carpet Installers",
+            "probability": 0.010139871905600485
+        },
+        {
+            "occupation": "Floor Layers, Except Carpet, Wood, and Hard Tiles",
+            "probability": 0.010139871905600485
+        },
+        {
+            "occupation": "Floor Sanders and Finishers",
+            "probability": 0.010139871905600485
+        },
+        {
+            "occupation": "Tile and Stone Setters",
+            "probability": 0.010139871905600485
+        },
+        {
+            "occupation": "Industrial Truck and Tractor Operators",
+            "probability": 0.010139871905600485
+        },
+        {
+            "occupation": "Rock Splitters, Quarry",
+            "probability": 0.01011743856067659
+        },
+        {
+            "occupation": "Helpers--Extraction Workers",
+            "probability": 0.01011743856067659
+        },
+        {
+            "occupation": "Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic",
+            "probability": 0.01011743856067659
+        },
+        {
+            "occupation": "Refuse and Recyclable Material Collectors",
+            "probability": 0.010106221888214643
+        },
+        {
+            "occupation": "Drilling and Boring Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+            "probability": 0.010095005215752696
+        },
+        {
+            "occupation": "Lathe and Turning Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+            "probability": 0.010095005215752696
+        },
+        {
+            "occupation": "Milling and Planing Machine Setters, Operators, and Tenders, Metal and Plastic",
+            "probability": 0.010095005215752696
+        },
+        {
+            "occupation": "Cutters and Trimmers, Hand",
+            "probability": 0.010095005215752696
+        },
+        {
+            "occupation": "Cutting and Slicing Machine Setters, Operators, and Tenders",
+            "probability": 0.010095005215752696
+        },
+        {
+            "occupation": "Graders and Sorters, Agricultural Products",
+            "probability": 0.0100725718708288
+        },
+        {
+            "occupation": "Butchers and Meat Cutters",
+            "probability": 0.010038921853442958
+        },
+        {
+            "occupation": "Meat, Poultry, and Fish Cutters and Trimmers",
+            "probability": 0.010038921853442958
+        },
+        {
+            "occupation": "Slaughterers and Meat Packers",
+            "probability": 0.010038921853442958
+        },
+        {
+            "occupation": "Painting, Coating, and Decorating Workers",
+            "probability": 0.010016488508519062
+        },
+        {
+            "occupation": "Coating, Painting, and Spraying Machine Setters, Operators, and Tenders",
+            "probability": 0.010016488508519062
+        },
+        {
+            "occupation": "Automotive Body and Related Repairers",
+            "probability": 0.009994055163595169
+        },
+        {
+            "occupation": "Construction Laborers",
+            "probability": 0.009982838491133223
+        },
+        {
+            "occupation": "Metal-Refining Furnace Operators and Tenders",
+            "probability": 0.009982838491133222
+        },
+        {
+            "occupation": "Pourers and Casters, Metal",
+            "probability": 0.009982838491133222
+        },
+        {
+            "occupation": "Extruding, Forming, Pressing, and Compacting Machine Setters, Operators, and Tenders",
+            "probability": 0.009982838491133222
+        },
+        {
+            "occupation": "Pipelayers",
+            "probability": 0.009949188473747378
+        },
+        {
+            "occupation": "Crane and Tower Operators",
+            "probability": 0.009949188473747378
+        },
+        {
+            "occupation": "Glaziers",
+            "probability": 0.009937971801285432
+        },
+        {
+            "occupation": "Helpers--Installation, Maintenance, and Repair Workers",
+            "probability": 0.009937971801285432
+        },
+        {
+            "occupation": "Insulation Workers, Floor, Ceiling, and Wall",
+            "probability": 0.00993797180128543
+        },
+        {
+            "occupation": "Insulation Workers, Mechanical",
+            "probability": 0.00993797180128543
+        },
+        {
+            "occupation": "Extruding and Drawing Machine Setters, Operators, and Tenders, Metal and Plastic",
+            "probability": 0.00993797180128543
+        },
+        {
+            "occupation": "Forging Machine Setters, Operators, and Tenders, Metal and Plastic",
+            "probability": 0.00993797180128543
+        },
+        {
+            "occupation": "Rolling Machine Setters, Operators, and Tenders, Metal and Plastic",
+            "probability": 0.00993797180128543
+        },
+        {
+            "occupation": "Helpers--Brickmasons, Blockmasons, Stonemasons, and Tile and Marble Setters",
+            "probability": 0.009926755128823484
+        },
+        {
+            "occupation": "Helpers--Carpenters",
+            "probability": 0.009926755128823484
+        },
+        {
+            "occupation": "Helpers--Electricians",
+            "probability": 0.009926755128823484
+        },
+        {
+            "occupation": "Helpers--Painters, Paperhangers, Plasterers, and Stucco Masons",
+            "probability": 0.009926755128823484
+        },
+        {
+            "occupation": "Helpers--Pipelayers, Plumbers, Pipefitters, and Steamfitters",
+            "probability": 0.009926755128823484
+        },
+        {
+            "occupation": "Helpers--Roofers",
+            "probability": 0.009926755128823484
+        },
+        {
+            "occupation": "Maids and Housekeeping Cleaners",
+            "probability": 0.009915538456361537
+        },
+        {
+            "occupation": "Packaging and Filling Machine Operators and Tenders",
+            "probability": 0.009915538456361535
+        },
+        {
+            "occupation": "Automotive Glass Installers and Repairers",
+            "probability": 0.009904321783899588
+        },
+        {
+            "occupation": "Painters, Construction and Maintenance",
+            "probability": 0.009881888438975694
+        },
+        {
+            "occupation": "Paperhangers",
+            "probability": 0.009881888438975694
+        },
+        {
+            "occupation": "Laundry and Dry-Cleaning Workers",
+            "probability": 0.009881888438975694
+        },
+        {
+            "occupation": "Conveyor Operators and Tenders",
+            "probability": 0.009881888438975694
+        },
+        {
+            "occupation": "Dredge Operators",
+            "probability": 0.009881888438975694
+        },
+        {
+            "occupation": "Hoist and Winch Operators",
+            "probability": 0.009881888438975694
+        },
+        {
+            "occupation": "Welders, Cutters, Solderers, and Brazers",
+            "probability": 0.009870671766513748
+        },
+        {
+            "occupation": "Welding, Soldering, and Brazing Machine Setters, Operators, and Tenders",
+            "probability": 0.009870671766513748
+        },
+        {
+            "occupation": "Boilermakers",
+            "probability": 0.009837021749127905
+        },
+        {
+            "occupation": "Fence Erectors",
+            "probability": 0.009825805076665958
+        },
+        {
+            "occupation": "Cleaners of Vehicles and Equipment",
+            "probability": 0.009825805076665957
+        },
+        {
+            "occupation": "Grinding, Lapping, Polishing, and Buffing Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+            "probability": 0.00981458840420401
+        },
+        {
+            "occupation": "Septic Tank Servicers and Sewer Pipe Cleaners",
+            "probability": 0.009769721714356219
+        },
+        {
+            "occupation": "Miscellaneous Construction and Related Workers",
+            "probability": 0.009769721714356219
+        },
+        {
+            "occupation": "Cooks, Fast Food",
+            "probability": 0.009758505041894272
+        },
+        {
+            "occupation": "Cooks, Institution and Cafeteria",
+            "probability": 0.009758505041894272
+        },
+        {
+            "occupation": "Cooks, Private Household",
+            "probability": 0.009758505041894272
+        },
+        {
+            "occupation": "Cooks, Restaurant",
+            "probability": 0.009758505041894272
+        },
+        {
+            "occupation": "Cooks, Short Order",
+            "probability": 0.009758505041894272
+        },
+        {
+            "occupation": "Cabinetmakers and Bench Carpenters",
+            "probability": 0.009724855024508431
+        },
+        {
+            "occupation": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
+            "probability": 0.009713638352046482
+        },
+        {
+            "occupation": "Engine and Other Machine Assemblers",
+            "probability": 0.009713638352046482
+        },
+        {
+            "occupation": "Animal Breeders",
+            "probability": 0.009691205007122589
+        },
+        {
+            "occupation": "Agricultural Equipment Operators",
+            "probability": 0.009691205007122589
+        },
+        {
+            "occupation": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+            "probability": 0.009691205007122589
+        },
+        {
+            "occupation": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
+            "probability": 0.009691205007122589
+        },
+        {
+            "occupation": "Highway Maintenance Workers",
+            "probability": 0.009691205007122589
+        },
+        {
+            "occupation": "Print Binding and Finishing Workers",
+            "probability": 0.009691205007122589
+        },
+        {
+            "occupation": "School Bus Monitors",
+            "probability": 0.00967998833466064
+        },
+        {
+            "occupation": "Carpenters",
+            "probability": 0.00967998833466064
+        },
+        {
+            "occupation": "Textile Bleaching and Dyeing Machine Operators and Tenders",
+            "probability": 0.00967998833466064
+        },
+        {
+            "occupation": "Textile Cutting Machine Setters, Operators, and Tenders",
+            "probability": 0.00967998833466064
+        },
+        {
+            "occupation": "Textile Knitting and Weaving Machine Setters, Operators, and Tenders",
+            "probability": 0.00967998833466064
+        },
+        {
+            "occupation": "Textile Winding, Twisting, and Drawing Out Machine Setters, Operators, and Tenders",
+            "probability": 0.00967998833466064
+        }
+    ],
+    "bachelor's": [
+        {
+            "occupation": "Dental Hygienists",
+            "probability": 0.013444779214047362
+        },
+        {
+            "occupation": "Respiratory Therapists",
+            "probability": 0.013169404218096993
+        },
+        {
+            "occupation": "Registered Nurses",
+            "probability": 0.01299122039718793
+        },
+        {
+            "occupation": "Physical Therapist Assistants",
+            "probability": 0.01266724981371691
+        },
+        {
+            "occupation": "Physical Therapist Aides",
+            "probability": 0.01266724981371691
+        },
+        {
+            "occupation": "Conservation Scientists",
+            "probability": 0.01203550717594842
+        },
+        {
+            "occupation": "Foresters",
+            "probability": 0.01203550717594842
+        },
+        {
+            "occupation": "Radiation Therapists",
+            "probability": 0.011954514530080668
+        },
+        {
+            "occupation": "Diagnostic Medical Sonographers",
+            "probability": 0.011873521884212911
+        },
+        {
+            "occupation": "Radiologic Technologists and Technicians",
+            "probability": 0.011841124825865808
+        },
+        {
+            "occupation": "Interior Designers",
+            "probability": 0.011630543946609645
+        },
+        {
+            "occupation": "Cartographers and Photogrammetrists",
+            "probability": 0.011598146888262542
+        },
+        {
+            "occupation": "Surveyors",
+            "probability": 0.011598146888262542
+        },
+        {
+            "occupation": "Graphic Designers",
+            "probability": 0.011517154242394786
+        },
+        {
+            "occupation": "Advertising and Promotions Managers",
+            "probability": 0.011403764538179931
+        },
+        {
+            "occupation": "Magnetic Resonance Imaging Technologists",
+            "probability": 0.011387566009006379
+        },
+        {
+            "occupation": "Nuclear Medicine Technologists",
+            "probability": 0.011144588071403113
+        },
+        {
+            "occupation": "Medical Dosimetrists",
+            "probability": 0.011144588071403113
+        },
+        {
+            "occupation": "Probation Officers and Correctional Treatment Specialists",
+            "probability": 0.010885411604626298
+        },
+        {
+            "occupation": "Airline Pilots, Copilots, and Flight Engineers",
+            "probability": 0.010836816017105646
+        },
+        {
+            "occupation": "Commercial Pilots",
+            "probability": 0.010836816017105646
+        },
+        {
+            "occupation": "Occupational Therapy Assistants",
+            "probability": 0.010658632196196585
+        },
+        {
+            "occupation": "Occupational Therapy Aides",
+            "probability": 0.010658632196196585
+        },
+        {
+            "occupation": "Morticians, Undertakers, and Funeral Arrangers",
+            "probability": 0.010642433667023032
+        },
+        {
+            "occupation": "News Analysts, Reporters, and Journalists",
+            "probability": 0.01059383807950238
+        },
+        {
+            "occupation": "Actuaries",
+            "probability": 0.010545242491981724
+        },
+        {
+            "occupation": "Mechanical Engineers",
+            "probability": 0.010464249846113972
+        },
+        {
+            "occupation": "Fashion Designers",
+            "probability": 0.01044805131694042
+        },
+        {
+            "occupation": "Accountants and Auditors",
+            "probability": 0.010431852787766868
+        },
+        {
+            "occupation": "Sales Engineers",
+            "probability": 0.010383257200246217
+        },
+        {
+            "occupation": "Camera Operators, Television, Video, and Film",
+            "probability": 0.010334661612725561
+        },
+        {
+            "occupation": "Film and Video Editors",
+            "probability": 0.010334661612725561
+        },
+        {
+            "occupation": "Web and Digital Interface Designers",
+            "probability": 0.010269867496031357
+        },
+        {
+            "occupation": "Producers and Directors",
+            "probability": 0.010253668966857808
+        },
+        {
+            "occupation": "Marine Engineers and Naval Architects",
+            "probability": 0.01014027926264295
+        },
+        {
+            "occupation": "Web Developers",
+            "probability": 0.010124080733469399
+        },
+        {
+            "occupation": "Civil Engineers",
+            "probability": 0.010043088087601643
+        },
+        {
+            "occupation": "Marketing Managers",
+            "probability": 0.010026889558428093
+        },
+        {
+            "occupation": "Market Research Analysts and Marketing Specialists",
+            "probability": 0.010010691029254542
+        },
+        {
+            "occupation": "Environmental Scientists and Specialists, Including Health",
+            "probability": 0.009994492500080991
+        },
+        {
+            "occupation": "Materials Engineers",
+            "probability": 0.009978293970907439
+        },
+        {
+            "occupation": "Commercial and Industrial Designers",
+            "probability": 0.009913499854213236
+        },
+        {
+            "occupation": "Recreational Therapists",
+            "probability": 0.009848705737519031
+        },
+        {
+            "occupation": "Actors",
+            "probability": 0.009783911620824827
+        },
+        {
+            "occupation": "Editors",
+            "probability": 0.009751514562477725
+        },
+        {
+            "occupation": "Credit Analysts",
+            "probability": 0.009735316033304174
+        },
+        {
+            "occupation": "Advertising Sales Agents",
+            "probability": 0.009719117504130622
+        },
+        {
+            "occupation": "Chemical Engineers",
+            "probability": 0.009702918974957073
+        },
+        {
+            "occupation": "Public Relations Specialists",
+            "probability": 0.009638124858262867
+        },
+        {
+            "occupation": "Clinical Laboratory Technologists and Technicians",
+            "probability": 0.009638124858262867
+        },
+        {
+            "occupation": "Health and Safety Engineers, Except Mining Safety Engineers and Inspectors",
+            "probability": 0.009621926329089316
+        },
+        {
+            "occupation": "Industrial Engineers",
+            "probability": 0.009621926329089316
+        },
+        {
+            "occupation": "Mining and Geological Engineers, Including Mining Safety Engineers",
+            "probability": 0.00954093368322156
+        },
+        {
+            "occupation": "Petroleum Engineers",
+            "probability": 0.00954093368322156
+        },
+        {
+            "occupation": "Compensation and Benefits Managers",
+            "probability": 0.009492338095700908
+        },
+        {
+            "occupation": "Financial Examiners",
+            "probability": 0.009476139566527358
+        },
+        {
+            "occupation": "Landscape Architects",
+            "probability": 0.009476139566527358
+        },
+        {
+            "occupation": "Public Relations Managers",
+            "probability": 0.009459941037353805
+        },
+        {
+            "occupation": "Fundraising Managers",
+            "probability": 0.009459941037353805
+        },
+        {
+            "occupation": "Computer Programmers",
+            "probability": 0.009411345449833153
+        },
+        {
+            "occupation": "Electrical Engineers",
+            "probability": 0.009395146920659602
+        },
+        {
+            "occupation": "Electronics Engineers, Except Computer",
+            "probability": 0.009395146920659602
+        },
+        {
+            "occupation": "Set and Exhibit Designers",
+            "probability": 0.009395146920659602
+        },
+        {
+            "occupation": "Broadcast Announcers and Radio Disc Jockeys",
+            "probability": 0.009395146920659602
+        },
+        {
+            "occupation": "Personal Financial Advisors",
+            "probability": 0.009362749862312501
+        },
+        {
+            "occupation": "Software Quality Assurance Analysts and Testers",
+            "probability": 0.009362749862312501
+        },
+        {
+            "occupation": "Electrical and Electronics Drafters",
+            "probability": 0.009346551333138949
+        },
+        {
+            "occupation": "Mechanical Drafters",
+            "probability": 0.009346551333138949
+        },
+        {
+            "occupation": "Securities, Commodities, and Financial Services Sales Agents",
+            "probability": 0.009346551333138949
+        },
+        {
+            "occupation": "Meeting, Convention, and Event Planners",
+            "probability": 0.009330352803965398
+        },
+        {
+            "occupation": "Air Traffic Controllers",
+            "probability": 0.009330352803965398
+        },
+        {
+            "occupation": "Airfield Operations Specialists",
+            "probability": 0.009330352803965398
+        },
+        {
+            "occupation": "Network and Computer Systems Administrators",
+            "probability": 0.009152168983056336
+        },
+        {
+            "occupation": "Software Developers",
+            "probability": 0.009103573395535684
+        },
+        {
+            "occupation": "Insurance Underwriters",
+            "probability": 0.009103573395535683
+        },
+        {
+            "occupation": "Agricultural Engineers",
+            "probability": 0.009087374866362132
+        },
+        {
+            "occupation": "Bioengineers and Biomedical Engineers",
+            "probability": 0.009087374866362132
+        },
+        {
+            "occupation": "Paralegals and Legal Assistants",
+            "probability": 0.00905497780801503
+        },
+        {
+            "occupation": "Technical Writers",
+            "probability": 0.00903877927884148
+        },
+        {
+            "occupation": "Sales Managers",
+            "probability": 0.009022580749667929
+        },
+        {
+            "occupation": "Computer Systems Analysts",
+            "probability": 0.009022580749667929
+        },
+        {
+            "occupation": "Computer Network Architects",
+            "probability": 0.009006382220494377
+        },
+        {
+            "occupation": "Athletes and Sports Competitors",
+            "probability": 0.008957786632973724
+        },
+        {
+            "occupation": "Veterinary Technologists and Technicians",
+            "probability": 0.008941588103800174
+        },
+        {
+            "occupation": "Financial and Investment Analysts",
+            "probability": 0.008925389574626621
+        },
+        {
+            "occupation": "Aerospace Engineers",
+            "probability": 0.008925389574626621
+        },
+        {
+            "occupation": "Architectural and Civil Drafters",
+            "probability": 0.00890919104545307
+        },
+        {
+            "occupation": "Animal Scientists",
+            "probability": 0.00890919104545307
+        },
+        {
+            "occupation": "Food Scientists and Technologists",
+            "probability": 0.00890919104545307
+        },
+        {
+            "occupation": "Soil and Plant Scientists",
+            "probability": 0.00890919104545307
+        },
+        {
+            "occupation": "Database Administrators",
+            "probability": 0.008860595457932417
+        },
+        {
+            "occupation": "Database Architects",
+            "probability": 0.008860595457932417
+        },
+        {
+            "occupation": "Photographers",
+            "probability": 0.008860595457932417
+        },
+        {
+            "occupation": "Property Appraisers and Assessors",
+            "probability": 0.008828198399585315
+        },
+        {
+            "occupation": "Nuclear Engineers",
+            "probability": 0.008828198399585315
+        },
+        {
+            "occupation": "Detectives and Criminal Investigators",
+            "probability": 0.008763404282891112
+        },
+        {
+            "occupation": "Agents and Business Managers of Artists, Performers, and Athletes",
+            "probability": 0.00874720575371756
+        },
+        {
+            "occupation": "Atmospheric and Space Scientists",
+            "probability": 0.008714808695370458
+        },
+        {
+            "occupation": "Computer and Information Systems Managers",
+            "probability": 0.008650014578676254
+        },
+        {
+            "occupation": "Writers and Authors",
+            "probability": 0.008650014578676254
+        }
+    ],
+    "master's": [
+        {
+            "occupation": "Speech-Language Pathologists",
+            "probability": 0.020640173811990018
+        },
+        {
+            "occupation": "Nurse Midwives",
+            "probability": 0.018012783265543307
+        },
+        {
+            "occupation": "Nurse Practitioners",
+            "probability": 0.018012783265543307
+        },
+        {
+            "occupation": "Marriage and Family Therapists",
+            "probability": 0.01715382866382035
+        },
+        {
+            "occupation": "Mental Health and Substance Abuse Social Workers",
+            "probability": 0.016800141474875595
+        },
+        {
+            "occupation": "Nurse Anesthetists",
+            "probability": 0.0158653967612359
+        },
+        {
+            "occupation": "Educational, Guidance, and Career Counselors and Advisors",
+            "probability": 0.015511709572291152
+        },
+        {
+            "occupation": "Exercise Physiologists",
+            "probability": 0.015158022383346403
+        },
+        {
+            "occupation": "Physician Assistants",
+            "probability": 0.014930652047596207
+        },
+        {
+            "occupation": "Librarians and Media Collections Specialists",
+            "probability": 0.014046434075234334
+        },
+        {
+            "occupation": "Occupational Therapists",
+            "probability": 0.014021170704595423
+        },
+        {
+            "occupation": "Substance Abuse, Behavioral Disorder, and Mental Health Counselors",
+            "probability": 0.013995907333956512
+        },
+        {
+            "occupation": "School Psychologists",
+            "probability": 0.013465376550539388
+        },
+        {
+            "occupation": "Secondary School Teachers, Except Special and Career/Technical Education",
+            "probability": 0.01316221610287246
+        },
+        {
+            "occupation": "Career/Technical Education Teachers, Secondary School",
+            "probability": 0.01316221610287246
+        },
+        {
+            "occupation": "Acupuncturists",
+            "probability": 0.013111689361594637
+        },
+        {
+            "occupation": "Special Education Teachers, Preschool",
+            "probability": 0.012884319025844443
+        },
+        {
+            "occupation": "Special Education Teachers, Kindergarten and Elementary School",
+            "probability": 0.012884319025844443
+        },
+        {
+            "occupation": "Special Education Teachers, Middle School",
+            "probability": 0.012884319025844443
+        },
+        {
+            "occupation": "Special Education Teachers, Secondary School",
+            "probability": 0.012884319025844443
+        },
+        {
+            "occupation": "Urban and Regional Planners",
+            "probability": 0.012808528913927711
+        },
+        {
+            "occupation": "Elementary School Teachers, Except Special Education",
+            "probability": 0.011873784200288015
+        },
+        {
+            "occupation": "Middle School Teachers, Except Special and Career/Technical Education",
+            "probability": 0.011873784200288015
+        },
+        {
+            "occupation": "Career/Technical Education Teachers, Middle School",
+            "probability": 0.011873784200288015
+        },
+        {
+            "occupation": "Economists",
+            "probability": 0.011570623752621087
+        },
+        {
+            "occupation": "Education and Childcare Administrators, Preschool and Daycare",
+            "probability": 0.011090619710481784
+        },
+        {
+            "occupation": "Education Administrators, Kindergarten through Secondary",
+            "probability": 0.011090619710481784
+        },
+        {
+            "occupation": "Education Administrators, Postsecondary",
+            "probability": 0.011090619710481784
+        },
+        {
+            "occupation": "Farm and Home Management Educators",
+            "probability": 0.01091377611600941
+        },
+        {
+            "occupation": "Instructional Coordinators",
+            "probability": 0.01091377611600941
+        },
+        {
+            "occupation": "Geoscientists, Except Hydrologists and Geographers",
+            "probability": 0.010585352297703571
+        },
+        {
+            "occupation": "Hydrologists",
+            "probability": 0.010585352297703571
+        },
+        {
+            "occupation": "Survey Researchers",
+            "probability": 0.009852714549175162
+        },
+        {
+            "occupation": "Sociologists",
+            "probability": 0.009852714549175162
+        },
+        {
+            "occupation": "Anthropologists and Archeologists",
+            "probability": 0.009852714549175162
+        },
+        {
+            "occupation": "Geographers",
+            "probability": 0.009852714549175162
+        },
+        {
+            "occupation": "Historians",
+            "probability": 0.009852714549175162
+        },
+        {
+            "occupation": "Political Scientists",
+            "probability": 0.009852714549175162
+        },
+        {
+            "occupation": "Industrial-Organizational Psychologists",
+            "probability": 0.009726397695980608
+        },
+        {
+            "occupation": "Architects, Except Landscape and Naval",
+            "probability": 0.009473763989591502
+        },
+        {
+            "occupation": "Environmental Engineers",
+            "probability": 0.009473763989591502
+        },
+        {
+            "occupation": "Rehabilitation Counselors",
+            "probability": 0.009094813430007842
+        },
+        {
+            "occupation": "Archivists",
+            "probability": 0.009094813430007842
+        },
+        {
+            "occupation": "Curators",
+            "probability": 0.009094813430007842
+        },
+        {
+            "occupation": "Museum Technicians and Conservators",
+            "probability": 0.009094813430007842
+        },
+        {
+            "occupation": "Clergy",
+            "probability": 0.00906955005936893
+        },
+        {
+            "occupation": "Mathematicians",
+            "probability": 0.00904428668873002
+        },
+        {
+            "occupation": "Statisticians",
+            "probability": 0.00904428668873002
+        },
+        {
+            "occupation": "Data Scientists",
+            "probability": 0.00904428668873002
+        },
+        {
+            "occupation": "Child, Family, and School Social Workers",
+            "probability": 0.008968496576813288
+        },
+        {
+            "occupation": "Healthcare Social Workers",
+            "probability": 0.008943233206174378
+        },
+        {
+            "occupation": "Dietitians and Nutritionists",
+            "probability": 0.008741126241063093
+        },
+        {
+            "occupation": "Fundraisers",
+            "probability": 0.00866533612914636
+        },
+        {
+            "occupation": "Health Information Technologists and Medical Registrars",
+            "probability": 0.008564282646590718
+        },
+        {
+            "occupation": "Athletic Trainers",
+            "probability": 0.008564282646590718
+        },
+        {
+            "occupation": "Genetic Counselors",
+            "probability": 0.008564282646590718
+        },
+        {
+            "occupation": "Surgical Assistants",
+            "probability": 0.008564282646590718
+        },
+        {
+            "occupation": "Aerospace Engineers",
+            "probability": 0.008185332087007058
+        },
+        {
+            "occupation": "Financial and Investment Analysts",
+            "probability": 0.008134805345729237
+        },
+        {
+            "occupation": "Computer and Information Research Scientists",
+            "probability": 0.008059015233812503
+        },
+        {
+            "occupation": "Natural Sciences Managers",
+            "probability": 0.008033751863173594
+        },
+        {
+            "occupation": "Architectural and Engineering Managers",
+            "probability": 0.007831644898062307
+        },
+        {
+            "occupation": "Biochemists and Biophysicists",
+            "probability": 0.007831644898062307
+        },
+        {
+            "occupation": "Microbiologists",
+            "probability": 0.007831644898062307
+        },
+        {
+            "occupation": "Zoologists and Wildlife Biologists",
+            "probability": 0.007831644898062307
+        },
+        {
+            "occupation": "Business Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Computer Science Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Mathematical Science Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Architecture Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Engineering Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Agricultural Sciences Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Biological Science Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Forestry and Conservation Science Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Atmospheric, Earth, Marine, and Space Sciences Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Chemistry Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Environmental Science Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Physics Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Anthropology and Archeology Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Area, Ethnic, and Cultural Studies Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Economics Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Geography Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Political Science Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Psychology Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Sociology Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Health Specialties Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Nursing Instructors and Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Education Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Library Science Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Criminal Justice and Law Enforcement Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Law Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Social Work Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Art, Drama, and Music Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Communications Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "English Language and Literature Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Foreign Language and Literature Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "History Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Philosophy and Religion Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Family and Consumer Sciences Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Recreation and Fitness Studies Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        },
+        {
+            "occupation": "Career/Technical Education Teachers, Postsecondary",
+            "probability": 0.007755854786145576
+        }
+    ],
+    "PhD": [
+        {
+            "occupation": "Anesthesiologists",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Cardiologists",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Dermatologists",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Emergency Medicine Physicians",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Family Medicine Physicians",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "General Internal Medicine Physicians",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Neurologists",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Obstetricians and Gynecologists",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Pediatricians, General",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Physicians, Pathologists",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Psychiatrists",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Radiologists",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Ophthalmologists, Except Pediatric",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Orthopedic Surgeons, Except Pediatric",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Pediatric Surgeons",
+            "probability": 0.018566654288897148
+        },
+        {
+            "occupation": "Podiatrists",
+            "probability": 0.018232454511697
+        },
+        {
+            "occupation": "Optometrists",
+            "probability": 0.018065354623096923
+        },
+        {
+            "occupation": "Veterinarians",
+            "probability": 0.017972521351652438
+        },
+        {
+            "occupation": "Dentists, General",
+            "probability": 0.017879688080207953
+        },
+        {
+            "occupation": "Oral and Maxillofacial Surgeons",
+            "probability": 0.017879688080207953
+        },
+        {
+            "occupation": "Orthodontists",
+            "probability": 0.017879688080207953
+        },
+        {
+            "occupation": "Prosthodontists",
+            "probability": 0.017879688080207953
+        },
+        {
+            "occupation": "Lawyers",
+            "probability": 0.016190122539918313
+        },
+        {
+            "occupation": "Administrative Law Judges, Adjudicators, and Hearing Officers",
+            "probability": 0.016190122539918313
+        },
+        {
+            "occupation": "Arbitrators, Mediators, and Conciliators",
+            "probability": 0.016190122539918313
+        },
+        {
+            "occupation": "Judges, Magistrate Judges, and Magistrates",
+            "probability": 0.016190122539918313
+        },
+        {
+            "occupation": "Chiropractors",
+            "probability": 0.016060155959896034
+        },
+        {
+            "occupation": "Clinical and Counseling Psychologists",
+            "probability": 0.01470479019680654
+        },
+        {
+            "occupation": "Pharmacists",
+            "probability": 0.012792424805050136
+        },
+        {
+            "occupation": "Audiologists",
+            "probability": 0.012513924990716678
+        },
+        {
+            "occupation": "Astronomers",
+            "probability": 0.00969179353880431
+        },
+        {
+            "occupation": "Physicists",
+            "probability": 0.00969179353880431
+        },
+        {
+            "occupation": "Industrial-Organizational Psychologists",
+            "probability": 0.009636093575937619
+        },
+        {
+            "occupation": "Physical Therapists",
+            "probability": 0.009487560341626443
+        },
+        {
+            "occupation": "Business Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Computer Science Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Mathematical Science Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Architecture Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Engineering Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Agricultural Sciences Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Biological Science Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Forestry and Conservation Science Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Atmospheric, Earth, Marine, and Space Sciences Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Chemistry Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Environmental Science Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Physics Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Anthropology and Archeology Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Area, Ethnic, and Cultural Studies Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Economics Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Geography Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Political Science Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Psychology Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Sociology Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Health Specialties Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Nursing Instructors and Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Education Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Library Science Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Criminal Justice and Law Enforcement Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Law Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Social Work Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Art, Drama, and Music Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Communications Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "English Language and Literature Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Foreign Language and Literature Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "History Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Philosophy and Religion Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Family and Consumer Sciences Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Recreation and Fitness Studies Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Career/Technical Education Teachers, Postsecondary",
+            "probability": 0.008837727441515042
+        },
+        {
+            "occupation": "Epidemiologists",
+            "probability": 0.008484961010025997
+        },
+        {
+            "occupation": "Medical Scientists, Except Epidemiologists",
+            "probability": 0.008484961010025997
+        },
+        {
+            "occupation": "Judicial Law Clerks",
+            "probability": 0.00826216115855923
+        },
+        {
+            "occupation": "School Psychologists",
+            "probability": 0.006943928704047532
+        },
+        {
+            "occupation": "Economists",
+            "probability": 0.006479762346825104
+        },
+        {
+            "occupation": "Acupuncturists",
+            "probability": 0.006034162643891573
+        },
+        {
+            "occupation": "Computer and Information Research Scientists",
+            "probability": 0.004288897140735241
+        },
+        {
+            "occupation": "Nurse Anesthetists",
+            "probability": 0.00415893056071296
+        },
+        {
+            "occupation": "Biochemists and Biophysicists",
+            "probability": 0.003917564054957298
+        },
+        {
+            "occupation": "Microbiologists",
+            "probability": 0.003917564054957298
+        },
+        {
+            "occupation": "Zoologists and Wildlife Biologists",
+            "probability": 0.003917564054957298
+        },
+        {
+            "occupation": "Chemists",
+            "probability": 0.0038989974006684008
+        },
+        {
+            "occupation": "Materials Scientists",
+            "probability": 0.0038989974006684008
+        },
+        {
+            "occupation": "Natural Sciences Managers",
+            "probability": 0.003471964352023766
+        },
+        {
+            "occupation": "Nurse Midwives",
+            "probability": 0.003323431117712589
+        },
+        {
+            "occupation": "Nurse Practitioners",
+            "probability": 0.003323431117712589
+        },
+        {
+            "occupation": "Survey Researchers",
+            "probability": 0.0032305978462681033
+        },
+        {
+            "occupation": "Sociologists",
+            "probability": 0.0032305978462681033
+        },
+        {
+            "occupation": "Anthropologists and Archeologists",
+            "probability": 0.0032305978462681033
+        },
+        {
+            "occupation": "Geographers",
+            "probability": 0.0032305978462681033
+        },
+        {
+            "occupation": "Historians",
+            "probability": 0.0032305978462681033
+        },
+        {
+            "occupation": "Political Scientists",
+            "probability": 0.0032305978462681033
+        },
+        {
+            "occupation": "Animal Scientists",
+            "probability": 0.003044931303379132
+        },
+        {
+            "occupation": "Food Scientists and Technologists",
+            "probability": 0.003044931303379132
+        },
+        {
+            "occupation": "Soil and Plant Scientists",
+            "probability": 0.003044931303379132
+        },
+        {
+            "occupation": "Atmospheric and Space Scientists",
+            "probability": 0.0028221314519123663
+        },
+        {
+            "occupation": "Physician Assistants",
+            "probability": 0.0027292981804678805
+        },
+        {
+            "occupation": "Clergy",
+            "probability": 0.0025993316004456007
+        },
+        {
+            "occupation": "Education and Childcare Administrators, Preschool and Daycare",
+            "probability": 0.002525064983290012
+        },
+        {
+            "occupation": "Education Administrators, Kindergarten through Secondary",
+            "probability": 0.002525064983290012
+        },
+        {
+            "occupation": "Education Administrators, Postsecondary",
+            "probability": 0.002525064983290012
+        }
+    ]
+}
