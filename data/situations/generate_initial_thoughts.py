@@ -20,6 +20,7 @@ async def produce_initial_thought(
     data: dict,
     vllm_client: vLLMServer,
     therapist_reward: TherapistReward,
+    batch_num: int | None = None,
     top_k_personas: int = 1,
     thought_device: list = [],
     regenerate_thought: bool = False,
@@ -43,7 +44,8 @@ async def produce_initial_thought(
     )
 
     # avoid re-generating the initial thought if it already exists
-    cache_fpath = f'./situations_with_initial_thought_top{top_k_personas}.json'
+    batch_postfix = f'_batch{batch_num}' if batch_num is not None else ''
+    cache_fpath = f'./situations_with_initial_thought_top{top_k_personas}{batch_postfix}.json'
     if os.path.exists(cache_fpath) and not regenerate_thought:
         return None
         
@@ -77,6 +79,8 @@ async def produce_initial_thought(
         therapist_reward=therapist_reward,
         vllm_client=vllm_client,
         thought_device=thought_device,
+        batch_num=batch_num,
+        top_k_personas=top_k_personas,
         TOLERANCE=TOLERANCE,
     )
 
@@ -135,9 +139,6 @@ async def main():
         n_personas=args.n_personas,
     )
 
-    print(type(prepared_data))
-    raise SystemExit
-
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
 
     therapist_reward = TherapistReward(
@@ -165,14 +166,31 @@ async def main():
         # divide data into batches
         batch_size = len(prepared_data) // args.n_personas
 
-        await produce_initial_thought(
-            data=prepared_data,
-            vllm_client=vllm_client,
-            therapist_reward=therapist_reward,
-            top_k_personas=args.n_personas,
-            thought_device=thought_device,
-            regenerate_thought=args.regenerate_thought,
-        )
+        if args.n_personas > 1:
+            data_batches = [
+                {k: prepared_data[k] for k in list(prepared_data.keys())[i:i + batch_size]}
+                for i in range(0, len(prepared_data), batch_size)
+            ]
+
+            for batch_num, data_batch in enumerate(data_batches):
+                await produce_initial_thought(
+                    data=data_batch,
+                    vllm_client=vllm_client,
+                    therapist_reward=therapist_reward,
+                    top_k_personas=args.n_personas,
+                    thought_device=thought_device,
+                    regenerate_thought=args.regenerate_thought,
+                    batch_num=batch_num,
+                )
+        else:
+            await produce_initial_thought(
+                data=prepared_data,
+                vllm_client=vllm_client,
+                therapist_reward=therapist_reward,
+                top_k_personas=args.n_personas,
+                thought_device=thought_device,
+                regenerate_thought=args.regenerate_thought,
+            )
     finally:
         vllm_client.kill_server()
 

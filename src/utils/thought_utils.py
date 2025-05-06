@@ -27,6 +27,8 @@ async def iterative_thought_generation(
     situation_list: list,
     therapist_reward: TherapistReward,
     vllm_client: vLLMServer,
+    batch_num: int | None,
+    top_k_personas: int,
     thought_device: list = [],
     TOLERANCE: int = 5,
 ):
@@ -80,7 +82,11 @@ async def iterative_thought_generation(
             for active_message in active_messages
         ]
 
-        think_output_list = await atqdm.gather(*think_output_list)
+        tqdm_msg = f"Generating initial thoughts for {len(active_messages)} messages"
+        if batch_num:
+            tqdm_msg += f" in batch {batch_num} / {top_k_personas}"
+
+        think_output_list = await atqdm.gather(*think_output_list, desc=tqdm_msg)
 
         # terminate the async vllm server
         vllm_client.kill_server()
