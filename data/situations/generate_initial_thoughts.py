@@ -135,11 +135,8 @@ async def main():
         n_personas=args.n_personas,
     )
 
-    batch_size = len(prepared_data) // args.n_personas
-    print(f"Batch size: {batch_size}")
-    print(f"Number of situations: {len(prepared_data)}")
-    print(batch_size * args.n_personas)
-    raise SystemExit()
+    print(type(prepared_data))
+    raise SystemExit
 
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
 
@@ -164,6 +161,9 @@ async def main():
             world_size=torch.cuda.device_count(),
             quantization=False,
         )
+
+        # divide data into batches
+        batch_size = len(prepared_data) // args.n_personas
 
         await produce_initial_thought(
             data=prepared_data,
