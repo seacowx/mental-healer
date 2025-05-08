@@ -197,10 +197,11 @@ class trlServer:
 
             print('-------------------------------------------------')
             print(result.stdout)
+            print(type(result.stdout))
             print('-------------------------------------------------')
-
-            if 'vllm-model' in result.stdout or 'gpt-3.5-turbo' in result.stdout:            
-                server_running = True        
+            # status = result.stdout.get('status', '')
+            # if status == 'ok':
+            #     server_running = True
 
             number_of_attempts += 1    
 
