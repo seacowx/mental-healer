@@ -19,6 +19,8 @@ class CustomGRPOTrainer(GRPOTrainer):
         self.model.print_trainable_parameters()
         print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n')
 
+        raise SystemExit()
+
 
     def _reward_buffer(self,):
         """

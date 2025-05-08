@@ -101,10 +101,6 @@ def main():
         args=grpo_config,
     )
 
-    print('\n\n-----------------------------------------------------------------------')
-    print('Finished initializing custom grpo trainer. Training will start now.')
-    print('-----------------------------------------------------------------------\n\n')
-
     trainer.train()
 
 
