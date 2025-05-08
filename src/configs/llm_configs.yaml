@@ -15,7 +15,7 @@
   'quantization': False
 
 'qwen0.5':
-  'path':
+  'path': '/scratch/prj/charnu/seacow_hf_cache/models--Qwen--Qwen2-0.5B-Instruct/snapshots/c540970f9e29518b1d8f06ab8b24cba66ad77b6d'
   'quantization': False
 
 'qwen7':
