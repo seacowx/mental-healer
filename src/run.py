@@ -81,8 +81,8 @@ def main():
     # define lora config
     lora_config = LoraConfig(
         task_type="CAUSAL_LM",
-        r=4,
-        lora_alpha=12,
+        r=64,
+        lora_alpha=256,
         target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
         # target_modules="all-linear",
         bias="none",
