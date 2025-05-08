@@ -2,6 +2,10 @@ MODEL_PATH="Qwen/Qwen2-0.5B-Instruct"
 TRL_VLLM_PORT=8880
 
 # STEP: initialize trl vllm server
+printf "\n\n-----------------------------------------------------------------------"
+printf "\n\nInitializing vLLM server..."
+printf "-----------------------------------------------------------------------\n\n"
+
 CUDA_VISIBLE_DEVICES=0 trl vllm-serve \
     --model $MODEL_PATH \
     --port $TRL_VLLM_PORT \
