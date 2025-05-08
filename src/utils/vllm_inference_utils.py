@@ -195,18 +195,21 @@ class trlServer:
                 text=True,
             )        
 
-            print('-------------------------------------------------')
-            print(result)
-            print('-------------------------------------------------')
-            # status = result.stdout.get('status', '')
-            # if status == 'ok':
-            #     server_running = True
+            status_msg = result.stdout
+            if 'ok' in status_msg:
+                server_running = True
 
             number_of_attempts += 1    
 
         if not server_running:        
             self.kill_server()        
             raise Exception("vllm-server failed to start")    
+
+
+    def kill_server(self):    
+        self.server.send_signal(signal.SIGINT)    
+        self.server.wait()    
+        time.sleep(10)
 
 
 class vLLMServer:
