@@ -4,6 +4,7 @@ This is a minimal example to make sure that the original GRPO training works
 and the small custom edits are working properly.
 """
 
+import os
 import yaml
 from peft import LoraConfig
 from datasets import load_dataset
@@ -48,15 +49,21 @@ def main():
     #     args=grpo_config,
     # )
 
-    # trainer = CustomGRPOTrainer(
-    #     model="Qwen/Qwen2-0.5B-Instruct",
-    #     reward_funcs=reward_func,
-    #     train_dataset=dataset,
-    #     peft_config=lora_config,
-    #     args=grpo_config,
-    # )
+    # STEP: initialize custom grpo trainer
+    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+    trainer = CustomGRPOTrainer(
+        model="Qwen/Qwen2-0.5B-Instruct",
+        reward_funcs=reward_func,
+        train_dataset=dataset,
+        peft_config=lora_config,
+        args=grpo_config,
+    )
 
-    # trainer.train()
+    # STEP: train the model
+    trainer.train()
+
+    # STEP: kill the trl vllm server
+    trl_vllm_server.kill_server()
 
 
 if __name__ == "__main__":
