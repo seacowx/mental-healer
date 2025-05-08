@@ -34,16 +34,16 @@ def main():
     grpo_config_dict = yaml.safe_load(open('./configs/grpo.yaml', 'r'))
     grpo_config = GRPOConfig(**grpo_config_dict)
 
-    # # STEP: initialize trl vllm server
+    # STEP: initialize trl vllm server
     # trl_vllm_server = trlServer(
     #     model_path="Qwen/Qwen2-0.5B-Instruct",
     #     available_cuda_list=[1],
     # )
     # trl_vllm_server.start_trl_vllm_server()
 
-    # print('\n\n-------------------------------------------------')
+    # print('\n\n-----------------------------------------------------------------------')
     # print('Finished starting trl vllm server')
-    # print('-------------------------------------------------\n\n')
+    # print('-----------------------------------------------------------------------\n\n')
 
     # trainer = GRPOTrainer(
     #     model="Qwen/Qwen2-0.5B-Instruct",
@@ -63,9 +63,9 @@ def main():
         args=grpo_config,
     )
 
-    print('\n\n-------------------------------------------------')
+    print('\n\n-----------------------------------------------------------------------')
     print('Finished initializing custom grpo trainer. Training will start now.')
-    print('-------------------------------------------------\n\n')
+    print('-----------------------------------------------------------------------\n\n')
 
     # STEP: train the model
     trainer.train()
