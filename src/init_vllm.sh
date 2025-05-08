@@ -23,7 +23,3 @@ CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES trl vllm-serve \
     --port $TRL_VLLM_PORT \
     --tensor_parallel_size $TENSOR_PARALLEL_SIZE \
     --gpu-memory-utilization 0.85
-
-printf "\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
-printf "vLLM server started. Now start the training script.\n"
-printf "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n"
