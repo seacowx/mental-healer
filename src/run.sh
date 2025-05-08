@@ -10,9 +10,9 @@ CUDA_VISIBLE_DEVICES=1 python debug.py \
     --model_path $MODEL_PATH \
     --trl_vllm_port $TRL_VLLM_PORT
 
-printf "\n\n-----------------------------------------------------------------------"
-printf "\n\nInitializing vLLM server..."
-printf "-----------------------------------------------------------------------\n\n"
+printf "\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
+printf "Initializing vLLM server...\n"
+printf "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n"
 
 # CUDA_VISIBLE_DEVICES=0 trl vllm-serve \
 #     --model "Qwen/Qwen2-0.5B-Instruct" \
@@ -26,6 +26,6 @@ CUDA_VISIBLE_DEVICES=0 trl vllm-serve \
     --tensor_parallel_size 1 \
     --gpu-memory-utilization 0.75
 
-printf "\n\n-----------------------------------------------------------------------"
-printf "\n\nvLLM server started. Training..."
-printf "-----------------------------------------------------------------------\n\n"
+printf "\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
+printf "vLLM server started. Starting training...\n"
+printf "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n"
