@@ -3,7 +3,7 @@
 bf16: true
 model_init_kwargs:
   torch_dtype: bfloat16
-use_liger_kernal: true
+use_liger_kernel: true
 
 # sampling
 num_generations: 8
