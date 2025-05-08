@@ -31,11 +31,12 @@ def main():
         use_rslora=True,
     )
 
+    TRL_VLLM_PORT = 8880
     grpo_config_dict = yaml.safe_load(open('./configs/grpo.yaml', 'r'))
+    grpo_config_dict['vllm_server_port'] = TRL_VLLM_PORT
     grpo_config = GRPOConfig(**grpo_config_dict)
 
     # STEP: initialize trl vllm server
-    TRL_VLLM_PORT = 8880
     trl_vllm_server = trlServer(
         model_path="Qwen/Qwen2-0.5B-Instruct",
         available_cuda_list=[1],
@@ -64,7 +65,6 @@ def main():
         train_dataset=dataset,
         peft_config=lora_config,
         args=grpo_config,
-        vllm_server_port=TRL_VLLM_PORT,
     )
 
     print('\n\n-----------------------------------------------------------------------')
