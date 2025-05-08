@@ -17,7 +17,6 @@ weight_decay: 0.1
 
 # vllm settings
 use_vllm: true
-vllm_mode: "server"
 
 # logging
 logging_steps: 10
