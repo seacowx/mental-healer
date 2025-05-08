@@ -13,7 +13,7 @@ import numpy as np
 import torch
 from torch.optim import AdamW
 
-from peft.config import LoraConfig
+from peft import LoraConfig
 from datasets import load_dataset
 from trl import GRPOTrainer, GRPOConfig
 
