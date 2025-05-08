@@ -176,3 +176,4 @@ cython_debug/
 data/AugESC/augesc.txt
 .idea
 src/wandb
+src/wandb
