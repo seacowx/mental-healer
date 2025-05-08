@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from src.utils.vllm_inference_utils import vLLMServer
+from utils.vllm_inference_utils import vLLMServer
 
 
 class LMAgent(metaclass=ABCMeta):
