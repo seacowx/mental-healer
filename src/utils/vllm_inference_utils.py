@@ -173,7 +173,7 @@ class trlServer:
             '--gpu-memory-utilization', '0.90',
         ]    
 
-        env['CUDA_VISIBLE_DEVICES'] = str(self.available_cuda_list)
+        env['CUDA_VISIBLE_DEVICES'] = ','.join([str(ele) for ele in self.available_cuda_list])
 
         # check if the server is running
         self.server = subprocess.Popen(
