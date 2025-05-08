@@ -1,3 +1,4 @@
+import json
 import numpy as np
 
 
@@ -30,3 +31,52 @@ def sample_persona(candidate_persona_info_list, n_personas=1) -> list:
     ]
 
     return sampled_persona_profile
+
+
+def locate_persona_idx(
+    augmented_persona_dict: dict,
+    persona_key_list: list,
+    persona_desc: str,
+) -> str:
+
+    # remove the period from the persona description
+    persona_desc = persona_desc.rstrip('.')
+
+    for key in persona_key_list:
+
+        augmented_persona_profile = augmented_persona_dict[key]
+        cur_persona_desc = augmented_persona_profile['persona_hub'].rstrip('.')
+
+        if persona_desc == cur_persona_desc:
+            return key
+
+    raise ValueError(f'Persona description\n"{persona_desc}"\nnot found in the augmented persona dictionary')
+
+
+def retrieve_augmented_persona(
+    situation_dict, 
+) -> dict:
+    """
+    Retrieve the augmented persona for the given situation
+    """
+
+    situation_to_persona_dict = json.load(open('../data/AugESC/augsec_matched_persona.json', 'r'))
+    augmented_persona_dict = json.load(open('../data/PersonaHub/persona_augmented.json', 'r'))
+
+    out_augmented_persona_dict = {}
+    for key, val in situation_dict.items():
+
+        parsed_key = key.split('||')[0].strip()
+
+        persona_idx_list = [ele['id'] for ele in situation_to_persona_dict[parsed_key]]
+        augmented_persona_idx = locate_persona_idx(
+            augmented_persona_dict=augmented_persona_dict,
+            persona_key_list=persona_idx_list,
+            persona_desc=val['persona_profile'],
+        )
+
+        augmented_persona_profile = augmented_persona_dict[augmented_persona_idx]
+
+        out_augmented_persona_dict[key] = augmented_persona_profile
+
+    return out_augmented_persona_dict

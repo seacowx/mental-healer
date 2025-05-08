@@ -13,7 +13,7 @@ from copy import deepcopy
 from openai import OpenAI, AsyncOpenAI
 
 from agents.base_agent import LMAgent
-from utils.llm_inference_utils import vLLMOffline
+from utils.llm_inference_utils import vLLMOffline, OpenAIAsyncInference
 
 
 class Patient(LMAgent):
@@ -23,8 +23,12 @@ class Patient(LMAgent):
         self,
         vllm_client: vLLMOffline | None = None,
         openai_client: OpenAI | None = None,
-        openai_async_client: AsyncOpenAI | None = None,
+        openai_async_client: AsyncOpenAI | OpenAIAsyncInference | None = None,
     ) -> None:
+
+        assert (openai_client is not None) or (openai_async_client is not None), \
+            "Either openai_client or openai_async_client must be provided"
+
         super().__init__(
             client=openai_client, 
             async_client=openai_async_client,

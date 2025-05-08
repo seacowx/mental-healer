@@ -236,7 +236,11 @@ def main():
             persona_data[key]['occupation'] = occupation
 
         # add original persona profile from PersonaHub to entry
-        persona_hub_profile = persona_hub_data[key]
+        persona_hub_profile = persona_hub_data[key].strip()
+
+        if not persona_hub_profile.endswith('.'):
+            persona_hub_profile += '.'
+
         persona_data[key]['persona_hub'] = persona_hub_profile
     
     with open('./persona_augmented.json', 'w') as f:
