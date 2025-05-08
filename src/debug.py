@@ -36,15 +36,6 @@ def main():
     grpo_config_dict['vllm_server_port'] = TRL_VLLM_PORT
     grpo_config = GRPOConfig(**grpo_config_dict)
 
-    # STEP: initialize trl vllm server
-    trl_vllm_server = trlServer(
-        model_path="Qwen/Qwen2-0.5B-Instruct",
-        available_cuda_list=[1],
-    )
-    trl_vllm_server.start_trl_vllm_server(
-        trl_vllm_port=TRL_VLLM_PORT,
-    )
-
     # print('\n\n-----------------------------------------------------------------------')
     # print('Finished starting trl vllm server')
     # print('-----------------------------------------------------------------------\n\n')
@@ -58,6 +49,15 @@ def main():
     # )
 
     try:
+        # initialize trl vllm server
+        trl_vllm_server = trlServer(
+            model_path="Qwen/Qwen2-0.5B-Instruct",
+            available_cuda_list=[1],
+        )
+        trl_vllm_server.start_trl_vllm_server(
+            trl_vllm_port=TRL_VLLM_PORT,
+        )
+
         os.environ['CUDA_VISIBLE_DEVICES'] = '0'
         trainer = CustomGRPOTrainer(
             model="Qwen/Qwen2-0.5B-Instruct",
