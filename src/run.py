@@ -41,10 +41,16 @@ def parse_args():
         help="The base model to use for the training.",
     )
     parser.add_argument(
-        '--training_config',
+        '--grpo_config',
         type=str,
-        default='./configs/grpo.yaml',
+        default='./configs/grpo_config.yaml',
         help="The path to the training config file. Default is './configs/grpo.yaml'.",
+    )
+    parser.add_argument(
+        "--lora_config",
+        type=str,
+        default='./configs/lora_config.yaml',
+        help="The path to the LoRA config file. Default is './configs/lora_config.yaml'.",
     )
     parser.add_argument(
         "--trl_vllm_port", 
@@ -78,18 +84,16 @@ def main():
 
     dataset = load_dataset("trl-lib/tldr", split="train")
 
+
+    # STEP: load training config and lora config
+    grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
+    lora_config_dict = yaml.safe_load(open(args.lora_config, 'r'))
+
     # define lora config
     lora_config = LoraConfig(
-        task_type="CAUSAL_LM",
-        r=64,
-        lora_alpha=256,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
-        # target_modules="all-linear",
-        bias="none",
-        use_rslora=True,
+        **lora_config_dict
     )
 
-    grpo_config_dict = yaml.safe_load(open(args.training_config, 'r'))
     grpo_config_dict['vllm_server_port'] = args.trl_vllm_port
     grpo_config = GRPOConfig(**grpo_config_dict)
 
