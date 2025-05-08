@@ -57,25 +57,23 @@ def main():
     #     args=grpo_config,
     # )
 
-    # STEP: initialize custom grpo trainer
-    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-    trainer = CustomGRPOTrainer(
-        model="Qwen/Qwen2-0.5B-Instruct",
-        reward_funcs=reward_func,
-        train_dataset=dataset,
-        peft_config=lora_config,
-        args=grpo_config,
-    )
+    try:
+        os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+        trainer = CustomGRPOTrainer(
+            model="Qwen/Qwen2-0.5B-Instruct",
+            reward_funcs=reward_func,
+            train_dataset=dataset,
+            peft_config=lora_config,
+            args=grpo_config,
+        )
 
-    print('\n\n-----------------------------------------------------------------------')
-    print('Finished initializing custom grpo trainer. Training will start now.')
-    print('-----------------------------------------------------------------------\n\n')
+        print('\n\n-----------------------------------------------------------------------')
+        print('Finished initializing custom grpo trainer. Training will start now.')
+        print('-----------------------------------------------------------------------\n\n')
 
-    # STEP: train the model
-    trainer.train()
-
-    # STEP: kill the trl vllm server
-    trl_vllm_server.kill_server()
+        trainer.train()
+    finally:
+        trl_vllm_server.kill_server()
 
 
 if __name__ == "__main__":
