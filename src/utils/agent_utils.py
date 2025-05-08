@@ -1,6 +1,6 @@
 import yaml
 from agents.patient import Patient
-from src.utils.vllm_inference_utils import vLLMServer
+from utils.vllm_inference_utils import vLLMServer
 
 
 def initialize_patient_agent(

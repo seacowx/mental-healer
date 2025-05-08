@@ -8,7 +8,6 @@ import torch
 from trl import GRPOConfig
 from torch.optim import AdamW
 
-from utils.llm_inference_utils import vLLMServer
 from utils.custom_trainer import CustomGRPOTrainer
 from utils.agent_utils import initialize_patient_agent
 from utils.persona_utils import retrieve_augmented_persona
