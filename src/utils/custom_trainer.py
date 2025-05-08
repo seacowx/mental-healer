@@ -15,8 +15,9 @@ class CustomGRPOTrainer(GRPOTrainer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
 
+        print('\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
         self.model.print_trainable_parameters()
-        raise SystemExit
+        print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n')
 
 
     def _reward_buffer(self,):
