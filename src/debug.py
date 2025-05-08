@@ -6,6 +6,7 @@ and the small custom edits are working properly.
 
 import os
 import yaml
+import argparse
 from peft import LoraConfig
 from datasets import load_dataset
 from trl import GRPOTrainer, GRPOConfig
@@ -14,12 +15,33 @@ from utils.vllm_inference_utils import trlServer
 from utils.custom_trainer import CustomGRPOTrainer
 
 
-def main():
-    dataset = load_dataset("trl-lib/tldr", split="train")
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--model_path", 
+        type=str, 
+        default="Qwen/Qwen2-0.5B-Instruct",
+        help="The path to the model to use for training."
+    )
+    parser.add_argument(
+        "--trl_vllm_port", 
+        type=int, 
+        default=8880,
+        help="The port to use for the trl vllm server."
+    )
+    return parser.parse_args()
 
-    def reward_func(completions, **kwargs):
-        # Dummy reward function that rewards completions with more unique letters.
-        return [float(len(set(completion))) for completion in completions]
+
+def reward_func(completions, **kwargs):
+    # Dummy reward function that rewards completions with more unique letters.
+    return [float(len(set(completion))) for completion in completions]
+
+
+def main():
+
+    args = parse_args()
+
+    dataset = load_dataset("trl-lib/tldr", split="train")
 
     # define lora config
     lora_config = LoraConfig(
@@ -31,49 +53,23 @@ def main():
         use_rslora=True,
     )
 
-    TRL_VLLM_PORT = 8880
     grpo_config_dict = yaml.safe_load(open('./configs/grpo.yaml', 'r'))
-    grpo_config_dict['vllm_server_port'] = TRL_VLLM_PORT
+    grpo_config_dict['vllm_server_port'] = args.trl_vllm_port
     grpo_config = GRPOConfig(**grpo_config_dict)
 
-    # print('\n\n-----------------------------------------------------------------------')
-    # print('Finished starting trl vllm server')
-    # print('-----------------------------------------------------------------------\n\n')
+    trainer = CustomGRPOTrainer(
+        model=args.model_path,
+        reward_funcs=reward_func,
+        train_dataset=dataset,
+        peft_config=lora_config,
+        args=grpo_config,
+    )
 
-    # trainer = GRPOTrainer(
-    #     model="Qwen/Qwen2-0.5B-Instruct",
-    #     reward_funcs=reward_func,
-    #     train_dataset=dataset,
-    #     peft_config=lora_config,
-    #     args=grpo_config,
-    # )
+    print('\n\n-----------------------------------------------------------------------')
+    print('Finished initializing custom grpo trainer. Training will start now.')
+    print('-----------------------------------------------------------------------\n\n')
 
-    try:
-        # initialize trl vllm server
-        trl_vllm_server = trlServer(
-            model_path="Qwen/Qwen2-0.5B-Instruct",
-            available_cuda_list=[1],
-        )
-        trl_vllm_server.start_trl_vllm_server(
-            trl_vllm_port=TRL_VLLM_PORT,
-        )
-
-        os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-        trainer = CustomGRPOTrainer(
-            model="Qwen/Qwen2-0.5B-Instruct",
-            reward_funcs=reward_func,
-            train_dataset=dataset,
-            peft_config=lora_config,
-            args=grpo_config,
-        )
-
-        print('\n\n-----------------------------------------------------------------------')
-        print('Finished initializing custom grpo trainer. Training will start now.')
-        print('-----------------------------------------------------------------------\n\n')
-
-        trainer.train()
-    finally:
-        trl_vllm_server.kill_server()
+    trainer.train()
 
 
 if __name__ == "__main__":
