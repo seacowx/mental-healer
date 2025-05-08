@@ -4,6 +4,9 @@ bf16: true
 model_init_kwargs:
   torch_dtype: bfloat16
 
+# sampling
+num_generations: 8
+
 # training
 do_train: true
 output_dir: "/scratch/prj/charnu/ft_weights/mental-healer/grpo_qwen8/"
