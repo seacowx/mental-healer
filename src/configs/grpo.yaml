@@ -9,3 +9,6 @@ num_train_epochs: 1
 adam_beta1: 0.9
 adam_beta2: 0.95
 weight_decay: 0.1
+logging_steps: 10
+logging_first_step: true
+log_completions: true
