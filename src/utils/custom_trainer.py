@@ -15,7 +15,3 @@ class CustomGRPOTrainer(GRPOTrainer):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
-
-    
-    def create_optimizer_and_scheduler(self, num_training_steps: int):
-        ...

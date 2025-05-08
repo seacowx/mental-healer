@@ -9,6 +9,8 @@ from datasets import load_dataset
 from trl import GRPOTrainer, GRPOConfig
 from peft import LoraConfig
 
+from utils.custom_trainer import CustomTrainer
+
 
 def main():
     dataset = load_dataset("trl-lib/tldr", split="train")
@@ -30,7 +32,15 @@ def main():
     grpo_config_dict = yaml.safe_load(open('./configs/grpo.yaml', 'r'))
     grpo_config = GRPOConfig(**grpo_config_dict)
 
-    trainer = GRPOTrainer(
+    # trainer = GRPOTrainer(
+    #     model="Qwen/Qwen2-0.5B-Instruct",
+    #     reward_funcs=reward_func,
+    #     train_dataset=dataset,
+    #     peft_config=lora_config,
+    #     args=grpo_config,
+    # )
+
+    trainer = CustomTrainer(
         model="Qwen/Qwen2-0.5B-Instruct",
         reward_funcs=reward_func,
         train_dataset=dataset,
