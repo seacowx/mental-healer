@@ -161,7 +161,7 @@ class trlServer:
     
     def start_trl_vllm_server(
         self,
-        trl_vllm_port: int = 8000,
+        trl_vllm_port: int = 8880,
     ):
         env = os.environ.copy()
         server_command = [        
