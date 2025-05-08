@@ -41,6 +41,10 @@ def main():
     )
     trl_vllm_server.start_trl_vllm_server()
 
+    print('\n\n-------------------------------------------------')
+    print('Finished starting trl vllm server')
+    print('-------------------------------------------------\n\n')
+
     # trainer = GRPOTrainer(
     #     model="Qwen/Qwen2-0.5B-Instruct",
     #     reward_funcs=reward_func,
@@ -58,6 +62,10 @@ def main():
         peft_config=lora_config,
         args=grpo_config,
     )
+
+    print('\n\n-------------------------------------------------')
+    print('Finished initializing custom grpo trainer. Training will start now.')
+    print('-------------------------------------------------\n\n')
 
     # STEP: train the model
     trainer.train()
