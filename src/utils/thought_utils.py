@@ -3,7 +3,7 @@ from tqdm.asyncio import tqdm as atqdm
 
 from openai import AsyncOpenAI
 
-from src.utils.vllm_inference_utils import vLLMServer
+from utils.vllm_inference_utils import vLLMServer
 from rewards.therapist_reward import TherapistReward
 
 
