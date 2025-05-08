@@ -9,7 +9,7 @@ from datasets import load_dataset
 from trl import GRPOTrainer, GRPOConfig
 from peft import LoraConfig
 
-from utils.custom_trainer import CustomTrainer
+from utils.custom_trainer import CustomGRPOTrainer
 
 
 def main():
@@ -40,7 +40,7 @@ def main():
     #     args=grpo_config,
     # )
 
-    trainer = CustomTrainer(
+    trainer = CustomGRPOTrainer(
         model="Qwen/Qwen2-0.5B-Instruct",
         reward_funcs=reward_func,
         train_dataset=dataset,
