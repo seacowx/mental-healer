@@ -4,9 +4,10 @@ This is a minimal example to make sure that the original GRPO training works
 and the small custom edits are working properly.
 """
 
-from trl import GRPOTrainer
+import yaml
 from datasets import load_dataset
-from peft import LoraConfig, get_peft_model
+from trl import GRPOTrainer, GRPOConfig
+from peft import LoraConfig
 
 
 def main():
@@ -22,12 +23,19 @@ def main():
         r=64,
         lora_alpha=256,
         target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
+        bias="none",
+        use_rslora=True,
     )
+
+    grpo_config_dict = yaml.safe_load(open('./configs/grpo.yaml', 'r'))
+    grpo_config = GRPOConfig(**grpo_config_dict)
 
     trainer = GRPOTrainer(
         model="Qwen/Qwen2-0.5B-Instruct",
         reward_funcs=reward_func,
         train_dataset=dataset,
+        peft_config=lora_config,
+        args=grpo_config,
     )
 
     trainer.train()
