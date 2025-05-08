@@ -170,7 +170,7 @@ class trlServer:
             '--model', self.model_path,    
             '--port', str(trl_vllm_port),
             '--tensor_parallel_size', str(len(self.available_cuda_list)),
-            '--gpu-memory-utilization', '0.90',
+            '--gpu-memory-utilization', '0.75',
         ]    
 
         env['CUDA_VISIBLE_DEVICES'] = ','.join([str(ele) for ele in self.available_cuda_list])
