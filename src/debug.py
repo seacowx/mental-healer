@@ -9,5 +9,7 @@ input_ids = tokenizer(cur_input, return_tensors="pt")
 output = model.generate(**input_ids, max_length=100)
 print(tokenizer.decode(output[0], skip_special_tokens=True))
 
+print('\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n')
+
 import time
 time.sleep(600)
