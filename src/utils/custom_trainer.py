@@ -18,11 +18,6 @@ class CustomGRPOTrainer(GRPOTrainer):
         print('\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
         self.model.print_trainable_parameters()
         print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n')
-
-        import time
-        time.sleep(600)
-
-        raise SystemExit()
         
 
     def _reward_buffer(self,):
