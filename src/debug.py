@@ -5,10 +5,11 @@ and the small custom edits are working properly.
 """
 
 import yaml
+from peft import LoraConfig
 from datasets import load_dataset
 from trl import GRPOTrainer, GRPOConfig
-from peft import LoraConfig
 
+from utils.vllm_inference_utils import trlServer
 from utils.custom_trainer import CustomGRPOTrainer
 
 
@@ -32,6 +33,13 @@ def main():
     grpo_config_dict = yaml.safe_load(open('./configs/grpo.yaml', 'r'))
     grpo_config = GRPOConfig(**grpo_config_dict)
 
+    # STEP: initialize trl vllm server
+    trl_vllm_server = trlServer(
+        model_path="Qwen/Qwen2-0.5B-Instruct",
+        available_cuda_list=[1],
+    )
+    trl_vllm_server.start_trl_vllm_server()
+
     # trainer = GRPOTrainer(
     #     model="Qwen/Qwen2-0.5B-Instruct",
     #     reward_funcs=reward_func,
@@ -40,15 +48,15 @@ def main():
     #     args=grpo_config,
     # )
 
-    trainer = CustomGRPOTrainer(
-        model="Qwen/Qwen2-0.5B-Instruct",
-        reward_funcs=reward_func,
-        train_dataset=dataset,
-        peft_config=lora_config,
-        args=grpo_config,
-    )
+    # trainer = CustomGRPOTrainer(
+    #     model="Qwen/Qwen2-0.5B-Instruct",
+    #     reward_funcs=reward_func,
+    #     train_dataset=dataset,
+    #     peft_config=lora_config,
+    #     args=grpo_config,
+    # )
 
-    trainer.train()
+    # trainer.train()
 
 
 if __name__ == "__main__":

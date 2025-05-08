@@ -146,6 +146,67 @@ class OpenAIAsyncInference(LLMBaseModel):
         else:
             return response.choices[0].message.content
 
+    
+class trlServer:
+
+    def __init__(
+        self,
+        model_path: str,
+        available_cuda_list: list[int] = [1],
+    ) -> None:
+
+        self.model_path = model_path
+        self.available_cuda_list = available_cuda_list
+
+    
+    def start_trl_vllm_server(
+        self,
+        trl_vllm_port: int = 8000,
+    ):
+        env = os.environ.copy()
+        server_command = [        
+            'trl',        
+            'vllm-serve',        
+            '--model', self.model_path,    
+            '--port', str(trl_vllm_port),
+            '--tensor_parallel_size', len(self.available_cuda_list),
+            '--gpu-memory-utilization', '0.90',
+        ]    
+
+        env['CUDA_VISIBLE_DEVICES'] = str(self.available_cuda_list)
+
+        # check if the server is running
+        self.server = subprocess.Popen(
+            args=server_command,
+            env=env,
+        )    
+        server_running = False    
+        number_of_attempts = 0    
+
+        # large models such as Llama3.3-70B takes time to load
+        # wait for 20 minutes for the server to start
+        while (not server_running) and number_of_attempts < 120:        
+            time.sleep(10)        
+            result = subprocess.run(            
+                [
+                    "curl", f"http://localhost:{self.vllm_api_port}/v1/models",
+                    "--header", "Authorization: Bearer anounymous123",
+                ],             
+                capture_output=True,             
+                text=True,
+            )        
+
+            print(result.stdout)
+
+            if 'vllm-model' in result.stdout or 'gpt-3.5-turbo' in result.stdout:            
+                server_running = True        
+
+            number_of_attempts += 1    
+
+        if not server_running:        
+            self.kill_server()        
+            raise Exception("vllm-server failed to start")    
+
 
 class vLLMServer:
 

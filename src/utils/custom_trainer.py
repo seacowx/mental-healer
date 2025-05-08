@@ -15,3 +15,10 @@ class CustomGRPOTrainer(GRPOTrainer):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
+
+
+    def _reward_buffer(self,):
+        """
+        Stores the sentiment history of the current therapeutic session. 
+        """
+        ...

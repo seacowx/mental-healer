@@ -8,7 +8,7 @@ import torch
 from trl import GRPOConfig
 from torch.optim import AdamW
 
-from utils.llm_inference_utils import vLLMServer
+from src.utils.vllm_inference_utils import vLLMServer
 from utils.custom_trainer import CustomGRPOTrainer
 from utils.agent_utils import initialize_patient_agent
 from utils.persona_utils import retrieve_augmented_persona
@@ -59,7 +59,7 @@ def main():
         patient_model=args.base_model,
     )
 
-    # STEP: initialize GR_PO trainer
+    # STEP: initialize GRPO trainer
     # TODO: initialize reward functions
     grpo_config = yaml.safe_load(open(args.training_config, 'r'))
 
