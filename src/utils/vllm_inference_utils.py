@@ -174,6 +174,7 @@ class trlServer:
         ]    
 
         env['CUDA_VISIBLE_DEVICES'] = ','.join([str(ele) for ele in self.available_cuda_list])
+        env['VLLM_CONFIGURE_LOGGING'] = '0'
 
         # check if the server is running
         self.server = subprocess.Popen(
