@@ -196,8 +196,7 @@ class trlServer:
             )        
 
             print('-------------------------------------------------')
-            print(result.stdout)
-            print(type(result.stdout))
+            print(result)
             print('-------------------------------------------------')
             # status = result.stdout.get('status', '')
             # if status == 'ok':
