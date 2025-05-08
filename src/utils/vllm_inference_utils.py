@@ -189,8 +189,7 @@ class trlServer:
             time.sleep(10)        
             result = subprocess.run(            
                 [
-                    "curl", f"http://localhost:{trl_vllm_port}/v1/models",
-                    "--header", "Authorization: Bearer anounymous123",
+                    "curl", f"http://localhost:{trl_vllm_port}/health/",
                 ],             
                 capture_output=True,             
                 text=True,
