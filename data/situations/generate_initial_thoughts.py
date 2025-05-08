@@ -10,7 +10,7 @@ sys.path.append('../../src/')
 import torch
 from openai import AsyncOpenAI
 
-from utils.llm_inference_utils import vLLMServer
+from utils.vllm_inference_utils import vLLMServer
 from utils.data_utils import prepare_training_data
 from rewards.therapist_reward import TherapistReward
 from utils.thought_utils import iterative_thought_generation

@@ -72,9 +72,9 @@ def main():
     # augmented_persona_dict = retrieve_augmented_persona(situation_dict=situation_dict)
 
     # STEP: initialize patient agent. The patient agent uses the same LLM as the therapist. 
-    # patient_agent = initialize_patient_agent(
-    #     patient_model=args.base_model,
-    # )
+    patient_agent = initialize_patient_agent(
+        patient_model=args.base_model,
+    )
 
     dataset = load_dataset("trl-lib/tldr", split="train")
 
