@@ -10,11 +10,13 @@ Methods that PROBABLY need to be modified:
 
 from trl import GRPOTrainer
 
-
 class CustomGRPOTrainer(GRPOTrainer):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
+
+        self.model.print_trainable_parameters()
+        raise SystemExit
 
 
     def _reward_buffer(self,):

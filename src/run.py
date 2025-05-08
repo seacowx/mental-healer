@@ -13,7 +13,7 @@ import numpy as np
 import torch
 from torch.optim import AdamW
 
-from peft import LoraConfig
+from peft.config import LoraConfig
 from datasets import load_dataset
 from trl import GRPOTrainer, GRPOConfig
 
@@ -84,6 +84,7 @@ def main():
         r=64,
         lora_alpha=256,
         target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
+        # target_modules="all-linear",
         bias="none",
         use_rslora=True,
     )
