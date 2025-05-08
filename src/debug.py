@@ -35,11 +35,14 @@ def main():
     grpo_config = GRPOConfig(**grpo_config_dict)
 
     # STEP: initialize trl vllm server
-    # trl_vllm_server = trlServer(
-    #     model_path="Qwen/Qwen2-0.5B-Instruct",
-    #     available_cuda_list=[1],
-    # )
-    # trl_vllm_server.start_trl_vllm_server()
+    TRL_VLLM_PORT = 8880
+    trl_vllm_server = trlServer(
+        model_path="Qwen/Qwen2-0.5B-Instruct",
+        available_cuda_list=[1],
+    )
+    trl_vllm_server.start_trl_vllm_server(
+        trl_vllm_port=TRL_VLLM_PORT,
+    )
 
     # print('\n\n-----------------------------------------------------------------------')
     # print('Finished starting trl vllm server')
@@ -61,6 +64,7 @@ def main():
         train_dataset=dataset,
         peft_config=lora_config,
         args=grpo_config,
+        vllm_server_port=TRL_VLLM_PORT,
     )
 
     print('\n\n-----------------------------------------------------------------------')
