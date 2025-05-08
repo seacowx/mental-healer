@@ -12,4 +12,4 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 print('\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n')
 
 import time
-time.sleep(600)
+time.sleep(60)
