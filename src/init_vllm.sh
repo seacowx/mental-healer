@@ -15,7 +15,7 @@ else
 fi
 
 printf "\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
-printf "Initializing vLLM server...\n"
+printf "Initializing vLLM server with $TENSOR_PARALLEL_SIZE GPUs (CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES)...\n"
 printf "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n"
 
 CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES trl vllm-serve \
