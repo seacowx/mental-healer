@@ -196,7 +196,9 @@ class trlServer:
                 text=True,
             )        
 
+            print('\n\n')
             print(result.stdout)
+            print('\n\n')
 
             if 'vllm-model' in result.stdout or 'gpt-3.5-turbo' in result.stdout:            
                 server_running = True        
