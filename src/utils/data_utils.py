@@ -101,8 +101,9 @@ def prepare_training_data(
     persona_data = Dataset.from_dict(persona_data)
     conversation_data = Dataset.from_dict(conversation_data)
 
-    print(len(conversation_data))
-    print(len(persona_data))
+    print(next(iter(conversation_data)))
+    print('\n\n')
+    print(next(iter(persona_data)))
     raise SystemExit
 
     return conversation_data, persona_data
