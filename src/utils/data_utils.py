@@ -25,7 +25,7 @@ def prepare_training_data(
     """
 
     input_dict = json.load(open(data_path, 'r'))
-    augmented_persona_dict = retrieve_augmented_persona(situation_dict=input_dict)
+    augmented_persona_profile_dict = retrieve_augmented_persona(situation_dict=input_dict)
 
     n_personas = int(data_path.split('/')[-1].split('.')[0][-1])
 
@@ -37,8 +37,11 @@ def prepare_training_data(
     prepared_data = {}
     for key, entry_dict in input_dict.items():
 
+        augmented_persona_profile = augmented_persona_profile_dict[key]
+
         print(f"key: {key}")
         print(entry_dict)
+        print(augmented_persona_profile)
         raise SystemExit
 
         situation = entry_dict['situation']
