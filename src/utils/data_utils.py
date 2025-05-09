@@ -85,16 +85,17 @@ def prepare_training_data(
     }
     conversation_data = {
         'id': [],
-        'situation': [],
-        'initial_thought': [],
+        'prompt': [],
     }
     for key, val in input_dict.items():
         persona_data['id'].append(key)
         persona_data['persona_profile'].append(augmented_persona_profile_dict[key])
 
+        situation_desc = val['situation']
+        initial_thought = val['initial_thought']
+        initial_thought_prompt = situation_desc + ' ' + initial_thought
         conversation_data['id'].append(key)
-        conversation_data['situation'].append(val['situation'])
-        conversation_data['initial_thought'].append(val['initial_thought'])
+        conversation_data['prompt'].append(initial_thought_prompt)
 
         pbar.update(1)
 
