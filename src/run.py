@@ -84,8 +84,6 @@ def main():
         data_path=args.training_data_path,
     )
 
-    raise SystemExit
-
     # STEP: initialize patient agent. The patient agent uses the same LLM as the therapist. 
     # patient_agent = initialize_patient_agent(
     #     patient_model=args.base_model,

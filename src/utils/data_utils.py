@@ -1,5 +1,7 @@
 import json
 import tqdm
+from datasets import Dataset
+
 from utils.persona_utils import sample_persona
 from utils.persona_utils import retrieve_augmented_persona
 
@@ -53,7 +55,20 @@ def augment_situation_with_persona(
 
 def prepare_training_data(
         data_path: str,
-):
+) -> tuple[Dataset, Dataset]:
+    """
+    Prepare training data for the model.
+
+    1. Training data that initiate the GRPO training (conversation)
+    2. Persona data for the Patient Agent
+
+    Inputs:
+        data_path (str): The path to the data file.
+
+    Returns:
+        tuple[Dataset, Dataset]: A tuple of two datasets. The first dataset is the training data that initiate the GRPO training (conversation). The second dataset is the persona data for the Patient Agent.
+    """
+
     input_dict = json.load(open(data_path, 'r'))
     augmented_persona_profile_dict = retrieve_augmented_persona(situation_dict=input_dict)
 
@@ -64,14 +79,30 @@ def prepare_training_data(
         desc="Preparing training data...",
     )
 
-    prepared_data = {}
-    for key, entry_dict in input_dict.items():
+    persona_data = {
+        'id': [],
+        'persona_profile': [],
+    }
+    conversation_data = {
+        'id': [],
+        'situation': [],
+        'initial_thought': [],
+    }
+    for key, val in input_dict.items():
+        persona_data['id'].append(key)
+        persona_data['persona_profile'].append(augmented_persona_profile_dict[key])
 
-        augmented_persona_profile = augmented_persona_profile_dict[key]
-
-        prepared_data[key] = entry_dict
-        prepared_data[key]['persona_profile'] = augmented_persona_profile
+        conversation_data['id'].append(key)
+        conversation_data['situation'].append(val['situation'])
+        conversation_data['initial_thought'].append(val['initial_thought'])
 
         pbar.update(1)
 
-    return prepared_data
+    persona_data = Dataset.from_dict(persona_data)
+    conversation_data = Dataset.from_dict(conversation_data)
+
+    print(len(conversation_data))
+    print(len(persona_data))
+    raise SystemExit
+
+    return conversation_data, persona_data
