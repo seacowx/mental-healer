@@ -80,7 +80,7 @@ def main():
     # situation (str): the situation description
     # initial_thought (str): the initial thought of the patient
     # persona (str): the persona of the patient
-    training_data = prepare_training_data(
+    conversation_data, persona_data = prepare_training_data(
         data_path=args.training_data_path,
     )
 
