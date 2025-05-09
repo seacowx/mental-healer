@@ -108,7 +108,7 @@ class PersonaAugmentation:
 
 
     def assign_age(self):
-        return np.random.randint(16, 65)
+        return str(np.random.randint(16, 65))
 
 
     def assign_occupation_education(
@@ -194,14 +194,7 @@ def main():
         else:
             gender = persona_gender
 
-        is_integer = True
-        try:
-            int(val['age'])
-        except:
-            is_integer = False
-
-        if not is_integer:
-            print(val['age'])
+        if val['age'] == 'unknown':
             age = persona_augmentor.assign_age()
             update_age = True
 
