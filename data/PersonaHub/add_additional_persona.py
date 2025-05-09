@@ -107,10 +107,6 @@ class PersonaAugmentation:
         return random.choice(candidates)
 
 
-    def assign_age(self):
-        return str(np.random.randint(16, 65))
-
-
     def assign_occupation_education(
         self, 
         education: str = '',
@@ -186,17 +182,13 @@ def main():
 
     for key, val in persona_data.items():
 
-        update_age, update_gender, update_occupation, update_education = False, False, False, False
+        update_gender, update_occupation, update_education = False, False, False
 
         if (persona_gender := val['gender']) == 'unknown':
             gender = persona_augmentor.assign_gender()
             update_gender = True
         else:
             gender = persona_gender
-
-        if val['age'] == 'unknown':
-            age = persona_augmentor.assign_age()
-            update_age = True
 
         # the case where the occupation is unknown
         if (persona_occupation := val['occupation']) == 'unknown':
@@ -226,14 +218,15 @@ def main():
         persona_data[key]['name'] = name
         persona_data[key]['traits'] = traits
 
-        if update_age:
-            persona_data[key]['age'] = age
         if update_gender:
             persona_data[key]['gender'] = gender
         if update_education:
             persona_data[key]['education'] = education
         if update_occupation:
             persona_data[key]['occupation'] = occupation
+
+        # remove age attribute from persona_data
+        persona_data[key].pop('age')
 
         # add original persona profile from PersonaHub to entry
         persona_hub_profile = persona_hub_data[key].strip()
