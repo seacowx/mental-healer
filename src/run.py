@@ -81,16 +81,15 @@ def main():
     # situation (str): the situation description
     # initial_thought (str): the initial thought of the patient
     # persona (str): the persona of the patient
-    conversation_data, persona_data = prepare_training_data(
-        data_path=args.training_data_path,
-    )
+    # conversation_data, persona_data = prepare_training_data(
+    #     data_path=args.training_data_path,
+    # )
 
     # STEP: initialize patient agent. The patient agent uses the same LLM as the therapist. 
     # patient_agent = initialize_patient_agent(
     #     patient_model=args.base_model,
     # )
     dataset = load_dataset("trl-lib/tldr", split="train")
-
 
     # STEP: load training config and lora config
     grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
