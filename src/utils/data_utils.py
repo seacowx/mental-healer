@@ -69,7 +69,9 @@ def prepare_training_data(
 
         augmented_persona_profile = augmented_persona_profile_dict[key]
 
+        prepared_data[key] = entry_dict
+        prepared_data[key]['persona_profile'] = augmented_persona_profile
+
         print(f"key: {key}")
-        print(entry_dict)
-        print(augmented_persona_profile)
+        print(prepared_data[key])
         raise SystemExit
