@@ -38,7 +38,7 @@ def prepare_training_data(
     for key, entry_dict in input_dict.items():
 
         print(f"key: {key}")
-        print(val)
+        print(entry_dict)
         raise SystemExit
 
         situation = entry_dict['situation']
