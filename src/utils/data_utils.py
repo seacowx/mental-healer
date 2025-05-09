@@ -72,6 +72,10 @@ def prepare_training_data(
         prepared_data[key] = entry_dict
         prepared_data[key]['persona_profile'] = augmented_persona_profile
 
-        print(f"key: {key}")
-        print(prepared_data[key])
-        raise SystemExit
+        pbar.update(1)
+
+    print(len(input_dict))
+    print(len(prepared_data))
+    raise SystemExit
+
+    return prepared_data
