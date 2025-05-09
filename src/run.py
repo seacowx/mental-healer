@@ -20,8 +20,8 @@ from transformers import AutoModelForCausalLM
 
 from utils.custom_trainer import CustomGRPOTrainer
 from utils.data_utils import prepare_training_data
+from utils.optimizer_utils import StepWiseLRScheduler
 from utils.agent_utils import initialize_patient_agent
-from utils.stepwise_lr_scheduler import StepWiseLRScheduler
 
 from rewards.sentiment import SentimentReward
 from rewards.therapist_reward import TherapistReward
