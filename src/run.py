@@ -18,8 +18,8 @@ from datasets import load_dataset
 from trl import GRPOTrainer, GRPOConfig
 
 from utils.custom_trainer import CustomGRPOTrainer
+from utils.data_utils import prepare_training_data
 from utils.agent_utils import initialize_patient_agent
-from utils.persona_utils import retrieve_augmented_persona
 from utils.stepwise_lr_scheduler import StepWiseLRScheduler
 
 from rewards.sentiment import SentimentReward
@@ -39,6 +39,12 @@ def parse_args():
         type=str,
         default='Qwen/Qwen3-4B',
         help="The base model to use for the training.",
+    )
+    parser.add_argument(
+        '--training_data_path',
+        type=str,
+        default='../data/situations/situations_with_initial_thought_top1.json',
+        help="The path to the training data file. Default is '../data/situations/situations_with_initial_thought_top1.json'.",
     )
     parser.add_argument(
         '--grpo_config',
@@ -74,14 +80,16 @@ def main():
     # situation (str): the situation description
     # initial_thought (str): the initial thought of the patient
     # persona (str): the persona of the patient
-    # situation_dict = json.load(open('../data/situations/situations_with_initial_thought_top1.json', 'r'))
-    # augmented_persona_dict = retrieve_augmented_persona(situation_dict=situation_dict)
+    training_data = prepare_training_data(
+        data_path=args.training_data_path,
+    )
+
+    raise SystemExit
 
     # STEP: initialize patient agent. The patient agent uses the same LLM as the therapist. 
     # patient_agent = initialize_patient_agent(
     #     patient_model=args.base_model,
     # )
-
     dataset = load_dataset("trl-lib/tldr", split="train")
 
 
