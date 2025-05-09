@@ -194,7 +194,13 @@ def main():
         else:
             gender = persona_gender
 
-        if val['age'] == 'unknown':
+        is_integer = True
+        try:
+            int(val['age'])
+        except:
+            is_integer = False
+
+        if val['age'] == 'unknown' or not is_integer:
             age = persona_augmentor.assign_age()
             update_age = True
 
