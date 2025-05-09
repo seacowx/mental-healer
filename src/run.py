@@ -16,6 +16,7 @@ from torch.optim import AdamW
 from peft import LoraConfig
 from datasets import load_dataset
 from trl import GRPOTrainer, GRPOConfig
+from transformers import AutoModelForCausalLM
 
 from utils.custom_trainer import CustomGRPOTrainer
 from utils.data_utils import prepare_training_data
@@ -103,8 +104,10 @@ def main():
     grpo_config_dict['vllm_server_port'] = args.trl_vllm_port
     grpo_config = GRPOConfig(**grpo_config_dict)
 
+    base_model = AutoModelForCausalLM.from_pretrained(args.base_model)
+
     trainer = CustomGRPOTrainer(
-        model=args.base_model,
+        model=base_model,
         reward_funcs=reward_func,
         train_dataset=dataset,
         peft_config=lora_config,

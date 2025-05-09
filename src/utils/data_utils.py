@@ -85,6 +85,7 @@ def prepare_training_data(
     }
     conversation_data = {
         'id': [],
+        'situation': [],
         'prompt': [],
     }
     for key, val in input_dict.items():
@@ -95,16 +96,14 @@ def prepare_training_data(
         initial_thought = val['initial_thought']
         initial_thought_prompt = situation_desc + ' ' + initial_thought
         conversation_data['id'].append(key)
+        # also need to add separated situation info for reward model
+        # when new thought is generated, it will be concatenated with the situation info to compute sentiment reward
+        conversation_data['situation'].append(situation_desc)
         conversation_data['prompt'].append(initial_thought_prompt)
 
         pbar.update(1)
 
     persona_data = Dataset.from_dict(persona_data)
     conversation_data = Dataset.from_dict(conversation_data)
-
-    print(next(iter(conversation_data)))
-    print('\n\n')
-    print(next(iter(persona_data)))
-    raise SystemExit
 
     return conversation_data, persona_data

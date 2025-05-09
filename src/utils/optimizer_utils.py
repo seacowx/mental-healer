@@ -1,6 +1,7 @@
 import torch
 from torch.optim.lr_scheduler import _LRScheduler
 
+
 class StepWiseLRScheduler(_LRScheduler):
 
 
@@ -54,3 +55,12 @@ class StepWiseLRScheduler(_LRScheduler):
         else:
             # Decrease to 10% of peak after 90% of training
             return [self.peak_lr * 0.1 for _ in self.base_lrs]
+
+
+def get_grpo_optimizer_and_scheduler(
+    model,
+    total_steps,
+    warmup_steps=2000,
+    base_lr=1.0e-5,
+    peak_lr=5.3e-4,
+):
