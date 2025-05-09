@@ -1,8 +1,6 @@
 # The hyperparameters for the GRPO training are defined to be the same as the ones in the original paper:
 # https://arxiv.org/pdf/2402.03300
 bf16: true
-model_init_kwargs:
-  torch_dtype: bfloat16
 use_liger_kernel: true
 
 # sampling

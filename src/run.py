@@ -103,7 +103,10 @@ def main():
     grpo_config_dict['vllm_server_port'] = args.trl_vllm_port
     grpo_config = GRPOConfig(**grpo_config_dict)
 
-    base_model = AutoModelForCausalLM.from_pretrained(args.base_model)
+    base_model = AutoModelForCausalLM.from_pretrained(
+        pretrained_model_name_or_path=args.base_model,
+        torch_dtype="bfloat16",
+    )
 
     trainer = CustomGRPOTrainer(
         model=base_model,
