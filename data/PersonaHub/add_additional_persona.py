@@ -201,6 +201,7 @@ def main():
             is_integer = False
 
         if not is_integer:
+            print(val['age'])
             age = persona_augmentor.assign_age()
             update_age = True
 
