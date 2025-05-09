@@ -198,7 +198,9 @@ def main():
         try:
             int(val['age'])
         except:
+            print(val['age'])
             is_integer = False
+            raise SystemExit
 
         if val['age'] == 'unknown' or not is_integer:
             age = persona_augmentor.assign_age()
