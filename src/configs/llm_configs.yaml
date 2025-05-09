@@ -18,6 +18,10 @@
   'path': '/scratch/prj/charnu/seacow_hf_cache/models--Qwen--Qwen2-0.5B-Instruct/snapshots/c540970f9e29518b1d8f06ab8b24cba66ad77b6d'
   'quantization': False
 
+'qwen4':
+  'path': '/scratch/prj/charnu/seacow_hf_cache/models--Qwen--Qwen3-4B/snapshots/82d62bb073771e7a1ea59435f548908540217d1f'
+  'quantization': False
+
 'qwen7':
   'path': '/scratch/prj/charnu/seacow_hf_cache/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28'
   'quantization': False
