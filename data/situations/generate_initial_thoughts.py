@@ -11,8 +11,8 @@ import torch
 from openai import AsyncOpenAI
 
 from utils.vllm_inference_utils import vLLMServer
-from utils.data_utils import prepare_training_data
 from rewards.therapist_reward import TherapistReward
+from utils.data_utils import augment_situation_with_persona
 from utils.thought_utils import iterative_thought_generation
 
 
@@ -134,7 +134,7 @@ async def main():
 
     args = parse_args()
 
-    prepared_data = prepare_training_data(
+    prepared_data = augment_situation_with_persona(
         data_path='./situations.json',
         n_personas=args.n_personas,
     )

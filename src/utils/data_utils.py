@@ -1,20 +1,17 @@
 import json
 import tqdm
-
 from utils.persona_utils import sample_persona
 from utils.persona_utils import retrieve_augmented_persona
 
 
-def prepare_training_data(
+def augment_situation_with_persona(
     data_path: str = '../data/situations/situations.json',
+    n_personas=1,
 ) -> dict:
     """
     Prepare training data for the model.
 
-    1. Load the input data which contains 
-        a. A description of the situation.
-        b. A list of candidate persona profiles.
-
+    1. Load the situation data which contains the situation and candidate persona profiles.
     2. For each situation, sample a persona profile from the candidate persona profiles according to their density.
 
     Inputs:
@@ -24,25 +21,15 @@ def prepare_training_data(
         prepared_data (dict): A dictionary where each key is a situation ID and the value is a dictionary containing the situation and the sampled persona profile.
     """
 
-    input_dict = json.load(open(data_path, 'r'))
-    augmented_persona_profile_dict = retrieve_augmented_persona(situation_dict=input_dict)
-
-    n_personas = int(data_path.split('/')[-1].split('.')[0][-1])
+    data = json.load(open(data_path, 'r'))
 
     pbar = tqdm.tqdm(
-        total=len(input_dict) * n_personas,
+        total=len(data) * n_personas,
         desc="Preparing training data",
     )
 
     prepared_data = {}
-    for key, entry_dict in input_dict.items():
-
-        augmented_persona_profile = augmented_persona_profile_dict[key]
-
-        print(f"key: {key}")
-        print(entry_dict)
-        print(augmented_persona_profile)
-        raise SystemExit
+    for key, entry_dict in data.items():
 
         situation = entry_dict['situation']
         candidate_persona_info_list = entry_dict['candidate_persona_profile_list']
@@ -62,3 +49,27 @@ def prepare_training_data(
         pbar.update(n_personas)
 
     return prepared_data
+
+
+def prepare_training_data(
+        data_path: str,
+):
+    input_dict = json.load(open(data_path, 'r'))
+    augmented_persona_profile_dict = retrieve_augmented_persona(situation_dict=input_dict)
+
+    n_personas = int(data_path.split('/')[-1].split('.')[0][-1])
+
+    pbar = tqdm.tqdm(
+        total=len(input_dict) * n_personas,
+        desc="Preparing training data",
+    )
+
+    prepared_data = {}
+    for key, entry_dict in input_dict.items():
+
+        augmented_persona_profile = augmented_persona_profile_dict[key]
+
+        print(f"key: {key}")
+        print(entry_dict)
+        print(augmented_persona_profile)
+        raise SystemExit
