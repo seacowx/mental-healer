@@ -11,7 +11,10 @@ def prepare_training_data(
     """
     Prepare training data for the model.
 
-    1. Load the situation data which contains the situation and candidate persona profiles.
+    1. Load the input data which contains 
+        a. A description of the situation.
+        b. A list of candidate persona profiles.
+
     2. For each situation, sample a persona profile from the candidate persona profiles according to their density.
 
     Inputs:
@@ -21,20 +24,22 @@ def prepare_training_data(
         prepared_data (dict): A dictionary where each key is a situation ID and the value is a dictionary containing the situation and the sampled persona profile.
     """
 
-    situation_dict = json.load(open(data_path, 'r'))
-    augmented_persona_dict = retrieve_augmented_persona(situation_dict=situation_dict)
+    input_dict = json.load(open(data_path, 'r'))
+    augmented_persona_dict = retrieve_augmented_persona(situation_dict=input_dict)
 
-    n_personas = data_path.split('/')[-1].split('.')[0][-1]
-    print(f"n_personas: {n_personas}")
-    raise SystemExit
+    n_personas = int(data_path.split('/')[-1].split('.')[0][-1])
 
     pbar = tqdm.tqdm(
-        total=len(data) * n_personas,
+        total=len(input_dict) * n_personas,
         desc="Preparing training data",
     )
 
     prepared_data = {}
-    for key, entry_dict in data.items():
+    for key, entry_dict in input_dict.items():
+
+        print(f"key: {key}")
+        print(val)
+        raise SystemExit
 
         situation = entry_dict['situation']
         candidate_persona_info_list = entry_dict['candidate_persona_profile_list']
