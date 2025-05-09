@@ -61,7 +61,7 @@ def prepare_training_data(
 
     pbar = tqdm.tqdm(
         total=len(input_dict) * n_personas,
-        desc="Preparing training data",
+        desc="Preparing training data...",
     )
 
     prepared_data = {}
@@ -73,9 +73,5 @@ def prepare_training_data(
         prepared_data[key]['persona_profile'] = augmented_persona_profile
 
         pbar.update(1)
-
-    print(len(input_dict))
-    print(len(prepared_data))
-    raise SystemExit
 
     return prepared_data
