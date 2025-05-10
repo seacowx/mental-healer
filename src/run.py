@@ -144,6 +144,7 @@ def main():
         logging_steps=grpo_config.logging_steps,
         logging_first_step=grpo_config.logging_first_step,
         log_completions=grpo_config.log_completions,
+        use_liger_kernel=grpo_config.use_liger_kernel,
     )
 
     grpo_trainer = CustomGRPOTrainer(
