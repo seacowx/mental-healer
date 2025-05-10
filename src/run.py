@@ -20,8 +20,9 @@ from transformers import AutoModelForCausalLM
 
 from utils.custom_trainer import CustomGRPOTrainer
 from utils.data_utils import prepare_training_data
-from utils.optimizer_utils import StepWiseLRScheduler
+from utils.custom_trainer_args import GRPOTrainerArgs
 from utils.agent_utils import initialize_patient_agent
+from utils.optimizer_utils import get_grpo_optimizer_and_scheduler, compute_total_steps
 
 from rewards.sentiment import SentimentReward
 from rewards.therapist_reward import TherapistReward
@@ -93,19 +94,58 @@ def main():
 
     # STEP: load training config and lora config
     grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
+    grpo_config = GRPOTrainerArgs(**grpo_config_dict)
     lora_config_dict = yaml.safe_load(open(args.lora_config, 'r'))
 
-    # define lora config
-    lora_config = LoraConfig(
-        **lora_config_dict
-    )
-
     grpo_config_dict['vllm_server_port'] = args.trl_vllm_port
-    grpo_config = GRPOConfig(**grpo_config_dict)
 
+    # initialize the base model
+    # it is easier to implement custom optimizer and scheduler this way
     base_model = AutoModelForCausalLM.from_pretrained(
         pretrained_model_name_or_path=args.base_model,
         torch_dtype="bfloat16",
+    )
+
+    # STEP: setup the optimizer and scheduler according to the original GRPO paper
+    # https://arxiv.org/pdf/2402.03300
+    TOTAL_STEPS = compute_total_steps(
+        num_train_epochs=grpo_config.num_train_epochs,
+        per_device_train_batch_size=grpo_config.per_device_train_batch_size,
+        gradient_accumulation_steps=grpo_config.gradient_accumulation_steps,
+        len_dataset=len(dataset),
+    )
+
+    print(f"Total training steps: {TOTAL_STEPS}")
+    raise SystemExit
+
+    optimizer, scheduler = get_grpo_optimizer_and_scheduler(
+        model=base_model,
+        total_steps=TOTAL_STEPS,
+        adam_beta1=grpo_config.adam_beta1,
+        adam_beta2=grpo_config.adam_beta2,
+        weight_decay=grpo_config.weight_decay,
+        warmup_steps=grpo_config.warmup_steps,
+        base_lr=grpo_config.base_learning_rate,
+        peak_lr=grpo_config.learning_rate,
+    )
+
+    # define lora config and grpo config
+    lora_config = LoraConfig(
+        **lora_config_dict
+    )
+    # TODO: need to specify each of the parameters in the grpo config, most of them are included in the grpo config dict
+    grpo_config = GRPOConfig(
+        output_dir=grpo_config.output_dir,
+        do_train=grpo_config.do_train,
+        per_device_train_batch_size=grpo_config.per_device_train_batch_size,
+        gradient_accumulation_steps=grpo_config.gradient_accumulation_steps,
+        learning_rate=grpo_config.learning_rate,
+        weight_decay=grpo_config.weight_decay,
+        num_train_epochs=grpo_config.num_train_epochs,
+        use_vllm=grpo_config.use_vllm,
+        logging_steps=grpo_config.logging_steps,
+        logging_first_step=grpo_config.logging_first_step,
+        log_completions=grpo_config.log_completions,
     )
 
     trainer = CustomGRPOTrainer(
