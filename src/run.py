@@ -140,6 +140,7 @@ def main():
         weight_decay=grpo_config.weight_decay,
         num_train_epochs=grpo_config.num_train_epochs,
         use_vllm=grpo_config.use_vllm,
+        vllm_server_port=grpo_config.vllm_server_port,
         logging_steps=grpo_config.logging_steps,
         logging_first_step=grpo_config.logging_first_step,
         log_completions=grpo_config.log_completions,
