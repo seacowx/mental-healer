@@ -107,7 +107,6 @@ def main():
     )
 
     # STEP: setup the optimizer and scheduler according to the original GRPO paper
-    # https://arxiv.org/pdf/2402.03300
     TOTAL_STEPS = compute_total_steps(
         num_train_epochs=grpo_config.num_train_epochs,
         per_device_train_batch_size=grpo_config.per_device_train_batch_size,
@@ -115,10 +114,8 @@ def main():
         len_dataset=len(dataset),
     )
 
-    print(f"Total training steps: {TOTAL_STEPS}")
-    raise SystemExit
-
-    optimizer, scheduler = get_grpo_optimizer_and_scheduler(
+    # return a tuple of AdamW optimizer and a step-wise scheduler
+    prepared_optimizer = get_grpo_optimizer_and_scheduler(
         model=base_model,
         total_steps=TOTAL_STEPS,
         adam_beta1=grpo_config.adam_beta1,
@@ -153,6 +150,7 @@ def main():
         reward_funcs=reward_func,
         train_dataset=dataset,
         peft_config=lora_config,
+        optimizers=prepared_optimizer,
         args=grpo_config,
     )
 
