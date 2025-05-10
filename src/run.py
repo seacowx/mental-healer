@@ -145,7 +145,7 @@ def main():
         log_completions=grpo_config.log_completions,
     )
 
-    trainer = CustomGRPOTrainer(
+    grpo_trainer = CustomGRPOTrainer(
         model=base_model,
         reward_funcs=reward_func,
         train_dataset=dataset,
@@ -154,7 +154,11 @@ def main():
         args=grpo_config,
     )
 
-    trainer.train()
+    print("\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+    print("GRPO Training Started...")
+    print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n")
+
+    grpo_trainer.train()
 
 
 if __name__ == "__main__":
