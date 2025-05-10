@@ -51,15 +51,15 @@ def get_step_wise_scheduler(
     def lr_lambda(current_step: int) -> float:
         # Warmup phase
         if current_step < warmup_steps:
-            return base_lr + (peak_lr - base_lr) * (current_step / warmup_steps)
+            return (peak_lr - base_lr) * (current_step / warmup_steps)
         
         # After warmup, apply step-wise decay
         if current_step < step_80:
-            return peak_lr
+            return 1.0
         elif current_step < step_90:
-            return peak_lr * 0.316
+            return 0.316
         else:
-            return peak_lr * 0.1
+            return 0.1
     
     return LambdaLR(optimizer, lr_lambda)
 
