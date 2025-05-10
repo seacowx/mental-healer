@@ -13,7 +13,6 @@ class GRPOTrainerArgs(BaseModel):
     do_train: bool
     per_device_train_batch_size: int
     gradient_accumulation_steps: int
-    learning_rate: float
     num_train_epochs: int
 
     # optimizer
@@ -22,6 +21,7 @@ class GRPOTrainerArgs(BaseModel):
     weight_decay: float
     warmup_steps: int
     base_learning_rate: float
+    peak_learning_rate: float
 
     # vllm settings
     use_vllm: bool

@@ -123,7 +123,7 @@ def main():
         weight_decay=grpo_config.weight_decay,
         warmup_steps=grpo_config.warmup_steps,
         base_lr=grpo_config.base_learning_rate,
-        peak_lr=grpo_config.learning_rate,
+        peak_lr=grpo_config.peak_learning_rate,
     )
 
     # define lora config and grpo config
@@ -136,7 +136,6 @@ def main():
         do_train=grpo_config.do_train,
         per_device_train_batch_size=grpo_config.per_device_train_batch_size,
         gradient_accumulation_steps=grpo_config.gradient_accumulation_steps,
-        learning_rate=grpo_config.learning_rate,
         weight_decay=grpo_config.weight_decay,
         num_train_epochs=grpo_config.num_train_epochs,
         use_vllm=grpo_config.use_vllm,
