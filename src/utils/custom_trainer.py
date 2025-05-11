@@ -32,12 +32,12 @@ class CustomGRPOTrainer(GRPOTrainer):
         super().__init__(*args, **kwargs) 
 
         self.therapeutic_session = TherapeuticSession()
-        self.peak_lr = kwargs.get('peak_learning_rate', 5.3e-4)
         self.adam_beta1 = kwargs.get('adam_beta1', 0.9)
         self.adam_beta2 = kwargs.get('adam_beta2', 0.95)
         self.weight_decay = kwargs.get('weight_decay', 0.1)
         self.warmup_steps = kwargs.get('warmup_steps', 2000)
         self.base_lr = kwargs.get('base_learning_rate', 0.)
+        self.peak_lr = kwargs.get('peak_learning_rate', 5.3e-4)
 
         print('\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
         self.model.print_trainable_parameters()
@@ -54,27 +54,21 @@ class CustomGRPOTrainer(GRPOTrainer):
     def create_optimizer_and_scheduler(
             self, 
             num_training_steps: int, 
-            peak_learning_rate: float,
-            adam_beta1: float,
-            adam_beta2: float,
-            weight_decay: float,
-            warmup_steps: int,
-            base_learning_rate: float,
         ):
         """
         Create the optimizer and scheduler for the model.
         """
         self.optimizer = get_grpo_optimizer(
             model=self.model,
-            peak_learning_rate=peak_learning_rate,
-            adam_beta1=adam_beta1,
-            adam_beta2=adam_beta2,
-            weight_decay=weight_decay,
+            peak_learning_rate=self.peak_lr,
+            adam_beta1=self.adam_beta1,
+            adam_beta2=self.adam_beta2,
+            weight_decay=self.weight_decay,
         )
         self.lr_scheduler = get_grpo_scheduler(
             grpo_optimizer=self.optimizer,
             total_steps=num_training_steps,
-            warmup_steps=warmup_steps,
-            base_lr=base_learning_rate,
-            peak_lr=peak_learning_rate,
+            warmup_steps=self.warmup_steps,
+            base_lr=self.base_lr,
+            peak_lr=self.peak_lr,
         )
