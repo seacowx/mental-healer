@@ -109,10 +109,6 @@ class CustomGRPOTrainer(GRPOTrainer):
         mode = "train" if self.model.training else "eval"
 
         prompts = [x["prompt"] for x in inputs]
-
-        print(prompts)
-        raise SystemExit()
-
         prompts_text = [
             maybe_apply_chat_template(example, self.processing_class)["prompt"] 
             for example in inputs
