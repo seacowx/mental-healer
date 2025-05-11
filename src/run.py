@@ -13,9 +13,9 @@ import numpy as np
 import torch
 from torch.optim import AdamW
 
-from peft import LoraConfig
 from datasets import load_dataset
 from trl import GRPOTrainer, GRPOConfig
+from peft import LoraConfig, get_peft_model
 from transformers import AutoModelForCausalLM
 
 from utils.custom_trainer import CustomGRPOTrainer
@@ -105,6 +105,11 @@ def main():
         pretrained_model_name_or_path=args.base_model,
         torch_dtype="bfloat16",
     )
+    # define lora config and grpo config
+    lora_config = LoraConfig(
+        **lora_config_dict
+    )
+    peft_model = get_peft_model(base_model, lora_config)
 
     # STEP: setup the optimizer and scheduler according to the original GRPO paper
     TOTAL_STEPS = compute_total_steps(
@@ -116,7 +121,7 @@ def main():
 
     # return a tuple of AdamW optimizer and a step-wise scheduler
     prepared_optimizer = get_grpo_optimizer_and_scheduler(
-        model=base_model,
+        model=peft_model,
         total_steps=TOTAL_STEPS,
         adam_beta1=grpo_config.adam_beta1,
         adam_beta2=grpo_config.adam_beta2,
@@ -126,10 +131,6 @@ def main():
         peak_lr=grpo_config.peak_learning_rate,
     )
 
-    # define lora config and grpo config
-    lora_config = LoraConfig(
-        **lora_config_dict
-    )
     grpo_config = GRPOConfig(
         output_dir=grpo_config.output_dir,
         do_train=grpo_config.do_train,
