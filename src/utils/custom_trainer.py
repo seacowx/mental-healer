@@ -131,20 +131,20 @@ class CustomGRPOTrainer(GRPOTrainer):
             if self._step % generate_every == 0 or self._buffered_inputs is None:
                 # self._buffered_inputs=None can occur when resuming from a checkpoint
 
-                try:
-                    accumulated_local_batch = self._generate_and_score_completions(accumulated_local_batch)
-                except:
-                    print(accumulated_local_batch)
-                    raise SystemExit
+                accumulated_local_batch = self._generate_and_score_completions(accumulated_local_batch)
 
                 self._buffered_inputs = split_tensor_dict(
                     accumulated_local_batch, self.args.gradient_accumulation_steps
                 )
+
             inputs = self._buffered_inputs[self._step % self.args.gradient_accumulation_steps]
             self._step += 1
+
         else:
+            print('Ooooooooooooops')
             # In evaluation, there is neither gradient accumulation, nor multiple iterations
             inputs = self._generate_and_score_completions(accumulated_local_batch)
+
         return inputs
 
 
