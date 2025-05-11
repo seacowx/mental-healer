@@ -76,21 +76,21 @@ class CustomGRPOTrainer(GRPOTrainer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
 
-        self.therapeutic_session = TherapeuticSession(
-            therapist_agent=kwargs['therapist_agent'],
-            patient_agent=kwargs['patient_agent'],
-            planning_agent=kwargs['planning_agent'],
-        )
+        # self.therapeutic_session = TherapeuticSession(
+        #     therapist_agent=kwargs['therapist_agent'],
+        #     patient_agent=kwargs['patient_agent'],
+        #     planning_agent=kwargs['planning_agent'],
+        # )
 
         print('\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
         self.model.print_trainable_parameters()
         print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n')
 
 
-    def simulate_therapeutic_session(self):
+    # def simulate_therapeutic_session(self):
 
-        # sample therapist utterances according to coping strategies
-        therapist_utterances = self.therapeutic_session.sample_therapist_utterances()
+    #     # sample therapist utterances according to coping strategies
+    #     therapist_utterances = self.therapeutic_session.sample_therapist_utterances()
 
 
     def _reward_buffer(self,):
