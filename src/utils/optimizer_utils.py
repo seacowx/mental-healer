@@ -99,16 +99,13 @@ def get_decay_parameter_names(model) -> list[str]:
     return decay_parameters
 
 
-def get_grpo_optimizer_and_scheduler(
+def get_grpo_optimizer(
     model,
-    total_steps,
-    adam_beta1=0.9,
-    adam_beta2=0.95,
-    weight_decay=0.1,
-    warmup_steps=2000,
-    base_lr=0.,
-    peak_lr=5.3e-4,
-) -> Tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR]:
+    peak_learning_rate: float,
+    adam_beta1: float,
+    adam_beta2: float,
+    weight_decay: float,
+):
 
     decay_parameters = get_decay_parameter_names(model=model)
     optimizer_grouped_parameters = [
@@ -126,18 +123,26 @@ def get_grpo_optimizer_and_scheduler(
         },
     ]
 
-    optimizer = torch.optim.AdamW(
+    return torch.optim.AdamW(
         params=optimizer_grouped_parameters,
-        lr=peak_lr,
+        lr=peak_learning_rate,
         betas=(adam_beta1, adam_beta2),
         weight_decay=weight_decay,
     )
-    scheduler = get_step_wise_scheduler(
-        optimizer=optimizer,
+
+
+def get_grpo_scheduler(
+    grpo_optimizer,
+    total_steps,
+    warmup_steps=2000,
+    base_lr=0.,
+    peak_lr=5.3e-4,
+):
+
+    return get_step_wise_scheduler(
+        optimizer=grpo_optimizer,
         num_training_steps=total_steps,
         warmup_steps=warmup_steps,
         base_lr=base_lr,
         peak_lr=peak_lr,
     )
-
-    return optimizer, scheduler

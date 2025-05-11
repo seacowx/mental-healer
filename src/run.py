@@ -111,26 +111,6 @@ def main():
     )
     peft_model = get_peft_model(base_model, lora_config)
 
-    # STEP: setup the optimizer and scheduler according to the original GRPO paper
-    TOTAL_STEPS = compute_total_steps(
-        num_train_epochs=grpo_config.num_train_epochs,
-        per_device_train_batch_size=grpo_config.per_device_train_batch_size,
-        gradient_accumulation_steps=grpo_config.gradient_accumulation_steps,
-        len_dataset=len(dataset),
-    )
-
-    # return a tuple of AdamW optimizer and a step-wise scheduler
-    prepared_optimizer = get_grpo_optimizer_and_scheduler(
-        model=peft_model,
-        total_steps=TOTAL_STEPS,
-        adam_beta1=grpo_config.adam_beta1,
-        adam_beta2=grpo_config.adam_beta2,
-        weight_decay=grpo_config.weight_decay,
-        warmup_steps=grpo_config.warmup_steps,
-        base_lr=grpo_config.base_learning_rate,
-        peak_lr=grpo_config.peak_learning_rate,
-    )
-
     grpo_config = GRPOConfig(
         output_dir=grpo_config.output_dir,
         do_train=grpo_config.do_train,
@@ -149,7 +129,6 @@ def main():
         model=peft_model,
         reward_funcs=reward_func,
         train_dataset=dataset,
-        optimizers=prepared_optimizer,
         args=grpo_config,
     )
 
