@@ -141,7 +141,6 @@ class CustomGRPOTrainer(GRPOTrainer):
             self._step += 1
 
         else:
-            print('Ooooooooooooops')
             # In evaluation, there is neither gradient accumulation, nor multiple iterations
             inputs = self._generate_and_score_completions(accumulated_local_batch)
 
@@ -157,9 +156,19 @@ class CustomGRPOTrainer(GRPOTrainer):
         mode = "eval" if self.control.should_evaluate else "train"
 
         prompts = [x["prompt"] for x in inputs]
-        prompts_text = [maybe_apply_chat_template(example, self.processing_class)["prompt"] for example in inputs]
+        prompts_text = [
+            maybe_apply_chat_template(example, self.processing_class)["prompt"] for example in inputs
+        ]
+
+        print(prompts_text)
+        raise SystemExit
+
         prompt_inputs = self.processing_class(
-            text=prompts_text, return_tensors="pt", padding=True, padding_side="left", add_special_tokens=False
+            text=prompts_text, 
+            return_tensors="pt", 
+            padding=True, 
+            padding_side="left", 
+            add_special_tokens=False,
         )
         prompt_inputs = super()._prepare_inputs(prompt_inputs)
         prompt_ids, prompt_mask = prompt_inputs["input_ids"], prompt_inputs["attention_mask"]
