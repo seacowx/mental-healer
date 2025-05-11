@@ -98,17 +98,10 @@ def main():
 
     grpo_config_dict['vllm_server_port'] = args.trl_vllm_port
 
-    # initialize the base model
-    # it is easier to implement custom optimizer and scheduler this way
-    base_model = AutoModelForCausalLM.from_pretrained(
-        pretrained_model_name_or_path=args.base_model,
-        torch_dtype="bfloat16",
-    )
     # define lora config and grpo config
     lora_config = LoraConfig(
         **lora_config_dict
     )
-    peft_model = get_peft_model(base_model, lora_config)
 
     grpo_config = GRPOConfig(
         output_dir=grpo_config.output_dir,
@@ -125,9 +118,10 @@ def main():
         use_liger_kernel=grpo_config.use_liger_kernel,
     )
     grpo_trainer = CustomGRPOTrainer(
-        model=peft_model,
+        model=args.base_model,
         reward_funcs=reward_func,
         train_dataset=dataset,
+        peft_config=lora_config,
         args=grpo_config,
     )
 
