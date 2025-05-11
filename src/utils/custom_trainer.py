@@ -39,7 +39,7 @@ from agents.planner import CopingAgent
 from agents.patient import PatientAgent
 from agents.therapist import TherapistAgent
 
-from trl_utils import pad, nanstd
+from utils.trl_utils import pad, nanstd
 from utils.optimizer_utils import get_grpo_optimizer, get_grpo_scheduler
 
 
