@@ -10,7 +10,13 @@ Outputs:
 """
 
 
-class CopingStrategyPlanner:
+class CopingAgent:
+
+    """
+    Coping agent.
+
+    This agent is responsible for generating a coping strategy for the patient based on the situation and persona profile.
+    """
 
 
     def __init__(self, model: str):

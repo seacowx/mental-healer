@@ -1,7 +1,7 @@
 from agents.base_agent import LMAgent
 
 
-class Therapist(LMAgent):
+class TherapistAgent(LMAgent):
 
     def __init__(
         self,

@@ -16,7 +16,7 @@ from agents.base_agent import LMAgent
 from utils.vllm_inference_utils import vLLMOffline, OpenAIAsyncInference
 
 
-class Patient(LMAgent):
+class PatientAgent(LMAgent):
 
 
     def __init__(
