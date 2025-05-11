@@ -125,14 +125,14 @@ class CustomGRPOTrainer(GRPOTrainer):
         #   - Completions are generated for each batch without buffering or reuse
         # Returns a single local batch in both cases.
 
+        print(self.args)
+        raise SystemExit
+
         mode = "train" if self.model.training else "eval"
         if mode == "train":
             generate_every = self.args.steps_per_generation * self.num_iterations
             if self._step % generate_every == 0 or self._buffered_inputs is None:
                 # self._buffered_inputs=None can occur when resuming from a checkpoint
-
-                print(generation_batch)
-                raise SystemExit
 
                 generation_batch = self._generate_and_score_completions(generation_batch)
                 generation_batch = shuffle_tensor_dict(generation_batch)
