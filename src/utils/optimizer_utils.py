@@ -64,41 +64,6 @@ def get_step_wise_scheduler(
     return LambdaLR(optimizer, lr_lambda)
 
 
-def get_parameter_names(model, forbidden_layer_types, forbidden_layer_names=None):
-    """
-    Returns the names of the model parameters that are not inside a forbidden layer.
-    """
-    if forbidden_layer_names is None:
-        forbidden_layer_names = []
-    result = []
-    for name, child in model.named_children():
-        child_params = get_parameter_names(child, forbidden_layer_types, forbidden_layer_names)
-        result += [
-            f"{name}.{n}"
-            for n in child_params
-            if not isinstance(child, tuple(forbidden_layer_types))
-            and not any(forbidden in f"{name}.{n}".lower() for forbidden in forbidden_layer_names)
-        ]
-    # Add model specific parameters that are not in any child
-    result += [
-        k for k in model._parameters.keys() if not any(forbidden in k.lower() for forbidden in forbidden_layer_names)
-    ]
-    return result
-
-
-def get_decay_parameter_names(model) -> list[str]:
-    """
-    Get all parameter names that weight decay will be applied to.
-
-    This function filters out parameters in two ways:
-    1. By layer type (instances of layers specified in ALL_LAYERNORM_LAYERS)
-    2. By parameter name patterns (containing 'bias', 'layernorm', or 'rmsnorm')
-    """
-    ALL_LAYERNORM_LAYERS = [nn.LayerNorm]
-    decay_parameters = get_parameter_names(model, ALL_LAYERNORM_LAYERS, ["bias", "layernorm", "rmsnorm"])
-    return decay_parameters
-
-
 def get_grpo_optimizer(
     model,
     peak_learning_rate: float,
@@ -106,25 +71,8 @@ def get_grpo_optimizer(
     adam_beta2: float,
     weight_decay: float,
 ):
-
-    decay_parameters = get_decay_parameter_names(model=model)
-    optimizer_grouped_parameters = [
-        {
-            "params": [
-                p for n, p in model.named_parameters() if (n in decay_parameters and p.requires_grad)
-            ],
-            "weight_decay": weight_decay,
-        },
-        {
-            "params": [
-                p for n, p in model.named_parameters() if (n not in decay_parameters and p.requires_grad)
-            ],
-            "weight_decay": 0.0,
-        },
-    ]
-
     return torch.optim.AdamW(
-        params=optimizer_grouped_parameters,
+        params=model.parameters(),
         lr=peak_learning_rate,
         betas=(adam_beta1, adam_beta2),
         weight_decay=weight_decay,

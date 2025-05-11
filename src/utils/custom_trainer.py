@@ -51,31 +51,30 @@ class CustomGRPOTrainer(GRPOTrainer):
         ...
 
     
-    # def create_optimizer_and_scheduler(
-    #         self, 
-    #         num_training_steps: int, 
-    #         peak_learning_rate: float,
-    #         adam_beta1: float,
-    #         adam_beta2: float,
-    #         weight_decay: float,
-    #         warmup_steps: int,
-    #         base_learning_rate: float,
-    #     ):
-    #     """
-    #     Create the optimizer and scheduler for the model.
-    #     """
-    #     self.optimizer = get_grpo_optimizer(
-    #         model=self.model,
-    #         peak_learning_rate=peak_learning_rate,
-    #         adam_beta1=adam_beta1,
-    #         adam_beta2=adam_beta2,
-    #         weight_decay=weight_decay,
-    #     )
-    #     self.lr_scheduler = get_grpo_scheduler(
-    #         grpo_optimizer=self.optimizer,
-    #         total_steps=num_training_steps,
-    #         warmup_steps=warmup_steps,
-    #         base_lr=base_learning_rate,
-    #         peak_lr=peak_learning_rate,
-    #     )
-
+    def create_optimizer_and_scheduler(
+            self, 
+            num_training_steps: int, 
+            peak_learning_rate: float,
+            adam_beta1: float,
+            adam_beta2: float,
+            weight_decay: float,
+            warmup_steps: int,
+            base_learning_rate: float,
+        ):
+        """
+        Create the optimizer and scheduler for the model.
+        """
+        self.optimizer = get_grpo_optimizer(
+            model=self.model,
+            peak_learning_rate=peak_learning_rate,
+            adam_beta1=adam_beta1,
+            adam_beta2=adam_beta2,
+            weight_decay=weight_decay,
+        )
+        self.lr_scheduler = get_grpo_scheduler(
+            grpo_optimizer=self.optimizer,
+            total_steps=num_training_steps,
+            warmup_steps=warmup_steps,
+            base_lr=base_learning_rate,
+            peak_lr=peak_learning_rate,
+        )
