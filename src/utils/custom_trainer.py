@@ -101,29 +101,16 @@ class CustomGRPOTrainer(GRPOTrainer):
 
     def _generate_and_score_completions(
         self, 
-        inputs: 
-        list[dict[str, Union[torch.Tensor, Any]]]
+        inputs: list[dict[str, Union[torch.Tensor, Any]]]
     ) -> dict[str, Union[torch.Tensor, Any]]:
 
         device = self.accelerator.device
         mode = "train" if self.model.training else "eval"
 
-        try:
-            prompts = [x["prompt"] for x in inputs]
-        except:
-            print(inputs)
-            raise SystemExit
-
-        prompts_text = [
-            maybe_apply_chat_template(example, self.processing_class)["prompt"] 
-            for example in inputs
-        ]
+        prompts = [x["prompt"] for x in inputs]
+        prompts_text = [maybe_apply_chat_template(example, self.processing_class)["prompt"] for example in inputs]
         prompt_inputs = self.processing_class(
-            text=prompts_text, 
-            return_tensors="pt", 
-            padding=True, 
-            padding_side="left", 
-            add_special_tokens=False
+            text=prompts_text, return_tensors="pt", padding=True, padding_side="left", add_special_tokens=False
         )
         prompt_inputs = super()._prepare_inputs(prompt_inputs)
         prompt_ids, prompt_mask = prompt_inputs["input_ids"], prompt_inputs["attention_mask"]
