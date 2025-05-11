@@ -108,42 +108,41 @@ class CustomGRPOTrainer(GRPOTrainer):
 
 
     # NOTE: Overrides methods from GRPOTrainer and Trainer
-    # @profiling_decorator
-    # def _prepare_inputs(
-    #     self, generation_batch: dict[str, Union[torch.Tensor, Any]]
-    # ) -> dict[str, Union[torch.Tensor, Any]]:
-    #     # Prepares inputs for model training/evaluation by managing completion generation and batch handling.
-    #     # During training:
-    #     #   - Receives the local generation batch (Per-GPU batch size × steps per generation)
-    #     #     from the modified training dataloader instead of the standard local batch
-    #     #   - Generates completions once for the entire generation batch and splits it into batches of size
-    #     #     `per_device_train_batch_size`
-    #     #   - Buffers these completions and returns the appropriate slice for the current accumulation step
-    #     #   - Optimizes by regenerating completions only periodically (every steps_per_generation * num_iterations)
-    #     # During evaluation:
-    #     #   - The input is treated as a standard local batch (no accumulation, no multiple iterations)
-    #     #   - Completions are generated for each batch without buffering or reuse
-    #     # Returns a single local batch in both cases.
+    @profiling_decorator
+    def _prepare_inputs(
+        self, accumulated_local_batch: dict[str, Union[torch.Tensor, Any]]
+    ) -> dict[str, Union[torch.Tensor, Any]]:
+        # Prepares inputs for model training/evaluation by managing completion generation and batch handling.
+        # During training:
+        #   - Receives the accumulated local batch (Per-GPU batch size × Gradient accumulation steps)
+        #     from the modified training dataloader instead of the standard local batch
+        #   - Generates completions once for the entire accumulated batch and splits it into smaller batches
+        #   - Buffers these completions and returns the appropriate slice for the current accumulation step
+        #   - Optimizes by regenerating completions only periodically (every gradient_accumulation_steps * num_iterations)
+        # During evaluation:
+        #   - The input is treated as a standard local batch (no accumulation, no multiple iterations)
+        #   - Completions are generated for each batch without buffering or reuse
+        # Returns a single local batch in both cases.
 
-    #     print(self.args)
-    #     raise SystemExit
+        mode = "eval" if self.control.should_evaluate else "train"
+        if mode == "train":
+            generate_every = self.args.gradient_accumulation_steps * self.num_iterations
+            if self._step % generate_every == 0 or self._buffered_inputs is None:
+                # self._buffered_inputs=None can occur when resuming from a checkpoint
 
-    #     mode = "train" if self.model.training else "eval"
-    #     if mode == "train":
-    #         generate_every = self.args.steps_per_generation * self.num_iterations
-    #         if self._step % generate_every == 0 or self._buffered_inputs is None:
-    #             # self._buffered_inputs=None can occur when resuming from a checkpoint
+                print(accumulated_local_batch)
+                raise SystemExit
 
-    #             generation_batch = self._generate_and_score_completions(generation_batch)
-    #             generation_batch = shuffle_tensor_dict(generation_batch)
-    #             self._buffered_inputs = split_tensor_dict(generation_batch, self.args.steps_per_generation)
-    #         inputs = self._buffered_inputs[self._step % self.args.steps_per_generation]
-    #         self._step += 1
-    #     else:
-    #         # In evaluation, there is neither batch grouping for generation, nor multiple iterations, hence
-    #         # local generation batch == local eval batch
-    #         inputs = self._generate_and_score_completions(generation_batch)
-    #     return inputs
+                accumulated_local_batch = self._generate_and_score_completions(accumulated_local_batch)
+                self._buffered_inputs = split_tensor_dict(
+                    accumulated_local_batch, self.args.gradient_accumulation_steps
+                )
+            inputs = self._buffered_inputs[self._step % self.args.gradient_accumulation_steps]
+            self._step += 1
+        else:
+            # In evaluation, there is neither gradient accumulation, nor multiple iterations
+            inputs = self._generate_and_score_completions(accumulated_local_batch)
+        return inputs
 
 
     def _generate_and_score_completions(
