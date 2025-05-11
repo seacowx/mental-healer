@@ -23,7 +23,6 @@ class GRPOTrainerArgs(BaseModel):
     # vllm settings
     use_vllm: bool
     vllm_server_port: int
-    use_liger_kernel: bool
 
     # logging
     logging_steps: int
