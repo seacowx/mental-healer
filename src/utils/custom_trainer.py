@@ -18,12 +18,15 @@ import torch.nn as nn
 from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 
 from trl import GRPOTrainer
-from trl.extras.profiling import profiling_context
+from trl.extras.profiling import (
+    profiling_context, 
+    profiling_decorator,
+)
 from trl.models import unwrap_model_for_generation
 from trl.data_utils import (
     maybe_apply_chat_template, 
     apply_chat_template, 
-    is_conversational
+    is_conversational,
 )
 
 from accelerate.utils import (
@@ -39,7 +42,12 @@ from agents.planner import CopingAgent
 from agents.patient import PatientAgent
 from agents.therapist import TherapistAgent
 
-from utils.trl_utils import pad, nanstd
+from utils.trl_utils import (
+    pad, 
+    nanstd, 
+    shuffle_tensor_dict, 
+    split_tensor_dict,
+)
 from utils.optimizer_utils import get_grpo_optimizer, get_grpo_scheduler
 
 
@@ -99,6 +107,45 @@ class CustomGRPOTrainer(GRPOTrainer):
         ...
 
 
+    # NOTE: Overrides methods from GRPOTrainer and Trainer
+    @profiling_decorator
+    def _prepare_inputs(
+        self, generation_batch: dict[str, Union[torch.Tensor, Any]]
+    ) -> dict[str, Union[torch.Tensor, Any]]:
+        # Prepares inputs for model training/evaluation by managing completion generation and batch handling.
+        # During training:
+        #   - Receives the local generation batch (Per-GPU batch size × steps per generation)
+        #     from the modified training dataloader instead of the standard local batch
+        #   - Generates completions once for the entire generation batch and splits it into batches of size
+        #     `per_device_train_batch_size`
+        #   - Buffers these completions and returns the appropriate slice for the current accumulation step
+        #   - Optimizes by regenerating completions only periodically (every steps_per_generation * num_iterations)
+        # During evaluation:
+        #   - The input is treated as a standard local batch (no accumulation, no multiple iterations)
+        #   - Completions are generated for each batch without buffering or reuse
+        # Returns a single local batch in both cases.
+
+        mode = "train" if self.model.training else "eval"
+        if mode == "train":
+            generate_every = self.args.steps_per_generation * self.num_iterations
+            if self._step % generate_every == 0 or self._buffered_inputs is None:
+                # self._buffered_inputs=None can occur when resuming from a checkpoint
+
+                print(generation_batch)
+                raise SystemExit
+
+                generation_batch = self._generate_and_score_completions(generation_batch)
+                generation_batch = shuffle_tensor_dict(generation_batch)
+                self._buffered_inputs = split_tensor_dict(generation_batch, self.args.steps_per_generation)
+            inputs = self._buffered_inputs[self._step % self.args.steps_per_generation]
+            self._step += 1
+        else:
+            # In evaluation, there is neither batch grouping for generation, nor multiple iterations, hence
+            # local generation batch == local eval batch
+            inputs = self._generate_and_score_completions(generation_batch)
+        return inputs
+
+
     def _generate_and_score_completions(
         self, 
         inputs: list[dict[str, Union[torch.Tensor, Any]]]
@@ -108,7 +155,9 @@ class CustomGRPOTrainer(GRPOTrainer):
         mode = "train" if self.model.training else "eval"
 
         prompts = [x["prompt"] for x in inputs]
-        prompts_text = [maybe_apply_chat_template(example, self.processing_class)["prompt"] for example in inputs]
+        prompts_text = [
+            maybe_apply_chat_template(example, self.processing_class)["prompt"] for example in inputs
+        ]
         prompt_inputs = self.processing_class(
             text=prompts_text, return_tensors="pt", padding=True, padding_side="left", add_special_tokens=False
         )
