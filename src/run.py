@@ -130,7 +130,6 @@ def main():
     lora_config = LoraConfig(
         **lora_config_dict
     )
-    # TODO: need to specify each of the parameters in the grpo config, most of them are included in the grpo config dict
     grpo_config = GRPOConfig(
         output_dir=grpo_config.output_dir,
         do_train=grpo_config.do_train,
@@ -145,7 +144,6 @@ def main():
         log_completions=grpo_config.log_completions,
         use_liger_kernel=grpo_config.use_liger_kernel,
     )
-
     grpo_trainer = CustomGRPOTrainer(
         model=base_model,
         reward_funcs=reward_func,
@@ -155,9 +153,11 @@ def main():
         args=grpo_config,
     )
 
-    print("\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+    print('\n\n')
+    print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
     print("GRPO Training Started...")
-    print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n")
+    print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+    print('\n\n')
 
     grpo_trainer.train()
 
