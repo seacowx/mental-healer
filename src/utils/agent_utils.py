@@ -1,11 +1,11 @@
 import yaml
-from agents.patient import Patient
+from agents.patient import PatientAgent
 from utils.vllm_inference_utils import vLLMServer
 
 
 def initialize_patient_agent(
     patient_model: str,
-) -> Patient:
+) -> PatientAgent:
 
     llm_path_dict = yaml.safe_load(open('./configs/llm_configs.yaml', 'r'))
 
@@ -19,7 +19,7 @@ def initialize_patient_agent(
         device_list=[0],
     )
 
-    patient_agent = Patient(
+    patient_agent = PatientAgent(
         openai_async_client=patient_async_client,
     )
 
