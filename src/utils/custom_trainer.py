@@ -110,7 +110,8 @@ class CustomGRPOTrainer(GRPOTrainer):
     # NOTE: Overrides methods from GRPOTrainer and Trainer
     @profiling_decorator
     def _prepare_inputs(
-        self, accumulated_local_batch: dict[str, Union[torch.Tensor, Any]]
+        self, 
+        accumulated_local_batch: dict[str, Union[torch.Tensor, Any]],
     ) -> dict[str, Union[torch.Tensor, Any]]:
         # Prepares inputs for model training/evaluation by managing completion generation and batch handling.
         # During training:
@@ -148,7 +149,8 @@ class CustomGRPOTrainer(GRPOTrainer):
 
 
     def _generate_and_score_completions(
-        self, inputs: list[dict[str, Union[torch.Tensor, Any]]]
+        self, 
+        inputs: list[dict[str, Union[torch.Tensor, Any]]],
     ) -> dict[str, Union[torch.Tensor, Any]]:
 
         device = self.accelerator.device
