@@ -1,3 +1,4 @@
+# DEPRECATED: NOT USED IN THE CURRENT IMPLEMENTATION.
 """
 Methods to compute the total number of training steps and the step-wise learning rate scheduler.
 

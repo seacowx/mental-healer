@@ -116,6 +116,9 @@ def main():
         logging_first_step=grpo_config.logging_first_step,
         log_completions=grpo_config.log_completions,
         use_liger_kernel=grpo_config.use_liger_kernel,
+        adam_beta1=grpo_config.adam_beta1,
+        adam_beta2=grpo_config.adam_beta2,
+        learning_rate=grpo_config.learning_rate,
     )
     grpo_trainer = CustomGRPOTrainer(
         model=args.base_model,

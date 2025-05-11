@@ -19,6 +19,8 @@ class GRPOTrainerArgs(BaseModel):
     adam_beta1: float
     adam_beta2: float
     weight_decay: float
+    warmup_steps: int
+    learning_rate: float
 
     # vllm settings
     use_vllm: bool
