@@ -5,9 +5,9 @@ The step-wise learning rate scheduler is based on the one proposed in the origin
 https://arxiv.org/pdf/2402.03300
 """
 import torch
+from torch import nn
 from typing import Tuple, Optional
 from torch.optim.lr_scheduler import LambdaLR
-
 
 def compute_total_steps(
     num_train_epochs: int,
@@ -64,6 +64,41 @@ def get_step_wise_scheduler(
     return LambdaLR(optimizer, lr_lambda)
 
 
+def get_parameter_names(model, forbidden_layer_types, forbidden_layer_names=None):
+    """
+    Returns the names of the model parameters that are not inside a forbidden layer.
+    """
+    if forbidden_layer_names is None:
+        forbidden_layer_names = []
+    result = []
+    for name, child in model.named_children():
+        child_params = get_parameter_names(child, forbidden_layer_types, forbidden_layer_names)
+        result += [
+            f"{name}.{n}"
+            for n in child_params
+            if not isinstance(child, tuple(forbidden_layer_types))
+            and not any(forbidden in f"{name}.{n}".lower() for forbidden in forbidden_layer_names)
+        ]
+    # Add model specific parameters that are not in any child
+    result += [
+        k for k in model._parameters.keys() if not any(forbidden in k.lower() for forbidden in forbidden_layer_names)
+    ]
+    return result
+
+
+def get_decay_parameter_names(model) -> list[str]:
+    """
+    Get all parameter names that weight decay will be applied to.
+
+    This function filters out parameters in two ways:
+    1. By layer type (instances of layers specified in ALL_LAYERNORM_LAYERS)
+    2. By parameter name patterns (containing 'bias', 'layernorm', or 'rmsnorm')
+    """
+    ALL_LAYERNORM_LAYERS = [nn.LayerNorm]
+    decay_parameters = get_parameter_names(model, ALL_LAYERNORM_LAYERS, ["bias", "layernorm", "rmsnorm"])
+    return decay_parameters
+
+
 def get_grpo_optimizer_and_scheduler(
     model,
     total_steps,
@@ -75,14 +110,30 @@ def get_grpo_optimizer_and_scheduler(
     peak_lr=5.3e-4,
 ) -> Tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR]:
 
+    decay_parameters = get_decay_parameter_names(model=model)
+    optimizer_grouped_parameters = [
+        {
+            "params": [
+                p for n, p in model.named_parameters() if (n in decay_parameters and p.requires_grad)
+            ],
+            "weight_decay": weight_decay,
+        },
+        {
+            "params": [
+                p for n, p in model.named_parameters() if (n not in decay_parameters and p.requires_grad)
+            ],
+            "weight_decay": 0.0,
+        },
+    ]
+
     optimizer = torch.optim.AdamW(
-        model.parameters(),
+        params=optimizer_grouped_parameters,
         lr=peak_lr,
         betas=(adam_beta1, adam_beta2),
         weight_decay=weight_decay,
     )
     scheduler = get_step_wise_scheduler(
-        optimizer,
+        optimizer=optimizer,
         num_training_steps=total_steps,
         warmup_steps=warmup_steps,
         base_lr=base_lr,
