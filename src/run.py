@@ -146,10 +146,9 @@ def main():
         use_liger_kernel=grpo_config.use_liger_kernel,
     )
     grpo_trainer = CustomGRPOTrainer(
-        model=base_model,
+        model=peft_model,
         reward_funcs=reward_func,
         train_dataset=dataset,
-        peft_config=lora_config,
         optimizers=prepared_optimizer,
         args=grpo_config,
     )
