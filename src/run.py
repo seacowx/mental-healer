@@ -22,7 +22,6 @@ from utils.custom_trainer import CustomGRPOTrainer
 from utils.data_utils import prepare_training_data
 from utils.custom_trainer_args import GRPOTrainerArgs
 from utils.agent_utils import initialize_patient_agent
-from utils.optimizer_utils import get_grpo_optimizer_and_scheduler, compute_total_steps
 
 from rewards.sentiment import SentimentReward
 from rewards.therapist_reward import TherapistReward
