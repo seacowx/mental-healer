@@ -53,7 +53,7 @@ class SentimentReward:
         )
 
         self.adapter_dir = (
-            '/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/qwen8/checkpoint-240'
+            '/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/qwen8/checkpoint-260'
         )
 
         return self.llm
