@@ -11,11 +11,9 @@ Methods that PROBABLY need to be modified:
 import yaml
 import warnings
 from typing import Any, Union
-from contextlib import nullcontext
 
 import torch
 import torch.nn as nn
-from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 
 from trl import GRPOTrainer
 from trl.extras.profiling import (
@@ -36,9 +34,6 @@ from accelerate.utils import (
     gather,
 )
 
-from vllm import LLM, SamplingParams
-from vllm.sampling_params import GuidedDecodingParams
-
 from agents.planner import CopingAgent
 from agents.patient import PatientAgent
 from agents.therapist import TherapistAgent
@@ -46,7 +41,6 @@ from agents.therapist import TherapistAgent
 from utils.trl_utils import (
     pad, 
     nanstd, 
-    shuffle_tensor_dict, 
     split_tensor_dict,
 )
 from utils.optimizer_utils import get_grpo_optimizer, get_grpo_scheduler
@@ -301,7 +295,7 @@ class CustomGRPOTrainer(GRPOTrainer):
                     reward_inputs = reward_processing_class(
                         text=texts, return_tensors="pt", padding=True, padding_side="right", add_special_tokens=False
                     )
-                    reward_inputs = super()._prepare_inputs(reward_inputs)
+                    reward_inputs = Trainer._prepare_inputs(self, reward_inputs)
                     with torch.inference_mode():
                         rewards_per_func[:, i] = reward_func(**reward_inputs).logits[:, 0]  # Shape (B*G,)
                 else:
