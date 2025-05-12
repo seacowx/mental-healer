@@ -36,6 +36,9 @@ class SentimentReward:
 
     def __parse_output(self, output: RequestOutput) -> str:
 
+        print(output)
+        raise SystemExit
+
         out_str = ""
         try:
             out_str = output.outputs[0].text \
@@ -74,9 +77,6 @@ class SentimentReward:
                 out_list[i] = parsed_output
             else:
                 out_list[i] = 'positive'
-
-        print(out_list)
-        raise SystemExit
 
         return out_list
 
