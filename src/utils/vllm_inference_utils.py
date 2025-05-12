@@ -340,7 +340,7 @@ class vLLMServer:
             _, _ = self.server.communicate()
             self.server.wait()    
             time.sleep(10)
-        except KeyboardInterrupt:
+        except:
             pass
 
 
