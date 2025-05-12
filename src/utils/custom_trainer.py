@@ -28,6 +28,7 @@ from trl.data_utils import (
     apply_chat_template, 
     is_conversational,
 )
+from transformers import Trainer
 
 from accelerate.utils import (
     gather_object, 
@@ -155,11 +156,7 @@ class CustomGRPOTrainer(GRPOTrainer):
         device = self.accelerator.device
         mode = "eval" if self.control.should_evaluate else "train"
 
-        try:
-            prompts = [x["prompt"] for x in inputs]
-        except:
-            print(inputs)
-            raise SystemExit
+        prompts = [x["prompt"] for x in inputs]
 
         prompts_text = [
             maybe_apply_chat_template(example, self.processing_class)["prompt"] for example in inputs
@@ -175,7 +172,7 @@ class CustomGRPOTrainer(GRPOTrainer):
         )
 
         # move input to the correct device and adjust the dtype
-        prompt_inputs = super()._prepare_inputs(prompt_inputs)
+        prompt_inputs = Trainer._prepare_inputs(prompt_inputs)
         prompt_ids, prompt_mask = prompt_inputs["input_ids"], prompt_inputs["attention_mask"]
 
         if self.max_prompt_length is not None:
