@@ -16,10 +16,11 @@ import torch
 from datasets import load_dataset
 from trl import GRPOConfig
 
+from rewards.sentiment import SentimentReward
+from utils.model_utils import load_all_models
 from utils.custom_trainer import CustomGRPOTrainer
 from utils.data_utils import prepare_training_data
 from utils.custom_trainer_args import GRPOTrainerArgs
-from utils.reward_utils import initialize_sentiment_reward_model
 
 
 def set_seed(seed: int) -> None:
@@ -77,18 +78,23 @@ def main():
     grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
     grpo_config = GRPOTrainerArgs(**grpo_config_dict)
 
-    sentiment_reward_model, base_vllm = initialize_sentiment_reward_model(
+    offlien_vllm_base_model = load_all_models(
         model_path=grpo_config.base_agent_path,
         sentiment_reward_device=torch.device(grpo_config.sentiment_reward_device),
+    )
+
+    sentiment_reward_model = SentimentReward(
+        base_vllm_model=offlien_vllm_base_model,
     )
 
     from debug import test_sentiment
     test_sentiment(sentiment_reward_model)
 
+    raise SystemExit
+
     # patient_agent = initialize_patient_agent(
     #     patient_model=args.therapist_base_model,
     # )
-
 
     # dataset = load_dataset("trl-lib/tldr", split="train")
 

@@ -1,0 +1,31 @@
+
+import torch
+from vllm import LLM, SamplingParams
+
+
+def load_offline_vllm_base_model(
+    base_model_path: str,
+    sentiment_reward_device: torch.device | None = None,
+):
+    extra_kwargs = {}
+    if sentiment_reward_device:
+        extra_kwargs['device'] = sentiment_reward_device
+        extra_kwargs['tensor_parallel_size'] = 1
+    else:
+        extra_kwargs['tensor_parallel_size'] = torch.cuda.device_count()
+
+    # initialize the llm
+    llm = LLM(
+        model=base_model_path, 
+        max_model_len=2048,
+        enable_lora=True,
+        max_lora_rank=64,
+        gpu_memory_utilization=0.7,
+        **extra_kwargs,
+    )
+
+    return llm
+
+
+def load_all_models():
+    ...

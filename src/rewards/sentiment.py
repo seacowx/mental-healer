@@ -6,16 +6,13 @@ from vllm import LLM, SamplingParams
 from vllm.outputs import RequestOutput
 from vllm.lora.request import LoRARequest
 
-from utils.vllm_inference_utils import vLLMServer
-
 
 class SentimentReward:
 
 
     def __init__(
         self, 
-        model_path: str,
-        sentiment_reward_device: torch.device,
+        base_vllm_model: LLM,
         reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
         sentiment_mapping_path: str = './configs/emotion_to_sentiment.yaml',
     ) -> None:
@@ -24,28 +21,6 @@ class SentimentReward:
         self.sentiment_mapping = yaml.safe_load(open(sentiment_mapping_path, 'r'))
         # base vLLM server is shared between Patient Agent and Reward Model
         # Reward model will activate the corresponding LoRA adapter
-        self.model_path = model_path
-        self.sentiment_reward_device = sentiment_reward_device
-
-    
-    def initialize_sentiment_reward_model(self) -> LLM:
-
-        extra_kwargs = {}
-        if self.sentiment_reward_device:
-            extra_kwargs['device'] = self.sentiment_reward_device
-            extra_kwargs['tensor_parallel_size'] = 1
-        else:
-            extra_kwargs['tensor_parallel_size'] = torch.cuda.device_count()
-
-        # initialize the llm
-        self.llm = LLM(
-            model=self.model_path, 
-            max_model_len=2048,
-            enable_lora=True,
-            max_lora_rank=64,
-            gpu_memory_utilization=0.7,
-            **extra_kwargs,
-        )
 
         self.sampling_params = SamplingParams(
             temperature=0,
@@ -56,7 +31,7 @@ class SentimentReward:
             '/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/qwen8/checkpoint-260'
         )
 
-        return self.llm
+        self.llm = base_vllm_model
 
 
     def __parse_output(self, output: RequestOutput) -> str:
