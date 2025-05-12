@@ -62,14 +62,11 @@ class SentimentReward:
 
     def __parse_output(self, output: RequestOutput) -> str:
 
-        print(output)
-        raise SystemExit
-
         out_str = ""
         try:
             out_str = output.outputs[0].text \
-                .split('<emotion>')[1] \
-                .split('</emotion>')[0].strip().lower() \
+                .split('<sentiment>')[1] \
+                .split('</sentiment>')[0].strip().lower() \
                 .replace('"', '') \
                 .replace("'", '') 
         except:
