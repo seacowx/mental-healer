@@ -166,10 +166,10 @@ def main():
             ground_truth=parsed_ground_truth,
         )
 
-        eval_result_dict['lora_idx'].append(lora_idx)
+        eval_result_dict['lora_idx'].append(lora_checkpoint_dir)
         eval_result_dict['accuracy'].append(cur_acc)
         eval_result_dict['f1'].append(cur_f1)
-        sentiment_eval_result_dict['lora_idx'].append(lora_idx)
+        sentiment_eval_result_dict['lora_idx'].append(lora_checkpoint_dir)
         sentiment_eval_result_dict['accuracy'].append(cur_sentiment_acc)
         sentiment_eval_result_dict['f1'].append(cur_sentiment_f1)
 
