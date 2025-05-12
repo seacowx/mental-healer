@@ -59,6 +59,9 @@ class SentimentReward:
 
         while input_msg_list and tol_counter < TOLERANCE:
 
+            print(input_msg_list[0])
+            raise SystemExit
+
             outputs = [
                 self.base_vllm_client.process_with_semaphore(
                     semaphore=semaphore,
