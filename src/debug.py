@@ -77,8 +77,11 @@ def test_sentiment(sentiment_reward_model):
     ]
 
     outputs = sentiment_reward_model.get_sentiment(
-        input_msg_list
+        input_msg_list[:10]
     )
+
+    print(outputs)
+    raise SystemExit
 
     # clean up the output, noise will cause issue in the label encoder
     parsed_outputs = []
