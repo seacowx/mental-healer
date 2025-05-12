@@ -28,8 +28,6 @@ class SentimentReward:
         # Reward model will activate the corresponding LoRA adapter
         self.base_vllm_client = base_vllm_client
 
-        self.sentiment_reward_device = sentiment_reward_device
-
 
     def __parse_output(self, output: RequestOutput) -> str:
 
