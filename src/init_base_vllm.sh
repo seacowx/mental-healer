@@ -28,8 +28,4 @@ CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES vllm serve $MODEL_PATH \
     --enforce-eager \
     --disable-log-requests \
     --lora-modules \
-        '{
-            "name": "sentiment_reward", \
-            "path": "/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/qwen8/checkpoint-260", \
-            "base_model_name": "vllm-model" \
-        }'
+        '{"name": "sentiment_reward", "path": "/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/qwen8/checkpoint-260",  "base_model_name": "vllm-model"}'
