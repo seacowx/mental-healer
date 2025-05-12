@@ -20,4 +20,5 @@ def initialize_models_and_agents(
         model_path=patient_base_model_path,
         **base_vllm_config,
     )
+    base_vllm_server.start_vllm_server()
     
