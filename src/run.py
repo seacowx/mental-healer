@@ -83,7 +83,7 @@ def main():
     )
 
     from debug import test_sentiment
-    asyncio.run(test_sentiment(sentiment_reward_model))
+    test_sentiment(sentiment_reward_model)
 
     # patient_agent = initialize_patient_agent(
     #     patient_model=args.therapist_base_model,
