@@ -104,7 +104,7 @@ def main():
     server_container.add_server(agent_vllm_server)
 
     sentiment_reward_model = initialize_sentiment_reward_model(
-        base_server=agent_vllm_client,
+        base_client=agent_vllm_client,
     )
 
     from debug import test_sentiment
