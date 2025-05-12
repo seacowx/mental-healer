@@ -10,9 +10,6 @@ def initialize_models_and_agents(
     base_vllm_config = yaml.safe_load(open('./configs/base_vllm_config.yaml', 'r'))
     patient_base_model_path = model_path_dict[patient_base_model]['path']
 
-    print(base_vllm_config)
-    raise SystemExit
-
     print(
         '\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n'
         'Initializing base vLLM server for Patient Agent and Reward Model\n'

@@ -221,7 +221,6 @@ class vLLMServer:
         world_size: int, 
         quantization: bool,
         vllm_api_port: int = 8000,
-        enable_lora: bool = False,
         max_model_len: int = 8192,
         device_list: list[int] = [],
         gpu_memory_utilization: float = 0.9,
@@ -232,7 +231,6 @@ class vLLMServer:
         self.world_size = world_size
         self.quantization = quantization
         self.vllm_api_port = vllm_api_port
-        self.enable_lora = enable_lora
         self.max_model_len = max_model_len
         self.device_list = device_list
         self.gpu_memory_utilization = gpu_memory_utilization
@@ -258,10 +256,13 @@ class vLLMServer:
                 '--reasoning-parser', 'qwen3',
                 '--enable-reasoning',
             ]
-        if self.enable_lora:
+        if self.lora_modules:
             extra_params.extend([
                 '--enable-lora',
                 '--max-lora-rank', '64',
+            ])
+            extra_params.extend([
+                '--lora-modules', json.dumps(self.lora_modules),
             ])
 
         env = os.environ.copy()
