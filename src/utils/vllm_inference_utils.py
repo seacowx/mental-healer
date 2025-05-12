@@ -247,7 +247,7 @@ class vLLMServer:
         # default max model len to 8192
         # check if the model has max_position_embeddings, if so, set max_model_len to the minimum of the two
         if (max_position_embedding := model_config.get('max_position_embeddings', '')):
-            max_model_len = min(max_position_embedding, max_model_len)
+            max_model_len = min(max_position_embedding, self.max_model_len)
 
         # enable reasoning for Qwen3 models
         extra_params = []
