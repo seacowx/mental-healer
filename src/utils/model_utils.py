@@ -44,7 +44,7 @@ def initialize_models_and_agents(
         model_path=patient_base_model_path,
         **agent_vllm_config,
     )
-    agent_vllm_server.start_vllm_server()
+    agent_vllm_client = agent_vllm_server.start_vllm_server()
 
-    return agent_vllm_server
+    return [(agent_vllm_server, agent_vllm_client)]
     

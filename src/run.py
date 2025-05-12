@@ -97,9 +97,10 @@ def main():
     # )
 
     # STEP: initialize agents. The patient agent uses the same LLM as the sentiment reward model. 
-    agent_vllm_server = initialize_models_and_agents(
+    server_and_client_list = initialize_models_and_agents(
         patient_base_model=args.patient_base_model,
     ) 
+    agent_vllm_server, agent_vllm_client = server_and_client_list[0]
 
     # patient_agent = initialize_patient_agent(
     #     patient_model=args.therapist_base_model,
