@@ -336,6 +336,7 @@ class vLLMServer:
 
     def kill_server(self):    
         self.server.send_signal(signal.SIGINT)    
+        _, _ = self.server.communicate()
         self.server.wait()    
         time.sleep(10)
 
