@@ -68,7 +68,7 @@ class SentimentReward:
                 for msg in input_msg_list
             ]
 
-            outputs = await asyncio.gather(*outputs)
+            outputs = await atqdm.gather(*outputs)
 
             print(outputs[0])
             raise SystemExit
