@@ -99,9 +99,6 @@ class SentimentReward:
             else:
                 out_list[i] = 'positive'
 
-        print(out_list)
-        raise SystemExit
-
         # reset temperature
         self.sampling_params.temperature = 0.0
 
