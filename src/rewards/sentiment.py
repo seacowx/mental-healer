@@ -5,7 +5,6 @@ import torch
 from vllm import LLM, SamplingParams
 from vllm.outputs import RequestOutput
 from vllm.lora.request import LoRARequest
-from vllm.distributed.parallel_state import destroy_model_parallel
 
 from utils.vllm_inference_utils import vLLMServer
 
@@ -15,39 +14,22 @@ class SentimentReward:
 
     def __init__(
         self, 
-        sentiment_reward_device: torch.device | None = None,
-        llm_config_path: str = './configs/llm_configs.yaml', 
+        base_vllm_server: vLLMServer,
         reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
     ) -> None:
-        model_path_dict = yaml.safe_load(open(llm_config_path, 'r'))
-        self.model_path = model_path_dict['qwen8']['path']
 
         self.reward_mapping = yaml.load(
             open(reward_rule_path, 'r'),
             Loader=yaml.FullLoader,
         )
+        # base vLLM server is shared between Patient Agent and Reward Model
+        # Reward model will activate the corresponding LoRA adapter
+        self.base_vllm_server = base_vllm_server
 
         self.sentiment_reward_device = sentiment_reward_device
 
     
     def initialize_sentiment_reward_model(self):
-
-        extra_kwargs = {}
-        if self.sentiment_reward_device:
-            extra_kwargs['device'] = self.sentiment_reward_device
-            extra_kwargs['tensor_parallel_size'] = 1
-        else:
-            extra_kwargs['tensor_parallel_size'] = torch.cuda.device_count()
-
-        # initialize the llm
-        self.llm = LLM(
-            model=self.model_path, 
-            max_model_len=2048,
-            enable_lora=True,
-            max_lora_rank=64,
-            gpu_memory_utilization=0.8,
-            **extra_kwargs,
-        )
 
         self.sampling_params = SamplingParams(
             temperature=0,
@@ -58,14 +40,6 @@ class SentimentReward:
             '/scratch/prj/charnu/ft_weights/mental-healer/' 
             'reward-sentiment/qwen7/checkpoint-220'
         )
-
-
-    def terminate_sentiment_reward_model(self):
-        destroy_model_parallel()
-        del self.llm
-        gc.collect()
-        torch.cuda.empty_cache()
-
 
     def __parse_output(self, output: RequestOutput) -> str:
 

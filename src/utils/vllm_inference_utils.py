@@ -225,6 +225,7 @@ class vLLMServer:
         max_model_len: int = 8192,
         device_list: list[int] = [],
         gpu_memory_utilization: float = 0.9,
+        lora_modules: dict[str, str] = {},
     ) -> None:
 
         self.model_path = model_path
@@ -235,6 +236,7 @@ class vLLMServer:
         self.max_model_len = max_model_len
         self.device_list = device_list
         self.gpu_memory_utilization = gpu_memory_utilization
+        self.lora_modules = lora_modules
 
     def start_vllm_server(
         self,

@@ -7,3 +7,7 @@ enable_lora: true
 max_model_len: 4096
 device_list: [1]
 gpu_memory_utilization: 0.7
+lora_modules:
+  name: sentiment_reward
+  path: /scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/qwen8/checkpoint-260
+  base_model_name: vllm-model
