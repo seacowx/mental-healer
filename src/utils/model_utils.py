@@ -7,6 +7,10 @@ class ServerContainer:
     def __init__(self):
         self.servers: list[vLLMServer] = []
 
+    def add_server(self, server: vLLMServer):
+        self.servers.append(server)
+
+
 def ensure_graceful_exit(server_container: ServerContainer):
     """
     Decorator that ensures vllm servers are properly killed when the decorated function exits.
