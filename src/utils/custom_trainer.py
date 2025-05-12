@@ -170,6 +170,10 @@ class CustomGRPOTrainer(GRPOTrainer):
             padding_side="left", 
             add_special_tokens=False,
         )
+
+        print(prompt_inputs)
+        raise SystemExit
+
         prompt_inputs = super()._prepare_inputs(prompt_inputs)
         prompt_ids, prompt_mask = prompt_inputs["input_ids"], prompt_inputs["attention_mask"]
 
