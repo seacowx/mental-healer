@@ -70,7 +70,7 @@ class SentimentReward:
                 .replace('"', '') \
                 .replace("'", '') 
         except:
-            pass
+            return ''
 
         return out_str
 
@@ -83,39 +83,24 @@ class SentimentReward:
         # keep track of the completed and corrupted outputs
         remaining_indices = list(range(len(input_msg_list)))
         out_list = [''] * len(input_msg_list)
-        TOLERANCE = 5
-        tol_counter = 0
 
-        while input_msg_list and tol_counter < TOLERANCE:
+        outputs = self.llm.chat(
+            messages=input_msg_list,
+            sampling_params=self.sampling_params,
+            lora_request=LoRARequest(f"sentiment", 1, self.adapter_dir),
+            use_tqdm=True,
+        )
 
-            outputs = self.llm.chat(
-                messages=input_msg_list,
-                sampling_params=self.sampling_params,
-                lora_request=LoRARequest(f"sentiment", 1, self.adapter_dir),
-                use_tqdm=True,
-            )
+        print(outputs)
+        raise SystemExit
 
-            new_input_msg_list = []
-            new_remaining_indices = []
-
-            for i, output in enumerate(outputs):
-                parsed_output = self.__parse_output(output)
-                if parsed_output:
-                    # Store the parsed result in the original index
-                    out_list[remaining_indices[i]] = parsed_output
-                else:
-                    # If parsing failed, queue this message for the next iteration.
-                    new_input_msg_list.append(input_msg_list[i])
-                    new_remaining_indices.append(remaining_indices[i])
-
-            input_msg_list = new_input_msg_list
-            remaining_indices = new_remaining_indices
-
-            tol_counter += 1
-            self.sampling_params.temperature += 0.2
-
-        for idx in remaining_indices:
-            out_list[idx] = 'negative'
+        for i, output in enumerate(outputs):
+            parsed_output = self.__parse_output(output)
+            if parsed_output:
+                # Store the parsed result in the original index
+                out_list[remaining_indices[i]] = parsed_output
+            else:
+                out_list[remaining_indices[i]] = 'positive'
 
         # reset temperature
         self.sampling_params.temperature = 0.0
