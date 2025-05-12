@@ -31,12 +31,6 @@ def set_seed(seed: int) -> None:
 def parse_args():
     parser = argparse.ArgumentParser(description="Run the RL training script.")
     parser.add_argument(
-        '--therapist_base_model',
-        type=str,
-        default='Qwen/Qwen3-4B',
-        help="The base model to use for the training.",
-    )
-    parser.add_argument(
         '--patient_base_model',
         type=str,
         default='Qwen/Qwen3-8B',
@@ -72,7 +66,6 @@ def main():
 
     args = parse_args()
 
-    # STEP: load training data, each instance contains the following fields:
     # situation (str): the situation description
     # initial_thought (str): the initial thought of the patient
     # persona (str): the persona of the patient
@@ -98,7 +91,6 @@ def main():
     # )
 
 
-    # FIXME: This dataset is for debugging only
     # dataset = load_dataset("trl-lib/tldr", split="train")
 
 
@@ -128,7 +120,7 @@ def main():
     #     learning_rate=grpo_config.learning_rate,
     # )
     # grpo_trainer = CustomGRPOTrainer(
-    #     model=args.therapist_base_model,
+    #     model=grpo_config.model_path,
     #     reward_funcs=reward_func,
     #     train_dataset=dataset,
     #     peft_config=lora_config,

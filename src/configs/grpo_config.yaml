@@ -33,3 +33,6 @@ log_completions: true
 # device allocation
 trl_vllm_server_device: cuda:0
 sentiment_reward_device: cuda:1
+
+# model path
+model_path: Qwen/Qwen3-4B
