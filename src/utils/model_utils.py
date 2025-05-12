@@ -24,8 +24,11 @@ def ensure_graceful_exit(server_container: ServerContainer):
             try:
                 return func(*args, **kwargs)
             finally:
+                print('\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-')
                 for server in server_container.servers:
+                    print(f"Killing server: {server}")
                     server.kill_server()
+                print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n')
         return wrapper_func
     return decorator
 
