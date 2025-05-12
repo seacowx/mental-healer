@@ -3,12 +3,6 @@ from functools import wraps
 from utils.vllm_inference_utils import vLLMServer
 
 
-def get_var_name(var):
-    for name, value in globals().items():
-        if value is var:
-            return name
-
-
 class ServerContainer:
     def __init__(self):
         self.servers: list[vLLMServer] = []
@@ -30,11 +24,13 @@ def ensure_graceful_exit(server_container: ServerContainer):
             try:
                 return func(*args, **kwargs)
             finally:
-                print('\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-')
                 for server in server_container.servers:
-                    print(f"Killing server: {get_var_name(server)}")
                     server.kill_server()
-                print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n')
+                print(
+                    '\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n'
+                    'Killed all vLLM servers. Exiting...\n'
+                    '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n'
+                )
         return wrapper_func
     return decorator
 
