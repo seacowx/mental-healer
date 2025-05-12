@@ -89,14 +89,11 @@ class SentimentReward:
         while input_msg_list and tol_counter < TOLERANCE:
 
             outputs = self.llm.chat(
-                messages=input_msg_list[:10],
+                messages=input_msg_list,
                 sampling_params=self.sampling_params,
                 lora_request=LoRARequest(f"sentiment", 1, self.adapter_dir),
                 use_tqdm=True,
             )
-
-            print(outputs)
-            raise SystemExit
 
             new_input_msg_list = []
             new_remaining_indices = []
