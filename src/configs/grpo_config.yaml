@@ -5,11 +5,12 @@ use_liger_kernel: true
 
 # sampling
 num_generations: 8
+max_completion_length: 4096
 
 # training
 do_train: true
 output_dir: "/scratch/prj/charnu/ft_weights/mental-healer/grpo_qwen8/"
-per_device_train_batch_size: 2
+per_device_train_batch_size: 4
 gradient_accumulation_steps: 8
 num_train_epochs: 1
 
