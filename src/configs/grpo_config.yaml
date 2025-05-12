@@ -24,6 +24,7 @@ learning_rate: 5.3e-4
 # vllm settings
 use_vllm: true
 vllm_server_port: 8880
+vllm_gpu_memory_utilization: 0.2
 
 # logging
 logging_steps: 10
