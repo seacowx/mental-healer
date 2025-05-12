@@ -133,8 +133,9 @@ class CustomGRPOTrainer(GRPOTrainer):
 
                 try:
                     accumulated_local_batch = self._generate_and_score_completions(accumulated_local_batch)
-                except:
+                except Exception as e:
                     print(accumulated_local_batch)
+                    print(e)
                     raise SystemExit
 
                 self._buffered_inputs = split_tensor_dict(
