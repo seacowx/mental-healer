@@ -44,7 +44,7 @@ class SentimentReward:
             max_model_len=2048,
             enable_lora=True,
             max_lora_rank=64,
-            gpu_memory_utilization=0.8,
+            gpu_memory_utilization=0.7,
             **extra_kwargs,
         )
 
