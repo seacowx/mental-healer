@@ -172,7 +172,7 @@ class CustomGRPOTrainer(GRPOTrainer):
         )
 
         # move input to the correct device and adjust the dtype
-        prompt_inputs = Trainer._prepare_inputs(prompt_inputs)
+        prompt_inputs = Trainer._prepare_inputs(self, prompt_inputs)
         prompt_ids, prompt_mask = prompt_inputs["input_ids"], prompt_inputs["attention_mask"]
 
         if self.max_prompt_length is not None:
