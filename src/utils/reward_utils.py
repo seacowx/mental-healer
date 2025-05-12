@@ -15,5 +15,7 @@ def initialize_sentiment_reward_model(
         sentiment_reward_device=sentiment_reward_device,
     )
 
-    return sentiment_reward_model.initialize_sentiment_reward_model()
+    base_vllm = sentiment_reward_model.initialize_sentiment_reward_model()
+
+    return sentiment_reward_model, base_vllm
 

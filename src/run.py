@@ -77,7 +77,7 @@ def main():
     grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
     grpo_config = GRPOTrainerArgs(**grpo_config_dict)
 
-    sentiment_reward_model = initialize_sentiment_reward_model(
+    sentiment_reward_model, base_vllm = initialize_sentiment_reward_model(
         model_path=grpo_config.base_agent_path,
         sentiment_reward_device=torch.device(grpo_config.sentiment_reward_device),
     )
