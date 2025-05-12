@@ -79,7 +79,7 @@ def main():
     grpo_config = GRPOTrainerArgs(**grpo_config_dict)
 
     offlien_vllm_base_model = load_all_models(
-        model_path=grpo_config.base_agent_path,
+        base_model_path=grpo_config.base_agent_path,
         sentiment_reward_device=torch.device(grpo_config.sentiment_reward_device),
     )
 
