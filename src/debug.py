@@ -100,3 +100,5 @@ def test_sentiment(sentiment_reward_model):
     )
 
     print(f"Accuracy: {cur_acc}, F1: {cur_f1}, Sentiment Accuracy: {cur_sentiment_acc}, Sentiment F1: {cur_sentiment_f1}")
+
+    raise SystemExit
