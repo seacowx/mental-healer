@@ -66,9 +66,6 @@ class SentimentReward:
             use_tqdm=True,
         )
 
-        print(outputs)
-        raise SystemExit
-
         out_list = [''] * len(input_msg_list)
         for i, output in enumerate(outputs):
             parsed_output = self.__parse_output(output)
