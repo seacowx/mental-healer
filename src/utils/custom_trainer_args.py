@@ -25,9 +25,13 @@ class GRPOTrainerArgs(BaseModel):
     # vllm settings
     use_vllm: bool
     trl_vllm_server_port: int
-    base_vllm_server_port: int
+    trl_vllm_server_device: str
 
     # logging
     logging_steps: int
     logging_first_step: bool
     log_completions: bool
+
+    # device allocation
+    trl_vllm_server_device: str
+    sentiment_reward_device: str
