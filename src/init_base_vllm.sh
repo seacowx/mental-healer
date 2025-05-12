@@ -17,8 +17,7 @@ printf "\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 printf "Initializing Base vLLM server with $TENSOR_PARALLEL_SIZE GPUs (CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES)...\n"
 printf "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n"
 
-CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES vllm serve \
-    --model $MODEL_PATH \
+CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES vllm serve $MODEL_PATH \
     --served-model-name vllm-model \
     --task generate \
     --port $TRL_VLLM_PORT \
