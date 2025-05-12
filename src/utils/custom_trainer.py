@@ -155,11 +155,12 @@ class CustomGRPOTrainer(GRPOTrainer):
         device = self.accelerator.device
         mode = "eval" if self.control.should_evaluate else "train"
 
-        # Handle both string and dictionary inputs
-        if isinstance(inputs[0], str):
-            prompts = inputs
+        try:
+            prompts = [x["prompt"] for x in inputs]
+        except:
+            print(inputs)
+            raise SystemExit
 
-        prompts = [x["prompt"] for x in inputs]
         prompts_text = [
             maybe_apply_chat_template(example, self.processing_class)["prompt"] for example in inputs
         ]
