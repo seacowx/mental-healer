@@ -21,10 +21,7 @@ def ensure_graceful_exit(server_container: ServerContainer):
                 return func(*args, **kwargs)
             finally:
                 for server in server_container.servers:
-                    try:
-                        server.kill_server()
-                    except Exception as e:
-                        print(f"Error killing server: {e}")
+                    server.kill_server()
         return wrapper_func
     return decorator
 
