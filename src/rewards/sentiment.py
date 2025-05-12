@@ -81,8 +81,6 @@ class SentimentReward:
     ) -> list:
 
         # keep track of the completed and corrupted outputs
-        remaining_indices = list(range(len(input_msg_list)))
-        out_list = [''] * len(input_msg_list)
 
         outputs = self.llm.chat(
             messages=input_msg_list,
@@ -91,16 +89,17 @@ class SentimentReward:
             use_tqdm=True,
         )
 
-        print(outputs)
-        raise SystemExit
-
+        out_list = [''] * len(input_msg_list)
         for i, output in enumerate(outputs):
             parsed_output = self.__parse_output(output)
             if parsed_output:
                 # Store the parsed result in the original index
-                out_list[remaining_indices[i]] = parsed_output
+                out_list[i] = parsed_output
             else:
-                out_list[remaining_indices[i]] = 'positive'
+                out_list[i] = 'positive'
+
+        print(out_list)
+        raise SystemExit
 
         # reset temperature
         self.sampling_params.temperature = 0.0
