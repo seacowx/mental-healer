@@ -78,6 +78,7 @@ class OpenAIAsyncInference(LLMBaseModel):
         semaphore, 
         model: str,
         message: list,
+        enable_thinking: bool,
         temperature: float = 0.0, 
         top_p: float = 0.95,
         max_tokens: int = 1024, 
@@ -97,6 +98,7 @@ class OpenAIAsyncInference(LLMBaseModel):
                 presence_penalty=presence_penalty,
                 return_json=return_json,
                 json_schema=json_schema,
+                enable_thinking=enable_thinking,
             )
 
 
@@ -110,6 +112,7 @@ class OpenAIAsyncInference(LLMBaseModel):
         self, 
         model: str,
         message: list,
+        enable_thinking: bool,
         temperature: float = 1.0, 
         max_tokens: int = 1024, 
         frequency_penalty: float = 0.0,
@@ -137,6 +140,9 @@ class OpenAIAsyncInference(LLMBaseModel):
             frequency_penalty=frequency_penalty,
             presence_penalty=presence_penalty,
             extra_body=extra_body,
+            chat_template_kwargs={
+                'enable_thinking': enable_thinking,
+            },
         )
 
         if return_json:

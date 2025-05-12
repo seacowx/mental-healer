@@ -67,6 +67,7 @@ class SentimentReward:
                     semaphore=semaphore,
                     model='vllm-model',
                     message=msg,
+                    enable_thinking=False,
                 )
                 for msg in input_msg_list[:10]
             ]
