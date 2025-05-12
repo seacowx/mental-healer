@@ -16,6 +16,8 @@ import torch
 from datasets import load_dataset
 from trl import GRPOConfig
 
+from agents.patient import PatientAgent
+
 from rewards.sentiment import SentimentReward
 from utils.model_utils import load_all_models
 from utils.custom_trainer import CustomGRPOTrainer
@@ -78,23 +80,21 @@ def main():
     grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
     grpo_config = GRPOTrainerArgs(**grpo_config_dict)
 
-    offlien_vllm_base_model = load_all_models(
+    offline_vllm_base_model = load_all_models(
         base_model_path=grpo_config.base_agent_path,
         sentiment_reward_device=torch.device(grpo_config.sentiment_reward_device),
     )
 
     sentiment_reward_model = SentimentReward(
-        base_vllm_model=offlien_vllm_base_model,
+        base_vllm_model=offline_vllm_base_model,
     )
 
     from debug import test_sentiment
-    test_sentiment(sentiment_reward_model)
+    test_sentiment(sentiment_reward_model=sentiment_reward_model)
 
-    raise SystemExit
-
-    # patient_agent = initialize_patient_agent(
-    #     patient_model=args.therapist_base_model,
-    # )
+    patient_agent = PatientAgent(
+        vllm_client=offline_vllm_base_model,
+    )
 
     # dataset = load_dataset("trl-lib/tldr", split="train")
 

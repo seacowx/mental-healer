@@ -7,6 +7,7 @@ from abc import ABCMeta, abstractmethod
 
 import torch
 from vllm import LLM, SamplingParams
+from vllm.lora.request import LoRARequest
 
 import backoff
 from openai import OpenAI, AsyncOpenAI
@@ -352,8 +353,10 @@ class vLLMOffline:
         model_path: str, 
         quantization: str = '',
         max_model_len: int = 2048,
-        patient_device: torch.device = None,
+        model_device: torch.device = None,
         gpu_memory_utilization=0.8,
+        enable_lora: bool = False,
+        max_lora_rank: int = 64,
     ) -> None:
 
         self.model_path = model_path
@@ -361,10 +364,12 @@ class vLLMOffline:
 
         vllm_config = {}
         vllm_config['max_model_len'] = max_model_len
-        vllm_config['tensor_parallel_size'] = 1 if patient_device else torch.cuda.device_count()
-        vllm_config['device'] = patient_device if patient_device else 'auto'
+        vllm_config['tensor_parallel_size'] = 1 if model_device else torch.cuda.device_count()
+        vllm_config['device'] = model_device if model_device else 'auto'
         vllm_config['gpu_memory_utilization'] = gpu_memory_utilization
         vllm_config['quantization'] = quantization if quantization else None
+        vllm_config['enable_lora'] = enable_lora
+        vllm_config['max_lora_rank'] = max_lora_rank
 
         self.vllm_model = LLM(
             model=self.model_path,
@@ -375,6 +380,7 @@ class vLLMOffline:
     def inference(
         self, 
         message_list: list, 
+        lora_request: LoRARequest = None,
         **kwargs
     ) -> list:
         """
@@ -393,15 +399,22 @@ class vLLMOffline:
             stop=kwargs.get('stop', None),
         )
 
-        enable_thinking = kwargs.get('enable_thinking', False)
+        extra_kwargs = {}
+        # check if turn on reasoning mode
+        if kwargs.get('enable_thinking', False):
+            extra_kwargs['chat_template_kwargs'] = {
+                "enable_thinking": True,
+            }
+
+        # check if need to attach lora adapter
+        if lora_request:
+            extra_kwargs['lora_request'] = lora_request
 
         response = self.vllm_model.chat(
             messages=message_list, 
             sampling_params=sampling_params,
-            chat_template_kwargs={
-                "enable_thinking": enable_thinking,
-            },
             use_tqdm=True,
+            **extra_kwargs,
         )
 
         response = [ele.outputs[0].text for ele in response]
