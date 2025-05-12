@@ -357,6 +357,7 @@ class vLLMOffline:
         gpu_memory_utilization=0.8,
         enable_lora: bool = False,
         max_lora_rank: int = 64,
+        tensor_parallel_size: int = 1,
     ) -> None:
 
         self.model_path = model_path
@@ -370,6 +371,7 @@ class vLLMOffline:
         vllm_config['quantization'] = quantization if quantization else None
         vllm_config['enable_lora'] = enable_lora
         vllm_config['max_lora_rank'] = max_lora_rank
+        vllm_config['tensor_parallel_size'] = tensor_parallel_size
 
         self.vllm_model = LLM(
             model=self.model_path,
