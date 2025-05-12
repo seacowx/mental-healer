@@ -25,7 +25,10 @@ CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES vllm serve $MODEL_PATH \
     --max-model-len 4096 \
     --tensor-parallel-size $TENSOR_PARALLEL_SIZE \
     --gpu-memory-utilization 0.7 \
-    --enforce-eager \
+    --reasoning-parser 'qwen3' \
+    --enable-reasoning \
     --disable-log-requests \
+    --enable-lora \
+    --max-lora-rank 64 \
     --lora-modules \
         '{"name": "sentiment_reward", "path": "/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/qwen8/checkpoint-260",  "base_model_name": "vllm-model"}'
