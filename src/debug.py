@@ -23,16 +23,13 @@ def test_sentiment(sentiment_reward_model):
     )
 
     # clean up the output, noise will cause issue in the label encoder
-    print(outputs)
-    print(label_list[:10])
-    raise SystemExit
 
     # evaluate sentiment (coarse-grained)
     le = LabelEncoder()
-    valid_ground_truth_sentiment = [sentiment_label_mapping[ele] for ele in parsed_ground_truth]
-    valid_ground_truth_sentiment_encoded = le.fit_transform(valid_ground_truth_sentiment)
-    valid_predicted_sentiment_encoded = le.transform(parsed_outputs)
+    label_list = [sentiment_label_mapping[ele] for ele in label_list]
+    label_encoded = le.fit_transform(label_list)
+    output_encoded = le.transform(outputs)
 
-    # print(f"Accuracy: {cur_acc}, F1: {cur_f1}, Sentiment Accuracy: {cur_sentiment_acc}, Sentiment F1: {cur_sentiment_f1}")
+    print(f"Accuracy: {accuracy_score(label_encoded, output_encoded)}, F1: {f1_score(label_encoded, output_encoded, average='weighted')}")
 
     raise SystemExit
