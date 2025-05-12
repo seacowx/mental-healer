@@ -17,12 +17,11 @@ class SentimentReward:
         model_path: str,
         sentiment_reward_device: torch.device,
         reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
+        sentiment_mapping_path: str = './configs/emotion_to_sentiment.yaml',
     ) -> None:
 
-        self.reward_mapping = yaml.load(
-            open(reward_rule_path, 'r'),
-            Loader=yaml.FullLoader,
-        )
+        self.reward_mapping = yaml.safe_load(open(reward_rule_path, 'r'))
+        self.sentiment_mapping = yaml.safe_load(open(sentiment_mapping_path, 'r'))
         # base vLLM server is shared between Patient Agent and Reward Model
         # Reward model will activate the corresponding LoRA adapter
         self.model_path = model_path
@@ -71,6 +70,8 @@ class SentimentReward:
                 .replace("'", '') 
         except:
             return ''
+
+        out_str = self.sentiment_mapping.get(out_str, '')
 
         return out_str
 
