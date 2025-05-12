@@ -1,25 +1,26 @@
-# MODEL_PATH="Qwen/Qwen2-0.5B-Instruct"
+DEVICE_NUMBER=$(python3 -c "
+import yaml
+import re
+
+def get_cuda_device_number(config_path):
+    with open(config_path, 'r') as f:
+        config = yaml.safe_load(f)
+    device_str = config.get('trl_vllm_server_device', 'cuda:0')
+    match = re.search(r'cuda:(\d+)', device_str)
+    return int(match.group(1)) if match else 0
+
+print(get_cuda_device_number('./configs/grpo_config.yaml'))
+")
+
 MODEL_PATH='Qwen/Qwen3-4B'
 TRL_VLLM_PORT=8880
-TENSOR_PARALLEL_SIZE=$1
-
-if [ -z "$TENSOR_PARALLEL_SIZE" ]; then
-    TENSOR_PARALLEL_SIZE=1
-fi
-
-# make cuda visible devices to be 0 and 1 if TENSOR_PARALLEL_SIZE is 2
-if [ $TENSOR_PARALLEL_SIZE -eq 2 ]; then
-    CUDA_VISIBLE_DEVICES=0,1
-else
-    CUDA_VISIBLE_DEVICES=0
-fi
 
 printf "\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
-printf "Initializing TRL vLLM server with $TENSOR_PARALLEL_SIZE GPUs (CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES)...\n"
+printf "Initializing TRL vLLM server with GPU CUDA:$DEVICE_NUMBER...\n"
 printf "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n"
 
-CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES trl vllm-serve \
+CUDA_VISIBLE_DEVICES=$DEVICE_NUMBER trl vllm-serve \
     --model $MODEL_PATH \
     --port $TRL_VLLM_PORT \
-    --tensor_parallel_size $TENSOR_PARALLEL_SIZE \
+    --tensor_parallel_size 1 \
     --gpu-memory-utilization 0.85
