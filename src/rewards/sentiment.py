@@ -59,16 +59,13 @@ class SentimentReward:
 
         while input_msg_list and tol_counter < TOLERANCE:
 
-            print(input_msg_list[0])
-            raise SystemExit
-
             outputs = [
                 self.base_vllm_client.process_with_semaphore(
                     semaphore=semaphore,
                     model='vllm-model',
                     message=msg,
                 )
-                for msg in input_msg_list
+                for msg in input_msg_list[:10]
             ]
 
             outputs = await atqdm.gather(*outputs)

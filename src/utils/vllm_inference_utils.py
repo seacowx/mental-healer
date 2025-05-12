@@ -21,22 +21,6 @@ from openai import (
 )
 
 
-class GracefulSignalHandler:
-    def __init__(self):
-        self.original_handler = None
-
-    def __enter__(self):
-        # Store the original signal handler
-        self.original_handler = signal.getsignal(signal.SIGINT)
-        # Set a custom handler that does nothing
-        signal.signal(signal.SIGINT, lambda signum, frame: None)
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        # Restore the original signal handler
-        signal.signal(signal.SIGINT, self.original_handler)
-
-
 class LLMBaseModel(metaclass=ABCMeta):
 
 
@@ -349,39 +333,11 @@ class vLLMServer:
 
         return openai_server
 
-    # def kill_server(self):    
-    #     self.server.send_signal(signal.SIGINT)    
-    #     _, _ = self.server.communicate()
-    #     self.server.wait()    
-    #     time.sleep(10)
 
     def kill_server(self):    
-        with GracefulSignalHandler():
-            try:
-                # Send SIGINT signal
-                self.server.send_signal(signal.SIGINT)
-                
-                # Wait for the process to terminate with a timeout
-                try:
-                    self.server.wait(timeout=10)
-                except subprocess.TimeoutExpired:
-                    # If the process doesn't terminate, force kill it
-                    self.server.kill()
-                
-                # Clear any remaining output
-                self.server.communicate()
-                
-                # Give the system time to clean up
-                time.sleep(5)
-                
-            except Exception as e:
-                # Log the error if needed, but don't raise it
-                print(f"Error during server shutdown: {e}")
-                # Ensure the process is killed
-                try:
-                    self.server.kill()
-                except:
-                    pass
+        self.server.send_signal(signal.SIGINT)    
+        self.server.wait()    
+        time.sleep(10)
 
 
 class vLLMOffline:
