@@ -144,6 +144,9 @@ class CustomGRPOTrainer(GRPOTrainer):
             # In evaluation, there is neither gradient accumulation, nor multiple iterations
             inputs = self._generate_and_score_completions(accumulated_local_batch)
 
+        print(inputs)
+        raise SystemExit
+
         return inputs
 
 
