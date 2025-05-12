@@ -131,7 +131,11 @@ class CustomGRPOTrainer(GRPOTrainer):
             if self._step % generate_every == 0 or self._buffered_inputs is None:
                 # self._buffered_inputs=None can occur when resuming from a checkpoint
 
-                accumulated_local_batch = self._generate_and_score_completions(accumulated_local_batch)
+                try:
+                    accumulated_local_batch = self._generate_and_score_completions(accumulated_local_batch)
+                except:
+                    print(accumulated_local_batch)
+                    raise SystemExit
 
                 self._buffered_inputs = split_tensor_dict(
                     accumulated_local_batch, self.args.gradient_accumulation_steps
@@ -159,9 +163,6 @@ class CustomGRPOTrainer(GRPOTrainer):
         prompts_text = [
             maybe_apply_chat_template(example, self.processing_class)["prompt"] for example in inputs
         ]
-
-        print(prompts_text)
-        raise SystemExit
 
         prompt_inputs = self.processing_class(
             text=prompts_text, 
