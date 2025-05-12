@@ -278,6 +278,7 @@ class vLLMServer:
             '--tensor-parallel-size', str(self.world_size),
             '--gpu-memory-utilization', str(self.gpu_memory_utilization),
             '--enforce-eager', 
+            '--disable-log-requests',
         ]    
 
         # add reasoning params if model is Qwen3
