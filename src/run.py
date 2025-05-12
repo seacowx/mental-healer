@@ -78,13 +78,12 @@ def main():
     grpo_config = GRPOTrainerArgs(**grpo_config_dict)
 
     sentiment_reward_model = initialize_sentiment_reward_model(
-        model_path=args.patient_base_model,
+        model_path=grpo_config.base_agent_path,
         sentiment_reward_device=torch.device(grpo_config.sentiment_reward_device),
     )
 
     from debug import test_sentiment
     asyncio.run(test_sentiment(sentiment_reward_model))
-
 
     # patient_agent = initialize_patient_agent(
     #     patient_model=args.therapist_base_model,
