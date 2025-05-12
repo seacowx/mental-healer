@@ -6,6 +6,7 @@ and the small custom edits are working properly.
 
 import os
 import random
+import asyncio
 import argparse
 import yaml, json
 import numpy as np
@@ -23,9 +24,7 @@ from utils.model_utils import (
     ensure_graceful_exit,
     ServerContainer,
 )
-
-from rewards.sentiment import SentimentReward
-from rewards.therapist_reward import TherapistReward
+from utils.reward_utils import initialize_sentiment_reward_model
 
 
 def set_seed(seed: int) -> None:
@@ -101,11 +100,16 @@ def main():
         patient_base_model=args.patient_base_model,
     ) 
 
-    import time
-    time.sleep(30)
-
     agent_vllm_server, agent_vllm_client = server_and_client_list[0]
     server_container.add_server(agent_vllm_server)
+
+    sentiment_reward_model = initialize_sentiment_reward_model(
+        base_server=agent_vllm_client,
+    )
+
+    from debug import test_sentiment
+    asyncio.run(test_sentiment(sentiment_reward_model))
+
 
     # patient_agent = initialize_patient_agent(
     #     patient_model=args.therapist_base_model,

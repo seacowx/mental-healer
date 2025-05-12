@@ -27,9 +27,9 @@ def ensure_graceful_exit(server_container: ServerContainer):
                 for server in server_container.servers:
                     server.kill_server()
                 print(
-                    '\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n'
-                    'Killed all vLLM servers. Exiting...\n'
-                    '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n'
+                    '\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n'
+                    f'Killed {len(server_container.servers)} vLLM servers. Exiting...\n'
+                    '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n'
                 )
         return wrapper_func
     return decorator
@@ -56,4 +56,3 @@ def initialize_models_and_agents(
     agent_vllm_client = agent_vllm_server.start_vllm_server()
 
     return [(agent_vllm_server, agent_vllm_client)]
-    
