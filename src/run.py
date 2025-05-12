@@ -11,17 +11,14 @@ import yaml, json
 import numpy as np
 
 import torch
-from torch.optim import AdamW
 
 from datasets import load_dataset
-from trl import GRPOTrainer, GRPOConfig
-from peft import LoraConfig, get_peft_model
-from transformers import AutoModelForCausalLM
+from trl import GRPOConfig
 
 from utils.custom_trainer import CustomGRPOTrainer
 from utils.data_utils import prepare_training_data
 from utils.custom_trainer_args import GRPOTrainerArgs
-from utils.agent_utils import initialize_patient_agent
+from utils.model_utils import initialize_models_and_agents
 
 from rewards.sentiment import SentimentReward
 from rewards.therapist_reward import TherapistReward
@@ -36,9 +33,15 @@ def set_seed(seed: int) -> None:
 def parse_args():
     parser = argparse.ArgumentParser(description="Run the RL training script.")
     parser.add_argument(
-        '--base_model',
+        '--therapist_base_model',
         type=str,
         default='Qwen/Qwen3-4B',
+        help="The base model to use for the training.",
+    )
+    parser.add_argument(
+        '--patient_base_model',
+        type=str,
+        default='Qwen/Qwen3-8B',
         help="The base model to use for the training.",
     )
     parser.add_argument(
@@ -85,11 +88,21 @@ def main():
     #     data_path=args.training_data_path,
     # )
 
-    # STEP: initialize patient agent. The patient agent uses the same LLM as the therapist. 
+    # STEP: initialize agents. The patient agent uses the same LLM as the sentiment reward model. 
+    initialize_models_and_agents(
+        patient_base_model=args.patient_base_model,
+    )
+
+    raise SystemExit
+
     # patient_agent = initialize_patient_agent(
-    #     patient_model=args.base_model,
+    #     patient_model=args.therapist_base_model,
     # )
+
+
+    # FIXME: This dataset is for debugging only
     dataset = load_dataset("trl-lib/tldr", split="train")
+
 
     # STEP: load training config and lora config
     grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
@@ -121,7 +134,7 @@ def main():
         learning_rate=grpo_config.learning_rate,
     )
     grpo_trainer = CustomGRPOTrainer(
-        model=args.base_model,
+        model=args.therapist_base_model,
         reward_funcs=reward_func,
         train_dataset=dataset,
         peft_config=lora_config,

@@ -221,17 +221,23 @@ class vLLMServer:
         world_size: int, 
         quantization: bool,
         vllm_api_port: int = 8000,
+        enable_lora: bool = False,
+        max_model_len: int = 8192,
+        device_list: list[int] = [],
+        gpu_memory_utilization: float = 0.9,
     ) -> None:
 
         self.model_path = model_path
         self.world_size = world_size
         self.quantization = quantization
         self.vllm_api_port = vllm_api_port
-
+        self.enable_lora = enable_lora
+        self.max_model_len = max_model_len
+        self.device_list = device_list
+        self.gpu_memory_utilization = gpu_memory_utilization
 
     def start_vllm_server(
         self,
-        device_list: list[int] = [],
     ) -> OpenAIAsyncInference:    
 
         model_config = json.load(
@@ -240,17 +246,21 @@ class vLLMServer:
         
         # default max model len to 8192
         # check if the model has max_position_embeddings, if so, set max_model_len to the minimum of the two
-        max_model_len = 8192
         if (max_position_embedding := model_config.get('max_position_embeddings', '')):
-            max_model_len = min(max_position_embedding, 8192)
+            max_model_len = min(max_position_embedding, max_model_len)
 
         # enable reasoning for Qwen3 models
-        reasoning_params = []
+        extra_params = []
         if 'qwen3' in self.model_path:
-            reasoning_params = [
+            extra_params = [
                 '--reasoning-parser', 'qwen3',
                 '--enable-reasoning',
             ]
+        if self.enable_lora:
+            extra_params.extend([
+                '--enable-lora',
+                '--max-lora-rank', '64',
+            ])
 
         env = os.environ.copy()
         server_command = [        
@@ -263,13 +273,13 @@ class vLLMServer:
             '--api-key', 'anounymous123',
             '--max-model-len', str(max_model_len),
             '--tensor-parallel-size', str(self.world_size),
-            '--gpu-memory-utilization', '0.95',
+            '--gpu-memory-utilization', str(self.gpu_memory_utilization),
             '--enforce-eager', 
         ]    
 
         # add reasoning params if model is Qwen3
-        if reasoning_params:
-            server_command.extend(reasoning_params)
+        if extra_params:
+            server_command.extend(extra_params)
 
         if self.quantization:
             quantization_command = [
@@ -280,8 +290,8 @@ class vLLMServer:
 
         # add api key to environemnt variable 
         env['VLLM_API_KEY'] = 'anounymous123'
-        if device_list:
-            env['CUDA_VISIBLE_DEVICES'] = ','.join([str(ele) for ele in device_list])
+        if self.device_list:
+            env['CUDA_VISIBLE_DEVICES'] = ','.join([str(ele) for ele in self.device_list])
 
         # check if the server is running
         self.server = subprocess.Popen(

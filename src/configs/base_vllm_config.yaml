@@ -1,0 +1,9 @@
+# stores the config for the base vLLM server for Patient Agent and Reward Model
+
+world_size: 1
+quantization: false
+vllm_api_port: 8000
+enable_lora: true
+max_model_len: 4096
+device_list: [1]
+gpu_memory_utilization: 0.7

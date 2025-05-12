@@ -7,6 +7,8 @@ from vllm.outputs import RequestOutput
 from vllm.lora.request import LoRARequest
 from vllm.distributed.parallel_state import destroy_model_parallel
 
+from utils.vllm_inference_utils import vLLMServer
+
 
 class SentimentReward:
 
@@ -18,7 +20,7 @@ class SentimentReward:
         reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
     ) -> None:
         model_path_dict = yaml.safe_load(open(llm_config_path, 'r'))
-        self.model_path = model_path_dict['qwen7']['path']
+        self.model_path = model_path_dict['qwen8']['path']
 
         self.reward_mapping = yaml.load(
             open(reward_rule_path, 'r'),
