@@ -27,5 +27,14 @@ def load_offline_vllm_base_model(
     return llm
 
 
-def load_all_models():
-    ...
+def load_all_models(
+    base_model_path: str,
+    sentiment_reward_device: torch.device | None = None,
+):
+
+    base_offline_vllm_model = load_offline_vllm_base_model(
+        base_model_path=base_model_path,
+        sentiment_reward_device=sentiment_reward_device,
+    )
+
+    return base_offline_vllm_model
