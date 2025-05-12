@@ -34,14 +34,11 @@ class SentimentReward:
         self.llm = base_vllm_model
 
 
-    def __parse_output(self, output: RequestOutput) -> str:
-
-        print(output)
-        raise SystemExit
+    def __parse_output(self, output: str) -> str:
 
         out_str = ""
         try:
-            out_str = output.outputs[0].text \
+            out_str = output \
                 .split('<sentiment>')[1] \
                 .split('</sentiment>')[0].strip().lower() \
                 .replace('"', '') \
