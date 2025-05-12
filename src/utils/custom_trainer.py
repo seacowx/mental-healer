@@ -140,6 +140,9 @@ class CustomGRPOTrainer(GRPOTrainer):
             inputs = self._buffered_inputs[self._step % self.args.gradient_accumulation_steps]
             self._step += 1
 
+            print(inputs)
+            raise SystemExit
+
         else:
             # In evaluation, there is neither gradient accumulation, nor multiple iterations
             inputs = self._generate_and_score_completions(accumulated_local_batch)
@@ -163,6 +166,7 @@ class CustomGRPOTrainer(GRPOTrainer):
             maybe_apply_chat_template(example, self.processing_class)["prompt"] for example in inputs
         ]
 
+        # tokenize prompts using AutoTokenizer
         prompt_inputs = self.processing_class(
             text=prompts_text, 
             return_tensors="pt", 
@@ -170,9 +174,6 @@ class CustomGRPOTrainer(GRPOTrainer):
             padding_side="left", 
             add_special_tokens=False,
         )
-
-        print(prompt_inputs)
-        raise SystemExit
 
         prompt_inputs = super()._prepare_inputs(prompt_inputs)
         prompt_ids, prompt_mask = prompt_inputs["input_ids"], prompt_inputs["attention_mask"]
@@ -254,6 +255,7 @@ class CustomGRPOTrainer(GRPOTrainer):
         logits_to_keep = completion_ids.size(1)  # we only need to compute the logits for the completion tokens
         batch_size = self.args.per_device_train_batch_size if mode == "train" else self.args.per_device_eval_batch_size
 
+        # NOTE: This is where the per-token log_pros are computed (for KL divergence constraint)
         with torch.no_grad():
             # When using num_iterations == 1, old_per_token_logps == per_token_logps, so we can skip it's
             # computation here, and use per_token_logps.detach() instead.
