@@ -24,9 +24,12 @@ learning_rate: 5.3e-4
 # vllm settings
 use_vllm: true
 trl_vllm_server_port: 8880
-base_vllm_server_port: 8000
 
 # logging
 logging_steps: 10
 logging_first_step: true
 log_completions: true
+
+# device allocation
+trl_vllm_server_device: cuda:0
+sentiment_reward_device: cuda:1

@@ -85,7 +85,8 @@ def main():
     grpo_config = GRPOTrainerArgs(**grpo_config_dict)
 
     sentiment_reward_model = initialize_sentiment_reward_model(
-        client_port=grpo_config.base_vllm_server_port,
+        model_path=args.patient_base_model,
+        sentiment_reward_device=torch.device(grpo_config.sentiment_reward_device),
     )
 
     from debug import test_sentiment

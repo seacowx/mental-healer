@@ -1,14 +1,12 @@
 import gc
 import yaml, json
-from asyncio import Semaphore
-from tqdm.asyncio import tqdm as atqdm
 
 import torch
 from vllm import LLM, SamplingParams
 from vllm.outputs import RequestOutput
 from vllm.lora.request import LoRARequest
 
-from utils.vllm_inference_utils import OpenAIAsyncInference
+from utils.vllm_inference_utils import vLLMServer
 
 
 class SentimentReward:
@@ -16,7 +14,8 @@ class SentimentReward:
 
     def __init__(
         self, 
-        client_port: int,
+        model_path: str,
+        sentiment_reward_device: torch.device,
         reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
     ) -> None:
 
@@ -26,10 +25,39 @@ class SentimentReward:
         )
         # base vLLM server is shared between Patient Agent and Reward Model
         # Reward model will activate the corresponding LoRA adapter
-        self.base_vllm_client = OpenAIAsyncInference(
-            base_url=f'http://localhost:{client_port}/v1/',
-            api_key='anounymous123',
+        self.model_path = model_path
+        self.sentiment_reward_device = sentiment_reward_device
+
+    
+    def initialize_sentiment_reward_model(self) -> LLM:
+
+        extra_kwargs = {}
+        if self.sentiment_reward_device:
+            extra_kwargs['device'] = self.sentiment_reward_device
+            extra_kwargs['tensor_parallel_size'] = 1
+        else:
+            extra_kwargs['tensor_parallel_size'] = torch.cuda.device_count()
+
+        # initialize the llm
+        self.llm = LLM(
+            model=self.model_path, 
+            max_model_len=2048,
+            enable_lora=True,
+            max_lora_rank=64,
+            gpu_memory_utilization=0.8,
+            **extra_kwargs,
         )
+
+        self.sampling_params = SamplingParams(
+            temperature=0,
+            max_tokens=128,
+        )
+
+        self.adapter_dir = (
+            '/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/qwen8/checkpoint-260'
+        )
+
+        return self.llm
 
 
     def __parse_output(self, output: RequestOutput) -> str:
@@ -47,7 +75,7 @@ class SentimentReward:
         return out_str
 
 
-    async def get_sentiment(
+    def get_sentiment(
         self, 
         input_msg_list: list, 
     ) -> list:
@@ -58,24 +86,14 @@ class SentimentReward:
         TOLERANCE = 5
         tol_counter = 0
 
-        semaphore = Semaphore(50)
-
         while input_msg_list and tol_counter < TOLERANCE:
 
-            outputs = [
-                self.base_vllm_client.process_with_semaphore(
-                    semaphore=semaphore,
-                    model='vllm-model',
-                    message=msg,
-                    enable_thinking=False,
-                )
-                for msg in input_msg_list[:10]
-            ]
-
-            outputs = await atqdm.gather(*outputs)
-
-            print(outputs[0])
-            raise SystemExit
+            outputs = self.llm.chat(
+                messages=input_msg_list,
+                sampling_params=self.sampling_params,
+                lora_request=LoRARequest(f"sentiment", 1, self.adapter_dir),
+                use_tqdm=True,
+            )
 
             new_input_msg_list = []
             new_remaining_indices = []
