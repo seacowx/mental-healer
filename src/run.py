@@ -101,7 +101,7 @@ def main():
         patient_base_model=args.patient_base_model,
     ) 
     agent_vllm_server, agent_vllm_client = server_and_client_list[0]
-    server_container.add_server(agent_vllm_server)
+    # server_container.add_server(agent_vllm_server)
 
     # patient_agent = initialize_patient_agent(
     #     patient_model=args.therapist_base_model,
