@@ -84,9 +84,6 @@ def main():
     grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
     grpo_config = GRPOTrainerArgs(**grpo_config_dict)
 
-    print(grpo_config)
-    raise SystemExit
-
     sentiment_reward_model = initialize_sentiment_reward_model(
         client_port=grpo_config.base_vllm_server_port,
     )

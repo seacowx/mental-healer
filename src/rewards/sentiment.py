@@ -16,7 +16,7 @@ class SentimentReward:
 
     def __init__(
         self, 
-        base_vllm_client: OpenAIAsyncInference,
+        client_port: int,
         reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
     ) -> None:
 
@@ -26,7 +26,10 @@ class SentimentReward:
         )
         # base vLLM server is shared between Patient Agent and Reward Model
         # Reward model will activate the corresponding LoRA adapter
-        self.base_vllm_client = base_vllm_client
+        self.base_vllm_client = OpenAIAsyncInference(
+            base_url=f'http://localhost:{client_port}/v1/',
+            api_key='anounymous123',
+        )
 
 
     def __parse_output(self, output: RequestOutput) -> str:

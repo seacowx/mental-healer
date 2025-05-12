@@ -7,7 +7,7 @@ def initialize_sentiment_reward_model(
 ):
 
     sentiment_reward_model = SentimentReward(
-        base_vllm_client=base_client,
+        client_port=client_port,
     )
 
     return sentiment_reward_model
