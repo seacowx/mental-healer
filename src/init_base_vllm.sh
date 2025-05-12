@@ -25,7 +25,6 @@ CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES vllm serve $MODEL_PATH \
     --max-model-len 4096 \
     --tensor-parallel-size $TENSOR_PARALLEL_SIZE \
     --gpu-memory-utilization 0.7 \
-    --reasoning-parser 'qwen3' \
     --enable-reasoning \
     --disable-log-requests \
     --enable-lora \
