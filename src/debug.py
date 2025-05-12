@@ -23,20 +23,8 @@ def test_sentiment(sentiment_reward_model):
     )
 
     # clean up the output, noise will cause issue in the label encoder
-    parsed_outputs = []
-    parsed_ground_truth = []
-    for cur_output, cur_ground_truth in zip(outputs, label_list):
-        cur_output = cur_output.outputs[0].text \
-            .split('<sentiment>')[1] \
-            .split('</sentiment>')[0].strip().lower() \
-            .replace('"', '') \
-            .replace("'", '') 
-
-        parsed_outputs.append(cur_output)
-        parsed_ground_truth.append(cur_ground_truth)
-
-    print(parsed_outputs)
-    print(parsed_ground_truth)
+    print(outputs)
+    print(label_list[:10])
     raise SystemExit
 
     # evaluate sentiment (coarse-grained)
