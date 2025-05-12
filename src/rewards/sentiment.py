@@ -75,6 +75,9 @@ class SentimentReward:
             else:
                 out_list[i] = 'positive'
 
+        print(out_list)
+        raise SystemExit
+
         return out_list
 
 
