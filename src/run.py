@@ -19,11 +19,6 @@ from trl import GRPOConfig
 from utils.custom_trainer import CustomGRPOTrainer
 from utils.data_utils import prepare_training_data
 from utils.custom_trainer_args import GRPOTrainerArgs
-from utils.model_utils import (
-    initialize_models_and_agents,
-    ensure_graceful_exit,
-    ServerContainer,
-)
 from utils.reward_utils import initialize_sentiment_reward_model
 
 
@@ -65,12 +60,6 @@ def parse_args():
         default='./configs/lora_config.yaml',
         help="The path to the LoRA config file. Default is './configs/lora_config.yaml'.",
     )
-    parser.add_argument(
-        "--trl_vllm_port", 
-        type=int, 
-        default=8880,
-        help="The port to use for the trl vllm server."
-    )
     return parser.parse_args()
 
 
@@ -79,10 +68,6 @@ def reward_func(completions, **kwargs):
     return [float(len(set(completion))) for completion in completions]
 
 
-# initialize the server container to keep track of the vllm servers
-server_container = ServerContainer()
-
-@ensure_graceful_exit(server_container)
 def main():
 
     args = parse_args()
@@ -96,15 +81,14 @@ def main():
     # )
 
     # STEP: initialize agents. The patient agent uses the same LLM as the sentiment reward model. 
-    server_and_client_list = initialize_models_and_agents(
-        patient_base_model=args.patient_base_model,
-    ) 
+    grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
+    grpo_config = GRPOTrainerArgs(**grpo_config_dict)
 
-    agent_vllm_server, agent_vllm_client = server_and_client_list[0]
-    server_container.add_server(agent_vllm_server)
+    print(grpo_config)
+    raise SystemExit
 
     sentiment_reward_model = initialize_sentiment_reward_model(
-        base_client=agent_vllm_client,
+        client_port=grpo_config.base_vllm_server_port,
     )
 
     from debug import test_sentiment
@@ -121,11 +105,7 @@ def main():
 
 
     # # STEP: load training config and lora config
-    # grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
-    # grpo_config = GRPOTrainerArgs(**grpo_config_dict)
     # lora_config_dict = yaml.safe_load(open(args.lora_config, 'r'))
-
-    # grpo_config_dict['vllm_server_port'] = args.trl_vllm_port
 
     # # define lora config and grpo config
     # lora_config = LoraConfig(

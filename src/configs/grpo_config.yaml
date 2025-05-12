@@ -23,7 +23,8 @@ learning_rate: 5.3e-4
 
 # vllm settings
 use_vllm: true
-vllm_server_port: 8880
+trl_vllm_server_port: 8880
+base_vllm_server_port: 8000
 
 # logging
 logging_steps: 10

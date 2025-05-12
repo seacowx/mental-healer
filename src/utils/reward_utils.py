@@ -3,7 +3,7 @@ from utils.vllm_inference_utils import OpenAIAsyncInference
 
 
 def initialize_sentiment_reward_model(
-    base_client: OpenAIAsyncInference,
+    client_port: int,
 ):
 
     sentiment_reward_model = SentimentReward(
