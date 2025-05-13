@@ -9,9 +9,10 @@ class TherapistAgent(LMAgent):
         openai_client: object = None,
         openai_async_client: object = None,
     ) -> None:
+
         super().__init__(
-            client=openai_client, 
-            async_client=openai_async_client,
+            openai_client=openai_client, 
+            openai_async_client=openai_async_client,
             base_vllm_model=base_vllm_model,
         )
 

@@ -7,9 +7,20 @@ class LMAgent(metaclass=ABCMeta):
     LMAgent class for async inference with OpenAI APIError
     """
 
-    def __init__(self, client, async_client, base_vllm_model) -> None:
-        self.client = client
-        self.async_client = async_client
+    def __init__(
+        self, 
+        openai_client, 
+        openai_async_client, 
+        base_vllm_model
+    ) -> None:
+
+        assert (openai_client is not None) or \
+            (openai_async_client is not None) or \
+            (base_vllm_model is not None), \
+            "at least one of openai_client, openai_async_client, or base_vllm_model must be provided"
+
+        self.openai_client = openai_client
+        self.openai_async_client = openai_async_client
         self.base_vllm_model = base_vllm_model
 
 

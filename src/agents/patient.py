@@ -26,12 +26,9 @@ class PatientAgent(LMAgent):
         openai_async_client: AsyncOpenAI | OpenAIAsyncInference | None = None,
     ) -> None:
 
-        assert (openai_client is not None) or (openai_async_client is not None), \
-            "Either openai_client or openai_async_client must be provided"
-
         super().__init__(
-            client=openai_client, 
-            async_client=openai_async_client,
+            openai_client=openai_client, 
+            openai_async_client=openai_async_client,
             base_vllm_model=base_vllm_model,
         )
 
