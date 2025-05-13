@@ -55,6 +55,8 @@ def augment_situation_with_persona(
 
 def prepare_training_data(
         data_path: str,
+        matched_persona_path: str = '../data/AugESC/augesc_matched_persona.json',
+        persona_hub_path: str = '../data/PersonaHub/persona_augmented.json',
 ) -> tuple[Dataset, Dataset, dict]:
     """
     Prepare training data for the model.
@@ -70,7 +72,11 @@ def prepare_training_data(
     """
 
     input_dict = json.load(open(data_path, 'r'))
-    augmented_persona_profile_dict = retrieve_augmented_persona(situation_dict=input_dict)
+    augmented_persona_profile_dict = retrieve_augmented_persona(
+        situation_dict=input_dict,
+        matched_persona_path=matched_persona_path,
+        persona_hub_path=persona_hub_path,
+    )
 
     n_personas = int(data_path.split('/')[-1].split('.')[0][-1])
 

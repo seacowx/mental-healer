@@ -37,7 +37,11 @@ def main():
 
     args = parse_args()
 
-    _, _, data = prepare_training_data(data_path=args.training_data_path)
+    _, _, data = prepare_training_data(
+        data_path=args.training_data_path,
+        matched_persona_path='../../data/AugESC/augesc_matched_persona.json',
+        persona_hub_path='../../data/PersonaHub/persona_augmented.json',
+    )
 
     for key, val in data.items():
         print(key)

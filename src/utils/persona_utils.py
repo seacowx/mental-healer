@@ -54,14 +54,16 @@ def locate_persona_idx(
 
 
 def retrieve_augmented_persona(
-    situation_dict, 
+    situation_dict: dict, 
+    matched_persona_path: str,
+    persona_hub_path: str,
 ) -> dict:
     """
     Retrieve the augmented persona for the given situation
     """
 
-    situation_to_persona_dict = json.load(open('../data/AugESC/augsec_matched_persona.json', 'r'))
-    augmented_persona_dict = json.load(open('../data/PersonaHub/persona_augmented.json', 'r'))
+    situation_to_persona_dict = json.load(open(matched_persona_path, 'r'))
+    augmented_persona_dict = json.load(open(persona_hub_path, 'r'))
 
     out_augmented_persona_dict = {}
     for key, val in situation_dict.items():
