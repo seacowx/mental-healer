@@ -44,7 +44,12 @@ def main():
     input_msg = [
         {'role': 'user', 'content': 'How many "r"\'s are there in the word "strawberry"?'}
     ]
-    print(tokenizer.decode(model.generate(tokenizer.encode(input_msg), max_new_tokens=10)))
+    input_chat_msg = tokenizer.apply_chat_template(
+        input_msg, 
+        add_generation_prompt=True,
+    )
+
+    print(input_chat_msg)
 
     raise SystemExit
 
