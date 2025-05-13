@@ -28,13 +28,6 @@ class CustomLLM(LLM):
 
     def __init__(self, *args, **kwargs):
 
-        # remove custom kwargs
-        kwargs = {
-            k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
-        }
-
-        super().__init__(*args, **kwargs)
-
         coping_chat_template_path = kwargs.get(
             'coping_chat_template_path', 
             './prompts/coping_strategies.yaml'
@@ -45,6 +38,13 @@ class CustomLLM(LLM):
         self.coping_chat_template_dict = {
             k: Template(v) for k, v in self.coping_chat_template_dict.items()
         }
+
+        # remove custom kwargs
+        kwargs = {
+            k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
+        }
+
+        super().__init__(*args, **kwargs)
 
     
     def _make_coping_chat_messages(
