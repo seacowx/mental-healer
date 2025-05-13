@@ -33,25 +33,29 @@ class PatientAgent(LMAgent):
             base_vllm_model=base_vllm_model,
         )
 
-        self.persona_profile = ''
+        self.meta_persona_profile = {}
+        self.persona_profile = {}
+        self.role_playing_instruction = ''
         self.update_thought_template = yaml.safe_load(
             open(update_thought_template_path)
         )
 
 
     @property
-    def persona(self) -> str:
+    def persona_profile(self) -> str:
         """
         Get the persona profile for the agent
         """
-        return self.persona_profile
+        return json.dumps(self.meta_persona_profile)
 
 
-    def set_persona(self, persona_profile: str) -> None:
+    def set_persona(self, persona_profile: dict) -> None:
         """
         Set the persona profile for the agent
         """
-        self.persona_profile = persona_profile
+        self.meta_persona_profile = persona_profile
+        self.role_play_instruction = self.meta_persona_profile['persona_hub']
+        self.persona_profile = {key: val for key, val in self.meta_persona_profile.items() if key != 'persona_hub'}
 
 
     def update_thought(self, therapist_utterance: str) -> str:

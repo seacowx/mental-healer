@@ -10,6 +10,7 @@ class TherapeuticSession:
 
     def __init__(
         self,
+        max_turns: int = 5,
         therapist_agent: TherapistAgent,
         patient_agent: PatientAgent,
         coping_agent: Optional[CopingAgent] = None,
@@ -36,5 +37,10 @@ class TherapeuticSession:
 
     def simulate_therapeutic_session(self, situation_dict: dict):
 
-        print(situation_dict)
+        cur_situation = situation_dict['situation']
+        cur_thought = situation_dict['initial_thought']
+        cur_persona_profile = situation_dict['persona_profile']
+
+        self.patient_agent.set_persona(cur_persona_profile)
+        self.patient_agent.persona_profile
         raise SystemExit()
