@@ -1,4 +1,5 @@
 from agents.base_agent import LMAgent
+from utils.therapeutic_utils import SessionHistory
 
 
 class TherapistAgent(LMAgent):
@@ -17,5 +18,11 @@ class TherapistAgent(LMAgent):
         )
 
 
-    def utter(self, patient_utterance: str) -> str:
+    def utter(
+        self, 
+        situation_desc: str,
+        patient_thought: str,
+        patient_persona_profile: str,
+        session_history: SessionHistory, 
+    ) -> str:
         raise NotImplementedError()

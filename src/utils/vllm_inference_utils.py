@@ -7,6 +7,7 @@ from abc import ABCMeta, abstractmethod
 
 import torch
 from vllm import LLM, SamplingParams
+from utils.custom_vllm import CustomLLM
 from vllm.lora.request import LoRARequest
 
 import backoff
@@ -373,7 +374,7 @@ class vLLMOffline:
         vllm_config['max_lora_rank'] = max_lora_rank
         vllm_config['tensor_parallel_size'] = tensor_parallel_size
 
-        self.vllm_model = LLM(
+        self.vllm_model = CustomLLM(
             model=self.model_path,
             **vllm_config,
         )
