@@ -178,9 +178,6 @@ class CustomLLM(LLM):
                 content_format=resolved_content_format,
             )
 
-            print(conversation)
-            raise SystemExit
-
             if isinstance(tokenizer, MistralTokenizer):
                 prompt_token_ids = apply_mistral_chat_template(
                     tokenizer,
@@ -194,6 +191,8 @@ class CustomLLM(LLM):
                     **_chat_template_kwargs,
                 )
 
+                print(conversation)
+                print('\n\n')
                 print(prompt_str)
                 raise SystemExit
 
