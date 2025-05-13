@@ -147,10 +147,6 @@ class CustomLLM(LLM):
 
         tokenizer = self.get_tokenizer(lora_request)
 
-        # get the token id corresponding to the <think> and </think> tags
-        self.bot_token_id = tokenizer.encode('<think>')[0]
-        self.eot_token_id = tokenizer.encode('</think>')[0]
-
         model_config = self.llm_engine.get_model_config()
         resolved_content_format = resolve_chat_template_content_format(
             chat_template,
@@ -174,8 +170,6 @@ class CustomLLM(LLM):
             # handle mm_processor_kwargs, since there is no implementation in
             # the chat message parsing for it.
 
-            print(msgs)
-
             conversation, mm_data = parse_chat_messages(
                 msgs,
                 model_config,
@@ -195,6 +189,11 @@ class CustomLLM(LLM):
                     tokenizer=tokenizer,
                     **_chat_template_kwargs,
                 )
+
+                # modify the prompt to put the coping strategy content in between the <think> and </think> tags
+                prompt_instruction, coping_strategy_content = prompt_str.split('<think>')
+                coping_strategy_content = coping_strategy_content.split('</think>')[0]
+                prompt_str = prompt_instruction + '\n<think>' + coping_strategy_content + '</think>'
 
                 print(prompt_str)
                 raise SystemExit
