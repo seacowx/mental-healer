@@ -53,6 +53,14 @@ def main():
     print(
         tokenizer.decode(input_chat_msg.squeeze())
     )
+
+    output = model.generate(
+        input_chat_msg.squeeze(),
+        max_new_tokens=1024,
+    )
+
+    print('\n\n')
+    print(output)
     raise SystemExit
 
 
