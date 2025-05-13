@@ -71,6 +71,9 @@ class CustomLLM(LLM):
                 f'\tPersonality: {persona_profile["traits"]}\n'
             )
 
+            print(persona_profile_desc)
+            raise SystemExit
+
             generic_thought_prompt = generic_thought.render(
                 situation=situation,
                 thought=thought,
