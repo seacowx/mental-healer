@@ -125,6 +125,9 @@ class CustomLLM(LLM):
             patient_persona_profile_list=patient_persona_profile_list,
         )
 
+        print(coping_chat_messages[0])
+        raise SystemExit
+
         # flatten the coping chat messages while keep track of the sample index and key
         messages = []
         sample_idx_key_list = []
@@ -193,11 +196,7 @@ class CustomLLM(LLM):
                 )
 
                 # modify the prompt to put the coping strategy content in between the <think> and </think> tags
-                try:
-                    prompt_instruction, coping_strategy_content = prompt_str.split('<think>')
-                except:
-                    print(prompt_str)
-                    raise SystemExit
+                prompt_instruction, coping_strategy_content = prompt_str.split('<think>')
 
                 coping_strategy_content = coping_strategy_content.split('</think>')[-1].split('<|im_end|>')[0].strip()
                 coping_strategy_content += '\n\n' + self.coping_postfix
