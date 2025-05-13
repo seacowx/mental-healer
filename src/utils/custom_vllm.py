@@ -61,16 +61,24 @@ class CustomLLM(LLM):
             patient_thought_list,
             patient_persona_profile_list,
         ):
+            # first, organize the peronsa profile dictionary to something more readable
+            persona_profile_desc = (
+                persona_profile['persona_hub'] + '\n\nDetailed Persona Profile:\n',
+                f'\tName: {persona_profile["name"]}\n'
+                f'\tGender: {persona_profile["gender"]}\n'
+                f'\tOccupation: {persona_profile["occupation"]}\n'
+                f'\tEducation: {persona_profile["education"]}\n'
+                f'\tPersonality: {persona_profile["traits"]}\n'
+            )
+
             generic_thought_prompt = generic_thought.render(
                 situation=situation,
                 thought=thought,
-                persona_profile=persona_profile,
+                persona_profile=persona_profile_desc,
             )
 
             print(generic_thought_prompt)
             raise SystemExit
-
-        raise NotImplementedError()
 
 
     def coping_chat(
