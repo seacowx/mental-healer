@@ -131,12 +131,6 @@ class CustomLLM(LLM):
                 messages.append(coping_strategy_msg_list)
                 sample_idx_key_list.append((sample_idx, coping_strategy_name))
 
-        print(messages[0])
-        print(len(messages))
-        print(len(sample_idx_key_list))
-        print(sample_idx_key_list)
-        raise SystemExit
-
 
         list_of_messages: list[list[ChatCompletionMessageParam]]
 
@@ -175,6 +169,10 @@ class CustomLLM(LLM):
             # NOTE: _parse_chat_message_content_parts() currently doesn't
             # handle mm_processor_kwargs, since there is no implementation in
             # the chat message parsing for it.
+
+            print(msgs)
+            raise SystemExit
+
             conversation, mm_data = parse_chat_messages(
                 msgs,
                 model_config,
