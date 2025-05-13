@@ -12,7 +12,7 @@ from copy import deepcopy
 
 from openai import OpenAI, AsyncOpenAI
 
-from agents.base_agent import LMAgent
+from base_agent import LMAgent
 from utils.vllm_inference_utils import vLLMOffline, OpenAIAsyncInference
 
 
