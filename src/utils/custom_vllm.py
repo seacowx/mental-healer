@@ -191,17 +191,15 @@ class CustomLLM(LLM):
                     **_chat_template_kwargs,
                 )
 
-                print(conversation)
-                print('\n\n')
-                print(prompt_str)
-                raise SystemExit
-
                 # modify the prompt to put the coping strategy content in between the <think> and </think> tags
                 prompt_instruction, coping_strategy_content = prompt_str.split('<think>')
 
                 coping_strategy_content = coping_strategy_content.split('</think>')[-1].split('<|im_end|>')[0].strip()
                 coping_strategy_content += '\n\n' + self.coping_postfix
                 prompt_str = prompt_instruction.strip() + '\n<think>\n' + coping_strategy_content + '\n</think>'
+
+                print(prompt_str)
+                raise SystemExit
 
                 # Special tokens are already included in chat templates so
                 # should not be added by the tokenizer in this case.
