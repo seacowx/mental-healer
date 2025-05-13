@@ -68,11 +68,11 @@ class CustomLLM(LLM):
             # first, organize the peronsa profile dictionary to something more readable
             persona_profile_desc = (
                 persona_profile['persona_hub'] + '\n\nDetailed Persona Profile:\n'
-                f'\tName: {persona_profile["name"]}\n'
-                f'\tGender: {persona_profile["gender"]}\n'
-                f'\tOccupation: {persona_profile["occupation"]}\n'
-                f'\tEducation: {persona_profile["education"]}\n'
-                f'\tPersonality: {persona_profile["traits"]}\n'
+                f'Name: {persona_profile["name"]}\n'
+                f'Gender: {persona_profile["gender"]}\n'
+                f'Occupation: {persona_profile["occupation"]}\n'
+                f'Education: {persona_profile["education"]}\n'
+                f'Personality: {persona_profile["traits"]}\n'
             )
 
             generic_instruction_prompt = self.coping_generic_instruction_template.render(
@@ -177,6 +177,9 @@ class CustomLLM(LLM):
                 tokenizer,
                 content_format=resolved_content_format,
             )
+
+            print(conversation)
+            raise SystemExit
 
             if isinstance(tokenizer, MistralTokenizer):
                 prompt_token_ids = apply_mistral_chat_template(
