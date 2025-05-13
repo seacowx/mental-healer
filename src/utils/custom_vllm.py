@@ -186,18 +186,14 @@ class CustomLLM(LLM):
                 )
             else:
                 prompt_str = apply_hf_chat_template(
-                    model_config,
-                    tokenizer,
                     conversation=conversation,
+                    tokenizer=tokenizer,
                     **_chat_template_kwargs,
                 )
                 # Special tokens are already included in chat templates so
                 # should not be added by the tokenizer in this case.
                 prompt_token_ids = tokenizer.encode(prompt_str,
                                                     add_special_tokens=False)
-
-            print(prompt_str)
-            raise SystemExit
 
             prompt = TokensPrompt(prompt_token_ids=prompt_token_ids)
 
