@@ -151,10 +151,6 @@ class CustomLLM(LLM):
         self.bot_token_id = tokenizer.encode('<think>')[0]
         self.eot_token_id = tokenizer.encode('</think>')[0]
 
-        print(self.bot_token_id)
-        print(self.eot_token_id)
-        raise SystemExit
-
         model_config = self.llm_engine.get_model_config()
         resolved_content_format = resolve_chat_template_content_format(
             chat_template,
@@ -199,13 +195,14 @@ class CustomLLM(LLM):
                     tokenizer=tokenizer,
                     **_chat_template_kwargs,
                 )
+
+                print(prompt_str)
+                raise SystemExit
+
                 # Special tokens are already included in chat templates so
                 # should not be added by the tokenizer in this case.
                 prompt_token_ids = tokenizer.encode(prompt_str,
                                                     add_special_tokens=False)
-
-            print(prompt_str)
-            raise SystemExit
 
             prompt = TokensPrompt(prompt_token_ids=prompt_token_ids)
 
