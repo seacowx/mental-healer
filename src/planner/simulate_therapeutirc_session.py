@@ -1,8 +1,8 @@
 import json
 import argparse
 
-from src.agents.patient import PatientAgent
-from src.agents.therapist import TherapistAgent
+from patient import PatientAgent
+from therapist import TherapistAgent
 
 from src.rewards.sentiment import SentimentReward
 
