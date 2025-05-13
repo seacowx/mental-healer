@@ -65,6 +65,7 @@ def main():
     therapeutic_session = TherapeuticSession(
         therapist_agent=therapist_agent,
         patient_agent=patient_agent,
+        coping_cot_templates_path='../prompts/coping_strategies.yaml',
     )
 
     for key, val in data.items():

@@ -13,12 +13,13 @@ class TherapeuticSession:
         therapist_agent: TherapistAgent,
         patient_agent: PatientAgent,
         coping_agent: Optional[CopingAgent] = None,
+        coping_cot_templates_path: str = './prompts/coping_strategies.yaml',
     ):
         self.therapist_agent = therapist_agent
         self.patient_agent = patient_agent
         self.coping_agent = coping_agent
 
-        self.coping_cot_templates = yaml.safe_load(open('./prompts/coping_strategies.yaml'))
+        self.coping_cot_templates = yaml.safe_load(open(coping_cot_templates_path))
 
 
     def sample_therapist_utterances(self,):
