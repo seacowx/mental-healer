@@ -47,10 +47,12 @@ def main():
     input_chat_msg = tokenizer.apply_chat_template(
         input_msg, 
         add_generation_prompt=True,
+        return_tensors='pt',
     )
 
-    print(input_chat_msg)
-
+    print(
+        tokenizer.decode(input_chat_msg)
+    )
     raise SystemExit
 
 
