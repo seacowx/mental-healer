@@ -51,6 +51,8 @@ def main():
 
     sentiment_reward_model = SentimentReward(
         base_vllm_model=offline_vllm_base_model,
+        reward_rule_path='../configs/sentiment_reward_rules.yaml',
+        sentiment_mapping_path='../configs/emotion_to_sentiment.yaml',
     )
     patient_agent = PatientAgent(
         base_vllm_model=offline_vllm_base_model,
