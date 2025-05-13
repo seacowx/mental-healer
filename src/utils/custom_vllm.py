@@ -45,17 +45,7 @@ class CustomLLM(LLM):
         # remove custom kwargs
         kwargs = {
             k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
-        }
-
-        # get the token id corresponding to the <think> and </think> tags
-        tokenizer = self.get_tokenizer()
-        self.bot_token_id = tokenizer.encode('<think>')[0]
-        self.eot_token_id = tokenizer.encode('</think>')[0]
-
-        print(self.bot_token_id)
-        print(self.eot_token_id)
-        raise SystemExit
-        
+        } 
 
         super().__init__(*args, **kwargs)
 
@@ -156,6 +146,15 @@ class CustomLLM(LLM):
             ]
 
         tokenizer = self.get_tokenizer(lora_request)
+
+        # get the token id corresponding to the <think> and </think> tags
+        self.bot_token_id = tokenizer.encode('<think>')[0]
+        self.eot_token_id = tokenizer.encode('</think>')[0]
+
+        print(self.bot_token_id)
+        print(self.eot_token_id)
+        raise SystemExit
+
         model_config = self.llm_engine.get_model_config()
         resolved_content_format = resolve_chat_template_content_format(
             chat_template,
