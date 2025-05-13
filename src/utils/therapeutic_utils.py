@@ -42,5 +42,5 @@ class TherapeuticSession:
         cur_persona_profile = situation_dict['persona_profile']
 
         self.patient_agent.set_persona(cur_persona_profile)
-        self.patient_agent.persona_profile
+        print(self.patient_agent.show_persona_profile)
         raise SystemExit()

@@ -42,7 +42,7 @@ class PatientAgent(LMAgent):
 
 
     @property
-    def persona_profile(self) -> str:
+    def show_persona_profile(self) -> str:
         """
         Get the persona profile for the agent
         """
