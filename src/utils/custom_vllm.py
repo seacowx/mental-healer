@@ -210,10 +210,6 @@ class CustomLLM(LLM):
             if mm_processor_kwargs is not None:
                 prompt["mm_processor_kwargs"] = mm_processor_kwargs
 
-            print('\n\n')
-            print(prompt)
-            raise SystemExit
-
             prompts.append(prompt)
 
         return self.generate(
