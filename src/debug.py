@@ -50,8 +50,10 @@ def main():
         return_tensors='pt',
     )
 
+    print(input_chat_msg)
+
     print(
-        tokenizer.decode(input_chat_msg)
+        tokenizer.decode(input_chat_msg.input_ids[0])
     )
     raise SystemExit
 
