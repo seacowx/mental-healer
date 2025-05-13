@@ -39,7 +39,7 @@ generic_thought: |-
 
 
 coping_postfix: |-
-  Now, I will provide an appropriate utterance that can help the user to reframe their negative thought according to the coping strategy. I will ensure to generate the utterance in between the <utterance> and </utterance> tags.
+  Now, I will provide an appropriate utterance that can help the person to reframe their negative thought according to the coping strategy. I will ensure to generate the utterance from the perspective of an experienced psychologist and wrap it in between the <utterance> and </utterance> tags.
   
 
 meta_rp_commit: |-
