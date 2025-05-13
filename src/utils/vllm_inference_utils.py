@@ -431,8 +431,6 @@ class vLLMOffline:
                 use_tqdm=True,
                 **extra_kwargs,
             )
-            print(response)
-            raise SystemExit
         else:
             response = self.vllm_model.chat(
                 messages=message_list, 
@@ -440,6 +438,9 @@ class vLLMOffline:
                 use_tqdm=True,
                 **extra_kwargs,
             )
+
+        print(response)
+        raise SystemExit
 
         response = [ele.outputs[0].text for ele in response]
 
