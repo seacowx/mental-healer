@@ -67,11 +67,14 @@ def main():
         therapist_agent=therapist_agent,
         patient_agent=patient_agent,
         coping_cot_templates_path='../prompts/coping_strategies.yaml',
+        patient_prompt_template_path='../prompts/patient.yaml',
     )
 
     for key, val in data.items():
 
-        therapeutic_session.simulate_therapeutic_session(situation_dict=val)
+        therapeutic_session.simulate_therapeutic_session(
+            situation_dict_list=[val]
+        )
 
 
 if __name__ == '__main__':

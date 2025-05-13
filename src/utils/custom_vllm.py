@@ -37,6 +37,7 @@ class CustomLLM(LLM):
         )
         self.coping_generic_instruction_template = Template(self.coping_chat_template_dict['generic_instruction'])
         self.coping_generic_thought_template = Template(self.coping_chat_template_dict['generic_thought'])
+        self.coping_system_prompt = self.coping_chat_template_dict['system']
         self.coping_postfix = self.coping_chat_template_dict['coping_postfix']
         self.coping_strategy_template = {
             k: v for k, v in self.coping_chat_template_dict.items() 
@@ -89,6 +90,7 @@ class CustomLLM(LLM):
             user_specific_coping_msg_dict = {}
             for strategy_name, strategy_template in self.coping_strategy_template.items():
                 user_specific_coping_msg_dict[strategy_name] = [
+                    {'role': 'system', 'content': self.coping_system_prompt},
                     {'role': 'user', 'content': generic_instruction_prompt},
                     {'role': 'assistant', 'content': generic_thought_prompt + '\n' + strategy_template},
                 ]
@@ -96,7 +98,6 @@ class CustomLLM(LLM):
             coping_chat_messages.append(user_specific_coping_msg_dict)
 
         return coping_chat_messages
-
 
 
     def coping_chat(
