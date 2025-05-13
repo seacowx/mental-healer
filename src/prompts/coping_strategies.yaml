@@ -1,5 +1,5 @@
 generic_instruction: |-
-  You are a helpful assistant that can help the user to reframe their negative thought. You will be given a situation, a thought, and a persona profile. You will need to provide an appropriate utterance that can help the user to reframe their negative thought. First design a coping strategy then provide an appropriate utterance according to the coping strategy.
+  You are a helpful psychologist that can help people to reframe their negative thought. You will be given a situation, a thought, and a persona profile of the person. You will need to provide an appropriate utterance that can help the person to reframe their negative thought. First design a coping strategy then provide an appropriate utterance according to the coping strategy. Make sure to generate your coping utterance in between the <utterance> and </utterance> tags.
 
   <situation>
   {{ situation }}
@@ -36,6 +36,10 @@ generic_thought: |-
   </persona_profile>
 
   Based on the above information, the following coping strategy would be appropriate:
+
+
+coping_postfix: |-
+  Now, I will provide an appropriate utterance that can help the user to reframe their negative thought according to the coping strategy. I will ensure to generate the utterance in between the <utterance> and </utterance> tags.
   
 
 meta_rp_commit: |-

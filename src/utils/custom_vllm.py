@@ -37,9 +37,10 @@ class CustomLLM(LLM):
         )
         self.coping_generic_instruction_template = Template(self.coping_chat_template_dict['generic_instruction'])
         self.coping_generic_thought_template = Template(self.coping_chat_template_dict['generic_thought'])
+        self.coping_postfix = self.coping_chat_template_dict['coping_postfix']
         self.coping_strategy_template = {
             k: v for k, v in self.coping_chat_template_dict.items() 
-            if k not in  ['generic_thought', 'generic_instruction']
+            if k not in  ['generic_thought', 'generic_instruction', 'coping_postfix']
         }
 
         # remove custom kwargs
@@ -193,7 +194,11 @@ class CustomLLM(LLM):
                 # modify the prompt to put the coping strategy content in between the <think> and </think> tags
                 prompt_instruction, coping_strategy_content = prompt_str.split('<think>')
                 coping_strategy_content = coping_strategy_content.split('</think>')[-1].split('<|im_end|>')[0].strip()
+                coping_strategy_content += '\n' + self.coping_postfix
                 prompt_str = prompt_instruction.strip() + '\n<think>\n' + coping_strategy_content + '\n</think>'
+
+                print(prompt_str)
+                raise SystemExit
 
                 # Special tokens are already included in chat templates so
                 # should not be added by the tokenizer in this case.
