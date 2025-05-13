@@ -38,12 +38,15 @@ class TherapeuticSession:
         session_history = SessionHistory()
         for _ in range(self.max_turns):
             # generate the therapist's utterance
-            therapist_utterance = self.therapist_agent.utter(
+            therapist_utterance_list = self.therapist_agent.utter(
                 situation_desc_list=[cur_situation],
                 patient_thought_list=[cur_thought],
                 patient_persona_profile_list=[cur_persona_profile],
                 session_history=session_history,
             )
+
+            print(therapist_utterance_list)
+            raise SystemExit
 
             # # generate the patient's new thought
             # patient_new_thought = self.patient_agent.generate_new_thought(therapist_utterance)

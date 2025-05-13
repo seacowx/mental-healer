@@ -441,7 +441,4 @@ class vLLMOffline:
 
         response = [ele.outputs[0].text for ele in response]
 
-        print(response[0])
-        raise SystemExit
-
         return response
