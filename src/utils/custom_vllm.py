@@ -35,8 +35,9 @@ class CustomLLM(LLM):
         self.coping_chat_template_dict = yaml.safe_load(
             open(coping_chat_template_path)
         )
-        self.coping_chat_template_dict = {
-            k: Template(v) for k, v in self.coping_chat_template_dict.items()
+        self.coping_generic_thought_template = Template(self.coping_chat_template_dict['generic_thought'])
+        self.coping_strategy_template = {
+            k: v for k, v in self.coping_chat_template_dict.items() if k != 'generic_thought'
         }
 
         # remove custom kwargs
@@ -54,8 +55,7 @@ class CustomLLM(LLM):
         patient_persona_profile_list: list,
     ) -> list[list[ChatCompletionMessageParam]]:
 
-        generic_thought = self.coping_chat_template_dict['generic_thought']
-
+        coping_chat_messages = []
         for situation, thought, persona_profile in zip(
             situation_desc_list,
             patient_thought_list,
@@ -71,14 +71,20 @@ class CustomLLM(LLM):
                 f'\tPersonality: {persona_profile["traits"]}\n'
             )
 
-            generic_thought_prompt = generic_thought.render(
+            generic_thought_prompt = self.coping_generic_thought_template.render(
                 situation=situation,
                 thought=thought,
-                persona_profile=persona_profile_desc,
+                persona_profile=persona_profile_desc.strip(),
             )
 
-            print(generic_thought_prompt)
-            raise SystemExit
+            for strategy_name, strategy_template in self.coping_strategy_template.items():
+                coping_chat_messages.append([{
+                    'role': 'user',
+                    'content': generic_thought_prompt + '\n' + strategy_template
+                }])
+
+                print(coping_chat_messages[0])
+                raise SystemExit
 
 
     def coping_chat(
