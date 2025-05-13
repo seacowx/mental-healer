@@ -200,9 +200,6 @@ class CustomLLM(LLM):
                 coping_strategy_content += '\n\n' + self.coping_postfix
                 prompt_str = prompt_instruction.strip() + '\n<think>\n' + coping_strategy_content + '\n</think>'
 
-                print(prompt_str)
-                raise SystemExit
-
                 # Special tokens are already included in chat templates so
                 # should not be added by the tokenizer in this case.
                 prompt_token_ids = tokenizer.encode(
