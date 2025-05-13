@@ -35,6 +35,7 @@ class CustomLLM(LLM):
         self.coping_chat_template_dict = yaml.safe_load(
             open(coping_chat_template_path)
         )
+        self.coping_generic_instruction_template = Template(self.coping_chat_template_dict['generic_instruction'])
         self.coping_generic_thought_template = Template(self.coping_chat_template_dict['generic_thought'])
         self.coping_strategy_template = {
             k: v for k, v in self.coping_chat_template_dict.items() if k != 'generic_thought'
@@ -71,6 +72,12 @@ class CustomLLM(LLM):
                 f'\tPersonality: {persona_profile["traits"]}\n'
             )
 
+            generic_instruction_prompt = self.coping_generic_instruction_template.render(
+                situation=situation,
+                thought=thought,
+                persona_profile=persona_profile_desc.strip(),
+            )
+
             generic_thought_prompt = self.coping_generic_thought_template.render(
                 situation=situation,
                 thought=thought,
@@ -78,10 +85,10 @@ class CustomLLM(LLM):
             )
 
             for strategy_name, strategy_template in self.coping_strategy_template.items():
-                coping_chat_messages.append([{
-                    'role': 'user',
-                    'content': generic_thought_prompt + '\n' + strategy_template
-                }])
+                coping_chat_messages.append([
+                    {'role': 'user', 'content': generic_instruction_prompt},
+                    {'role': 'assistant', 'content': generic_thought_prompt + '\n' + strategy_template},
+                ])
 
                 print(coping_chat_messages[0])
                 raise SystemExit

@@ -1,7 +1,23 @@
+generic_instruction: |-
+  You are a helpful assistant that can help the user to reframe their negative thought. You will be given a situation, a thought, and a persona profile. You will need to provide an appropriate utterance that can help the user to reframe their negative thought. First design a coping strategy then provide an appropriate utterance according to the coping strategy.
+
+  <situation>
+  {{ situation }}
+  </situation>
+
+  <thought>
+  {{ thought }}
+  </thought>
+
+  <persona_profile>
+  {{ persona_profile }}
+  </persona_profile>
+
+
 generic_thought: |-
   Okay, the user is experiencing a negative thought and wish to reframe it. I need to provide an appropriate utterance that can help them to reframe their negative thought.
 
-  First, Let's analyze the event that triggered the negative thought. The user has provided the following information:
+  First, Let's analyze the event that triggered the negative thought. The user has experienced the following event:
 
   <situation>
   {{ situation }}
