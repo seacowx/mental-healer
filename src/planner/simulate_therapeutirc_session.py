@@ -9,6 +9,7 @@ from agents.therapist import TherapistAgent
 from rewards.sentiment import SentimentReward
 
 from utils.model_utils import load_all_models
+from utils.data_utils import prepare_training_data
 from utils.therapeutic_utils import TherapeuticSession
 
 
@@ -36,7 +37,7 @@ def main():
 
     args = parse_args()
 
-    data = json.load(open('../../data/situations/situations_with_initial_thought_top1.json'))
+    _, _, data = prepare_training_data(data_path=args.training_data_path)
 
     for key, val in data.items():
         print(key)

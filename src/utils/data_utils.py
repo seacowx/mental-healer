@@ -55,7 +55,7 @@ def augment_situation_with_persona(
 
 def prepare_training_data(
         data_path: str,
-) -> tuple[Dataset, Dataset]:
+) -> tuple[Dataset, Dataset, dict]:
     """
     Prepare training data for the model.
 
@@ -88,6 +88,7 @@ def prepare_training_data(
         'situation': [],
         'prompt': [],
     }
+    augmented_input_dict = {}
     for key, val in input_dict.items():
         persona_data['id'].append(key)
         persona_data['persona_profile'].append(augmented_persona_profile_dict[key])
@@ -101,9 +102,16 @@ def prepare_training_data(
         conversation_data['situation'].append(situation_desc)
         conversation_data['prompt'].append(initial_thought_prompt)
 
+        augmented_input_dict[key] = {
+            'situation': situation_desc,
+            'initial_thought': initial_thought,
+            'initial_thought_prompt': initial_thought_prompt,
+            'persona_profile': augmented_persona_profile_dict[key],
+        }
+
         pbar.update(1)
 
     persona_data = Dataset.from_dict(persona_data)
     conversation_data = Dataset.from_dict(conversation_data)
 
-    return conversation_data, persona_data
+    return conversation_data, persona_data, augmented_input_dict
