@@ -41,7 +41,7 @@ class CustomLLM(LLM):
         self.coping_postfix = self.coping_chat_template_dict['coping_postfix']
         self.coping_strategy_template = {
             k: v for k, v in self.coping_chat_template_dict.items() 
-            if k not in  ['generic_thought', 'generic_instruction', 'coping_postfix']
+            if k not in  ['generic_thought', 'generic_instruction', 'coping_postfix', 'system']
         }
 
         # remove custom kwargs
