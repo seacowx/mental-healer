@@ -55,7 +55,7 @@ class CustomLLM(LLM):
         situation_desc_list: list,
         patient_thought_list: list,
         patient_persona_profile_list: list,
-    ) -> list[list[ChatCompletionMessageParam]]:
+    ) -> list[dict[str, list[ChatCompletionMessageParam]]]:
 
         coping_chat_messages = []
         for situation, thought, persona_profile in zip(
@@ -85,14 +85,17 @@ class CustomLLM(LLM):
                 persona_profile=persona_profile_desc.strip(),
             )
 
+            user_specific_coping_msg_dict = {}
             for strategy_name, strategy_template in self.coping_strategy_template.items():
-                coping_chat_messages.append([
+                user_specific_coping_msg_dict[strategy_name] = [
                     {'role': 'user', 'content': generic_instruction_prompt},
                     {'role': 'assistant', 'content': generic_thought_prompt + '\n' + strategy_template},
-                ])
+                ]
 
-                print(coping_chat_messages[0])
-                raise SystemExit
+            coping_chat_messages.append(user_specific_coping_msg_dict)
+
+        return coping_chat_messages
+
 
 
     def coping_chat(
@@ -114,11 +117,25 @@ class CustomLLM(LLM):
     ):
 
         # make coping chat messages
-        messages = self._make_coping_chat_messages(
+        coping_chat_messages = self._make_coping_chat_messages(
             situation_desc_list=situation_desc_list,
             patient_thought_list=patient_thought_list,
             patient_persona_profile_list=patient_persona_profile_list,
         )
+
+        # flatten the coping chat messages while keep track of the sample index and key
+        messages = []
+        sample_idx_key_list = []
+        for sample_idx, coping_chat_msg_dict in enumerate(coping_chat_messages):
+            for coping_strategy_name, coping_strategy_msg_list in coping_chat_msg_dict.items():
+                messages.extend(coping_strategy_msg_list)
+                sample_idx_key_list.append((sample_idx, coping_strategy_name))
+
+        print(messages[0])
+        print(len(messages))
+        print(sample_idx_key_list)
+        raise SystemExit
+
 
         list_of_messages: list[list[ChatCompletionMessageParam]]
 
