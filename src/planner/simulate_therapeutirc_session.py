@@ -47,6 +47,7 @@ def main():
     # TODO: change base model to Qwen3-32B
     offline_vllm_base_model = load_all_models(
         base_model_path=args.base_model,
+        coping_chat_template_path='../prompts/coping_strategies.yaml',
     )
 
     sentiment_reward_model = SentimentReward(
@@ -65,7 +66,7 @@ def main():
     therapeutic_session = TherapeuticSession(
         therapist_agent=therapist_agent,
         patient_agent=patient_agent,
-        coping_cot_templates_path='../prompts/coping_strategies.yaml',
+        # coping_cot_templates_path='../prompts/coping_strategies.yaml',
     )
 
     for key, val in data.items():

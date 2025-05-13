@@ -375,10 +375,12 @@ class vLLMOffline:
         vllm_config['max_lora_rank'] = max_lora_rank
         vllm_config['tensor_parallel_size'] = tensor_parallel_size
 
+        if coping_chat_template_path:
+            vllm_config['coping_chat_template_path'] = coping_chat_template_path
+
         # use custom vllm model which supports template-based coping with reasoning
         self.vllm_model = CustomLLM(
             model=self.model_path,
-            coping_chat_template_path=coping_chat_template_path,
             **vllm_config,
         )
 
