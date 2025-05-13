@@ -60,7 +60,7 @@ def main():
     )
 
     print('\n\n')
-    print(output)
+    print(tokenizer.decode(output.squeeze()))
     raise SystemExit
 
 
