@@ -32,18 +32,14 @@ class TherapeuticSession:
 
     def simulate_therapeutic_session(self, situation_dict_list: list[dict]):
 
-        # make copies of the patient agent, each copy will be assigned a different persona profile
-        patient_agent_list = [copy.deepcopy(self.patient_agent) for _ in range(len(situation_dict_list))]
-
-        for situation_idx, situation_dict in enumerate(situation_dict_list):
+        for situation_dict in situation_dict_list:
 
             cur_situation = situation_dict['situation']
             cur_thought = situation_dict['initial_thought']
             cur_persona_profile = situation_dict['persona_profile']
 
             # set the persona profile for the patient agent
-            cur_patient_agent = patient_agent_list[situation_idx]
-            cur_patient_agent.set_persona(cur_persona_profile)
+            cur_patient_agent = self.patient_agent.set_persona(cur_persona_profile)
 
             # start the therapeutic session
             session_history = SessionHistory()
