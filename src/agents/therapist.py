@@ -5,14 +5,14 @@ class TherapistAgent(LMAgent):
 
     def __init__(
         self,
-        vllm_client: object = None,
+        base_vllm_model: object = None,
         openai_client: object = None,
         openai_async_client: object = None,
     ) -> None:
         super().__init__(
             client=openai_client, 
             async_client=openai_async_client,
-            vllm_client=vllm_client,
+            base_vllm_model=base_vllm_model,
         )
 
 

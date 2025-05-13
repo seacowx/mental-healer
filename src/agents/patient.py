@@ -21,7 +21,7 @@ class PatientAgent(LMAgent):
 
     def __init__(
         self,
-        vllm_client: vLLMOffline | None = None,
+        base_vllm_model: vLLMOffline | None = None,
         openai_client: OpenAI | None = None,
         openai_async_client: AsyncOpenAI | OpenAIAsyncInference | None = None,
     ) -> None:
@@ -32,7 +32,7 @@ class PatientAgent(LMAgent):
         super().__init__(
             client=openai_client, 
             async_client=openai_async_client,
-            vllm_client=vllm_client,
+            base_vllm_model=base_vllm_model,
         )
 
         self.persona_profile = ''

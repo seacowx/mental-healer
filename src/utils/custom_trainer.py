@@ -16,10 +16,7 @@ import torch
 import torch.nn as nn
 
 from trl import GRPOTrainer
-from trl.extras.profiling import (
-    profiling_context, 
-    profiling_decorator,
-)
+from trl.extras.profiling import profiling_context
 from trl.models import unwrap_model_for_generation
 from trl.data_utils import (
     maybe_apply_chat_template, 
@@ -34,43 +31,8 @@ from accelerate.utils import (
     gather,
 )
 
-from agents.planner import CopingAgent
-from agents.patient import PatientAgent
-from agents.therapist import TherapistAgent
-
-from utils.trl_utils import (
-    pad, 
-    nanstd, 
-    split_tensor_dict,
-)
+from utils.trl_utils import pad, nanstd
 from utils.optimizer_utils import get_grpo_optimizer, get_grpo_scheduler
-
-
-class TherapeuticSession:
-
-    def __init__(
-        self,
-        therapist_agent: TherapistAgent,
-        patient_agent: PatientAgent,
-        planning_agent: CopingAgent,
-    ):
-        self.therapist_agent = therapist_agent
-        self.patient_agent = patient_agent
-        self.planning_agent = planning_agent
-
-        self.coping_cot_templates = yaml.safe_load(open('./prompts/coping_strategies.yaml'))
-
-
-    def sample_therapist_utterances(self,):
-        ...
-
-
-    def generate_patient_new_thought(self,):
-        ...
-
-
-    def generate_therapist_new_utterance(self,):
-        ...
 
 
 class CustomGRPOTrainer(GRPOTrainer):
@@ -78,21 +40,9 @@ class CustomGRPOTrainer(GRPOTrainer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
 
-        # self.therapeutic_session = TherapeuticSession(
-        #     therapist_agent=kwargs['therapist_agent'],
-        #     patient_agent=kwargs['patient_agent'],
-        #     planning_agent=kwargs['planning_agent'],
-        # )
-
         print('\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
         self.model.print_trainable_parameters()
         print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n')
-
-
-    # def simulate_therapeutic_session(self):
-
-    #     # sample therapist utterances according to coping strategies
-    #     therapist_utterances = self.therapeutic_session.sample_therapist_utterances()
 
 
     def _reward_buffer(self,):
@@ -100,46 +50,6 @@ class CustomGRPOTrainer(GRPOTrainer):
         Stores the sentiment history of the current therapeutic session. 
         """
         ...
-
-
-    # NOTE: Overrides methods from GRPOTrainer and Trainer
-    @profiling_decorator
-    def _prepare_inputs(
-        self, 
-        accumulated_local_batch: dict[str, Union[torch.Tensor, Any]],
-    ) -> dict[str, Union[torch.Tensor, Any]]:
-        # Prepares inputs for model training/evaluation by managing completion generation and batch handling.
-        # During training:
-        #   - Receives the accumulated local batch (Per-GPU batch size × Gradient accumulation steps)
-        #     from the modified training dataloader instead of the standard local batch
-        #   - Generates completions once for the entire accumulated batch and splits it into smaller batches
-        #   - Buffers these completions and returns the appropriate slice for the current accumulation step
-        #   - Optimizes by regenerating completions only periodically (every gradient_accumulation_steps * num_iterations)
-        # During evaluation:
-        #   - The input is treated as a standard local batch (no accumulation, no multiple iterations)
-        #   - Completions are generated for each batch without buffering or reuse
-        # Returns a single local batch in both cases.
-
-        mode = "eval" if self.control.should_evaluate else "train"
-        if mode == "train":
-            generate_every = self.args.gradient_accumulation_steps * self.num_iterations
-            if self._step % generate_every == 0 or self._buffered_inputs is None:
-                # self._buffered_inputs=None can occur when resuming from a checkpoint
-
-                accumulated_local_batch = self._generate_and_score_completions(accumulated_local_batch)
-
-                self._buffered_inputs = split_tensor_dict(
-                    accumulated_local_batch, self.args.gradient_accumulation_steps
-                )
-
-            inputs = self._buffered_inputs[self._step % self.args.gradient_accumulation_steps]
-            self._step += 1
-
-        else:
-            # In evaluation, there is neither gradient accumulation, nor multiple iterations
-            inputs = self._generate_and_score_completions(accumulated_local_batch)
-
-        return inputs
 
 
     def _generate_and_score_completions(

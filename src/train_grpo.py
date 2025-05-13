@@ -23,6 +23,7 @@ from utils.model_utils import load_all_models
 from utils.custom_trainer import CustomGRPOTrainer
 from utils.data_utils import prepare_training_data
 from utils.custom_trainer_args import GRPOTrainerArgs
+from utils.therapeutic_utils import TherapeuticSession
 
 
 def set_seed(seed: int) -> None:
@@ -72,9 +73,9 @@ def main():
     # situation (str): the situation description
     # initial_thought (str): the initial thought of the patient
     # persona (str): the persona of the patient
-    # conversation_data, persona_data = prepare_training_data(
-    #     data_path=args.training_data_path,
-    # )
+    conversation_data, persona_data = prepare_training_data(
+        data_path=args.training_data_path,
+    )
 
     # STEP: initialize agents. The patient agent uses the same LLM as the sentiment reward model. 
     grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
@@ -89,12 +90,10 @@ def main():
         base_vllm_model=offline_vllm_base_model,
     )
 
-    from debug import test_sentiment
-    test_sentiment(sentiment_reward_model=sentiment_reward_model)
-
     patient_agent = PatientAgent(
-        vllm_client=offline_vllm_base_model,
+        base_vllm_model=offline_vllm_base_model,
     )
+
 
     # dataset = load_dataset("trl-lib/tldr", split="train")
 

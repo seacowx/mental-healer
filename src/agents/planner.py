@@ -9,6 +9,8 @@ Outputs:
     coping_strategy (str): the coping strategy
 """
 
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
 
 class CopingAgent:
 
@@ -19,8 +21,13 @@ class CopingAgent:
     """
 
 
-    def __init__(self, model: str):
-        self.model = model
+    def __init__(self):
+        self.model = AutoModelForSequenceClassification.from_pretrained(
+            'microsoft/deberta-v3-large',
+            problem_type="multi_label_classification",
+            num_labels=8,
+        )
+        self.tokenizer = AutoTokenizer.from_pretrained('microsoft/deberta-v3-large')
 
 
     def plan(self, situation: str, persona_profile: dict):
