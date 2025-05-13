@@ -148,9 +148,9 @@ class CustomLLM(LLM):
         tokenizer = self.get_tokenizer(lora_request)
         model_config = self.llm_engine.get_model_config()
         resolved_content_format = resolve_chat_template_content_format(
-            chat_template,
-            chat_template_content_format,
-            tokenizer,
+            chat_template=chat_template,
+            given_format=chat_template_content_format,
+            tokenizer=tokenizer,
         )
 
         _chat_template_kwargs: dict[str, Any] = dict(
