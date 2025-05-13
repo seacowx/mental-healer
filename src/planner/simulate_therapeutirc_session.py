@@ -1,15 +1,15 @@
 import sys
 import json
 import argparse
-sys.path.append('../../')
+sys.path.append('..')
 
-from src.agents.patient import PatientAgent
-from src.agents.therapist import TherapistAgent
+from agents.patient import PatientAgent
+from agents.therapist import TherapistAgent
 
-from src.rewards.sentiment import SentimentReward
+from rewards.sentiment import SentimentReward
 
-from src.utils.model_utils import load_all_models
-from src.utils.therapeutic_utils import TherapeuticSession
+from utils.model_utils import load_all_models
+from utils.therapeutic_utils import TherapeuticSession
 
 
 def parse_args():

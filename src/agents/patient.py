@@ -12,8 +12,8 @@ from copy import deepcopy
 
 from openai import OpenAI, AsyncOpenAI
 
-from src.agents.base_agent import LMAgent
-from src.utils.vllm_inference_utils import vLLMOffline, OpenAIAsyncInference
+from agents.base_agent import LMAgent
+from utils.vllm_inference_utils import vLLMOffline, OpenAIAsyncInference
 
 
 class PatientAgent(LMAgent):
