@@ -2,7 +2,6 @@ import yaml
 from typing import Optional
 
 
-
 class SessionHistory:
 
     def __init__(self, n_samples: int = 8):

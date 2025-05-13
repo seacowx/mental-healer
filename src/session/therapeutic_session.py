@@ -45,8 +45,5 @@ class TherapeuticSession:
                 session_history=session_history,
             )
 
-            print(therapist_utterance[0])
-            raise SystemExit
-
             # # generate the patient's new thought
             # patient_new_thought = self.patient_agent.generate_new_thought(therapist_utterance)
