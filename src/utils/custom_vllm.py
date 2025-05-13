@@ -195,7 +195,7 @@ class CustomLLM(LLM):
                 try:
                     prompt_instruction, coping_strategy_content = prompt_str.split('<think>')
                 except:
-                    print(prompt_str)
+                    print(prompt_str.split('<think>'))
                     raise SystemExit
 
                 coping_strategy_content = coping_strategy_content.split('</think>')[-1].split('<|im_end|>')[0].strip()
