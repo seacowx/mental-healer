@@ -202,11 +202,6 @@ class CustomLLM(LLM):
                     add_special_tokens=False
                 )
 
-                print(prompt_token_ids)
-                print('\n\n')
-                print(tokenizer.decode(prompt_token_ids))
-                raise SystemExit
-
             prompt = TokensPrompt(prompt_token_ids=prompt_token_ids)
 
             if mm_data is not None:
