@@ -57,7 +57,7 @@ def main():
     )
     patient_agent = PatientAgent(
         base_vllm_model=offline_vllm_base_model,
-        update_thought_template_path='../prompts/update_thought.yaml',
+        update_thought_template_path='../prompts/patient.yaml',
     )
     therapist_agent = TherapistAgent(
         base_vllm_model=offline_vllm_base_model,

@@ -24,7 +24,7 @@ class PatientAgent(LMAgent):
         base_vllm_model: vLLMOffline | None = None,
         openai_client: OpenAI | None = None,
         openai_async_client: AsyncOpenAI | OpenAIAsyncInference | None = None,
-        update_thought_template_path: str = './prompts/update_thought.yaml',
+        patient_template_path: str = './prompts/patient.yaml',
     ) -> None:
 
         super().__init__(
@@ -36,8 +36,8 @@ class PatientAgent(LMAgent):
         self.meta_persona_profile = {}
         self.persona_profile = {}
         self.role_playing_instruction = ''
-        self.update_thought_template = yaml.safe_load(
-            open(update_thought_template_path)
+        self.patient_template = yaml.safe_load(
+            open(patient_template_path)
         )
 
 
