@@ -170,7 +170,6 @@ class CustomLLM(LLM):
             # the chat message parsing for it.
 
             print(msgs)
-            raise SystemExit
 
             conversation, mm_data = parse_chat_messages(
                 msgs,
@@ -204,6 +203,10 @@ class CustomLLM(LLM):
 
             if mm_processor_kwargs is not None:
                 prompt["mm_processor_kwargs"] = mm_processor_kwargs
+
+            print('\n\n')
+            print(prompt)
+            raise SystemExit
 
             prompts.append(prompt)
 
