@@ -32,7 +32,7 @@ generic_thought: |-
   {{ thought }}
   </thought>
 
-  This is clearly a negative thought. To be able to provide appropriate reframing, I need to understand the user's persona information such as age, gender, personality, etc. The user has provided the following persona profile:
+  This is clearly a negative thought. To be able to provide appropriate reframing, I need to understand the user's persona information such as gender, occupation, personality, etc. The user has provided the following persona profile:
 
   <persona_profile>
   {{ persona_profile }}
