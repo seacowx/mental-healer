@@ -31,4 +31,6 @@ class TherapeuticSession:
 
 
     def simulate_therapeutic_session(self, situation_dict: dict):
-        ...
+
+        print(situation_dict)
+        raise SystemExit()

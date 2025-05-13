@@ -43,11 +43,6 @@ def main():
         persona_hub_path='../../data/PersonaHub/persona_augmented.json',
     )
 
-    for key, val in data.items():
-        print(key)
-        print(val)
-        raise SystemExit
-
     # use Qwen3-32B as the base model to simulate the therapeutic session
     # TODO: change base model to Qwen3-32B
     offline_vllm_base_model = load_all_models(
@@ -68,6 +63,10 @@ def main():
         therapist_agent=therapist_agent,
         patient_agent=patient_agent,
     )
+
+    for key, val in data.items():
+
+        therapeutic_session.simulate_therapeutic_session(situation_dict=val)
 
 
 if __name__ == '__main__':
