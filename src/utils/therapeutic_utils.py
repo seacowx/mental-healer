@@ -10,11 +10,11 @@ class TherapeuticSession:
 
     def __init__(
         self,
-        max_turns: int = 5,
         therapist_agent: TherapistAgent,
         patient_agent: PatientAgent,
         coping_agent: Optional[CopingAgent] = None,
         coping_cot_templates_path: str = './prompts/coping_strategies.yaml',
+        max_turns: int = 5,
     ):
         self.therapist_agent = therapist_agent
         self.patient_agent = patient_agent
