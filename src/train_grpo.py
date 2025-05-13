@@ -16,14 +16,14 @@ import torch
 from datasets import load_dataset
 from trl import GRPOConfig
 
-from agents.patient import PatientAgent
-
-from rewards.sentiment import SentimentReward
 from utils.model_utils import load_all_models
 from utils.custom_trainer import CustomGRPOTrainer
 from utils.data_utils import prepare_training_data
 from utils.custom_trainer_args import GRPOTrainerArgs
-from utils.therapeutic_utils import TherapeuticSession
+
+from agents.patient import PatientAgent
+from rewards.sentiment import SentimentReward
+from session.therapeutic_session import TherapeuticSession
 
 
 def set_seed(seed: int) -> None:
