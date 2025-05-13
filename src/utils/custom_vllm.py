@@ -191,11 +191,12 @@ class CustomLLM(LLM):
                     **_chat_template_kwargs,
                 )
 
-                print(prompt_str)
-                raise SystemExit
-
                 # modify the prompt to put the coping strategy content in between the <think> and </think> tags
-                prompt_instruction, coping_strategy_content = prompt_str.split('<think>')
+                try:
+                    prompt_instruction, coping_strategy_content = prompt_str.split('<think>')
+                except:
+                    print(prompt_str)
+                    raise SystemExit
 
                 coping_strategy_content = coping_strategy_content.split('</think>')[-1].split('<|im_end|>')[0].strip()
                 coping_strategy_content += '\n\n' + self.coping_postfix
