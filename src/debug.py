@@ -38,8 +38,8 @@ def test_sentiment(sentiment_reward_model):
 
 def main():
 
-    tokenizer = AutoTokenizer.from_pretrained('Qwen3/Qwen3-4B')
-    model = AutoModelForCausalLM.from_pretrained('Qwen3/Qwen3-4B')
+    tokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen3-4B')
+    model = AutoModelForCausalLM.from_pretrained('Qwen/Qwen3-4B')
 
     input_msg = [
         {'role': 'user', 'content': 'How many "r"\'s are there in the word "strawberry"?'}
