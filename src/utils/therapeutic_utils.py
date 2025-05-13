@@ -1,3 +1,5 @@
+from typing import Optional
+
 from agents.planner import CopingAgent
 from agents.patient import PatientAgent
 from agents.therapist import TherapistAgent
@@ -9,11 +11,11 @@ class TherapeuticSession:
         self,
         therapist_agent: TherapistAgent,
         patient_agent: PatientAgent,
-        planning_agent: CopingAgent,
+        coping_agent: Optional[CopingAgent] = None,
     ):
         self.therapist_agent = therapist_agent
         self.patient_agent = patient_agent
-        self.planning_agent = planning_agent
+        self.coping_agent = coping_agent
 
         self.coping_cot_templates = yaml.safe_load(open('./prompts/coping_strategies.yaml'))
 
