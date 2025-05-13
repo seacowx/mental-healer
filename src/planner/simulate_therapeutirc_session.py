@@ -1,8 +1,7 @@
 import sys
 import json
 import argparse
-
-sys.path.append('..')
+sys.path.append('../../')
 
 from src.agents.patient import PatientAgent
 from src.agents.therapist import TherapistAgent
