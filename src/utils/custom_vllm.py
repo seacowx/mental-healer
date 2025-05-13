@@ -29,8 +29,12 @@ class CustomLLM(LLM):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        coping_chat_template_path = kwargs.get(
+            'coping_chat_template_path', 
+            './prompts/coping_strategies.yaml'
+        )
         self.coping_chat_template_dict = yaml.safe_load(
-            open('./prompts/coping_strategies.yaml')
+            open(coping_chat_template_path)
         )
         self.coping_chat_template_dict = {
             k: Template(v) for k, v in self.coping_chat_template_dict.items()

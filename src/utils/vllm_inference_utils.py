@@ -352,6 +352,7 @@ class vLLMOffline:
     def __init__(
         self,
         model_path: str, 
+        copinng_chat_template_path: str,
         quantization: str = '',
         max_model_len: int = 2048,
         model_device: torch.device = None,
@@ -377,6 +378,7 @@ class vLLMOffline:
         # use custom vllm model which supports template-based coping with reasoning
         self.vllm_model = CustomLLM(
             model=self.model_path,
+            copinng_chat_template_path=copinng_chat_template_path,
             **vllm_config,
         )
 

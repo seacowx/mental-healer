@@ -1,5 +1,6 @@
 import json, yaml
 
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, f1_score
 
@@ -33,3 +34,20 @@ def test_sentiment(sentiment_reward_model):
     print(f"Accuracy: {accuracy_score(label_encoded, output_encoded)}, F1: {f1_score(label_encoded, output_encoded, average='weighted')}")
 
     raise SystemExit
+
+
+def main():
+
+    tokenizer = AutoTokenizer.from_pretrained('Qwen3/Qwen3-4B')
+    model = AutoModelForCausalLM.from_pretrained('Qwen3/Qwen3-4B')
+
+    input_msg = [
+        {'role': 'user', 'content': ''}
+    ]
+    print(tokenizer.decode(model.generate(tokenizer.encode(input_msg), max_new_tokens=10)))
+
+    raise SystemExit
+
+
+if __name__ == '__main__':
+    main()
