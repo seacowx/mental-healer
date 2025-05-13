@@ -178,9 +178,6 @@ class CustomLLM(LLM):
                 content_format=resolved_content_format,
             )
 
-            print(conversation)
-            raise SystemExit
-
             if isinstance(tokenizer, MistralTokenizer):
                 prompt_token_ids = apply_mistral_chat_template(
                     tokenizer,
@@ -198,6 +195,9 @@ class CustomLLM(LLM):
                 # should not be added by the tokenizer in this case.
                 prompt_token_ids = tokenizer.encode(prompt_str,
                                                     add_special_tokens=False)
+
+            print(prompt_str)
+            raise SystemExit
 
             prompt = TokensPrompt(prompt_token_ids=prompt_token_ids)
 
