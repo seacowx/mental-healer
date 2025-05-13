@@ -47,6 +47,16 @@ class CustomLLM(LLM):
             k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
         }
 
+        # get the token id corresponding to the <think> and </think> tags
+        tokenizer = self.get_tokenizer()
+        self.bot_token_id = tokenizer.encode('<think>')[0]
+        self.eot_token_id = tokenizer.encode('</think>')[0]
+
+        print(self.bot_token_id)
+        print(self.eot_token_id)
+        raise SystemExit
+        
+
         super().__init__(*args, **kwargs)
 
     
