@@ -387,8 +387,12 @@ class vLLMOffline:
 
     def inference(
         self, 
-        message_list: list, 
+        message_list: list = [], 
+        situation_desc_list: list = [],
+        patient_thought_list: list = [],
+        patient_persona_profile_list: list = [],
         lora_request: LoRARequest = None,
+        is_coping_utterance: bool = False,
         **kwargs
     ) -> list:
         """
@@ -418,12 +422,22 @@ class vLLMOffline:
         if lora_request:
             extra_kwargs['lora_request'] = lora_request
 
-        response = self.vllm_model.chat(
-            messages=message_list, 
-            sampling_params=sampling_params,
-            use_tqdm=True,
-            **extra_kwargs,
-        )
+        if is_coping_utterance:
+            response = self.vllm_model.coping_chat(
+                situation_desc_list=situation_desc_list,
+                patient_thought_list=patient_thought_list,
+                patient_persona_profile_list=patient_persona_profile_list,
+                sampling_params=sampling_params,
+                use_tqdm=True,
+                **extra_kwargs,
+            )
+        else:
+            response = self.vllm_model.chat(
+                messages=message_list, 
+                sampling_params=sampling_params,
+                use_tqdm=True,
+                **extra_kwargs,
+            )
 
         response = [ele.outputs[0].text for ele in response]
 
