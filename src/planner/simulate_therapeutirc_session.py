@@ -63,3 +63,7 @@ def main():
         therapist_agent=therapist_agent,
         patient_agent=patient_agent,
     )
+
+
+if __name__ == '__main__':
+    main()
