@@ -20,9 +20,14 @@ class TherapistAgent(LMAgent):
 
     def utter(
         self, 
-        situation_desc: str,
-        patient_thought: str,
-        patient_persona_profile: str,
+        situation_desc_list: list[str],
+        patient_thought_list: list[str],
+        patient_persona_profile_list: list[str],
         session_history: SessionHistory, 
     ) -> str:
-        raise NotImplementedError()
+
+        self.base_vllm_model.coping_chat(
+            situation_desc_list=situation_desc_list,
+            patient_thought_list=patient_thought_list,
+            patient_persona_profile_list=patient_persona_profile_list,
+        )

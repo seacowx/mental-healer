@@ -5,8 +5,9 @@ Additional features:
 - ...: allow the user to mannually insert a meta reasoning template (e.g. a coping strategy) as a part of the CoT reasoning process. This would allow the model to continue reasoning with the predefined template. 
 """
 
+import yaml
+from jinja2 import Template
 from typing import Any, Optional, Union, cast
-
 
 from vllm import LLM
 from vllm.lora.request import LoRARequest
@@ -28,11 +29,45 @@ class CustomLLM(LLM):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.coping_chat_template_dict = yaml.safe_load(
+            open('./prompts/coping_strategies.yaml')
+        )
+        self.coping_chat_template_dict = {
+            k: Template(v) for k, v in self.coping_chat_template_dict.items()
+        }
+
+    
+    def _make_coping_chat_messages(
+        self, 
+        situation_desc_list: list,
+        patient_thought_list: list,
+        patient_persona_profile_list: list,
+    ) -> list[list[ChatCompletionMessageParam]]:
+
+        generic_thought = self.coping_chat_template_dict['generic_thought']
+
+        for situation, thought, persona_profile in zip(
+            situation_desc_list,
+            patient_thought_list,
+            patient_persona_profile_list,
+        ):
+            generic_thought_prompt = generic_thought.render(
+                situation=situation,
+                thought=thought,
+                persona_profile=persona_profile,
+            )
+
+            print(generic_thought_prompt)
+            raise SystemExit
+
+        raise NotImplementedError()
+
 
     def coping_chat(
         self,
-        messages: Union[list[ChatCompletionMessageParam],
-                    list[list[ChatCompletionMessageParam]]],
+        situation_desc_list: list,
+        patient_thought_list: list,
+        patient_persona_profile_list: list,
         sampling_params: Optional[Union[SamplingParams,
                                         list[SamplingParams]]] = None,
         use_tqdm: bool = True,
@@ -45,6 +80,14 @@ class CustomLLM(LLM):
         chat_template_kwargs: Optional[dict[str, Any]] = None,
         mm_processor_kwargs: Optional[dict[str, Any]] = None,
     ):
+
+        # make coping chat messages
+        messages = self._make_coping_chat_messages(
+            situation_desc_list=situation_desc_list,
+            patient_thought_list=patient_thought_list,
+            patient_persona_profile_list=patient_persona_profile_list,
+        )
+
         list_of_messages: list[list[ChatCompletionMessageParam]]
 
         # Handle multi and single conversations

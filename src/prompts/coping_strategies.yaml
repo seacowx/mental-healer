@@ -4,19 +4,19 @@ generic_thought: |-
   First, Let's analyze the event that triggered the negative thought. The user has provided the following information:
 
   <situation>
-  {situation}
+  {{ situation }}
   </situation>
 
   Experiencing this event leads the user to produce the following thought: 
 
   <thought>
-  {thought}
+  {{ thought }}
   </thought>
 
   This is clearly a negative thought. To be able to provide appropriate reframing, I need to understand the user's persona information such as age, gender, personality, etc. The user has provided the following persona profile:
 
   <persona_profile>
-  {persona_profile}
+  {{ persona_profile }}
   </persona_profile>
 
   Based on the above information, the following coping strategy would be appropriate:

@@ -10,7 +10,7 @@ from rewards.sentiment import SentimentReward
 
 from utils.model_utils import load_all_models
 from utils.data_utils import prepare_training_data
-from utils.therapeutic_utils import TherapeuticSession
+from session.therapeutic_session import TherapeuticSession
 
 
 def parse_args():

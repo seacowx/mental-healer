@@ -374,6 +374,7 @@ class vLLMOffline:
         vllm_config['max_lora_rank'] = max_lora_rank
         vllm_config['tensor_parallel_size'] = tensor_parallel_size
 
+        # use custom vllm model which supports template-based coping with reasoning
         self.vllm_model = CustomLLM(
             model=self.model_path,
             **vllm_config,

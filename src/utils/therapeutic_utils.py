@@ -5,7 +5,7 @@ from typing import Optional
 
 class SessionHistory:
 
-    def __init__(self,):
+    def __init__(self, n_samples: int = 8):
         self.coping_strategies = [
             'meta_rp_commit',
             'meta_rc_commit',
@@ -16,14 +16,25 @@ class SessionHistory:
             'object_rp_decommit',
             'object_rc_decommit',
         ]
+        self.n_samples = n_samples
 
-        self.coping_strategies_history = {
+        # sentiment buffer stores the sentiment after each turn of the therapeutic session
+        self.sentiment_buffer = [[] for _ in range(self.n_samples)]
+        # coping strategies history stores the complete dialogue history of each coping strategy of each sample
+        self.coping_strategies_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategies
-        }
+        } for _ in range(self.n_samples)]
 
     
-    def add_coping_strategy(self, coping_strategy: str, utterance: str, role: str):
-        self.coping_strategies_history[coping_strategy].append({
+    def add_utterance(
+        self, 
+        sample_idx: int,
+        coping_strategy: str, 
+        utterance: str, 
+        role: str
+    ):
+
+        self.coping_strategies_history[sample_idx][coping_strategy].append({
             'role': role,
             'utterance': utterance,
         })
@@ -35,6 +46,7 @@ class SessionHistory:
 
 
     def reset(self,):
-        self.coping_strategies_history = {
+        self.coping_strategies_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategies
-        }
+        } for _ in range(self.n_samples)]
+        self.sentiment_buffer = [[] for _ in range(self.n_samples)]
