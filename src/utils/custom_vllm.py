@@ -133,6 +133,7 @@ class CustomLLM(LLM):
 
         print(messages[0])
         print(len(messages))
+        print(len(sample_idx_key_list))
         print(sample_idx_key_list)
         raise SystemExit
 
