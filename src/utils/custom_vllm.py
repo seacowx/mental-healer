@@ -195,6 +195,9 @@ class CustomLLM(LLM):
                 prompt_token_ids = tokenizer.encode(prompt_str,
                                                     add_special_tokens=False)
 
+            print(prompt_str)
+            raise SystemExit
+
             prompt = TokensPrompt(prompt_token_ids=prompt_token_ids)
 
             if mm_data is not None:
