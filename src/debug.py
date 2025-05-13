@@ -55,7 +55,7 @@ def main():
     )
 
     output = model.generate(
-        input_chat_msg.squeeze(),
+        input_chat_msg,
         max_new_tokens=1024,
     )
 
