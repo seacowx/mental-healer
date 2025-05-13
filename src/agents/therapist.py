@@ -26,8 +26,9 @@ class TherapistAgent(LMAgent):
         session_history: SessionHistory, 
     ) -> str:
 
-        self.base_vllm_model.coping_chat(
+        self.base_vllm_model.inference(
             situation_desc_list=situation_desc_list,
             patient_thought_list=patient_thought_list,
             patient_persona_profile_list=patient_persona_profile_list,
+            is_coping_utterance=True,
         )
