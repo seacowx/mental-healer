@@ -38,7 +38,8 @@ class CustomLLM(LLM):
         self.coping_generic_instruction_template = Template(self.coping_chat_template_dict['generic_instruction'])
         self.coping_generic_thought_template = Template(self.coping_chat_template_dict['generic_thought'])
         self.coping_strategy_template = {
-            k: v for k, v in self.coping_chat_template_dict.items() if k != 'generic_thought'
+            k: v for k, v in self.coping_chat_template_dict.items() 
+            if k not in  ['generic_thought', 'generic_instruction']
         }
 
         # remove custom kwargs
