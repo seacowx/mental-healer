@@ -24,10 +24,10 @@ def parse_args():
     parser.add_argument(
         '--training_data_path',
         type=str,
-        default='../data/situations/situations_with_initial_thought_top1.json',
+        default='../../data/situations/situations_with_initial_thought_top1.json',
         help= (
             "The path to the training data file. Default is " 
-            "'../data/situations/situations_with_initial_thought_top1.json'.",
+            "'../../data/situations/situations_with_initial_thought_top1.json'.",
         )
     )
     return parser.parse_args()
