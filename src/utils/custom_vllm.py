@@ -128,7 +128,7 @@ class CustomLLM(LLM):
         sample_idx_key_list = []
         for sample_idx, coping_chat_msg_dict in enumerate(coping_chat_messages):
             for coping_strategy_name, coping_strategy_msg_list in coping_chat_msg_dict.items():
-                messages.extend(coping_strategy_msg_list)
+                messages.append(coping_strategy_msg_list)
                 sample_idx_key_list.append((sample_idx, coping_strategy_name))
 
         print(messages[0])
