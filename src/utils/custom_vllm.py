@@ -27,6 +27,12 @@ from vllm.inputs import TokensPrompt, TextPrompt
 class CustomLLM(LLM):
 
     def __init__(self, *args, **kwargs):
+
+        # remove custom kwargs
+        kwargs = {
+            k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
+        }
+
         super().__init__(*args, **kwargs)
 
         coping_chat_template_path = kwargs.get(
