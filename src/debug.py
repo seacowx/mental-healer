@@ -42,7 +42,7 @@ def main():
     model = AutoModelForCausalLM.from_pretrained('Qwen3/Qwen3-4B')
 
     input_msg = [
-        {'role': 'user', 'content': ''}
+        {'role': 'user', 'content': 'How many "r"\'s are there in the word "strawberry"?'}
     ]
     print(tokenizer.decode(model.generate(tokenizer.encode(input_msg), max_new_tokens=10)))
 

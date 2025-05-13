@@ -20,6 +20,7 @@ class TherapeuticSession:
         self.therapist_agent = therapist_agent
         self.patient_agent = patient_agent
         self.coping_agent = coping_agent
+        self.max_turns = max_turns
 
         self.coping_cot_templates = yaml.safe_load(open(coping_cot_templates_path))
 
