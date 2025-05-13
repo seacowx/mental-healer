@@ -45,7 +45,7 @@ class TherapeuticSession:
                 session_history=session_history,
             )
 
-            print(therapist_utterance)
+            print(therapist_utterance[0])
             raise SystemExit
 
             # # generate the patient's new thought
