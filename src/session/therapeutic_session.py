@@ -46,7 +46,7 @@ class TherapeuticSession:
                 base_vllm_model=self.base_vllm_model,
                 patient_template_path=self.patient_prompt_template_path,
             )
-            cur_patient_agent = cur_patient_agent.set_persona(cur_persona_profile)
+            cur_patient_agent.set_persona(cur_persona_profile)
 
             # start the therapeutic session
             session_history = SessionHistory()
