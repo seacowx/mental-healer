@@ -6,6 +6,7 @@ from agents.planner import CopingAgent
 from agents.patient import PatientAgent
 from agents.therapist import TherapistAgent
 from utils.therapeutic_utils import SessionHistory
+from utils.vllm_inference_utils import OfflineVLLM
 
 
 class TherapeuticSession:

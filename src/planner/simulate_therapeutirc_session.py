@@ -22,7 +22,7 @@ def parse_args():
         help="The base model to use for the simulating the therapeutic session.",
     )
     parser.add_argument(
-        self.patient_agent = PatientAgent(base_vllm_model)
+        '--training_data_path',
         type=str,
         default='../../data/situations/situations_with_initial_thought_top1.json',
         help= (
@@ -33,7 +33,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def '--training_data_path',
+def main():
 
     args = parse_args()
 
