@@ -133,9 +133,6 @@ class CustomLLM(LLM):
                 messages.append(coping_strategy_msg_list)
                 sample_idx_key_list.append((sample_idx, coping_strategy_name))
 
-        print(sample_idx_key_list)
-        raise SystemExit
-
         list_of_messages: list[list[ChatCompletionMessageParam]]
 
         # Handle multi and single conversations
@@ -225,4 +222,4 @@ class CustomLLM(LLM):
             sampling_params=sampling_params,
             use_tqdm=use_tqdm,
             lora_request=lora_request,
-        )
+        ), sample_idx_key_list
