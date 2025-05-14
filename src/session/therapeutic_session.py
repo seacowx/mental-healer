@@ -53,7 +53,7 @@ class TherapeuticSession:
 
             # instantiate a patient agent and set the persona profile
             patient_agent_list = [
-                cur_patient_agent = PatientAgent(
+                PatientAgent(
                     base_vllm_model=self.base_vllm_model,
                     patient_template_path=self.patient_prompt_template_path,
                     persona_profile=cur_persona_profile,
