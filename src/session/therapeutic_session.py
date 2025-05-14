@@ -77,10 +77,10 @@ class TherapeuticSession:
                     session_buffer_list=session_buffer_list,
                 )
 
-                print(therapist_utterance_dict_list)
-                raise SystemExit
-
                 # update the session history
+                for therapist_utterance_dict in therapist_utterance_dict_list:
+                    print(therapist_utterance_dict)
+                    raise SystemExit
                 # session_buffer.add_utterance(
                 #     therapist_utterance_dict_list=therapist_utterance_dict_list,
                 # )
