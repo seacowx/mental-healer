@@ -1,5 +1,4 @@
-import yaml
-from typing import Optional
+import json
 
 
 class TherapeuticSessionBuffer:
@@ -40,7 +39,11 @@ class TherapeuticSessionBuffer:
     
     @property
     def current_session_history(self) -> dict:
-        return self.session_history
+        return json.dumps(self.session_history)
+
+
+    def get_session_history(self, sample_idx: int) -> dict:
+        return self.session_history[sample_idx]
 
 
     def reset(self,):

@@ -81,5 +81,12 @@ class PatientAgent(LMAgent):
                 "'set_persona(persona_profile_dict_list)' before calling the utter method."
             )
 
-        print(session_buffer.current_session_history)
-        raise SystemExit
+        for sample_idx in range(len(situation_desc_list)):
+
+            cur_persona_profile = self.persona_profile_list[sample_idx]
+            cur_session_history = session_buffer.get_session_history(sample_idx=sample_idx)
+
+            print(cur_persona_profile)
+            print('\n\n')
+            print(cur_session_history)
+            raise SystemExit
