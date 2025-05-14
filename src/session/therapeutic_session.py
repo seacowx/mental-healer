@@ -64,9 +64,6 @@ class TherapeuticSession:
                 persona_profile_dict_list=cur_persona_profile_list
             )
 
-            print(self.patient_agent.current_persona_profile)
-            raise SystemExit
-
             # instantiate a patient agent and set the persona profile
             for _ in range(self.max_turns):
                 # generate the therapist's utterance
@@ -88,6 +85,9 @@ class TherapeuticSession:
                         coping_strategy=coping_strategy,
                         coping_utterance=coping_utterance,
                     )
+
+                print(session_buffer.current_session_history)
+                raise SystemExit
 
                 # TODO: finish implementing this: patient agent should react to the therapist's utterance by producing a new thought
                 # generate the patient's new thought
