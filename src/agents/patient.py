@@ -21,6 +21,7 @@ class PatientAgent(LMAgent):
 
     def __init__(
         self,
+        persona_profile: dict,
         base_vllm_model: vLLMOffline | None = None,
         openai_client: OpenAI | None = None,
         openai_async_client: AsyncOpenAI | OpenAIAsyncInference | None = None,
@@ -39,6 +40,8 @@ class PatientAgent(LMAgent):
         self.patient_template = yaml.safe_load(
             open(patient_template_path)
         )
+
+        self.set_persona(persona_profile)
 
 
     @property

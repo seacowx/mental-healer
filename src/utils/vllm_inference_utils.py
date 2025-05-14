@@ -391,6 +391,7 @@ class vLLMOffline:
         situation_desc_list: list = [],
         patient_thought_list: list = [],
         patient_persona_profile_list: list = [],
+        session_buffer_list: list = [],
         lora_request: LoRARequest = None,
         is_coping_utterance: bool = False,
         **kwargs

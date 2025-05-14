@@ -39,7 +39,7 @@ def main():
         persona_hub_path='../../data/PersonaHub/persona_augmented.json',
     )
 
-    # use Qwen3-32B as the base model to simulate the therapeutic session
+    # use Qwen3-8B as the base model to simulate the therapeutic session
     # TODO: change base model to Qwen3-32B
     offline_vllm_base_model = load_all_models(
         base_model_path=args.base_model,

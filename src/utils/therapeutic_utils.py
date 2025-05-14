@@ -50,7 +50,7 @@ class TherapeuticSessionBuffer:
 
     
     @property
-    def session_history(self) -> dict:
+    def current_session_history(self) -> dict:
         return self.session_history
 
 

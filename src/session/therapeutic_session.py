@@ -33,30 +33,44 @@ class TherapeuticSession:
         self.patient_thought_update_template = self.patient_prompt_template['react_to_therapist_utterance']
 
 
-    def simulate_therapeutic_session(self, situation_dict_list: list[dict]):
+    # TODO: add support for multiple samples batched inference
+    def batch_simulate_therapeutic_session(
+        self, 
+        situation_dict_list: list[dict],
+        n_samples: int = 1,
+    ):
+        # batch situation_dict_list according to the number of samples
+        situation_dict_list_batches = [
+            situation_dict_list[i:i+n_samples]
+            for i in range(0, len(situation_dict_list), n_samples)
+        ]
 
-        for situation_dict in situation_dict_list:
+        for situation_dict_batch in situation_dict_list_batches:
 
-            cur_situation = situation_dict['situation']
-            cur_thought = situation_dict['initial_thought']
-            cur_persona_profile = situation_dict['persona_profile']
+            cur_situation_list = [ele['situation'] for ele in situation_dict_batch]
+            cur_thought_list = [ele['initial_thought'] for ele in situation_dict_batch]
+            cur_persona_profile_list = [ele['persona_profile'] for ele in situation_dict_batch]
 
             # instantiate a patient agent and set the persona profile
-            cur_patient_agent = PatientAgent(
-                base_vllm_model=self.base_vllm_model,
-                patient_template_path=self.patient_prompt_template_path,
-            )
-            cur_patient_agent.set_persona(cur_persona_profile)
-
-            # start the therapeutic session
-            session_buffer = TherapeuticSessionBuffer()
+            patient_agent_list = [
+                cur_patient_agent = PatientAgent(
+                    base_vllm_model=self.base_vllm_model,
+                    patient_template_path=self.patient_prompt_template_path,
+                    persona_profile=cur_persona_profile,
+                )
+                for cur_persona_profile in cur_persona_profile_list
+            ]
+            session_buffer_list = [
+                TherapeuticSessionBuffer(n_samples=n_samples)
+                for _ in range(n_samples)
+            ]
             for _ in range(self.max_turns):
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
-                    situation_desc_list=[cur_situation],
-                    patient_thought_list=[cur_thought],
-                    patient_persona_profile_list=[cur_persona_profile],
-                    session_history=session_buffer,
+                    situation_desc_list=cur_situation_list,
+                    patient_thought_list=cur_thought_list,
+                    patient_persona_profile_list=cur_persona_profile_list,
+                    session_buffer_list=session_buffer_list,
                 )
 
                 # update the session history
@@ -64,7 +78,7 @@ class TherapeuticSession:
                     therapist_utterance_dict_list=therapist_utterance_dict_list,
                 )
 
-                print(session_buffer.session_history)
+                print(session_buffer.current_session_history)
                 raise SystemExit
 
                 # TODO: finish implementing this: patient agent should react to the therapist's utterance by producing a new thought
