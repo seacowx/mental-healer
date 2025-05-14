@@ -217,9 +217,11 @@ class CustomLLM(LLM):
 
             prompts.append(prompt)
 
-        return self.generate(
+        output_list = self.generate(
             prompts,
             sampling_params=sampling_params,
             use_tqdm=use_tqdm,
             lora_request=lora_request,
-        ), sample_idx_key_list
+        )
+
+        return output_list, sample_idx_key_list

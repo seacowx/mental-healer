@@ -30,8 +30,10 @@ class TherapistAgent(LMAgent):
             situation_desc_list=situation_desc_list,
             patient_thought_list=patient_thought_list,
             patient_persona_profile_list=patient_persona_profile_list,
-            session_buffer_list=session_buffer_list,
             is_coping_utterance=True,
         )
+
+        print(utterance_list)
+        raise SystemExit
 
         return utterance_list
