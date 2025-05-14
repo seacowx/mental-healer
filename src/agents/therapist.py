@@ -1,5 +1,5 @@
 from agents.base_agent import LMAgent
-from utils.therapeutic_utils import SessionHistory
+from utils.therapeutic_utils import TherapeuticSessionBuffer
 
 
 class TherapistAgent(LMAgent):
@@ -23,8 +23,8 @@ class TherapistAgent(LMAgent):
         situation_desc_list: list[str],
         patient_thought_list: list[str],
         patient_persona_profile_list: list[str],
-        session_history: SessionHistory, 
-    ) -> str:
+        session_buffer: TherapeuticSessionBuffer, 
+    ) -> list[dict]:
 
         utterance_list = self.base_vllm_model.inference(
             situation_desc_list=situation_desc_list,

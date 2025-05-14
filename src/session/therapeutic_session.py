@@ -78,3 +78,4 @@ class TherapeuticSession:
 
                 # # generate the patient's new thought
                 # patient_new_thought = self.patient_agent.generate_new_thought(therapist_utterance)
+
