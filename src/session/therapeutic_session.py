@@ -60,6 +60,5 @@ class TherapeuticSession:
                 print('\n\n')
                 print(cur_patient_agent.show_persona_profile)
                 raise SystemExit
-
                 # # generate the patient's new thought
                 # patient_new_thought = self.patient_agent.generate_new_thought(therapist_utterance)
