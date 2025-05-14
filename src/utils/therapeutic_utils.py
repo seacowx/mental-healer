@@ -2,7 +2,7 @@ import yaml
 from typing import Optional
 
 
-class SessionHistory:
+class TherapeuticSessionBuffer:
 
     def __init__(self, n_samples: int = 8):
         self.coping_strategies = [

@@ -5,8 +5,8 @@ from typing import Optional
 from agents.planner import CopingAgent
 from agents.patient import PatientAgent
 from agents.therapist import TherapistAgent
-from utils.therapeutic_utils import SessionHistory
 from utils.vllm_inference_utils import vLLMOffline
+from utils.therapeutic_utils import TherapeuticSessionBuffer
 
 
 class TherapeuticSession:
@@ -49,20 +49,23 @@ class TherapeuticSession:
             cur_patient_agent.set_persona(cur_persona_profile)
 
             # start the therapeutic session
-            session_history = SessionHistory()
+            session_buffer = TherapeuticSessionBuffer()
             for _ in range(self.max_turns):
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
                     situation_desc_list=[cur_situation],
                     patient_thought_list=[cur_thought],
                     patient_persona_profile_list=[cur_persona_profile],
-                    session_history=session_history,
+                    session_history=session_buffer,
                 )
 
                 # update the session history
-                session_history.add_utterance(
+                session_buffer.add_utterance(
                     therapist_utterance_dict_list=therapist_utterance_dict_list,
                 )
+
+                print(session_buffer.session_history)
+                raise SystemExit
 
                 # TODO: finish implementing this: patient agent should react to the therapist's utterance by producing a new thought
                 # # generate the patient's new thought
