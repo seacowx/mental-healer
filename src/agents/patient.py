@@ -42,15 +42,11 @@ class PatientAgent(LMAgent):
 
 
     @property
-    def current_persona_profile(self, sample_idx: int) -> str:
+    def current_persona_profile(self) -> str:
         """
         Get the persona profile for the agent
         """
-
-        if sample_idx:
-            return json.dumps(self.persona_profile_list[sample_idx])
-        else:
-            return json.dumps(self.persona_profile_list)
+        return json.dumps(self.persona_profile_list)
 
 
     def set_persona(self, persona_profile_dict_list: list[dict]) -> None:
