@@ -61,8 +61,6 @@ class TherapeuticSession:
 
                 # update the session history
                 session_history.add_utterance(
-                    sample_idx_list=[0],
-                    coping_strategy_list=[],
                     therapist_utterance_dict_list=therapist_utterance_dict_list,
                 )
 

@@ -20,34 +20,42 @@ class SessionHistory:
         # sentiment buffer stores the sentiment after each turn of the therapeutic session
         self.sentiment_buffer = [[] for _ in range(self.n_samples)]
         # coping strategies history stores the complete dialogue history of each coping strategy of each sample
-        self.coping_strategies_history = [{
+        self.session_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategies
         } for _ in range(self.n_samples)]
 
     
     def add_utterance(
         self, 
-        sample_idx_list: list[int],
-        coping_strategy_list: list[str], 
         therapist_utterance_dict_list: list[dict] = [],
         patient_utterance_dict_list: list[dict] = [],
     ):
 
         if therapist_utterance_dict_list:
-            role_list = ['therapist'] * len(therapist_utterance_dict_list)
+            role = 'therapist'
+            utterance_dict_list = therapist_utterance_dict_list
         elif patient_utterance_dict_list:
-            role_list = ['patient'] * len(patient_utterance_dict_list)
+            role = 'patient'
+            utterance_dict_list = patient_utterance_dict_list
         else:
             raise ValueError('Either therapist_utterance_dict_list or patient_utterance_dict_list must be provided')
 
+        for utterance_dict in utterance_dict_list:
+            for idx_and_strategy, utterance in utterance_dict.items():
+                sample_idx, coping_strategy = idx_and_strategy.split('||')
+                self.session_history[int(sample_idx)][coping_strategy].append({
+                    'role': role,
+                    'utterance': utterance,
+                })
+
     
     @property
-    def show_coping_strategies_history(self) -> dict:
-        return self.coping_strategies_history
+    def session_history(self) -> dict:
+        return self.session_history
 
 
     def reset(self,):
-        self.coping_strategies_history = [{
+        self.session_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategies
         } for _ in range(self.n_samples)]
         self.sentiment_buffer = [[] for _ in range(self.n_samples)]
