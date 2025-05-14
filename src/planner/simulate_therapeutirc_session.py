@@ -59,7 +59,7 @@ def main():
     )
 
     therapeutic_session.batch_simulate_therapeutic_session(
-        situation_dict_list=data,
+        data=data,
         batch_size=1,
     )
 
