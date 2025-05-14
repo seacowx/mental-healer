@@ -36,12 +36,12 @@ class TherapeuticSession:
     # TODO: add support for multiple samples batched inference
     def batch_simulate_therapeutic_session(
         self, 
-        situation_dict_list: list[dict],
+        data: dict[str, dict],
         batch_size: int = 1,
     ):
 
-        print(situation_dict_list)
-        raise SystemExit
+        situation_key_list = list(data.keys())
+        situation_dict_list = [data[key] for key in situation_key_list]
     
         # batch situation_dict_list according to the number of samples
         situation_dict_list_batches = [
@@ -50,6 +50,9 @@ class TherapeuticSession:
         ]
 
         for situation_dict_batch in situation_dict_list_batches:
+
+            print(situation_dict_batch)
+            raise SystemExit
 
             cur_situation_list = [ele['situation'] for ele in situation_dict_batch]
             cur_thought_list = [ele['initial_thought'] for ele in situation_dict_batch]
