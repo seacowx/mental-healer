@@ -86,16 +86,12 @@ class TherapeuticSession:
                         coping_utterance=coping_utterance,
                     )
 
-                print(session_buffer.current_session_history)
-                raise SystemExit
-
                 # TODO: finish implementing this: patient agent should react to the therapist's utterance by producing a new thought
                 # generate the patient's new thought
-                patient_new_thought_list = cur_patient_agent.utter(
-                    situation_desc_list=[cur_situation],
-                    patient_thought_list=[cur_thought],
-                    patient_persona_profile_list=[cur_persona_profile],
-                    session_history=session_history,
+                patient_new_thought_list = self.patient_agent.utter(
+                    situation_desc_list=cur_situation_list,
+                    patient_thought_list=cur_thought_list,
+                    session_buffer=session_buffer,
                 )
 
                 # # generate the patient's new thought

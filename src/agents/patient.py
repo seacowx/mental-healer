@@ -13,8 +13,8 @@ from copy import deepcopy
 from openai import OpenAI, AsyncOpenAI
 
 from agents.base_agent import LMAgent
+from session.therapeutic_session import TherapeuticSessionBuffer
 from utils.vllm_inference_utils import vLLMOffline, OpenAIAsyncInference
-
 
 class PatientAgent(LMAgent):
 
@@ -64,16 +64,22 @@ class PatientAgent(LMAgent):
         """
         Update the agent's thought given the therapist's utterance
         """
-        raise NotImplementedError()
+
+        print(therapist_utterance)
 
 
     def utter(
         self, 
-        self_utterance: str = '',
-        therapist_utterance: str = ''
+        situation_desc_list: list[str],
+        patient_thought_list: list[str],
+        session_buffer: TherapeuticSessionBuffer,
     ) -> str:
 
-        assert self.persona_profile, \
-            "Persona profile is not set. Please set it using 'set_persona(persona_profile)' before calling the utter method."
+        assert self.persona_profile_list, \
+            (
+                "Persona profile is not set. Please set it using " 
+                "'set_persona(persona_profile_dict_list)' before calling the utter method."
+            )
 
-        return self.update_thought(therapist_utterance=therapist_utterance)
+        print(session_buffer.current_session_history)
+        raise SystemExit
