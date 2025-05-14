@@ -41,7 +41,7 @@ class TherapeuticSession:
             cur_thought = situation_dict['initial_thought']
             cur_persona_profile = situation_dict['persona_profile']
 
-            # set the persona profile for the patient agent
+            # instantiate a patient agent and set the persona profile
             cur_patient_agent = PatientAgent(
                 base_vllm_model=self.base_vllm_model,
                 patient_template_path=self.patient_prompt_template_path,
@@ -59,13 +59,22 @@ class TherapeuticSession:
                     session_history=session_history,
                 )
 
+                # update the session history
+                session_history.add_utterance(
+                    sample_idx_list=[0],
+                    coping_strategy_list=[],
+                    utterance_list=therapist_utterance_list,
+                    role_list=['therapist'],
+                )
+
                 # TODO: finish implementing this: patient agent should react to the therapist's utterance by producing a new thought
                 # # generate the patient's new thought
-                # patient_new_thought_list = cur_patient_agent.utter()
+                patient_new_thought_list = cur_patient_agent.utter(
+                    situation_desc_list=[cur_situation],
+                    patient_thought_list=[cur_thought],
+                    patient_persona_profile_list=[cur_persona_profile],
+                    session_history=session_history,
+                )
 
-                print(therapist_utterance_list)
-                print('\n\n')
-                print(cur_patient_agent.show_persona_profile)
-                raise SystemExit
                 # # generate the patient's new thought
                 # patient_new_thought = self.patient_agent.generate_new_thought(therapist_utterance)

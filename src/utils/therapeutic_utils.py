@@ -27,16 +27,19 @@ class SessionHistory:
     
     def add_utterance(
         self, 
-        sample_idx: int,
-        coping_strategy: str, 
-        utterance: str, 
-        role: str
+        sample_idx_list: list[int],
+        coping_strategy_list: list[str], 
+        utterance_list: list[str], 
+        role_list: list[str]
     ):
 
-        self.coping_strategies_history[sample_idx][coping_strategy].append({
-            'role': role,
-            'utterance': utterance,
-        })
+        for sample_idx, coping_strategy, utterance, role in zip(
+            sample_idx_list, coping_strategy_list, utterance_list, role_list
+        ):
+            self.coping_strategies_history[sample_idx][coping_strategy].append({
+                'role': role,
+                'utterance': utterance,
+            })
 
     
     @property

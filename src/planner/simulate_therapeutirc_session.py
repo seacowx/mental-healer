@@ -1,10 +1,6 @@
 import sys
-import json
 import argparse
 sys.path.append('..')
-
-from agents.patient import PatientAgent
-from agents.therapist import TherapistAgent
 
 from rewards.sentiment import SentimentReward
 
