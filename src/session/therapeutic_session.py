@@ -41,6 +41,9 @@ class TherapeuticSession:
             # set the persona profile for the patient agent
             cur_patient_agent = self.patient_agent.set_persona(cur_persona_profile)
 
+            print(cur_patient_agent)
+            raise SystemExit
+
             # start the therapeutic session
             session_history = SessionHistory()
             for _ in range(self.max_turns):

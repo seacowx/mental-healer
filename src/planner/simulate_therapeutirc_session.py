@@ -63,9 +63,6 @@ def main():
         base_vllm_model=offline_vllm_base_model,
     )
 
-    print(patient_agent)
-    raise SystemExit
-
     therapeutic_session = TherapeuticSession(
         therapist_agent=therapist_agent,
         patient_agent=patient_agent,
