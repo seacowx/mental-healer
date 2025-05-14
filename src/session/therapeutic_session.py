@@ -6,14 +6,14 @@ from agents.planner import CopingAgent
 from agents.patient import PatientAgent
 from agents.therapist import TherapistAgent
 from utils.therapeutic_utils import SessionHistory
-from utils.vllm_inference_utils import OfflineVLLM
+from utils.vllm_inference_utils import vLLMOffline
 
 
 class TherapeuticSession:
 
     def __init__(
         self,
-        base_vllm_model: OfflineVLLM,
+        base_vllm_model: vLLMOffline,
         coping_agent: Optional[CopingAgent] = None,
         coping_cot_templates_path: str = './prompts/coping_strategies.yaml',
         patient_prompt_template_path: str = './prompts/update_thought.yaml',
