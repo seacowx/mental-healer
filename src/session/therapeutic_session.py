@@ -48,6 +48,7 @@ class TherapeuticSession:
             situation_dict_list[i:i+batch_size]
             for i in range(0, len(situation_dict_list), batch_size)
         ]
+        session_buffer = TherapeuticSessionBuffer(batch_size=batch_size)
 
         for situation_dict_batch in situation_dict_list_batches:
 
@@ -64,26 +65,29 @@ class TherapeuticSession:
                 )
                 for cur_persona_profile in cur_persona_profile_list
             ]
-            session_buffer_list = [
-                TherapeuticSessionBuffer(batch_size=batch_size)
-                for _ in range(batch_size)
-            ]
             for _ in range(self.max_turns):
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
                     situation_desc_list=cur_situation_list,
                     patient_thought_list=cur_thought_list,
                     patient_persona_profile_list=cur_persona_profile_list,
-                    session_buffer_list=session_buffer_list,
+                    session_buffer=session_buffer,
                 )
 
                 # update the session history
                 for therapist_utterance_dict in therapist_utterance_dict_list:
-                    print(therapist_utterance_dict)
+                    utterance_idx, coping_strategy = therapist_utterance_dict['coping_strategy'].split('||')
+                    coping_utterance = therapist_utterance_dict['response']
+
+                    session_buffer.add_utterance(
+                        role='therapist',
+                        sample_idx=int(utterance_idx),
+                        coping_strategy=coping_strategy,
+                        coping_utterance=coping_utterance,
+                    )
+
+                    print(session_buffer.current_session_history)
                     raise SystemExit
-                # session_buffer.add_utterance(
-                #     therapist_utterance_dict_list=therapist_utterance_dict_list,
-                # )
 
                 # print(session_buffer.current_session_history)
                 # raise SystemExit

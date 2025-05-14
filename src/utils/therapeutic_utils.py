@@ -27,26 +27,15 @@ class TherapeuticSessionBuffer:
     
     def add_utterance(
         self, 
-        therapist_utterance_dict_list: list[dict] = [],
-        patient_utterance_dict_list: list[dict] = [],
+        role: str,
+        sample_idx: int,
+        coping_strategy: str,
+        coping_utterance: str,
     ):
-
-        if therapist_utterance_dict_list:
-            role = 'therapist'
-            utterance_dict_list = therapist_utterance_dict_list
-        elif patient_utterance_dict_list:
-            role = 'patient'
-            utterance_dict_list = patient_utterance_dict_list
-        else:
-            raise ValueError('Either therapist_utterance_dict_list or patient_utterance_dict_list must be provided')
-
-        for utterance_dict in utterance_dict_list:
-            for idx_and_strategy, utterance in utterance_dict.items():
-                sample_idx, coping_strategy = idx_and_strategy.split('||')
-                self.session_history[int(sample_idx)][coping_strategy].append({
-                    'role': role,
-                    'utterance': utterance,
-                })
+        self.session_history[sample_idx][coping_strategy].append({
+            'role': role,
+            'utterance': coping_utterance,
+        })
 
     
     @property

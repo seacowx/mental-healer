@@ -23,7 +23,7 @@ class TherapistAgent(LMAgent):
         situation_desc_list: list[str],
         patient_thought_list: list[str],
         patient_persona_profile_list: list[str],
-        session_buffer_list: list[TherapeuticSessionBuffer], 
+        session_buffer: TherapeuticSessionBuffer, 
     ) -> list[dict]:
 
         utterance_list = self.base_vllm_model.inference(
