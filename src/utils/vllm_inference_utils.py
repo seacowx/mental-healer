@@ -459,10 +459,4 @@ class vLLMOffline:
         else:
             parsed_response_list = response_list
 
-
-        response = [
-            {'coping_strategy': coping_strategy, 'response': response}
-            for coping_strategy, response in zip(coping_strategy_list, response)
-        ]
-
-        return response
+        return parsed_response_list
