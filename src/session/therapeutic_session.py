@@ -51,9 +51,6 @@ class TherapeuticSession:
 
         for situation_dict_batch in situation_dict_list_batches:
 
-            print(situation_dict_batch)
-            raise SystemExit
-
             cur_situation_list = [ele['situation'] for ele in situation_dict_batch]
             cur_thought_list = [ele['initial_thought'] for ele in situation_dict_batch]
             cur_persona_profile_list = [ele['persona_profile'] for ele in situation_dict_batch]
