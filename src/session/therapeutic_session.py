@@ -39,6 +39,10 @@ class TherapeuticSession:
         situation_dict_list: list[dict],
         batch_size: int = 1,
     ):
+
+        print(situation_dict_list)
+        raise SystemExit
+    
         # batch situation_dict_list according to the number of samples
         situation_dict_list_batches = [
             situation_dict_list[i:i+batch_size]
