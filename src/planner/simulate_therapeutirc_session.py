@@ -22,7 +22,7 @@ def parse_args():
         help="The base model to use for the simulating the therapeutic session.",
     )
     parser.add_argument(
-        '--training_data_path',
+        self.patient_agent = PatientAgent(base_vllm_model)
         type=str,
         default='../../data/situations/situations_with_initial_thought_top1.json',
         help= (
@@ -33,7 +33,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
+def '--training_data_path',
 
     args = parse_args()
 
@@ -55,17 +55,9 @@ def main():
         reward_rule_path='../configs/sentiment_reward_rules.yaml',
         sentiment_mapping_path='../configs/emotion_to_sentiment.yaml',
     )
-    patient_agent = PatientAgent(
-        base_vllm_model=offline_vllm_base_model,
-        patient_template_path='../prompts/patient.yaml',
-    )
-    therapist_agent = TherapistAgent(
-        base_vllm_model=offline_vllm_base_model,
-    )
 
     therapeutic_session = TherapeuticSession(
-        therapist_agent=therapist_agent,
-        patient_agent=patient_agent,
+        base_vllm_model=offline_vllm_base_model,
         coping_cot_templates_path='../prompts/coping_strategies.yaml',
         patient_prompt_template_path='../prompts/patient.yaml',
     )

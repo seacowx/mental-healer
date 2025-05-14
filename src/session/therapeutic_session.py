@@ -12,18 +12,20 @@ class TherapeuticSession:
 
     def __init__(
         self,
-        therapist_agent: TherapistAgent,
-        patient_agent: PatientAgent,
+        base_vllm_model: OfflineVLLM,
         coping_agent: Optional[CopingAgent] = None,
         coping_cot_templates_path: str = './prompts/coping_strategies.yaml',
         patient_prompt_template_path: str = './prompts/update_thought.yaml',
         max_turns: int = 5,
     ):
-        self.therapist_agent = therapist_agent
-        self.patient_agent = patient_agent
+        self.therapist_agent = TherapistAgent(
+            base_vllm_model=base_vllm_model,
+        )
         self.coping_agent = coping_agent
         self.max_turns = max_turns
 
+        self.base_vllm_model = base_vllm_model
+        self.patient_prompt_template_path = patient_prompt_template_path
         self.coping_cot_templates = yaml.safe_load(open(coping_cot_templates_path))
         self.patient_prompt_template = yaml.safe_load(open(patient_prompt_template_path))
 
@@ -39,10 +41,11 @@ class TherapeuticSession:
             cur_persona_profile = situation_dict['persona_profile']
 
             # set the persona profile for the patient agent
-            cur_patient_agent = self.patient_agent.set_persona(cur_persona_profile)
-
-            print(cur_patient_agent)
-            raise SystemExit
+            cur_patient_agent = PatientAgent(
+                base_vllm_model=self.base_vllm_model,
+                patient_template_path=self.patient_prompt_template_path,
+            )
+            cur_patient_agent = cur_patient_agent.set_persona(cur_persona_profile)
 
             # start the therapeutic session
             session_history = SessionHistory()
