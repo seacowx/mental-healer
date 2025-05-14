@@ -37,12 +37,12 @@ class TherapeuticSession:
     def batch_simulate_therapeutic_session(
         self, 
         situation_dict_list: list[dict],
-        n_samples: int = 1,
+        batch_size: int = 1,
     ):
         # batch situation_dict_list according to the number of samples
         situation_dict_list_batches = [
-            situation_dict_list[i:i+n_samples]
-            for i in range(0, len(situation_dict_list), n_samples)
+            situation_dict_list[i:i+batch_size]
+            for i in range(0, len(situation_dict_list), batch_size)
         ]
 
         for situation_dict_batch in situation_dict_list_batches:
@@ -61,8 +61,8 @@ class TherapeuticSession:
                 for cur_persona_profile in cur_persona_profile_list
             ]
             session_buffer_list = [
-                TherapeuticSessionBuffer(n_samples=n_samples)
-                for _ in range(n_samples)
+                TherapeuticSessionBuffer(batch_size=batch_size)
+                for _ in range(batch_size)
             ]
             for _ in range(self.max_turns):
                 # generate the therapist's utterance

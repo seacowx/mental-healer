@@ -60,8 +60,9 @@ def main():
 
     for key, val in data.items():
 
-        therapeutic_session.simulate_therapeutic_session(
+        therapeutic_session.batch_simulate_therapeutic_session(
             situation_dict_list=[val]
+            batch_size=1,
         )
 
 

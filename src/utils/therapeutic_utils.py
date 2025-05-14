@@ -4,7 +4,7 @@ from typing import Optional
 
 class TherapeuticSessionBuffer:
 
-    def __init__(self, n_samples: int = 8):
+    def __init__(self, batch_size: int = 8):
         self.coping_strategies = [
             'meta_rp_commit',
             'meta_rc_commit',
@@ -15,14 +15,14 @@ class TherapeuticSessionBuffer:
             'object_rp_decommit',
             'object_rc_decommit',
         ]
-        self.n_samples = n_samples
+        self.batch_size = batch_size
 
         # sentiment buffer stores the sentiment after each turn of the therapeutic session
-        self.sentiment_buffer = [[] for _ in range(self.n_samples)]
+        self.sentiment_buffer = [[] for _ in range(self.batch_size)]
         # coping strategies history stores the complete dialogue history of each coping strategy of each sample
         self.session_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategies
-        } for _ in range(self.n_samples)]
+        } for _ in range(self.batch_size)]
 
     
     def add_utterance(
@@ -57,5 +57,5 @@ class TherapeuticSessionBuffer:
     def reset(self,):
         self.session_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategies
-        } for _ in range(self.n_samples)]
-        self.sentiment_buffer = [[] for _ in range(self.n_samples)]
+        } for _ in range(self.batch_size)]
+        self.sentiment_buffer = [[] for _ in range(self.batch_size)]
