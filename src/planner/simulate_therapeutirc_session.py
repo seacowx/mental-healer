@@ -58,12 +58,10 @@ def main():
         patient_prompt_template_path='../prompts/patient.yaml',
     )
 
-    for key, val in data.items():
-
-        therapeutic_session.batch_simulate_therapeutic_session(
-            situation_dict_list=[val]
-            batch_size=1,
-        )
+    therapeutic_session.batch_simulate_therapeutic_session(
+        situation_dict_list=data,
+        batch_size=1,
+    )
 
 
 if __name__ == '__main__':
