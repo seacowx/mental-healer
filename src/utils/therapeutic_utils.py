@@ -29,17 +29,16 @@ class SessionHistory:
         self, 
         sample_idx_list: list[int],
         coping_strategy_list: list[str], 
-        utterance_list: list[str], 
-        role_list: list[str]
+        therapist_utterance_dict_list: list[dict] = [],
+        patient_utterance_dict_list: list[dict] = [],
     ):
 
-        for sample_idx, coping_strategy, utterance, role in zip(
-            sample_idx_list, coping_strategy_list, utterance_list, role_list
-        ):
-            self.coping_strategies_history[sample_idx][coping_strategy].append({
-                'role': role,
-                'utterance': utterance,
-            })
+        if therapist_utterance_dict_list:
+            role_list = ['therapist'] * len(therapist_utterance_dict_list)
+        elif patient_utterance_dict_list:
+            role_list = ['patient'] * len(patient_utterance_dict_list)
+        else:
+            raise ValueError('Either therapist_utterance_dict_list or patient_utterance_dict_list must be provided')
 
     
     @property

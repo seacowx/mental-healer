@@ -59,15 +59,11 @@ class TherapeuticSession:
                     session_history=session_history,
                 )
 
-                print(therapist_utterance_dict_list[0]['response'])
-                raise SystemExit
-
                 # update the session history
                 session_history.add_utterance(
                     sample_idx_list=[0],
                     coping_strategy_list=[],
-                    utterance_list=therapist_utterance_list,
-                    role_list=['therapist'],
+                    therapist_utterance_dict_list=therapist_utterance_dict_list,
                 )
 
                 # TODO: finish implementing this: patient agent should react to the therapist's utterance by producing a new thought

@@ -443,7 +443,7 @@ class vLLMOffline:
         response_list = [ele.outputs[0].text for ele in response_list]
         parsed_response_list = []
         if sample_idx_key_list:
-            coping_strategy_list = [ele[1] for ele in sample_idx_key_list]
+            coping_strategy_list = ['||'.join(ele) for ele in sample_idx_key_list]
 
             for response_idx, response in enumerate(response_list):
                 coping_strategy = coping_strategy_list[response_idx]
@@ -458,5 +458,8 @@ class vLLMOffline:
                 })
         else:
             parsed_response_list = response_list
+
+        print(parsed_response_list)
+        raise SystemExit
 
         return parsed_response_list
