@@ -22,6 +22,10 @@ class TherapeuticSession:
         self.therapist_agent = TherapistAgent(
             base_vllm_model=base_vllm_model,
         )
+        self.patient_agent = PatientAgent(
+            base_vllm_model=base_vllm_model,
+            patient_template_path=patient_prompt_template_path,
+        )
         self.coping_agent = coping_agent
         self.max_turns = max_turns
 
@@ -56,15 +60,14 @@ class TherapeuticSession:
             cur_thought_list = [ele['initial_thought'] for ele in situation_dict_batch]
             cur_persona_profile_list = [ele['persona_profile'] for ele in situation_dict_batch]
 
+            self.patient_agent.set_persona(
+                persona_profile_dict_list=cur_persona_profile_list
+            )
+
+            print(self.patient_agent.current_persona_profile)
+            raise SystemExit
+
             # instantiate a patient agent and set the persona profile
-            patient_agent_list = [
-                PatientAgent(
-                    base_vllm_model=self.base_vllm_model,
-                    patient_template_path=self.patient_prompt_template_path,
-                    persona_profile=cur_persona_profile,
-                )
-                for cur_persona_profile in cur_persona_profile_list
-            ]
             for _ in range(self.max_turns):
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
@@ -86,14 +89,8 @@ class TherapeuticSession:
                         coping_utterance=coping_utterance,
                     )
 
-                    print(session_buffer.current_session_history)
-                    raise SystemExit
-
-                # print(session_buffer.current_session_history)
-                # raise SystemExit
-
                 # TODO: finish implementing this: patient agent should react to the therapist's utterance by producing a new thought
-                # # generate the patient's new thought
+                # generate the patient's new thought
                 patient_new_thought_list = cur_patient_agent.utter(
                     situation_desc_list=[cur_situation],
                     patient_thought_list=[cur_thought],
