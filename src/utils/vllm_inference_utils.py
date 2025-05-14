@@ -423,7 +423,7 @@ class vLLMOffline:
             extra_kwargs['lora_request'] = lora_request
 
         if is_coping_utterance:
-            response, sample_idx_key_list = self.vllm_model.coping_chat(
+            response_list, sample_idx_key_list = self.vllm_model.coping_chat(
                 situation_desc_list=situation_desc_list,
                 patient_thought_list=patient_thought_list,
                 patient_persona_profile_list=patient_persona_profile_list,
@@ -433,16 +433,32 @@ class vLLMOffline:
             )
         else:
             sample_idx_key_list = []
-            response = self.vllm_model.chat(
+            response_list = self.vllm_model.chat(
                 messages=message_list, 
                 sampling_params=sampling_params,
                 use_tqdm=True,
                 **extra_kwargs,
             )
 
-        response = [ele.outputs[0].text for ele in response]
+        response_list = [ele.outputs[0].text for ele in response_list]
+        parsed_response_list = []
         if sample_idx_key_list:
             coping_strategy_list = [ele[1] for ele in sample_idx_key_list]
+
+            for response_idx, response in enumerate(response_list):
+                coping_strategy = coping_strategy_list[response_idx]
+
+                # parse the response, only retain the utterance
+                if '<utterance>' in response:
+                    response = response.rsplit('<utterance>', 1)[1].split('</utterance>')[0].strip()
+
+                parsed_response_list.append({
+                    'coping_strategy': coping_strategy,
+                    'response': response,
+                })
+        else:
+            parsed_response_list = response_list
+
 
         response = [
             {'coping_strategy': coping_strategy, 'response': response}

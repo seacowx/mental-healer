@@ -59,7 +59,7 @@ class TherapeuticSession:
                     session_history=session_history,
                 )
 
-                print(therapist_utterance_dict_list)
+                print(therapist_utterance_dict_list[0]['response'])
                 raise SystemExit
 
                 # update the session history
