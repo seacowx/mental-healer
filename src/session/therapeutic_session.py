@@ -71,14 +71,7 @@ class TherapeuticSession:
                 persona_profile_dict_list=cur_persona_profile_list
             )
 
-            print(session_buffer.is_therapeutic_session_complete)
-            raise SystemExit
-
             for _ in range(self.max_turns):
-
-                # If the patient's thought is positive, the therapeutic session for the coping strategy is complete
-                if all(session_buffer.is_therapeutic_session_complete):
-                    break
 
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
