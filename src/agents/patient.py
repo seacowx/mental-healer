@@ -81,6 +81,7 @@ class PatientAgent(LMAgent):
 
             cur_persona_profile = self.meta_persona_profile[sample_idx]
 
+            # retrieve the dialogue history corresponding to the current sample index
             cur_dialogue_history = session_buffer.get_dialogue_history(sample_idx=sample_idx)
             cur_thought = session_buffer.get_thought_history(sample_idx=sample_idx)
 
@@ -89,18 +90,35 @@ class PatientAgent(LMAgent):
             )
             cur_situation_desc = situation_desc_list[sample_idx]
 
-            print(cur_dialogue_history)
-            raise SystemExit
+            # make a prompt for each of the coping strategies. 
+            # the only thing that changes by coping strategy is the therapist's utterance (therapist_utterance)
+            # TODO: consider whether to add a sentiment checker here: stop producing prompt if the sentiment has converted to positive
+            for coping_strategy, coping_dialogue_list in cur_dialogue_history.items():
+                role, therapist_utterance = coping_dialogue_list[-1].values()
 
-            patient_new_thought = [
-                {'role': 'system', 'content': self.patient_reaction_system},
-                {
-                    'role': 'user', 
-                    'content': self.patient_reaction_user.render(
-                        persona_profile=cur_persona_profile_desc,
-                        situation=cur_situation_desc,
-                        thought=cur_thought,
-                        therapist_utterance=therapist_utterance,
+                # ensure that the last utterance is from the therapist
+                assert role == 'therapist', \
+                    (
+                        "The last utterance in the dialogue history should be from the therapist. "
+                        f"Instead, the last utterance is from the {role}."
                     )
-                }
-            ]
+
+                patient_new_thought_msg = [
+                    {'role': 'system', 'content': self.patient_reaction_system},
+                    {
+                        'role': 'user', 
+                        'content': self.patient_reaction_user.render(
+                            persona_profile=cur_persona_profile_desc,
+                            situation=cur_situation_desc,
+                            thought=cur_thought,
+                            therapist_utterance=therapist_utterance,
+                        )
+                    }
+                ]
+
+                print(patient_new_thought_msg)
+                raise SystemExit
+
+                patient_new_thought_msg_list.append(patient_new_thought_msg)
+
+                
