@@ -42,8 +42,6 @@ class PatientAgent(LMAgent):
         self.patient_reaction_user = Template(self.patient_template['react_to_therapist_utterance']['user'])
 
 
-
-
     @property
     def current_persona_profile(self) -> str:
         """
@@ -93,7 +91,7 @@ class PatientAgent(LMAgent):
             # make a prompt for each of the coping strategies. 
             # the only thing that changes by coping strategy is the therapist's utterance (therapist_utterance)
             # TODO: consider whether to add a sentiment checker here: stop producing prompt if the sentiment has converted to positive
-            for coping_strategy, coping_dialogue_list in cur_dialogue_history.items():
+            for coping_dialogue_list in cur_dialogue_history.values():
                 role, therapist_utterance = coping_dialogue_list[-1].values()
 
                 # ensure that the last utterance is from the therapist
@@ -116,13 +114,14 @@ class PatientAgent(LMAgent):
                     }
                 ]
 
-                print('\n\n')
-                print(patient_new_thought_msg[0]['content'])
-                print('\n\n')
-                print(patient_new_thought_msg[1]['content'])
-                print('\n\n')
-                raise SystemExit
-
                 patient_new_thought_msg_list.append(patient_new_thought_msg)
+
+        new_thought_list = self.base_vllm_model.inference(
+            message_list=patient_new_thought_msg_list,
+        )
+
+        print(new_thought_list)
+        raise SystemExit
+
 
                 

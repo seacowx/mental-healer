@@ -25,6 +25,7 @@ class TherapistAgent(LMAgent):
         patient_thought_list: list[str],
         patient_persona_profile_list: list[str],
         session_buffer: TherapeuticSessionBuffer, 
+        is_therapeutic_session_complete: list[bool],
     ) -> list[dict]:
 
         # verbalize the persona profile
@@ -34,6 +35,8 @@ class TherapistAgent(LMAgent):
             )
             for ele in patient_persona_profile_list
         ]
+
+        # TODO: check if the therapeutic session is complete by looking at the is_therapeutic_session_complete list. Only generate the utterance if the therapeutic session is not complete.
 
         utterance_list = self.base_vllm_model.inference(
             situation_desc_list=situation_desc_list,

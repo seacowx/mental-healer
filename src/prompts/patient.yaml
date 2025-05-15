@@ -3,29 +3,25 @@ react_to_therapist_utterance:
     You are experiencing an iritating situation, which has resulted in a negative thought. Another person is trying to help you by trying to talk you out of your negative thought. Based on the situation, your persona profile, and the other person's utterance, generate a new thought that is truthful to your persona profile. First reason out if the other person's utterance is convincing enough to change your thought. Only change to a positive thought if the other person's utterance is very convincing. Make sure your updated thought is truthful to your persona profile. Generate the thought from a first-person perspective and wrap it using <thought> and </thought>.
 
   user: |- 
+    <persona>
     {{ persona_profile }}
+    </persona>
 
     You have experienced the following situation:
 
-    Situation: {{ situation }}
+    <situation>
+    {{ situation }}
+    </situation>
 
     This situation has resulted in the following thought:
 
-    Thought: {{ thought }}
+    <thought>
+    {{ thought }}
+    </thought>
 
-    What would be your updated thgought after hearing the following utterance? Your updated thought should be truthful to your peronsa profile and does not necessarily need to be positive. Generate the thought in first person with the following format:
-    <thought> Updated Thought </thought>
+    What would be your updated thought after hearing the following utterance? Your updated thought should be truthful to your persona profile and does not necessarily need to be positive. Generate the thought in first person with the following format:
+    <updated_thought> Updated Thought </updated_thought>
 
-    Utterance: {{ therapist_utterance }}
-
-    Example Input:
-    Situation: I forgot my friend's birthday.
-    Thought: I have let my friend down and they will be upset with me.
-
-    Utterance: A true friend would be mindful and can understand that you might be busy. Make sure to apologize and consider doing something nice for them to make up for it.
-
-    Example Output (thought becomes positive):
-    <thought> My friend loves lego. I will buy them a lego set and apologize. My friend will definitely understand. </thought>
-
-    Example Output (thought remains negative):
-    <thought> I still feel bad for forgetting and my friend might not accept my apology. </thought>
+    <utterance>
+    {{ therapist_utterance }}
+    </utterance>

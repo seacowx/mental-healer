@@ -6,7 +6,10 @@ from agents.planner import CopingAgent
 from agents.patient import PatientAgent
 from agents.therapist import TherapistAgent
 from utils.vllm_inference_utils import vLLMOffline
-from utils.therapeutic_utils import TherapeuticSessionBuffer
+from utils.therapeutic_utils import (
+    TherapeuticSessionBuffer, 
+    update_therapeutic_session_complete,
+)
 
 
 class TherapeuticSession:
@@ -17,6 +20,7 @@ class TherapeuticSession:
         coping_agent: Optional[CopingAgent] = None,
         coping_cot_templates_path: str = './prompts/coping_strategies.yaml',
         patient_prompt_template_path: str = './prompts/update_thought.yaml',
+        coping_strategies_path: str = './configs/coping_strategy.yaml',
         max_turns: int = 5,
     ):
         self.therapist_agent = TherapistAgent(
@@ -33,8 +37,8 @@ class TherapeuticSession:
         self.patient_prompt_template_path = patient_prompt_template_path
         self.coping_cot_templates = yaml.safe_load(open(coping_cot_templates_path))
         self.patient_prompt_template = yaml.safe_load(open(patient_prompt_template_path))
-
         self.patient_thought_update_template = self.patient_prompt_template['react_to_therapist_utterance']
+        self.coping_strategy_list = yaml.safe_load(open(coping_strategies_path, 'r'))
 
 
     # TODO: add support for multiple samples batched inference
@@ -52,22 +56,37 @@ class TherapeuticSession:
             situation_dict_list[i:i+batch_size]
             for i in range(0, len(situation_dict_list), batch_size)
         ]
-        session_buffer = TherapeuticSessionBuffer(batch_size=batch_size)
+        session_buffer = TherapeuticSessionBuffer(
+            batch_size=batch_size,
+            coping_strategies_list=self.coping_strategy_list,
+        )
 
+        # iterate over each situation in the batch. For each situation, simulate the therapeutic session until
+        # either the patient's thought is positive or the maximum number of turns is reached
         for situation_dict_batch in situation_dict_list_batches:
 
             cur_situation_list = [ele['situation'] for ele in situation_dict_batch]
             cur_thought_list = [ele['initial_thought'] for ele in situation_dict_batch]
             cur_persona_profile_list = [ele['persona_profile'] for ele in situation_dict_batch]
 
+            # set the persona profile of the current patient batch
             self.patient_agent.set_persona(
                 persona_profile_dict_list=cur_persona_profile_list
             )
 
-            # instantiate a patient agent and set the persona profile
+            # create a vector documenting whether the therapeutic session is complete for each coping strategy
+            is_therapeutic_session_complete = [False] * len(self.coping_strategy_list)
+
             for _ in range(self.max_turns):
 
                 # If the patient's thought is positive, the therapeutic session for the coping strategy is complete
+                is_therapeutic_session_complete = update_therapeutic_session_complete(
+                    is_therapeutic_session_complete=is_therapeutic_session_complete,
+                    session_buffer=session_buffer,
+                )
+
+                if all(is_therapeutic_session_complete):
+                    break
 
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
@@ -75,6 +94,7 @@ class TherapeuticSession:
                     patient_thought_list=cur_thought_list,
                     patient_persona_profile_list=cur_persona_profile_list,
                     session_buffer=session_buffer,
+                    is_therapeutic_session_complete=is_therapeutic_session_complete,
                 )
 
                 # update the session history

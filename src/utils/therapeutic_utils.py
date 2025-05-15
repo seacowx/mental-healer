@@ -1,21 +1,40 @@
 import json, yaml
 
 
+def update_therapeutic_session_complete(
+    is_therapeutic_session_complete: list[bool],
+    session_buffer: TherapeuticSessionBuffer,
+) -> list[bool]:
+
+    for strategy_idx, indicator in enumerate(is_therapeutic_session_complete):
+
+        if not indicator:
+            # check the lastest sentiment of the coping strategy
+            latest_sentiment = session_buffer.get_latest_sentiment(strategy_idx)
+
+            if latest_sentiment == 'positive':
+                is_therapeutic_session_complete[strategy_idx] = True
+
+    return is_therapeutic_session_complete
+
+
+
 class TherapeuticSessionBuffer:
 
     def __init__(
         self, 
         batch_size: int = 8,
-        coping_strategies_path: str = '../configs/coping_strategy.yaml',
+        coping_strategies_list: list[str],
     ):
-        self.coping_strategies = yaml.safe_load(open(coping_strategies_path, 'r'))
+
         self.batch_size = batch_size
+        self.coping_strategy_list = coping_strategies_list
 
         # sentiment buffer stores the sentiment after each turn of the therapeutic session
         self.sentiment_buffer = [[] for _ in range(self.batch_size)]
         # coping strategies history stores the complete dialogue history of each coping strategy of each sample
         self.coping_dialogue_history = [{
-            coping_strategy: [] for coping_strategy in self.coping_strategies
+            coping_strategy: [] for coping_strategy in self.coping_strategy_list
         } for _ in range(self.batch_size)]
         self.thought_history = [[] for _ in range(self.batch_size)]
 
@@ -66,9 +85,16 @@ class TherapeuticSessionBuffer:
     def get_thought_history(self, sample_idx: int) -> dict:
         return self.thought_history[sample_idx]
 
+    
+    def get_latest_sentiment(self, coping_strategy_idx: int) -> str:
+        if (temp_sentiment_list := self.sentiment_buffer[coping_strategy_idx]):
+            return temp_sentiment_list[coping_strategy_idx][-1].lower()
+        else:
+            return 'negative'
+
 
     def reset(self,):
         self.coping_dialogue_history = [{
-            coping_strategy: [] for coping_strategy in self.coping_strategies
+            coping_strategy: [] for coping_strategy in self.coping_strategy_list
         } for _ in range(self.batch_size)]
         self.sentiment_buffer = [[] for _ in range(self.batch_size)]
