@@ -155,7 +155,12 @@ class PatientAgent(LMAgent):
             if '<updated_thought>' in response:
                 response = response.rsplit('<updated_thought>', 1)[1].split('</updated_thought>')[0].strip()
 
-            parsed_response_list[cur_sample_idx][cur_strategy_idx] = response
+            try:
+                parsed_response_list[cur_sample_idx][cur_strategy_idx] = response
+            except:
+                print(cur_sample_idx, cur_strategy_idx)
+                print(parsed_response_list)
+                raise SystemExit
 
         print(parsed_response_list)
         raise SystemExit
