@@ -140,6 +140,7 @@ class PatientAgent(LMAgent):
         )
 
         print(patient_new_thought_msg_list)
+        print(len(patient_new_thought_msg_list))
         raise SystemExit
 
         new_thought_list = self.base_vllm_model.inference(
