@@ -24,6 +24,10 @@ from vllm.transformers_utils.tokenizer import MistralTokenizer
 from vllm.utils import is_list_of
 from vllm.inputs import TokensPrompt, TextPrompt
 
+from utils.persona_utils import verbalize_persona_profile
+from utils.therapeutic_utils import TherapeuticSessionBuffer
+
+
 class CustomLLM(LLM):
 
     def __init__(self, *args, **kwargs):
@@ -66,13 +70,8 @@ class CustomLLM(LLM):
             patient_persona_profile_list,
         ):
             # first, organize the peronsa profile dictionary to something more readable
-            persona_profile_desc = (
-                persona_profile['persona_hub'] + '\n\nDetailed Persona Profile:\n'
-                f'Name: {persona_profile["name"]}\n'
-                f'Gender: {persona_profile["gender"]}\n'
-                f'Occupation: {persona_profile["occupation"]}\n'
-                f'Education: {persona_profile["education"]}\n'
-                f'Personality: {persona_profile["traits"]}\n'
+            persona_profile_desc = verbalize_persona_profile(
+                persona_profile_dict=persona_profile
             )
 
             generic_instruction_prompt = self.coping_generic_instruction_template.render(
@@ -105,6 +104,7 @@ class CustomLLM(LLM):
         situation_desc_list: list,
         patient_thought_list: list,
         patient_persona_profile_list: list,
+        session_buffer: TherapeuticSessionBuffer,
         sampling_params: Optional[Union[SamplingParams,
                                         list[SamplingParams]]] = None,
         use_tqdm: bool = True,

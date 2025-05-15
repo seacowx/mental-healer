@@ -13,6 +13,7 @@ from copy import deepcopy
 from openai import OpenAI, AsyncOpenAI
 
 from agents.base_agent import LMAgent
+from utils.persona_utils import verbalize_persona_profile
 from utils.therapeutic_utils import TherapeuticSessionBuffer
 from utils.vllm_inference_utils import vLLMOffline, OpenAIAsyncInference
 
@@ -60,14 +61,6 @@ class PatientAgent(LMAgent):
         ]
 
 
-    def update_thought(self, therapist_utterance: str) -> str:
-        """
-        Update the agent's thought given the therapist's utterance
-        """
-
-        print(therapist_utterance)
-
-
     def utter(
         self, 
         situation_desc_list: list[str],
@@ -81,12 +74,17 @@ class PatientAgent(LMAgent):
                 "'set_persona(persona_profile_dict_list)' before calling the utter method."
             )
 
+        patient_new_thought_msg = []
         for sample_idx in range(len(situation_desc_list)):
 
             cur_persona_profile = self.persona_profile_list[sample_idx]
             cur_session_history = session_buffer.get_session_history(sample_idx=sample_idx)
 
-            print(cur_persona_profile)
-            print('\n\n')
-            print(cur_session_history)
+            cur_persona_profile_desc = verbalize_persona_profile(
+                persona_profile_dict=cur_persona_profile
+            )
+
+            print(cur_persona_profile_desc)
             raise SystemExit
+
+        # prompt needs: persona_profile, situation, thought, therapist_utterance

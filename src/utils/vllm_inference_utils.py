@@ -22,6 +22,8 @@ from openai import (
     BadRequestError,
 )
 
+from utils.therapeutic_utils import TherapeuticSessionBuffer
+
 
 class LLMBaseModel(metaclass=ABCMeta):
 
@@ -391,7 +393,7 @@ class vLLMOffline:
         situation_desc_list: list = [],
         patient_thought_list: list = [],
         patient_persona_profile_list: list = [],
-        session_buffer_list: list = [],
+        session_buffer: TherapeuticSessionBuffer = None,
         lora_request: LoRARequest = None,
         is_coping_utterance: bool = False,
         **kwargs
@@ -430,6 +432,7 @@ class vLLMOffline:
                 patient_persona_profile_list=patient_persona_profile_list,
                 sampling_params=sampling_params,
                 use_tqdm=True,
+                session_buffer=session_buffer,
                 **extra_kwargs,
             )
         else:

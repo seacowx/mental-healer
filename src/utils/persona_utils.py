@@ -82,3 +82,16 @@ def retrieve_augmented_persona(
         out_augmented_persona_dict[key] = augmented_persona_profile
 
     return out_augmented_persona_dict
+
+
+def verbalize_persona_profile(persona_profile_dict: dict) -> str:
+    persona_profile_desc = (
+        persona_profile_dict['persona_hub'] + '\n\nDetailed Persona Profile:\n'
+        f'Name: {persona_profile_dict["name"]}\n'
+        f'Gender: {persona_profile_dict["gender"]}\n'
+        f'Occupation: {persona_profile_dict["occupation"]}\n'
+        f'Education: {persona_profile_dict["education"]}\n'
+        f'Personality: {persona_profile_dict["traits"]}\n'
+    )
+
+    return persona_profile_desc

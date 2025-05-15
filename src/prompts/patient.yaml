@@ -16,7 +16,7 @@ react_to_therapist_utterance: |-
     What would be your updated thgought after hearing the following utterance? Your updated thought should be truthful to your peronsa profile and does not necessarily need to be positive. Generate the thought in first person with the following format:
     <thought> Updated Thought </thought>
 
-    Utterance: {{ utterance }}
+    Utterance: {{ therapist_utterance }}
 
     Example Input:
     Situation: I forgot my friend's birthday.
