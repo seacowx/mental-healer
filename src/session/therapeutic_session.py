@@ -106,6 +106,3 @@ class TherapeuticSession:
                     patient_thought_list=cur_thought_list,
                     session_buffer=session_buffer,
                 )
-
-                print(patient_new_thought_list)
-                raise SystemExit
