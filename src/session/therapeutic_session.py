@@ -74,18 +74,10 @@ class TherapeuticSession:
                 persona_profile_dict_list=cur_persona_profile_list
             )
 
-            # create a vector documenting whether the therapeutic session is complete for each coping strategy
-            is_therapeutic_session_complete = [False] * len(self.coping_strategy_list)
-
             for _ in range(self.max_turns):
 
                 # If the patient's thought is positive, the therapeutic session for the coping strategy is complete
-                is_therapeutic_session_complete = update_therapeutic_session_complete(
-                    is_therapeutic_session_complete=is_therapeutic_session_complete,
-                    session_buffer=session_buffer,
-                )
-
-                if all(is_therapeutic_session_complete):
+                if all(session_buffer.is_therapeutic_session_complete):
                     break
 
                 # generate the therapist's utterance
@@ -94,7 +86,6 @@ class TherapeuticSession:
                     patient_thought_list=cur_thought_list,
                     patient_persona_profile_list=cur_persona_profile_list,
                     session_buffer=session_buffer,
-                    is_therapeutic_session_complete=is_therapeutic_session_complete,
                 )
 
                 # update the session history

@@ -2,9 +2,11 @@ import json, yaml
 
 
 def update_therapeutic_session_complete(
-    is_therapeutic_session_complete: list[bool],
     session_buffer: TherapeuticSessionBuffer,
 ) -> list[bool]:
+
+    is_therapeutic_session_complete = session_buffer.is_therapeutic_session_complete
+    print(is_therapeutic_session_complete)
 
     for strategy_idx, indicator in enumerate(is_therapeutic_session_complete):
 
@@ -23,12 +25,15 @@ class TherapeuticSessionBuffer:
 
     def __init__(
         self, 
-        batch_size: int = 8,
         coping_strategies_list: list[str],
+        batch_size: int = 8,
     ):
 
         self.batch_size = batch_size
         self.coping_strategy_list = coping_strategies_list
+        self.coping_strategy_to_idx = {
+            ele: idx for idx, ele in enumerate(self.coping_strategy_list)
+        }
 
         # sentiment buffer stores the sentiment after each turn of the therapeutic session
         self.sentiment_buffer = [[] for _ in range(self.batch_size)]
@@ -37,6 +42,7 @@ class TherapeuticSessionBuffer:
             coping_strategy: [] for coping_strategy in self.coping_strategy_list
         } for _ in range(self.batch_size)]
         self.thought_history = [[] for _ in range(self.batch_size)]
+        self.is_therapeutic_session_complete = [False] * self.batch_size
 
     
     def add_utterance(
@@ -67,6 +73,19 @@ class TherapeuticSessionBuffer:
             coping_utterance=coping_utterance,
         )
         self.thought_history[sample_idx] = thought
+
+
+    def update_sentiment_buffer(
+        self,
+        sample_idx: int,
+        coping_strategy: str,
+        sentiment: str,
+    ):
+        coping_strategy_idx = self.coping_strategy_to_idx[coping_strategy]
+        self.sentiment_buffer[sample_idx][coping_strategy_idx].append(sentiment)
+
+        if sentiment == 'positive':
+            self.is_therapeutic_session_complete[sample_idx][coping_strategy_idx] = True
     
     @property
     def show_dialogue_history(self) -> dict:
@@ -94,7 +113,10 @@ class TherapeuticSessionBuffer:
 
 
     def reset(self,):
-        self.coping_dialogue_history = [{
-            coping_strategy: [] for coping_strategy in self.coping_strategy_list
-        } for _ in range(self.batch_size)]
         self.sentiment_buffer = [[] for _ in range(self.batch_size)]
+        self.coping_dialogue_history = [
+            {coping_strategy: [] for coping_strategy in self.coping_strategy_list } 
+            for _ in range(self.batch_size)
+        ]
+        self.thought_history = [[] for _ in range(self.batch_size)]
+        self.is_therapeutic_session_complete = [False] * self.batch_size
