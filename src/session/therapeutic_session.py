@@ -71,6 +71,9 @@ class TherapeuticSession:
                 persona_profile_dict_list=cur_persona_profile_list
             )
 
+            print(session_buffer.is_therapeutic_session_complete)
+            raise SystemExit
+
             for _ in range(self.max_turns):
 
                 # If the patient's thought is positive, the therapeutic session for the coping strategy is complete
@@ -84,9 +87,6 @@ class TherapeuticSession:
                     patient_persona_profile_list=cur_persona_profile_list,
                     session_buffer=session_buffer,
                 )
-
-                print(therapist_utterance_dict_list)
-                raise SystemExit
 
                 # update the session history
                 for therapist_utterance_dict in therapist_utterance_dict_list:
