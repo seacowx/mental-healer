@@ -25,7 +25,7 @@ class TherapeuticSessionBuffer:
         
         # FIXME: remove this testing code
         # self.is_therapeutic_session_active = [[True] * len(self.coping_strategy_list)] * self.batch_size
-        self.is_therapeutic_session_active = [True, False, True, True, True, True, True, False] * self.batch_size
+        self.is_therapeutic_session_active = [[True, False, True, True, True, True, True, False]]
 
     
     def add_utterance(
