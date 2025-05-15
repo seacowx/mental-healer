@@ -87,33 +87,25 @@ class PatientAgent(LMAgent):
 
             cur_situation_desc = situation_desc_list[sample_idx]
 
-            print(cur_dialogue_history)
-            raise SystemExit
-
             # make a prompt for each of the coping strategies. 
             # the only thing that changes by coping strategy is the therapist's utterance (therapist_utterance)
             for coping_dialogue_list in cur_dialogue_history.values():
                 role, therapist_utterance = coping_dialogue_list[-1].values()
 
                 # ensure that the last utterance is from the therapist
-                assert role == 'therapist', \
-                    (
-                        "The last utterance in the dialogue history should be from the therapist. "
-                        f"Instead, the last utterance is from the {role}."
-                    )
-
-                patient_new_thought_msg = [
-                    {'role': 'system', 'content': self.patient_reaction_system},
-                    {
-                        'role': 'user', 
-                        'content': self.patient_reaction_user.render(
-                            persona_profile=cur_persona_profile_desc,
-                            situation=cur_situation_desc,
-                            thought=cur_thought,
-                            therapist_utterance=therapist_utterance,
-                        )
-                    }
-                ]
+                if role != 'therapist':
+                    patient_new_thought_msg_list.append([])
+                else:
+                    patient_new_thought_msg = [
+                        {'role': 'system', 'content': self.patient_reaction_system},
+                        {'role': 'user', 'content': self.patient_reaction_user.render(
+                                persona_profile=cur_persona_profile_desc,
+                                situation=cur_situation_desc,
+                                thought=cur_thought,
+                                therapist_utterance=therapist_utterance,
+                            )
+                        }
+                    ]
 
                 patient_new_thought_msg_list.append(patient_new_thought_msg)
 
@@ -141,6 +133,9 @@ class PatientAgent(LMAgent):
             active_sample_idx_list=active_sample_idx_list,
             active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
+
+        print(patient_new_thought_msg_list)
+        raise SystemExit
 
         new_thought_list = self.base_vllm_model.inference(
             message_list=patient_new_thought_msg_list,
