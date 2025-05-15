@@ -147,35 +147,20 @@ class PatientAgent(LMAgent):
             message_list=patient_new_thought_msg_list,
         )
 
-        print(new_thought_list)
-        print(len(new_thought_list))
-        print(sample_and_strategy_idx_list)
-        raise SystemExit
+        parsed_response_list = [['' * 8] * max(active_sample_idx_list)]
+        for response_idx, response in enumerate(new_thought_list):
+            cur_sample_idx, cur_strategy_idx = sample_and_strategy_idx_list[response_idx]
 
-        parsed_response_list = []
-        for response in new_thought_list:
             # parse the response, only retain the utterance
             if '<updated_thought>' in response:
                 response = response.rsplit('<updated_thought>', 1)[1].split('</updated_thought>')[0].strip()
-            parsed_response_list.append(response)
 
-        # group the parsed response by coping strategy (list of list where the inner list contains 8 responses)
-        out_response_list = []
-        prev_active_coping_strategies = 0
-        for sample_idx in range(len(situation_desc_list)):
-            cur_active_coping_strategies = session_buffer.get_number_of_active_coping_strategies(
-                sample_idx=sample_idx
-            )
+            parsed_response_list[cur_sample_idx][cur_strategy_idx] = response
 
-            out_response_list.append(
-                parsed_response_list[prev_active_coping_strategies:cur_active_coping_strategies]
-            )
-            prev_active_coping_strategies += cur_active_coping_strategies
-
-        print(out_response_list)
+        print(parsed_response_list)
         raise SystemExit
 
-        return out_response_list
+        return parsed_response_list
 
 
                 
