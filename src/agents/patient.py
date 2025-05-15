@@ -139,9 +139,6 @@ class PatientAgent(LMAgent):
             )
             prev_active_coping_strategies += cur_active_coping_strategies
 
-        print(out_response_list)
-        raise SystemExit
-
         return out_response_list
 
 

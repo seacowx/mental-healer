@@ -102,7 +102,6 @@ class TherapeuticSession:
                         thought=cur_thought_list[utterance_idx],
                     )
 
-                # TODO: finish implementing this: patient agent should react to the therapist's utterance by producing a new thought
                 # generate the patient's new thought
                 patient_new_thought_list = self.patient_agent.utter(
                     situation_desc_list=cur_situation_list,
