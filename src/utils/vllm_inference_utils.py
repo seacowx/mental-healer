@@ -393,6 +393,7 @@ class vLLMOffline:
         situation_desc_list: list = [],
         patient_thought_list: list = [],
         patient_persona_profile_desc_list: list = [],
+        session_status_list: list = [],
         session_buffer: TherapeuticSessionBuffer = None,
         lora_request: LoRARequest = None,
         is_coping_utterance: bool = False,
@@ -433,6 +434,7 @@ class vLLMOffline:
                 sampling_params=sampling_params,
                 use_tqdm=True,
                 session_buffer=session_buffer,
+                session_status_list=session_status_list,
                 **extra_kwargs,
             )
         else:

@@ -22,7 +22,7 @@ class TherapeuticSessionBuffer:
             coping_strategy: [] for coping_strategy in self.coping_strategy_list
         } for _ in range(self.batch_size)]
         self.thought_history = [[] for _ in range(self.batch_size)]
-        self.is_therapeutic_session_active = [[True] * self.batch_size] * batch_size
+        self.is_therapeutic_session_active = [[True] * len(self.coping_strategy_list)] * self.batch_size
 
     
     def add_utterance(

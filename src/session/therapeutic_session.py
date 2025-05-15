@@ -75,8 +75,6 @@ class TherapeuticSession:
 
                 # get the active coping strategies for each sample in the batch
                 session_status_list = session_buffer.get_session_status_list()
-                print(session_status_list)
-                raise SystemExit
 
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
@@ -84,6 +82,7 @@ class TherapeuticSession:
                     patient_thought_list=cur_thought_list,
                     patient_persona_profile_list=cur_persona_profile_list,
                     session_buffer=session_buffer,
+                    session_status_list=session_status_list,
                 )
 
                 # update the session history
