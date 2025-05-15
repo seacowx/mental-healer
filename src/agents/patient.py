@@ -61,18 +61,11 @@ class PatientAgent(LMAgent):
         ]
 
 
-    def utter(
-        self, 
+    def _make_patient_new_thought_msg(
+        self,
         situation_desc_list: list[str],
-        patient_thought_list: list[str],
         session_buffer: TherapeuticSessionBuffer,
-    ) -> str:
-
-        assert self.meta_persona_profile, \
-            (
-                "Persona profile is not set. Please set it using " 
-                "'set_persona(persona_profile_dict_list)' before calling the utter method."
-            )
+    ) -> list[dict[str, str]]:
 
         patient_new_thought_msg_list = []
         for sample_idx in range(len(situation_desc_list)):
@@ -86,6 +79,11 @@ class PatientAgent(LMAgent):
             cur_persona_profile_desc = verbalize_persona_profile(
                 persona_profile_dict=cur_persona_profile
             )
+
+            print(cur_persona_profile_desc)
+            raise SystemExit
+
+
             cur_situation_desc = situation_desc_list[sample_idx]
 
             # make a prompt for each of the coping strategies. 
@@ -115,6 +113,27 @@ class PatientAgent(LMAgent):
 
                 patient_new_thought_msg_list.append(patient_new_thought_msg)
 
+        return patient_new_thought_msg_list
+
+
+    def utter(
+        self, 
+        situation_desc_list: list[str],
+        patient_thought_list: list[str],
+        session_buffer: TherapeuticSessionBuffer,
+    ) -> str:
+
+        assert self.meta_persona_profile, \
+            (
+                "Persona profile is not set. Please set it using " 
+                "'set_persona(persona_profile_dict_list)' before calling the utter method."
+            )
+
+        patient_new_thought_msg_list = self._make_patient_new_thought_msg(
+            situation_desc_list=situation_desc_list,
+            session_buffer=session_buffer,
+        )
+
         new_thought_list = self.base_vllm_model.inference(
             message_list=patient_new_thought_msg_list,
         )
@@ -138,6 +157,9 @@ class PatientAgent(LMAgent):
                 parsed_response_list[prev_active_coping_strategies:cur_active_coping_strategies]
             )
             prev_active_coping_strategies += cur_active_coping_strategies
+
+        print(out_response_list)
+        raise SystemExit
 
         return out_response_list
 
