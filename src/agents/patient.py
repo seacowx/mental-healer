@@ -85,9 +85,6 @@ class PatientAgent(LMAgent):
                 persona_profile_dict=cur_persona_profile
             )
 
-            print(cur_persona_profile_desc)
-            raise SystemExit
-
             cur_situation_desc = situation_desc_list[sample_idx]
 
             # make a prompt for each of the coping strategies. 
