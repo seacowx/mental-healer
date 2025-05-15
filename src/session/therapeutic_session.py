@@ -92,8 +92,14 @@ class TherapeuticSession:
                 active_coping_strategy_idx_list = self._get_active_coping_strategy_list(
                     session_buffer=session_buffer,
                 )
+                active_sample_idx_list = [
+                    sample_idx for sample_idx, active_coping_strategy_idx_list in enumerate(active_coping_strategy_idx_list)
+                    if active_coping_strategy_idx_list
+                ]
 
+                # remove sample index if all coping strategies are inactive
                 print(active_coping_strategy_idx_list)
+                print(active_sample_idx_list)
                 raise SystemExit
 
                 # generate the therapist's utterance
