@@ -90,21 +90,20 @@ class PatientAgent(LMAgent):
 
             # make a prompt for each of the coping strategies. 
             # the only thing that changes by coping strategy is the therapist's utterance (therapist_utterance)
-            cur_patient_new_thought_msg_list = []
             for coping_strategy_idx, coping_dialogue_list in enumerate(cur_dialogue_history.values()):
 
                 # if the dialogue history is empty, skip
                 if not coping_dialogue_list:
-                    cur_patient_new_thought_msg_list.append([])
+                    patient_new_thought_msg_list.append([])
                     continue
 
                 role, therapist_utterance = coping_dialogue_list[-1].values()
 
                 # ensure that the last utterance is from the therapist
                 if role != 'therapist':
-                    cur_patient_new_thought_msg_list.append([])
+                    patient_new_thought_msg_list.append([])
                 else:
-                    cur_patient_new_thought_msg_list.append([
+                    patient_new_thought_msg_list.append([
                         {'role': 'system', 'content': self.patient_reaction_system},
                         {'role': 'user', 'content': self.patient_reaction_user.render(
                                 persona_profile=cur_persona_profile_desc,
@@ -115,8 +114,6 @@ class PatientAgent(LMAgent):
                         }
                     ])
                     sample_and_strategy_idx_list.append((sample_idx, coping_strategy_idx))
-
-            patient_new_thought_msg_list.append(cur_patient_new_thought_msg_list)
 
         return patient_new_thought_msg_list, sample_and_strategy_idx_list
 
@@ -143,14 +140,17 @@ class PatientAgent(LMAgent):
             active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
 
-        print(patient_new_thought_msg_list[0])
-        print(len(patient_new_thought_msg_list[0]))
-        print(sample_and_strategy_idx_list)
-        raise SystemExit
+        # get rid of the completed coping strategies
+        patient_new_thought_msg_list = [ele for ele in patient_new_thought_msg_list if ele]
 
         new_thought_list = self.base_vllm_model.inference(
             message_list=patient_new_thought_msg_list,
         )
+
+        print(new_thought_list)
+        print(len(new_thought_list))
+        print(sample_and_strategy_idx_list)
+        raise SystemExit
 
         parsed_response_list = []
         for response in new_thought_list:
