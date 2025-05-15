@@ -16,7 +16,7 @@ class TherapeuticSession:
         base_vllm_model: vLLMOffline,
         coping_agent: Optional[CopingAgent] = None,
         coping_cot_templates_path: str = './prompts/coping_strategies.yaml',
-        patient_prompt_template_path: str = './prompts/update_thought.yaml',
+        patient_prompt_template_path: str = './prompts/patient.yaml',
         coping_strategies_path: str = './configs/coping_strategy.yaml',
         max_turns: int = 5,
     ):
