@@ -65,10 +65,15 @@ class PatientAgent(LMAgent):
         self,
         situation_desc_list: list[str],
         session_buffer: TherapeuticSessionBuffer,
+        active_sample_idx_list: list[int],
+        active_coping_strategy_idx_list: list[list[int]],
     ) -> list[dict[str, str]]:
 
         patient_new_thought_msg_list = []
         for sample_idx in range(len(situation_desc_list)):
+
+            if sample_idx not in active_sample_idx_list:
+                patient_new_thought_msg_list.append({})
 
             cur_persona_profile = self.meta_persona_profile[sample_idx]
 
@@ -82,7 +87,6 @@ class PatientAgent(LMAgent):
 
             print(cur_persona_profile_desc)
             raise SystemExit
-
 
             cur_situation_desc = situation_desc_list[sample_idx]
 
@@ -121,6 +125,8 @@ class PatientAgent(LMAgent):
         situation_desc_list: list[str],
         patient_thought_list: list[str],
         session_buffer: TherapeuticSessionBuffer,
+        active_sample_idx_list: list[int],
+        active_coping_strategy_idx_list: list[list[int]],
     ) -> str:
 
         assert self.meta_persona_profile, \
@@ -132,6 +138,8 @@ class PatientAgent(LMAgent):
         patient_new_thought_msg_list = self._make_patient_new_thought_msg(
             situation_desc_list=situation_desc_list,
             session_buffer=session_buffer,
+            active_sample_idx_list=active_sample_idx_list,
+            active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
 
         new_thought_list = self.base_vllm_model.inference(
