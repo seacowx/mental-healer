@@ -95,12 +95,12 @@ class PatientAgent(LMAgent):
                 try:
                     role, therapist_utterance = coping_dialogue_list[-1].values()
                 except:
-                    patient_new_thought_msg_list.append([])
+                    patient_new_thought_msg = []
                     continue
 
                 # ensure that the last utterance is from the therapist
                 if role != 'therapist':
-                    patient_new_thought_msg_list.append([])
+                    patient_new_thought_msg = []
                 else:
                     patient_new_thought_msg = [
                         {'role': 'system', 'content': self.patient_reaction_system},
