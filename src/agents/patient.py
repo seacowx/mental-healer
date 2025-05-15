@@ -77,8 +77,6 @@ class PatientAgent(LMAgent):
         for sample_idx in range(len(situation_desc_list)):
 
             cur_persona_profile = self.meta_persona_profile[sample_idx]
-            print(cur_persona_profile)
-            raise SystemExit
 
             cur_session_history = session_buffer.get_session_history(sample_idx=sample_idx)
 
