@@ -1,0 +1,8 @@
+- meta_rp_commit
+- meta_rc_commit
+- object_rp_commit
+- object_rc_commit
+- meta_rp_decommit
+- meta_rc_decommit
+- object_rp_decommit
+- object_rc_decommit

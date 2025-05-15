@@ -66,6 +66,9 @@ class TherapeuticSession:
 
             # instantiate a patient agent and set the persona profile
             for _ in range(self.max_turns):
+
+                # If the patient's thought is positive, the therapeutic session for the coping strategy is complete
+
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
                     situation_desc_list=cur_situation_list,

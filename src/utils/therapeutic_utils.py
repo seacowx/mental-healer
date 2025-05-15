@@ -1,19 +1,18 @@
-import json
+import json, yaml
 
 
 class TherapeuticSessionBuffer:
 
-    def __init__(self, batch_size: int = 8):
-        self.coping_strategies = [
-            'meta_rp_commit',
-            'meta_rc_commit',
-            'object_rp_commit',
-            'object_rc_commit',
-            'meta_rp_decommit',
-            'meta_rc_decommit',
-            'object_rp_decommit',
-            'object_rc_decommit',
-        ]
+    def __init__(
+        self, 
+        batch_size: int = 8,
+        coping_strategies_path: str = '../configs/coping_strategy.yaml',
+    ):
+        self.coping_strategies = yaml.load(open(coping_strategies_path, 'r'))
+
+        print(self.coping_strategies)
+        raise SystemExit
+
         self.batch_size = batch_size
 
         # sentiment buffer stores the sentiment after each turn of the therapeutic session
