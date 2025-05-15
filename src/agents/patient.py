@@ -116,7 +116,11 @@ class PatientAgent(LMAgent):
                     }
                 ]
 
-                print(patient_new_thought_msg)
+                print('\n\n')
+                print(patient_new_thought_msg[0]['content'])
+                print('\n\n')
+                print(patient_new_thought_msg[1]['content'])
+                print('\n\n')
                 raise SystemExit
 
                 patient_new_thought_msg_list.append(patient_new_thought_msg)

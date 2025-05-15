@@ -9,10 +9,6 @@ class TherapeuticSessionBuffer:
         coping_strategies_path: str = '../configs/coping_strategy.yaml',
     ):
         self.coping_strategies = yaml.load(open(coping_strategies_path, 'r'))
-
-        print(self.coping_strategies)
-        raise SystemExit
-
         self.batch_size = batch_size
 
         # sentiment buffer stores the sentiment after each turn of the therapeutic session
