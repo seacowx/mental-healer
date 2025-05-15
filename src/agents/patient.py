@@ -120,8 +120,19 @@ class PatientAgent(LMAgent):
             message_list=patient_new_thought_msg_list,
         )
 
-        print(new_thought_list)
+        parsed_response_list = []
+        for response in new_thought_list:
+
+            # parse the response, only retain the utterance
+            if '<updated_thought>' in response:
+                response = response.rsplit('<updated_thought>', 1)[1].split('</updated_thought>')[0].strip()
+
+            parsed_response_list.append(response)
+            
+        print(parsed_response_list)
         raise SystemExit
+
+        return parsed_response_list
 
 
                 
