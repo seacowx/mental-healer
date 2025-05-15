@@ -85,6 +85,7 @@ def retrieve_augmented_persona(
 
 
 def verbalize_persona_profile(persona_profile_dict: dict) -> str:
+
     persona_profile_desc = (
         persona_profile_dict['persona_hub'] + '\n\nDetailed Persona Profile:\n'
         f'Name: {persona_profile_dict["name"]}\n'
