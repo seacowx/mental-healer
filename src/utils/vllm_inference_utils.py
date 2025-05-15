@@ -462,8 +462,5 @@ class vLLMOffline:
                 })
         else:
             parsed_response_list = response_list
-            
-        print(parsed_response_list)
-        raise SystemExit
 
         return parsed_response_list

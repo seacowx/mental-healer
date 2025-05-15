@@ -87,6 +87,9 @@ class PatientAgent(LMAgent):
 
             cur_situation_desc = situation_desc_list[sample_idx]
 
+            print(cur_dialogue_history)
+            raise SystemExit
+
             # make a prompt for each of the coping strategies. 
             # the only thing that changes by coping strategy is the therapist's utterance (therapist_utterance)
             for coping_dialogue_list in cur_dialogue_history.values():
