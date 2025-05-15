@@ -47,7 +47,4 @@ class TherapistAgent(LMAgent):
             active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
 
-        print(utterance_list)
-        raise SystemExit
-
         return utterance_list

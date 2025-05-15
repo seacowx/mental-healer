@@ -107,6 +107,10 @@ class TherapeuticSession:
                     active_coping_strategy_idx_list=active_coping_strategy_idx_list,
                 )
 
+                print(therapist_utterance_dict_list)
+                print(len(therapist_utterance_dict_list))
+                raise SystemExit
+
                 # update the session history
                 for therapist_utterance_dict in therapist_utterance_dict_list:
                     utterance_idx, coping_strategy = therapist_utterance_dict['coping_strategy'].split('||')
