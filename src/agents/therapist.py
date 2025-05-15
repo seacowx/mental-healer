@@ -25,7 +25,6 @@ class TherapistAgent(LMAgent):
         patient_thought_list: list[str],
         patient_persona_profile_list: list[str],
         session_buffer: TherapeuticSessionBuffer, 
-        session_status_list: list[int],
         active_sample_idx_list: list[int],
         active_coping_strategy_idx_list: list[list[int]],
     ) -> list[dict]:
