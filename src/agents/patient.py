@@ -90,7 +90,6 @@ class PatientAgent(LMAgent):
 
             # make a prompt for each of the coping strategies. 
             # the only thing that changes by coping strategy is the therapist's utterance (therapist_utterance)
-            # TODO: consider whether to add a sentiment checker here: stop producing prompt if the sentiment has converted to positive
             for coping_dialogue_list in cur_dialogue_history.values():
                 role, therapist_utterance = coping_dialogue_list[-1].values()
 
@@ -128,9 +127,9 @@ class PatientAgent(LMAgent):
                 response = response.rsplit('<updated_thought>', 1)[1].split('</updated_thought>')[0].strip()
 
             parsed_response_list.append(response)
-            
-        print(parsed_response_list)
-        raise SystemExit
+
+        # group the parsed response by coping strategy (list of list where the inner list contains 8 responses)
+        parsed_response_list = [parsed_response_list[i:i+8] for i in range(0, len(parsed_response_list), 8)]
 
         return parsed_response_list
 

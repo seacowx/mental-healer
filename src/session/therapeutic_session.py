@@ -107,6 +107,5 @@ class TherapeuticSession:
                     session_buffer=session_buffer,
                 )
 
-                # # generate the patient's new thought
-                # patient_new_thought = self.patient_agent.generate_new_thought(therapist_utterance)
-
+                print(patient_new_thought_list)
+                raise SystemExit
