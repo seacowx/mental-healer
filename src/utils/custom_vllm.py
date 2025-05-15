@@ -64,6 +64,12 @@ class CustomLLM(LLM):
         active_sample_idx_list: list[int],
         active_coping_strategy_idx_list: list[list[int]],
     ) -> list[dict[str, list[ChatCompletionMessageParam]]]:
+        """
+        Make coping chat messages for each sample in the batch.
+
+        Returns:
+            coping_chat_messages: list[dict[str, list[ChatCompletionMessageParam]]]: batched messages for each sample in the batch. Inactive coping strategies are indicated by an empty list.
+        """
 
         coping_chat_messages = []
         for sample_idx, (situation, thought, persona_profile_desc) in enumerate(zip(
@@ -90,13 +96,13 @@ class CustomLLM(LLM):
             for strategy_idx, (strategy_name, strategy_template) in enumerate(self.coping_strategy_template.items()):
 
                 if strategy_idx not in active_coping_strategy_idx_list[sample_idx]:
-                    continue
-
-                user_specific_coping_msg_dict[strategy_name] = [
-                    {'role': 'system', 'content': self.coping_system_prompt},
-                    {'role': 'user', 'content': generic_instruction_prompt},
-                    {'role': 'assistant', 'content': generic_thought_prompt + '\n' + strategy_template},
-                ]
+                    user_specific_coping_msg_dict[strategy_name] = []
+                else:
+                    user_specific_coping_msg_dict[strategy_name] = [
+                        {'role': 'system', 'content': self.coping_system_prompt},
+                        {'role': 'user', 'content': generic_instruction_prompt},
+                        {'role': 'assistant', 'content': generic_thought_prompt + '\n' + strategy_template},
+                    ]
 
             coping_chat_messages.append(user_specific_coping_msg_dict)
 
@@ -133,9 +139,6 @@ class CustomLLM(LLM):
             active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
 
-        print(coping_chat_messages)
-        print('\n\n')
-
         # flatten the coping chat messages while keep track of the sample index and key
         messages = []
         sample_idx_key_list = []
@@ -144,8 +147,8 @@ class CustomLLM(LLM):
             if not coping_chat_msg_dict:
                 continue
 
-            for coping_idx, (coping_strategy_name, coping_strategy_msg_list) in enumerate(coping_chat_msg_dict.items()):
-                if coping_idx in active_coping_strategy_idx_list[sample_idx]:
+            for coping_strategy_name, coping_strategy_msg_list in coping_chat_msg_dict.items():
+                if coping_strategy_msg_list:
                     messages.append(coping_strategy_msg_list)
                     sample_idx_key_list.append((str(sample_idx), coping_strategy_name))
 

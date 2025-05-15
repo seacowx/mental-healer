@@ -321,10 +321,6 @@ class vLLMServer:
                 text=True,
             )        
 
-            print('------------------------')
-            print(result.stdout)
-            print('------------------------\n\n')
-
             if 'vllm-model' in result.stdout or 'gpt-3.5-turbo' in result.stdout:            
                 server_running = True        
 
