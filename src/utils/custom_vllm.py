@@ -100,9 +100,6 @@ class CustomLLM(LLM):
 
             coping_chat_messages.append(user_specific_coping_msg_dict)
 
-        print(coping_chat_messages)
-        raise SystemExit()
-
         return coping_chat_messages
 
 
@@ -135,14 +132,24 @@ class CustomLLM(LLM):
             active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
 
+        print(coping_chat_messages)
+        print('\n\n')
+
         # flatten the coping chat messages while keep track of the sample index and key
         messages = []
         sample_idx_key_list = []
         for sample_idx, coping_chat_msg_dict in enumerate(coping_chat_messages):
-            for coping_idx, (coping_strategy_name, coping_strategy_msg_list) in enumerate(coping_chat_msg_dict.items()):
 
-                messages.append(coping_strategy_msg_list)
-                sample_idx_key_list.append((str(sample_idx), coping_strategy_name))
+            if not coping_chat_msg_dict:
+                continue
+
+            for coping_idx, (coping_strategy_name, coping_strategy_msg_list) in enumerate(coping_chat_msg_dict.items()):
+                if coping_idx in active_coping_strategy_idx_list[sample_idx]:
+                    messages.append(coping_strategy_msg_list)
+                    sample_idx_key_list.append((str(sample_idx), coping_strategy_name))
+
+        print(sample_idx_key_list)
+        raise SystemExit
 
         list_of_messages: list[list[ChatCompletionMessageParam]]
 
