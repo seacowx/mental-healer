@@ -70,10 +70,11 @@ class PatientAgent(LMAgent):
     ) -> list[dict[str, str]]:
 
         patient_new_thought_msg_list = []
+        sample_and_strategy_idx_list = []
         for sample_idx in range(len(situation_desc_list)):
 
             if sample_idx not in active_sample_idx_list:
-                patient_new_thought_msg_list.append({})
+                patient_new_thought_msg_list.append([])
 
             cur_persona_profile = self.meta_persona_profile[sample_idx]
 
@@ -89,6 +90,7 @@ class PatientAgent(LMAgent):
 
             # make a prompt for each of the coping strategies. 
             # the only thing that changes by coping strategy is the therapist's utterance (therapist_utterance)
+            cur_patient_new_thought_msg_list = []
             for coping_dialogue_list in cur_dialogue_history.values():
 
                 # if the dialogue history is empty, skip
@@ -112,7 +114,9 @@ class PatientAgent(LMAgent):
                         }
                     ]
 
-                patient_new_thought_msg_list.append(patient_new_thought_msg)
+                cur_patient_new_thought_msg_list.append(patient_new_thought_msg)
+
+            patient_new_thought_msg_list.append(cur_patient_new_thought_msg_list)
 
         return patient_new_thought_msg_list
 
