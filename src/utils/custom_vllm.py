@@ -152,9 +152,6 @@ class CustomLLM(LLM):
                     messages.append(coping_strategy_msg_list)
                     sample_idx_key_list.append((str(sample_idx), coping_strategy_name))
 
-        print(sample_idx_key_list)
-        raise SystemExit
-
         list_of_messages: list[list[ChatCompletionMessageParam]]
 
         # Handle multi and single conversations
