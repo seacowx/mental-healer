@@ -35,9 +35,6 @@ class TherapistAgent(LMAgent):
             for ele in patient_persona_profile_list
         ]
 
-        print(patient_persona_profile_desc_list[-1])
-        raise SystemExit
-
         utterance_list = self.base_vllm_model.inference(
             situation_desc_list=situation_desc_list,
             patient_thought_list=patient_thought_list,
