@@ -43,7 +43,4 @@ class TherapistAgent(LMAgent):
             is_coping_utterance=True,
         )
 
-        print(utterance_list)
-        raise SystemExit
-
         return utterance_list
