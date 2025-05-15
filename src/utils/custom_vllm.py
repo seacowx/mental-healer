@@ -125,9 +125,9 @@ class CustomLLM(LLM):
         messages = []
         sample_idx_key_list = []
         for sample_idx, coping_chat_msg_dict in enumerate(coping_chat_messages):
-            for coping_strategy_name, coping_strategy_msg_list in coping_chat_msg_dict.items():
+            for coping_idx, (coping_strategy_name, coping_strategy_msg_list) in enumerate(coping_chat_msg_dict.items()):
 
-                if not session_status_list[sample_idx]:
+                if not session_status_list[sample_idx][coping_idx]:
                     continue
 
                 messages.append(coping_strategy_msg_list)
