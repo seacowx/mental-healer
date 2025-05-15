@@ -81,7 +81,7 @@ class PatientAgent(LMAgent):
 
             cur_persona_profile = self.meta_persona_profile[sample_idx]
 
-            cur_session_history = session_buffer.get_session_history(sample_idx=sample_idx)
+            cur_dialogue_history = session_buffer.get_dialogue_history(sample_idx=sample_idx)
             cur_thought = session_buffer.get_thought_history(sample_idx=sample_idx)
 
             cur_persona_profile_desc = verbalize_persona_profile(
@@ -89,7 +89,7 @@ class PatientAgent(LMAgent):
             )
             cur_situation_desc = situation_desc_list[sample_idx]
 
-            print(cur_session_history)
+            print(cur_dialogue_history)
             raise SystemExit
 
             patient_new_thought = [

@@ -19,7 +19,7 @@ class TherapeuticSessionBuffer:
         # sentiment buffer stores the sentiment after each turn of the therapeutic session
         self.sentiment_buffer = [[] for _ in range(self.batch_size)]
         # coping strategies history stores the complete dialogue history of each coping strategy of each sample
-        self.coping_strategy_history = [{
+        self.coping_dialogue_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategies
         } for _ in range(self.batch_size)]
         self.thought_history = [[] for _ in range(self.batch_size)]
@@ -32,7 +32,7 @@ class TherapeuticSessionBuffer:
         coping_strategy: str,
         coping_utterance: str,
     ):
-        self.coping_strategy_history[sample_idx][coping_strategy].append({
+        self.coping_dialogue_history[sample_idx][coping_strategy].append({
             'role': role,
             'utterance': coping_utterance,
         })
@@ -56,7 +56,7 @@ class TherapeuticSessionBuffer:
     
     @property
     def show_dialogue_history(self) -> dict:
-        return json.dumps(self.coping_strategy_history)
+        return json.dumps(self.coping_dialogue_history)
 
     
     @property
@@ -64,8 +64,8 @@ class TherapeuticSessionBuffer:
         return json.dumps(self.thought_history)
 
 
-    def get_session_history(self, sample_idx: int) -> dict:
-        return self.coping_strategy_history[sample_idx]
+    def get_dialogue_history(self, sample_idx: int) -> dict:
+        return self.coping_dialogue_history[sample_idx]
 
     
     def get_thought_history(self, sample_idx: int) -> dict:
@@ -73,7 +73,7 @@ class TherapeuticSessionBuffer:
 
 
     def reset(self,):
-        self.coping_strategy_history = [{
+        self.coping_dialogue_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategies
         } for _ in range(self.batch_size)]
         self.sentiment_buffer = [[] for _ in range(self.batch_size)]
