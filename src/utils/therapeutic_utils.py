@@ -52,7 +52,7 @@ class TherapeuticSessionBuffer:
             coping_strategy=coping_strategy,
             coping_utterance=coping_utterance,
         )
-        self.thought_history[sample_idx].append(thought)
+        self.thought_history[sample_idx] = thought
     
     @property
     def show_dialogue_history(self) -> dict:
