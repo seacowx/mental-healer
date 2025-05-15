@@ -89,6 +89,8 @@ class PatientAgent(LMAgent):
             print(cur_session_history)
             print('\n\n\n')
             print(cur_thought)
+            print('\n\n\n')
+            print(session_buffer.show_thought_history)
             raise SystemExit
 
         # prompt needs:  therapist_utterance
