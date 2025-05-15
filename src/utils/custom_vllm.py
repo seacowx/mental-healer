@@ -61,20 +61,25 @@ class CustomLLM(LLM):
         situation_desc_list: list,
         patient_thought_list: list,
         patient_persona_profile_desc_list: list,
+        active_sample_idx_list: list[int],
+        active_coping_strategy_idx_list: list[list[int]],
     ) -> list[dict[str, list[ChatCompletionMessageParam]]]:
 
         coping_chat_messages = []
-        for situation, thought, persona_profile_desc in zip(
+        for sample_idx, (situation, thought, persona_profile_desc) in enumerate(zip(
             situation_desc_list,
             patient_thought_list,
             patient_persona_profile_desc_list,
-        ):
+        )):
+
+            if sample_idx not in active_sample_idx_list:
+                coping_chat_messages.append({})
+
             generic_instruction_prompt = self.coping_generic_instruction_template.render(
                 situation=situation,
                 thought=thought,
                 persona_profile=persona_profile_desc.strip(),
             )
-
             generic_thought_prompt = self.coping_generic_thought_template.render(
                 situation=situation,
                 thought=thought,
@@ -82,7 +87,11 @@ class CustomLLM(LLM):
             )
 
             user_specific_coping_msg_dict = {}
-            for strategy_name, strategy_template in self.coping_strategy_template.items():
+            for strategy_idx, (strategy_name, strategy_template) in enumerate(self.coping_strategy_template.items()):
+
+                if strategy_idx not in active_coping_strategy_idx_list[sample_idx]:
+                    continue
+
                 user_specific_coping_msg_dict[strategy_name] = [
                     {'role': 'system', 'content': self.coping_system_prompt},
                     {'role': 'user', 'content': generic_instruction_prompt},
@@ -90,6 +99,9 @@ class CustomLLM(LLM):
                 ]
 
             coping_chat_messages.append(user_specific_coping_msg_dict)
+
+        print(coping_chat_messages)
+        raise SystemExit()
 
         return coping_chat_messages
 
@@ -100,6 +112,7 @@ class CustomLLM(LLM):
         patient_thought_list: list,
         patient_persona_profile_desc_list: list,
         session_buffer: TherapeuticSessionBuffer,
+        active_coping_strategy_idx_list: list[list[int]],
         sampling_params: Optional[Union[SamplingParams,
                                         list[SamplingParams]]] = None,
         use_tqdm: bool = True,
@@ -118,6 +131,8 @@ class CustomLLM(LLM):
             situation_desc_list=situation_desc_list,
             patient_thought_list=patient_thought_list,
             patient_persona_profile_desc_list=patient_persona_profile_desc_list,
+            active_sample_idx_list=active_sample_idx_list,
+            active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
 
         # flatten the coping chat messages while keep track of the sample index and key

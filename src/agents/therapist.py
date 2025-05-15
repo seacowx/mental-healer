@@ -26,6 +26,8 @@ class TherapistAgent(LMAgent):
         patient_persona_profile_list: list[str],
         session_buffer: TherapeuticSessionBuffer, 
         session_status_list: list[int],
+        active_sample_idx_list: list[int],
+        active_coping_strategy_idx_list: list[list[int]],
     ) -> list[dict]:
 
         # verbalize the persona profile
@@ -43,6 +45,8 @@ class TherapistAgent(LMAgent):
             session_buffer=session_buffer,
             session_status_list=session_status_list,
             is_coping_utterance=True,
+            active_sample_idx_list=active_sample_idx_list,
+            active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
 
         print(utterance_list)

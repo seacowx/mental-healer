@@ -397,6 +397,8 @@ class vLLMOffline:
         session_buffer: TherapeuticSessionBuffer = None,
         lora_request: LoRARequest = None,
         is_coping_utterance: bool = False,
+        active_sample_idx_list: list[int] = [],
+        active_coping_strategy_idx_list: list[list[int]] = [],
         **kwargs
     ) -> list:
         """
@@ -435,6 +437,8 @@ class vLLMOffline:
                 use_tqdm=True,
                 session_buffer=session_buffer,
                 session_status_list=session_status_list,
+                active_sample_idx_list=active_sample_idx_list,
+                active_coping_strategy_idx_list=active_coping_strategy_idx_list,
                 **extra_kwargs,
             )
         else:

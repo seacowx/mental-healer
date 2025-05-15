@@ -97,17 +97,14 @@ class TherapeuticSession:
                     if active_coping_strategy_idx_list
                 ]
 
-                # remove sample index if all coping strategies are inactive
-                print(active_coping_strategy_idx_list)
-                print(active_sample_idx_list)
-                raise SystemExit
-
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
                     situation_desc_list=cur_situation_list,
                     patient_thought_list=cur_thought_list,
                     patient_persona_profile_list=cur_persona_profile_list,
                     session_buffer=session_buffer,
+                    active_sample_idx_list=active_sample_idx_list,
+                    active_coping_strategy_idx_list=active_coping_strategy_idx_list,
                 )
 
                 # update the session history
