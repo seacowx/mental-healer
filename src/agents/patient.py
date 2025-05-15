@@ -90,7 +90,13 @@ class PatientAgent(LMAgent):
             # make a prompt for each of the coping strategies. 
             # the only thing that changes by coping strategy is the therapist's utterance (therapist_utterance)
             for coping_dialogue_list in cur_dialogue_history.values():
-                role, therapist_utterance = coping_dialogue_list[-1].values()
+
+                # if the dialogue history is empty, skip
+                try:
+                    role, therapist_utterance = coping_dialogue_list[-1].values()
+                except:
+                    patient_new_thought_msg_list.append([])
+                    continue
 
                 # ensure that the last utterance is from the therapist
                 if role != 'therapist':
