@@ -134,9 +134,6 @@ class PatientAgent(LMAgent):
                 sample_idx=sample_idx
             )
 
-            print(cur_active_coping_strategies)
-            raise SystemExit
-
             out_response_list.append(
                 parsed_response_list[prev_active_coping_strategies:cur_active_coping_strategies]
             )
