@@ -75,15 +75,16 @@ class TherapeuticSession:
                 )
 
                 # update the session history
-                for therapist_utterance_dict in therapist_utterance_dict_list:
+                for sample_idx, therapist_utterance_dict in enumerate(therapist_utterance_dict_list):
                     utterance_idx, coping_strategy = therapist_utterance_dict['coping_strategy'].split('||')
                     coping_utterance = therapist_utterance_dict['response']
 
-                    session_buffer.add_utterance(
+                    session_buffer.update_buffer(
                         role='therapist',
                         sample_idx=int(utterance_idx),
                         coping_strategy=coping_strategy,
                         coping_utterance=coping_utterance,
+                        thought=cur_thought_list[sample_idx],
                     )
 
                 # TODO: finish implementing this: patient agent should react to the therapist's utterance by producing a new thought
