@@ -1,4 +1,5 @@
 from agents.base_agent import LMAgent
+from utils.persona_utils import verbalize_persona_profile
 from utils.therapeutic_utils import TherapeuticSessionBuffer
 
 
@@ -26,10 +27,21 @@ class TherapistAgent(LMAgent):
         session_buffer: TherapeuticSessionBuffer, 
     ) -> list[dict]:
 
+        # verbalize the persona profile
+        patient_persona_profile_desc_list = [
+            verbalize_persona_profile(
+                persona_profile_dict=ele
+            )
+            for ele in patient_persona_profile_list
+        ]
+
+        print(patient_persona_profile_desc_list[-1])
+        raise SystemExit
+
         utterance_list = self.base_vllm_model.inference(
             situation_desc_list=situation_desc_list,
             patient_thought_list=patient_thought_list,
-            patient_persona_profile_list=patient_persona_profile_list,
+            patient_persona_profile_desc_list=patient_persona_profile_desc_list,
             session_buffer=session_buffer,
             is_coping_utterance=True,
         )

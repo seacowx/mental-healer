@@ -60,20 +60,15 @@ class CustomLLM(LLM):
         self, 
         situation_desc_list: list,
         patient_thought_list: list,
-        patient_persona_profile_list: list,
+        patient_persona_profile_desc_list: list,
     ) -> list[dict[str, list[ChatCompletionMessageParam]]]:
 
         coping_chat_messages = []
-        for situation, thought, persona_profile in zip(
+        for situation, thought, persona_profile_desc in zip(
             situation_desc_list,
             patient_thought_list,
-            patient_persona_profile_list,
+            patient_persona_profile_desc_list,
         ):
-            # first, organize the peronsa profile dictionary to something more readable
-            persona_profile_desc = verbalize_persona_profile(
-                persona_profile_dict=persona_profile
-            )
-
             generic_instruction_prompt = self.coping_generic_instruction_template.render(
                 situation=situation,
                 thought=thought,
@@ -103,7 +98,7 @@ class CustomLLM(LLM):
         self,
         situation_desc_list: list,
         patient_thought_list: list,
-        patient_persona_profile_list: list,
+        patient_persona_profile_desc_list: list,
         session_buffer: TherapeuticSessionBuffer,
         sampling_params: Optional[Union[SamplingParams,
                                         list[SamplingParams]]] = None,
@@ -122,7 +117,7 @@ class CustomLLM(LLM):
         coping_chat_messages = self._make_coping_chat_messages(
             situation_desc_list=situation_desc_list,
             patient_thought_list=patient_thought_list,
-            patient_persona_profile_list=patient_persona_profile_list,
+            patient_persona_profile_desc_list=patient_persona_profile_desc_list,
         )
 
         # flatten the coping chat messages while keep track of the sample index and key

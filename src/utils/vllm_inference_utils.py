@@ -392,7 +392,7 @@ class vLLMOffline:
         message_list: list = [], 
         situation_desc_list: list = [],
         patient_thought_list: list = [],
-        patient_persona_profile_list: list = [],
+        patient_persona_profile_desc_list: list = [],
         session_buffer: TherapeuticSessionBuffer = None,
         lora_request: LoRARequest = None,
         is_coping_utterance: bool = False,
@@ -429,7 +429,7 @@ class vLLMOffline:
             response_list, sample_idx_key_list = self.vllm_model.coping_chat(
                 situation_desc_list=situation_desc_list,
                 patient_thought_list=patient_thought_list,
-                patient_persona_profile_list=patient_persona_profile_list,
+                patient_persona_profile_desc_list=patient_persona_profile_desc_list,
                 sampling_params=sampling_params,
                 use_tqdm=True,
                 session_buffer=session_buffer,
