@@ -1,25 +1,6 @@
 import json, yaml
 
 
-def update_therapeutic_session_complete(
-    session_buffer: TherapeuticSessionBuffer,
-) -> list[bool]:
-
-    is_therapeutic_session_complete = session_buffer.is_therapeutic_session_complete
-    print(is_therapeutic_session_complete)
-
-    for strategy_idx, indicator in enumerate(is_therapeutic_session_complete):
-
-        if not indicator:
-            # check the lastest sentiment of the coping strategy
-            latest_sentiment = session_buffer.get_latest_sentiment(strategy_idx)
-
-            if latest_sentiment == 'positive':
-                is_therapeutic_session_complete[strategy_idx] = True
-
-    return is_therapeutic_session_complete
-
-
 class TherapeuticSessionBuffer:
 
     def __init__(

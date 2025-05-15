@@ -6,10 +6,7 @@ from agents.planner import CopingAgent
 from agents.patient import PatientAgent
 from agents.therapist import TherapistAgent
 from utils.vllm_inference_utils import vLLMOffline
-from utils.therapeutic_utils import (
-    TherapeuticSessionBuffer, 
-    update_therapeutic_session_complete,
-)
+from utils.therapeutic_utils import TherapeuticSessionBuffer
 
 
 class TherapeuticSession:
