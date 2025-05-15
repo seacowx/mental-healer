@@ -147,9 +147,7 @@ class PatientAgent(LMAgent):
             message_list=patient_new_thought_msg_list,
         )
 
-        parsed_response_list = [[[''] * 8] * (max(active_sample_idx_list)+1)]
-        print(parsed_response_list)
-        raise SystemExit
+        parsed_response_list = [[''] * 8] * (max(active_sample_idx_list)+1)
         for response_idx, response in enumerate(new_thought_list):
             cur_sample_idx, cur_strategy_idx = sample_and_strategy_idx_list[response_idx]
 
