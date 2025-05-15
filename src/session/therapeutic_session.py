@@ -73,6 +73,11 @@ class TherapeuticSession:
 
             for _ in range(self.max_turns):
 
+                # get the active coping strategies for each sample in the batch
+                session_status_list = session_buffer.get_session_status_list()
+                print(session_status_list)
+                raise SystemExit
+
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
                     situation_desc_list=cur_situation_list,
