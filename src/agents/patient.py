@@ -91,19 +91,20 @@ class PatientAgent(LMAgent):
             # make a prompt for each of the coping strategies. 
             # the only thing that changes by coping strategy is the therapist's utterance (therapist_utterance)
             cur_patient_new_thought_msg_list = []
-            for coping_dialogue_list in cur_dialogue_history.values():
+            for coping_strategy_idx, coping_dialogue_list in enumerate(cur_dialogue_history.values()):
 
                 # if the dialogue history is empty, skip
-                try:
-                    role, therapist_utterance = coping_dialogue_list[-1].values()
-                except:
-                    patient_new_thought_msg = []
+                if not coping_dialogue_list:
+                    cur_patient_new_thought_msg_list.append([])
+                    continue
+
+                role, therapist_utterance = coping_dialogue_list[-1].values()
 
                 # ensure that the last utterance is from the therapist
                 if role != 'therapist':
-                    patient_new_thought_msg = []
+                    cur_patient_new_thought_msg_list.append([])
                 else:
-                    patient_new_thought_msg = [
+                    cur_patient_new_thought_msg_list.append([
                         {'role': 'system', 'content': self.patient_reaction_system},
                         {'role': 'user', 'content': self.patient_reaction_user.render(
                                 persona_profile=cur_persona_profile_desc,
@@ -112,13 +113,12 @@ class PatientAgent(LMAgent):
                                 therapist_utterance=therapist_utterance,
                             )
                         }
-                    ]
-
-                cur_patient_new_thought_msg_list.append(patient_new_thought_msg)
+                    ])
+                    sample_and_strategy_idx_list.append((sample_idx, coping_strategy_idx))
 
             patient_new_thought_msg_list.append(cur_patient_new_thought_msg_list)
 
-        return patient_new_thought_msg_list
+        return patient_new_thought_msg_list, sample_and_strategy_idx_list
 
 
     def utter(
@@ -136,7 +136,7 @@ class PatientAgent(LMAgent):
                 "'set_persona(persona_profile_dict_list)' before calling the utter method."
             )
 
-        patient_new_thought_msg_list = self._make_patient_new_thought_msg(
+        patient_new_thought_msg_list, sample_and_strategy_idx_list = self._make_patient_new_thought_msg(
             situation_desc_list=situation_desc_list,
             session_buffer=session_buffer,
             active_sample_idx_list=active_sample_idx_list,
@@ -145,6 +145,7 @@ class PatientAgent(LMAgent):
 
         print(patient_new_thought_msg_list[0])
         print(len(patient_new_thought_msg_list[0]))
+        print(sample_and_strategy_idx_list)
         raise SystemExit
 
         new_thought_list = self.base_vllm_model.inference(
