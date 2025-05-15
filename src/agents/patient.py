@@ -4,11 +4,8 @@ Patient Agent. Frozen during RL training.
 This agent is responsible for generating the initial thought and updating the thought based on the therapist's utterance.
 """
 
-import os
-import operator
 import yaml, json
-import pandas as pd
-from copy import deepcopy
+from jinja2 import Template
 
 from openai import OpenAI, AsyncOpenAI
 
@@ -36,9 +33,15 @@ class PatientAgent(LMAgent):
 
         self.meta_persona_profile = []
         self.role_playing_instruction_list = []
+        
+        # organize patient prompt templates
         self.patient_template = yaml.safe_load(
             open(patient_template_path)
         )
+        self.patient_reaction_system = self.patient_template['react_to_therapist_utterance']['system']
+        self.patient_reaction_user = Template(self.patient_template['react_to_therapist_utterance']['user'])
+
+
 
 
     @property
@@ -73,7 +76,7 @@ class PatientAgent(LMAgent):
                 "'set_persona(persona_profile_dict_list)' before calling the utter method."
             )
 
-        patient_new_thought_msg = []
+        patient_new_thought_msg_list = []
         for sample_idx in range(len(situation_desc_list)):
 
             cur_persona_profile = self.meta_persona_profile[sample_idx]
@@ -87,10 +90,17 @@ class PatientAgent(LMAgent):
             cur_situation_desc = situation_desc_list[sample_idx]
 
             print(cur_session_history)
-            print('\n\n\n')
-            print(cur_thought)
-            print('\n\n\n')
-            print(session_buffer.show_thought_history)
             raise SystemExit
 
-        # prompt needs:  therapist_utterance
+            patient_new_thought = [
+                {'role': 'system', 'content': self.patient_reaction_system},
+                {
+                    'role': 'user', 
+                    'content': self.patient_reaction_user.render(
+                        persona_profile=cur_persona_profile_desc,
+                        situation=cur_situation_desc,
+                        thought=cur_thought,
+                        therapist_utterance=therapist_utterance,
+                    )
+                }
+            ]
