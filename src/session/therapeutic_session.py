@@ -74,6 +74,10 @@ class TherapeuticSession:
                     session_buffer=session_buffer,
                 )
 
+                print(len(therapist_utterance_dict_list))
+                print(len(cur_thought_list))
+                raise SystemExit
+
                 # update the session history
                 for sample_idx, therapist_utterance_dict in enumerate(therapist_utterance_dict_list):
                     utterance_idx, coping_strategy = therapist_utterance_dict['coping_strategy'].split('||')
