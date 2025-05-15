@@ -109,6 +109,7 @@ class CustomLLM(LLM):
         patient_thought_list: list,
         patient_persona_profile_desc_list: list,
         session_buffer: TherapeuticSessionBuffer,
+        active_sample_idx_list: list[int],
         active_coping_strategy_idx_list: list[list[int]],
         sampling_params: Optional[Union[SamplingParams,
                                         list[SamplingParams]]] = None,
