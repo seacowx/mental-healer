@@ -38,6 +38,22 @@ class TherapeuticSession:
         self.coping_strategy_list = yaml.safe_load(open(coping_strategies_path, 'r'))
 
 
+    def _get_active_coping_strategy_list(self, session_buffer: TherapeuticSessionBuffer):
+
+        # get the active coping strategies for each sample in the batch
+        session_status_list = session_buffer.get_session_status_list()
+        active_coping_strategy_idx_list = []
+        for session_status in session_status_list:
+            cur_active_idx_list = []
+            for coping_idx, is_active in enumerate(session_status):
+                if is_active:
+                    cur_active_idx_list.append(coping_idx)
+
+            active_coping_strategy_idx_list.append(cur_active_idx_list)
+
+        return active_coping_strategy_idx_list
+
+
     # TODO: add support for multiple samples batched inference
     def batch_simulate_therapeutic_session(
         self, 
@@ -73,8 +89,12 @@ class TherapeuticSession:
 
             for _ in range(self.max_turns):
 
-                # get the active coping strategies for each sample in the batch
-                session_status_list = session_buffer.get_session_status_list()
+                active_coping_strategy_idx_list = self._get_active_coping_strategy_list(
+                    session_buffer=session_buffer,
+                )
+
+                print(active_coping_strategy_idx_list)
+                raise SystemExit
 
                 # generate the therapist's utterance
                 therapist_utterance_dict_list = self.therapist_agent.utter(
@@ -82,7 +102,6 @@ class TherapeuticSession:
                     patient_thought_list=cur_thought_list,
                     patient_persona_profile_list=cur_persona_profile_list,
                     session_buffer=session_buffer,
-                    session_status_list=session_status_list,
                 )
 
                 # update the session history
