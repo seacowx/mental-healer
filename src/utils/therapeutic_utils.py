@@ -20,7 +20,6 @@ def update_therapeutic_session_complete(
     return is_therapeutic_session_complete
 
 
-
 class TherapeuticSessionBuffer:
 
     def __init__(
