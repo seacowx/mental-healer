@@ -22,7 +22,7 @@ class TherapeuticSessionBuffer:
             coping_strategy: [] for coping_strategy in self.coping_strategy_list
         } for _ in range(self.batch_size)]
         self.thought_history = [[] for _ in range(self.batch_size)]
-        self.is_therapeutic_session_complete = [False] * self.batch_size
+        self.is_therapeutic_session_complete = [[False] * self.batch_size] * batch_size
 
     
     def add_utterance(
@@ -90,6 +90,10 @@ class TherapeuticSessionBuffer:
             return temp_sentiment_list[coping_strategy_idx][-1].lower()
         else:
             return 'negative'
+
+
+    def get_number_of_active_coping_strategies(self, sample_idx: int) -> int:
+        return sum(self.is_therapeutic_session_complete[sample_idx])
 
 
     def reset(self,):
