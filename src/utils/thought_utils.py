@@ -100,7 +100,7 @@ async def iterative_thought_generation(
                 frequency_penalty=0.0,
                 presence_penalty=1.0,
             )
-            for active_message in active_messages[:10]
+            for active_message in active_messages
         ]
 
         tqdm_msg = f"Generating initial thoughts for {len(active_messages)} messages"
@@ -120,7 +120,7 @@ async def iterative_thought_generation(
         therapist_reward, base_offline_vllm_model = start_therapist_reward()
 
         sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
-            situation_list=situation_list[:10],
+            situation_list=situation_list,
             thoutght_list=parsed_output,
         )
 
@@ -154,8 +154,5 @@ async def iterative_thought_generation(
         torch.cuda.empty_cache()
 
         num_iterations += 1
-
-    print(valid_initial_thought_list[:10])
-    raise SystemExit
 
     return valid_initial_thought_list
