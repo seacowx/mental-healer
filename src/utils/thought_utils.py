@@ -23,7 +23,7 @@ def start_therapist_reward(llm_path_dict: dict):
         sentiment_reward_rule_path='../../src/configs/sentiment_reward_rules.yaml',
     )
 
-    return therapist_reward
+    return therapist_reward, base_offline_vllm_model
 
 
 def stop_therapist_reward(

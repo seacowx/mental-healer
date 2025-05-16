@@ -141,11 +141,13 @@ async def main():
 
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
 
+    import gc
+    import torch
     import time
-    therapist_reward = start_therapist_reward(llm_path_dict)
+    therapist_reward, base_offline_vllm_model = start_therapist_reward(llm_path_dict)
     print('Therapist reward started')
     time.sleep(100)
-    stop_therapist_reward(therapist_reward, llm_path_dict)
+    stop_therapist_reward(therapist_reward, base_offline_vllm_model)
     print('Therapist reward stopped')
     time.sleep(100)
     raise SystemExit
