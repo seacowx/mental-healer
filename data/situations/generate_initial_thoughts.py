@@ -11,7 +11,6 @@ import torch
 from openai import AsyncOpenAI
 
 from utils.vllm_inference_utils import vLLMServer
-from rewards.therapist_reward import TherapistReward
 from utils.data_utils import augment_situation_with_persona
 from utils.thought_utils import iterative_thought_generation, start_therapist_reward, stop_therapist_reward
 
@@ -19,7 +18,6 @@ from utils.thought_utils import iterative_thought_generation, start_therapist_re
 def produce_initial_thought(
     data: dict,
     vllm_client: vLLMServer,
-    therapist_reward: TherapistReward,
     thought_device: list = [],
     batch_num: int | None = None,
     top_k_personas: int = 1,
@@ -76,7 +74,6 @@ def produce_initial_thought(
     parsed_initial_thought_list = iterative_thought_generation(
         initial_thought_message_list=initial_thought_message_list,
         situation_list=situation_list,
-        therapist_reward=therapist_reward,
         vllm_client=vllm_client,
         thought_device=thought_device,
         batch_num=batch_num,
@@ -141,22 +138,6 @@ async def main():
 
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
 
-    import gc
-    import torch
-    import time
-    therapist_reward, base_offline_vllm_model = start_therapist_reward(llm_path_dict)
-    print('Therapist reward started')
-    time.sleep(100)
-    # stop_therapist_reward(therapist_reward, base_offline_vllm_model)
-
-    del base_offline_vllm_model
-    del therapist_reward
-    gc.collect()
-    torch.cuda.empty_cache()
-    print('Therapist reward stopped')
-    time.sleep(100)
-    raise SystemExit
-
     if torch.cuda.device_count() == 4:
         thought_device = [0, 1, 2, 3]
     elif torch.cuda.device_count() == 2:
@@ -185,7 +166,6 @@ async def main():
                 produce_initial_thought(
                     data=data_batch,
                     vllm_client=vllm_client,
-                    therapist_reward=therapist_reward,
                     top_k_personas=args.n_personas,
                     thought_device=thought_device,
                     regenerate_thought=args.regenerate_thought,
@@ -195,7 +175,6 @@ async def main():
             produce_initial_thought(
                 data=prepared_data,
                 vllm_client=vllm_client,
-                therapist_reward=therapist_reward,
                 top_k_personas=args.n_personas,
                 thought_device=thought_device,
                 regenerate_thought=args.regenerate_thought,

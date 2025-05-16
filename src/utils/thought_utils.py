@@ -26,16 +26,6 @@ def start_therapist_reward(llm_path_dict: dict):
     return therapist_reward, base_offline_vllm_model
 
 
-def stop_therapist_reward(
-    therapist_reward: TherapistReward,
-    base_offline_vllm_model: vLLMOffline,
-):
-    del base_offline_vllm_model
-    del therapist_reward
-    gc.collect()
-    torch.cuda.empty_cache()
-
-
 def parse_thought_output(think_output_list: list) -> tuple[list, list]:
         
     parsed_output = []
@@ -101,7 +91,7 @@ async def iterative_thought_generation(
             openai_async_server.process_with_semaphore(
                 semaphore=semaphore,
                 model='vllm-model',
-                message=active_message,
+                message=active_message[:10],
                 temperature=0.6,
                 max_tokens=4096,
                 top_p=0.95,
@@ -110,6 +100,10 @@ async def iterative_thought_generation(
             )
             for active_message in active_messages
         ]
+
+        print(len(active_messages))
+        print(think_output_list)
+        raise SystemExit
 
         tqdm_msg = f"Generating initial thoughts for {len(active_messages)} messages"
         if batch_num:
