@@ -15,7 +15,7 @@ from utils.data_utils import augment_situation_with_persona
 from utils.thought_utils import iterative_thought_generation
 
 
-def produce_initial_thought(
+async def produce_initial_thought(
     data: dict,
     vllm_client: vLLMServer,
     thought_device: list = [],
@@ -28,8 +28,7 @@ def produce_initial_thought(
     This process is done in batches.
 
     Inputs:
-        data (dict): A dictionary containing the situation and persona profile
-        therapist_reward (TherapistReward): The reward model for sentiment analysis
+        data (dict): A dictionary containing the situation and persona profile therapist_reward (TherapistReward): The reward model for sentiment analysis
         disable_thinking (bool): Whether to disable reasoning mode when producing initial thoughts
         regenerate_thought (bool): Whether to regenerate the initial thought
 
@@ -71,7 +70,7 @@ def produce_initial_thought(
     initial_thought_message_list = initial_thought_message_list
     TOLERANCE = 5
 
-    parsed_initial_thought_list = iterative_thought_generation(
+    parsed_initial_thought_list = await iterative_thought_generation(
         initial_thought_message_list=initial_thought_message_list,
         situation_list=situation_list,
         vllm_client=vllm_client,
