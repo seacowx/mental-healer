@@ -143,8 +143,10 @@ async def main():
 
     import time
     therapist_reward = start_therapist_reward(llm_path_dict)
+    print('Therapist reward started')
     time.sleep(100)
     stop_therapist_reward(therapist_reward, llm_path_dict)
+    print('Therapist reward stopped')
     time.sleep(100)
     raise SystemExit
 
