@@ -6,6 +6,7 @@ Additional features:
 """
 
 import yaml
+import warnings
 from jinja2 import Template
 from typing import Any, Optional, Union, cast
 
@@ -34,19 +35,22 @@ class CustomLLM(LLM):
 
         coping_chat_template_path = kwargs.get(
             'coping_chat_template_path', 
-            './prompts/coping_strategies.yaml'
+            ''
         )
-        self.coping_chat_template_dict = yaml.safe_load(
-            open(coping_chat_template_path)
-        )
-        self.coping_generic_instruction_template = Template(self.coping_chat_template_dict['generic_instruction'])
-        self.coping_generic_thought_template = Template(self.coping_chat_template_dict['generic_thought'])
-        self.coping_system_prompt = self.coping_chat_template_dict['system']
-        self.coping_postfix = self.coping_chat_template_dict['coping_postfix']
-        self.coping_strategy_template = {
-            k: v for k, v in self.coping_chat_template_dict.items() 
-            if k not in  ['generic_thought', 'generic_instruction', 'coping_postfix', 'system']
-        }
+        if coping_chat_template_path:
+            self.coping_chat_template_dict = yaml.safe_load(
+                open(coping_chat_template_path)
+            )
+            self.coping_generic_instruction_template = Template(self.coping_chat_template_dict['generic_instruction'])
+            self.coping_generic_thought_template = Template(self.coping_chat_template_dict['generic_thought'])
+            self.coping_system_prompt = self.coping_chat_template_dict['system']
+            self.coping_postfix = self.coping_chat_template_dict['coping_postfix']
+            self.coping_strategy_template = {
+                k: v for k, v in self.coping_chat_template_dict.items() 
+                if k not in  ['generic_thought', 'generic_instruction', 'coping_postfix', 'system']
+            }
+        else:
+            warnings.warn('No coping chat template path provided. Coping Chat cannot be used.')
 
         # remove custom kwargs
         kwargs = {
