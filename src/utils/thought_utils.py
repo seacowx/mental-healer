@@ -116,9 +116,6 @@ async def iterative_thought_generation(
             think_output_list=think_output_list,
         )
 
-        print(parsed_output)
-        raise SystemExit
-
         # initialize the sentiment reward model
         therapist_reward, base_offline_vllm_model = start_therapist_reward()
 
@@ -158,7 +155,7 @@ async def iterative_thought_generation(
 
         num_iterations += 1
 
-    print(valid_initial_thought_list)
+    print(valid_initial_thought_list[:10])
     raise SystemExit
 
     return valid_initial_thought_list
