@@ -116,6 +116,9 @@ async def iterative_thought_generation(
             think_output_list=think_output_list,
         )
 
+        print(parsed_output)
+        raise SystemExit
+
         # initialize the sentiment reward model
         therapist_reward, base_offline_vllm_model = start_therapist_reward()
 
@@ -131,9 +134,6 @@ async def iterative_thought_generation(
         # convert the sentiment label to "positive" for the corrupted output
         for idx in corrupted_idx_list:
             output_sentiment_list[idx] = 'positive'
-
-        print(output_sentiment_list)
-        raise SystemExit
 
         new_active_indices = []
         new_active_messages = []
