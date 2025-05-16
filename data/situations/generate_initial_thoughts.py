@@ -151,6 +151,7 @@ async def main():
             world_size=torch.cuda.device_count(),
             quantization=False,
         )
+        vllm_client.start_vllm_server()
 
         # divide data into batches
         batch_size = len(prepared_data) // args.n_personas
@@ -162,7 +163,7 @@ async def main():
             ]
 
             for batch_num, data_batch in enumerate(data_batches, start=1):
-                produce_initial_thought(
+                await produce_initial_thought(
                     data=data_batch,
                     vllm_client=vllm_client,
                     top_k_personas=args.n_personas,
@@ -171,7 +172,7 @@ async def main():
                     batch_num=batch_num,
                 )
         else:
-            produce_initial_thought(
+            await produce_initial_thought(
                 data=prepared_data,
                 vllm_client=vllm_client,
                 top_k_personas=args.n_personas,
