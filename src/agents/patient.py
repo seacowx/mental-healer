@@ -150,7 +150,7 @@ class PatientAgent(LMAgent):
         )
 
         updated_patient_thought_list = [
-            [] * len(self.coping_strategy_list)
+            [''] * len(self.coping_strategy_list)
             for _ in range(max(active_sample_idx_list)+1)
         ]
         parsed_response_list = []
