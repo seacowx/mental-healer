@@ -120,7 +120,6 @@ class TherapeuticSession:
             print(patient_thought_list)
             raise SystemExit
 
-
             # update the session history
             for patient_thought_dict in patient_thought_dict_list:
                 ...
