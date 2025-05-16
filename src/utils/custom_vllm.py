@@ -67,6 +67,9 @@ class CustomLLM(LLM):
         """
         Make coping chat messages for each sample in the batch.
 
+        Iterate throught each sample and each coping strategy. Make coping caht message according to the previous patient's thought.
+        Coping strategies are sampled from the 2x2x2 grid from the reAppraisal framework
+
         Returns:
             coping_chat_messages: list[dict[str, list[ChatCompletionMessageParam]]]: batched messages for each sample in the batch. Inactive coping strategies are indicated by an empty list.
         """
