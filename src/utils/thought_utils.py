@@ -1,10 +1,39 @@
+import gc
 from asyncio import Semaphore
 from tqdm.asyncio import tqdm as atqdm
 
+import torch
 from openai import AsyncOpenAI
 
-from utils.vllm_inference_utils import vLLMServer
 from rewards.therapist_reward import TherapistReward
+from utils.model_utils import load_offline_vllm_base_model
+from utils.vllm_inference_utils import vLLMServer, vLLMOffline
+
+
+def start_therapist_reward(llm_path_dict: dict):
+    base_offline_vllm_model = load_offline_vllm_base_model(
+        base_model_path=llm_path_dict['Qwen/Qwen3-8B']['path'],
+        gpu_memory_utilization=0.3,
+    )
+
+    therapist_reward = TherapistReward(
+        base_vllm_model=base_offline_vllm_model,
+        sentiment_prompt_path='../../src/prompts/sentiment.yaml',
+        sentiment_mapping_path='../../src/configs/emotion_to_sentiment.yaml',
+        sentiment_reward_rule_path='../../src/configs/sentiment_reward_rules.yaml',
+    )
+
+    return therapist_reward
+
+
+def stop_therapist_reward(
+    therapist_reward: TherapistReward,
+    base_offline_vllm_model: vLLMOffline,
+):
+    del base_offline_vllm_model
+    del therapist_reward
+    gc.collect()
+    torch.cuda.empty_cache()
 
 
 def parse_thought_output(think_output_list: list) -> tuple[list, list]:
