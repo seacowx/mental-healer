@@ -15,6 +15,7 @@ class SentimentReward:
         base_vllm_model: vLLMOffline,
         reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
         sentiment_mapping_path: str = './configs/emotion_to_sentiment.yaml',
+        sentiment_prompt_path: str = './prompts/sentiment.yaml',
         temperature: float = 0.,
         max_tokens: int = 128,
     ) -> None:
@@ -55,8 +56,6 @@ class SentimentReward:
         self, 
         input_msg_list: list, 
     ) -> list:
-
-        # keep track of the completed and corrupted outputs
 
         outputs = self.llm.inference(
             message_list=input_msg_list,

@@ -57,6 +57,7 @@ def main():
         coping_cot_templates_path='../prompts/coping_strategies.yaml',
         patient_prompt_template_path='../prompts/patient.yaml',
         coping_strategies_path='../configs/coping_strategy.yaml',
+        sentiment_prompt_path='../prompts/sentiment.yaml',
     )
 
     therapeutic_session.batch_simulate_therapeutic_session(

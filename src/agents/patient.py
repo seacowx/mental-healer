@@ -163,7 +163,7 @@ class PatientAgent(LMAgent):
                 response = response.rsplit('<updated_thought>', 1)[1].split('</updated_thought>')[0].strip()
 
             parsed_response_list[cur_sample_idx][cur_strategy_idx] = {
-                'coping_strategy': cur_sample_idx + '||' + cur_strategy_name,
+                'coping_strategy': str(cur_sample_idx) + '||' + cur_strategy_name,
                 'response': response,
             }
 
