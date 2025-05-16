@@ -111,10 +111,8 @@ class TherapeuticSession:
             # generate the patient's new thought and update `patient_thought_list`
             patient_thought_dict_list, patient_thought_list = self.patient_agent.utter(
                 situation_desc_list=cur_situation_list,
-                patient_thought_list=patient_thought_list,
                 session_buffer=session_buffer,
                 active_sample_idx_list=active_sample_idx_list,
-                active_coping_strategy_idx_list=active_coping_strategy_idx_list,
             )
 
             print(patient_thought_dict_list)

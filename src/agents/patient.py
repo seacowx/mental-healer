@@ -68,8 +68,7 @@ class PatientAgent(LMAgent):
         situation_desc_list: list[str],
         session_buffer: TherapeuticSessionBuffer,
         active_sample_idx_list: list[int],
-        active_coping_strategy_idx_list: list[list[int]],
-    ) -> list[dict[str, str]]:
+    ) -> tuple[list[dict[str, str]], list[str]]:
 
         patient_new_thought_msg_list = []
         sample_and_strategy_idx_list = []
@@ -123,11 +122,16 @@ class PatientAgent(LMAgent):
     def utter(
         self, 
         situation_desc_list: list[str],
-        patient_thought_list: list[str],
         session_buffer: TherapeuticSessionBuffer,
         active_sample_idx_list: list[int],
-        active_coping_strategy_idx_list: list[list[int]],
-    ) -> str:
+    ) -> tuple[list[dict[str, str]], list[str]]:
+        """
+        Generate the patient's new thought
+
+        Outputs:
+            parsed_response_list: list[dict[str, str]]: list of dicts, each containing the coping strategy name and the patient's new thought
+            updated_patient_thought_list: list[str]: list of strings, each containing the patient's new thought. This is used to update the patient's thought history.
+        """
 
         assert self.meta_persona_profile, \
             (
@@ -139,7 +143,6 @@ class PatientAgent(LMAgent):
             situation_desc_list=situation_desc_list,
             session_buffer=session_buffer,
             active_sample_idx_list=active_sample_idx_list,
-            active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
 
         # get rid of the completed coping strategies
@@ -170,6 +173,3 @@ class PatientAgent(LMAgent):
             updated_patient_thought_list[cur_sample_idx][cur_strategy_idx] = response
 
         return parsed_response_list, updated_patient_thought_list
-
-
-                
