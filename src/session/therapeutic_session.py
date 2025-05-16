@@ -70,7 +70,7 @@ class TherapeuticSession:
         self,
         session_buffer: TherapeuticSessionBuffer,
         cur_situation_list: list[str],
-        patient_thought_list: list[str],
+        patient_thought_list: list[list[str]],
         cur_persona_profile_list: list[dict],
     ):
 
@@ -109,9 +109,6 @@ class TherapeuticSession:
                 )
 
             # generate the patient's new thought and update `patient_thought_list`
-            print(patient_thought_list)
-            print('\n\n')
-
             patient_thought_dict_list, patient_thought_list = self.patient_agent.utter(
                 situation_desc_list=cur_situation_list,
                 session_buffer=session_buffer,
@@ -156,7 +153,9 @@ class TherapeuticSession:
         for situation_dict_batch in situation_dict_list_batches:
 
             cur_situation_list = [ele['situation'] for ele in situation_dict_batch]
-            patient_thought_list = [ele['initial_thought'] for ele in situation_dict_batch]
+            patient_thought_list = [
+                [ele['initial_thought']] * len(self.coping_strategy_list) for ele in situation_dict_batch
+            ]
             cur_persona_profile_list = [ele['persona_profile'] for ele in situation_dict_batch]
 
             # set the persona profile of the current patient batch

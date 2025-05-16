@@ -22,12 +22,12 @@ class TherapistAgent(LMAgent):
     def utter(
         self, 
         situation_desc_list: list[str],
-        patient_thought_list: list[str],
+        patient_thought_list: list[list[str]],
         patient_persona_profile_list: list[str],
         session_buffer: TherapeuticSessionBuffer, 
         active_sample_idx_list: list[int],
         active_coping_strategy_idx_list: list[list[int]],
-    ) -> list[dict]:
+    ) -> list[dict[str, str]]:
 
         # verbalize the persona profile
         patient_persona_profile_desc_list = [

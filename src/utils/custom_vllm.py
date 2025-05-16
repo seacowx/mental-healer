@@ -72,7 +72,7 @@ class CustomLLM(LLM):
         """
 
         coping_chat_messages = []
-        for sample_idx, (situation, thought, persona_profile_desc) in enumerate(zip(
+        for sample_idx, (situation, thought_list, persona_profile_desc) in enumerate(zip(
             situation_desc_list,
             patient_thought_list,
             patient_persona_profile_desc_list,
@@ -80,20 +80,23 @@ class CustomLLM(LLM):
 
             if sample_idx not in active_sample_idx_list:
                 coping_chat_messages.append({})
-
-            generic_instruction_prompt = self.coping_generic_instruction_template.render(
-                situation=situation,
-                thought=thought,
-                persona_profile=persona_profile_desc.strip(),
-            )
-            generic_thought_prompt = self.coping_generic_thought_template.render(
-                situation=situation,
-                thought=thought,
-                persona_profile=persona_profile_desc.strip(),
-            )
+                continue
 
             user_specific_coping_msg_dict = {}
             for strategy_idx, (strategy_name, strategy_template) in enumerate(self.coping_strategy_template.items()):
+
+                cur_thought = thought_list[strategy_idx]
+
+                generic_instruction_prompt = self.coping_generic_instruction_template.render(
+                    situation=situation,
+                    thought=cur_thought,
+                    persona_profile=persona_profile_desc.strip(),
+                )
+                generic_thought_prompt = self.coping_generic_thought_template.render(
+                    situation=situation,
+                    thought=cur_thought,
+                    persona_profile=persona_profile_desc.strip(),
+                )
 
                 if strategy_idx not in active_coping_strategy_idx_list[sample_idx]:
                     user_specific_coping_msg_dict[strategy_name] = []
@@ -138,6 +141,9 @@ class CustomLLM(LLM):
             active_sample_idx_list=active_sample_idx_list,
             active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
+
+        print(coping_chat_messages)
+        raise SystemExit
 
         # flatten the coping chat messages while keep track of the sample index and key
         messages = []

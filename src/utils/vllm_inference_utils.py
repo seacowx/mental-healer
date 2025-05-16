@@ -387,7 +387,7 @@ class vLLMOffline:
         self, 
         message_list: list = [], 
         situation_desc_list: list = [],
-        patient_thought_list: list = [],
+        patient_thought_list: list[list[str]] = [],
         patient_persona_profile_desc_list: list = [],
         session_buffer: TherapeuticSessionBuffer = None,
         lora_request: LoRARequest = None,
