@@ -107,7 +107,7 @@ class CustomLLM(LLM):
                     user_specific_coping_msg_dict[strategy_name] = [
                         {'role': 'system', 'content': self.coping_system_prompt},
                         {'role': 'user', 'content': generic_instruction_prompt},
-                        {'role': 'assistant', 'content': generic_thought_prompt + '\n' + strategy_template},
+                        {'role': 'assistant', 'content': generic_thought_prompt + '\n\n' + strategy_template},
                     ]
 
             coping_chat_messages.append(user_specific_coping_msg_dict)
