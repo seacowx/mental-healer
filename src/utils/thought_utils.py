@@ -1,4 +1,5 @@
 import gc
+import yaml
 from asyncio import Semaphore
 from tqdm.asyncio import tqdm as atqdm
 
@@ -10,10 +11,13 @@ from utils.model_utils import load_offline_vllm_base_model
 from utils.vllm_inference_utils import vLLMServer, vLLMOffline
 
 
-def start_therapist_reward(llm_path_dict: dict):
+def start_therapist_reward():
+
+    llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
+
     base_offline_vllm_model = load_offline_vllm_base_model(
         base_model_path=llm_path_dict['Qwen/Qwen3-8B']['path'],
-        gpu_memory_utilization=0.3,
+        gpu_memory_utilization=0.8,
     )
 
     therapist_reward = TherapistReward(
@@ -105,10 +109,6 @@ async def iterative_thought_generation(
 
         think_output_list = await atqdm.gather(*think_output_list, desc=tqdm_msg)
 
-        print(len(active_messages))
-        print(think_output_list)
-        raise SystemExit
-
         # terminate the async vllm server
         vllm_client.kill_server()
 
@@ -117,16 +117,19 @@ async def iterative_thought_generation(
         )
 
         # initialize the sentiment reward model
-        therapist_reward.initialize_sentiment_reward_model()
+        therapist_reward, base_offline_vllm_model = start_therapist_reward()
 
         sentiment_msg_list = therapist_reward.make_sentiment_input_msg(
-            situation_list=situation_list,
+            situation_list=situation_list[:10],
             thoutght_list=parsed_output,
         )
 
         output_sentiment_list = therapist_reward.sentiment_reward.get_sentiment(
             input_msg_list=sentiment_msg_list,
         )
+
+        print(output_sentiment_list)
+        raise SystemExit
 
         # convert the sentiment label to "positive" for the corrupted output
         for idx in corrupted_idx_list:
