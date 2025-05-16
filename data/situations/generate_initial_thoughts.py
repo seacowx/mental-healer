@@ -150,8 +150,8 @@ async def main():
             model_path=llm_path_dict[args.base_model]['path'],
             world_size=torch.cuda.device_count(),
             quantization=False,
+            device_list=thought_device,
         )
-        vllm_client.start_vllm_server()
 
         # divide data into batches
         batch_size = len(prepared_data) // args.n_personas

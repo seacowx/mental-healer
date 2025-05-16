@@ -80,7 +80,7 @@ async def iterative_thought_generation(
     while active_messages and num_iterations < TOLERANCE:
 
         # initialize the async vllm server
-        openai_async_server = vllm_client.start_vllm_server(device_list=thought_device)
+        openai_async_server = vllm_client.start_vllm_server()
 
         semaphore = Semaphore(50)
 
