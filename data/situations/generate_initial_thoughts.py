@@ -145,6 +145,7 @@ async def main():
     therapist_reward = start_therapist_reward(llm_path_dict)
     time.sleep(100)
     stop_therapist_reward(therapist_reward, llm_path_dict)
+    time.sleep(100)
     raise SystemExit
 
     if torch.cuda.device_count() == 4:
