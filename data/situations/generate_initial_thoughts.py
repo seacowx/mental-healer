@@ -17,13 +17,13 @@ from utils.thought_utils import iterative_thought_generation
 from utils.model_utils import load_offline_vllm_base_model
 
 
-async def produce_initial_thought(
+def produce_initial_thought(
     data: dict,
     vllm_client: vLLMServer,
     therapist_reward: TherapistReward,
+    thought_device: list = [],
     batch_num: int | None = None,
     top_k_personas: int = 1,
-    thought_device: list = [],
     regenerate_thought: bool = False,
 ) -> None:
     """
@@ -49,7 +49,7 @@ async def produce_initial_thought(
     cache_fpath = f'./situations_with_initial_thought_top{top_k_personas}{batch_postfix}.json'
     if os.path.exists(cache_fpath) and not regenerate_thought:
         return None
-        
+
     initial_thought_message_list = []
     situation_list = []
     for key, val in data.items():
@@ -74,7 +74,7 @@ async def produce_initial_thought(
     initial_thought_message_list = initial_thought_message_list
     TOLERANCE = 5
 
-    parsed_initial_thought_list = await iterative_thought_generation(
+    parsed_initial_thought_list = iterative_thought_generation(
         initial_thought_message_list=initial_thought_message_list,
         situation_list=situation_list,
         therapist_reward=therapist_reward,
@@ -155,6 +155,10 @@ async def main():
         sentiment_reward_rule_path='../../src/configs/sentiment_reward_rules.yaml',
     )
 
+    import time
+    time.sleep(500)
+    raise SystemExit
+
     if torch.cuda.device_count() == 4:
         thought_device = [0, 1, 2, 3]
     elif torch.cuda.device_count() == 2:
@@ -180,7 +184,7 @@ async def main():
             ]
 
             for batch_num, data_batch in enumerate(data_batches, start=1):
-                await produce_initial_thought(
+                produce_initial_thought(
                     data=data_batch,
                     vllm_client=vllm_client,
                     therapist_reward=therapist_reward,
@@ -190,7 +194,7 @@ async def main():
                     batch_num=batch_num,
                 )
         else:
-            await produce_initial_thought(
+            produce_initial_thought(
                 data=prepared_data,
                 vllm_client=vllm_client,
                 therapist_reward=therapist_reward,
