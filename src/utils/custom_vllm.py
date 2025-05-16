@@ -145,9 +145,6 @@ class CustomLLM(LLM):
             active_coping_strategy_idx_list=active_coping_strategy_idx_list,
         )
 
-        print(coping_chat_messages)
-        raise SystemExit
-
         # flatten the coping chat messages while keep track of the sample index and key
         messages = []
         sample_idx_key_list = []
@@ -227,6 +224,9 @@ class CustomLLM(LLM):
                     .rsplit('<|im_end|>', 1)[0].strip()
                 coping_strategy_content += '\n\n' + self.coping_postfix
                 prompt_str = prompt_instruction.strip() + '\n<think>\n' + coping_strategy_content + '\n</think>'
+
+                print(prompt_str)
+                raise SystemExit
 
                 # Special tokens are already included in chat templates so
                 # should not be added by the tokenizer in this case.

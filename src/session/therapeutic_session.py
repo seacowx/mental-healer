@@ -74,17 +74,6 @@ class TherapeuticSession:
         cur_persona_profile_list: list[dict],
     ):
 
-        patient_thought_list = [[
-            'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-            'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB', 
-            'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC',
-            'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD',
-            'EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
-            'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
-            'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG',
-            'HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH',
-        ]]
-
         for _ in range(self.max_turns):
 
             active_coping_strategy_idx_list = self._get_active_coping_strategy_list(
