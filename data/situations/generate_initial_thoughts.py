@@ -142,7 +142,7 @@ async def main():
 
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
 
-    sentiment_reward_device=torch.device('cuda:0'),
+    sentiment_reward_device=torch.device('cuda:0')
     base_offline_vllm_model = load_offline_vllm_base_model(
         base_model_path=llm_path_dict['Qwen/Qwen3-8B']['path'],
         sentiment_reward_device=sentiment_reward_device,
