@@ -128,6 +128,8 @@ async def iterative_thought_generation(
             input_msg_list=sentiment_msg_list,
         )
 
+        print(sentiment_msg_list)
+        print('\n\n')
         print(output_sentiment_list)
         raise SystemExit
 
