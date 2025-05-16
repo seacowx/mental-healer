@@ -149,6 +149,10 @@ class PatientAgent(LMAgent):
             message_list=patient_new_thought_msg_list,
         )
 
+        updated_patient_thought_list = [
+            [] * len(self.coping_strategy_list)
+            for _ in range(max(active_sample_idx_list)+1)
+        ]
         parsed_response_list = []
         for response_idx, response in enumerate(new_thought_list):
             cur_sample_idx, cur_strategy_idx = sample_and_strategy_idx_list[response_idx]
@@ -163,8 +167,9 @@ class PatientAgent(LMAgent):
                 'coping_strategy': str(cur_sample_idx) + '||' + cur_strategy_name,
                 'response': response,
             })
+            updated_patient_thought_list[cur_sample_idx][cur_strategy_idx] = response
 
-        return parsed_response_list
+        return parsed_response_list, updated_patient_thought_list
 
 
                 
