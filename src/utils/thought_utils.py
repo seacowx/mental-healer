@@ -89,14 +89,14 @@ async def iterative_thought_generation(
             openai_async_server.process_with_semaphore(
                 semaphore=semaphore,
                 model='vllm-model',
-                message=active_message[:10],
+                message=active_message,
                 temperature=0.6,
                 max_tokens=4096,
                 top_p=0.95,
                 frequency_penalty=0.0,
                 presence_penalty=1.0,
             )
-            for active_message in active_messages
+            for active_message in active_messages[:10]
         ]
 
         tqdm_msg = f"Generating initial thoughts for {len(active_messages)} messages"
