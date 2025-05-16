@@ -128,11 +128,6 @@ async def iterative_thought_generation(
             input_msg_list=sentiment_msg_list,
         )
 
-        print(sentiment_msg_list)
-        print('\n\n')
-        print(output_sentiment_list)
-        raise SystemExit
-
         # convert the sentiment label to "positive" for the corrupted output
         for idx in corrupted_idx_list:
             output_sentiment_list[idx] = 'positive'
@@ -154,8 +149,13 @@ async def iterative_thought_generation(
         active_situations = new_active_situations
 
         # terminate the sentiment reward model
-        therapist_reward.terminate_sentiment_reward_model()
+        del therapist_reward, base_offline_vllm_model
+        gc.collect()
+        torch.cuda.empty_cache()
 
         num_iterations += 1
+
+    print(valid_initial_thought_list)
+    raise SystemExit
 
     return valid_initial_thought_list
