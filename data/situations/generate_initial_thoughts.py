@@ -12,7 +12,7 @@ from openai import AsyncOpenAI
 
 from utils.vllm_inference_utils import vLLMServer
 from utils.data_utils import augment_situation_with_persona
-from utils.thought_utils import iterative_thought_generation, start_therapist_reward, stop_therapist_reward
+from utils.thought_utils import iterative_thought_generation
 
 
 def produce_initial_thought(
