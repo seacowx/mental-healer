@@ -109,6 +109,9 @@ class TherapeuticSession:
                 )
 
             # generate the patient's new thought and update `patient_thought_list`
+            print(patient_thought_list)
+            print('\n\n')
+
             patient_thought_dict_list, patient_thought_list = self.patient_agent.utter(
                 situation_desc_list=cur_situation_list,
                 session_buffer=session_buffer,
