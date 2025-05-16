@@ -74,8 +74,16 @@ class TherapeuticSession:
         cur_persona_profile_list: list[dict],
     ):
 
-        print(patient_thought_list)
-        raise SystemExit
+        patient_thought_list = [[
+            'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+            'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB', 
+            'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC',
+            'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD',
+            'EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
+            'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
+            'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG',
+            'HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH',
+        ]]
 
         for _ in range(self.max_turns):
 
