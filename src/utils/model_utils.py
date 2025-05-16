@@ -7,6 +7,7 @@ def load_offline_vllm_base_model(
     base_model_path: str,
     coping_chat_template_path: str = '',
     sentiment_reward_device: torch.device | None = None,
+    gpu_memory_utilization: float = 0.7,
 ) -> vLLMOffline:
 
     extra_kwargs = {}
@@ -22,7 +23,7 @@ def load_offline_vllm_base_model(
         max_model_len=2048,
         enable_lora=True,
         max_lora_rank=64,
-        gpu_memory_utilization=0.7,
+        gpu_memory_utilization=gpu_memory_utilization,
         coping_chat_template_path=coping_chat_template_path,
         **extra_kwargs,
     )
