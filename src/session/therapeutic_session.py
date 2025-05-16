@@ -117,10 +117,12 @@ class TherapeuticSession:
                 active_coping_strategy_idx_list=active_coping_strategy_idx_list,
             )
 
-            patient_sentiment_list = self.sentiment_reward.get_sentiment()
-
+            print(therapist_utterance_dict_list)
+            print('\n\n')
+            print(patient_thought_list)
             raise SystemExit
 
+            patient_sentiment_list = self.sentiment_reward.get_sentiment()
 
 
     # TODO: add support for multiple samples batched inference

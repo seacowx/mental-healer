@@ -167,10 +167,6 @@ class PatientAgent(LMAgent):
                 'response': response,
             }
 
-        print(self.coping_strategy_list)
-        print(parsed_response_list)
-        raise SystemExit
-
         return parsed_response_list
 
 
