@@ -20,22 +20,24 @@ class TherapeuticSession:
         coping_strategies_path: str = './configs/coping_strategy.yaml',
         max_turns: int = 5,
     ):
-        self.therapist_agent = TherapistAgent(
-            base_vllm_model=base_vllm_model,
-        )
-        self.patient_agent = PatientAgent(
-            base_vllm_model=base_vllm_model,
-            patient_template_path=patient_prompt_template_path,
-        )
-        self.coping_agent = coping_agent
-        self.max_turns = max_turns
-
         self.base_vllm_model = base_vllm_model
         self.patient_prompt_template_path = patient_prompt_template_path
         self.coping_cot_templates = yaml.safe_load(open(coping_cot_templates_path))
         self.patient_prompt_template = yaml.safe_load(open(patient_prompt_template_path))
         self.patient_thought_update_template = self.patient_prompt_template['react_to_therapist_utterance']
         self.coping_strategy_list = yaml.safe_load(open(coping_strategies_path, 'r'))
+
+        self.therapist_agent = TherapistAgent(
+            base_vllm_model=base_vllm_model,
+        )
+        self.patient_agent = PatientAgent(
+            base_vllm_model=base_vllm_model,
+            patient_template_path=patient_prompt_template_path,
+            coping_strategy_list=self.coping_strategy_list,
+        )
+        self.coping_agent = coping_agent
+        self.max_turns = max_turns
+
 
 
     def _get_active_coping_strategy_list(self, session_buffer: TherapeuticSessionBuffer):

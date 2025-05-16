@@ -19,27 +19,29 @@ class PatientAgent(LMAgent):
 
     def __init__(
         self,
+        coping_strategy_list: list[str],
         base_vllm_model: vLLMOffline | None = None,
         openai_client: OpenAI | None = None,
         openai_async_client: AsyncOpenAI | OpenAIAsyncInference | None = None,
         patient_template_path: str = './prompts/patient.yaml',
     ) -> None:
 
-        super().__init__(
-            openai_client=openai_client, 
-            openai_async_client=openai_async_client,
-            base_vllm_model=base_vllm_model,
-        )
-
         self.meta_persona_profile = []
         self.role_playing_instruction_list = []
-        
+        self.coping_strategy_list = coping_strategy_list
+
         # organize patient prompt templates
         self.patient_template = yaml.safe_load(
             open(patient_template_path)
         )
         self.patient_reaction_system = self.patient_template['react_to_therapist_utterance']['system']
         self.patient_reaction_user = Template(self.patient_template['react_to_therapist_utterance']['user'])
+
+        super().__init__(
+            openai_client=openai_client, 
+            openai_async_client=openai_async_client,
+            base_vllm_model=base_vllm_model,
+        )
 
 
     @property
@@ -147,15 +149,27 @@ class PatientAgent(LMAgent):
             message_list=patient_new_thought_msg_list,
         )
 
-        parsed_response_list = [[''] * 8] * (max(active_sample_idx_list)+1)
+        parsed_response_list = [
+            [{'coping_strategy': '', 'response': '', }] * len(self.coping_strategy_list)
+            for _ in range(max(active_sample_idx_list)+1)
+        ]
         for response_idx, response in enumerate(new_thought_list):
             cur_sample_idx, cur_strategy_idx = sample_and_strategy_idx_list[response_idx]
+
+            cur_strategy_name = self.coping_strategy_list[cur_strategy_idx]
 
             # parse the response, only retain the utterance
             if '<updated_thought>' in response:
                 response = response.rsplit('<updated_thought>', 1)[1].split('</updated_thought>')[0].strip()
 
-            parsed_response_list[cur_sample_idx][cur_strategy_idx] = response
+            parsed_response_list[cur_sample_idx][cur_strategy_idx] = {
+                'coping_strategy': cur_sample_idx + '||' + cur_strategy_name,
+                'response': response,
+            }
+
+        print(self.coping_strategy_list)
+        print(parsed_response_list)
+        raise SystemExit
 
         return parsed_response_list
 
