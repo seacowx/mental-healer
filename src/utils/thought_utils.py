@@ -44,7 +44,6 @@ def parse_thought_output(think_output_list: list) -> tuple[list, list]:
 async def iterative_thought_generation(
     initial_thought_message_list: list,
     situation_list: list,
-    therapist_reward: TherapistReward,
     vllm_client: vLLMServer,
     batch_num: int | None,
     top_k_personas: int,
@@ -63,7 +62,6 @@ async def iterative_thought_generation(
     Args:
         initial_thought_message_list (list): List of messages for initial thought generation.
         situation_list (list): List of situations for sentiment analysis.
-        therapist_reward (TherapistReward): TherapistReward object for sentiment analysis.
         queue_idx_list (list): List of indices to track which thoughts are still in the queue.
         vllm_client (vLLMServer): VLLM client for generating thoughts.
         thought_device (list): List of devices for thought generation.
