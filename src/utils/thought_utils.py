@@ -132,6 +132,9 @@ async def iterative_thought_generation(
         for idx in corrupted_idx_list:
             output_sentiment_list[idx] = 'positive'
 
+        print(output_sentiment_list)
+        raise SystemExit
+
         new_active_indices = []
         new_active_messages = []
         new_active_situations = []
