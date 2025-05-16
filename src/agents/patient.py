@@ -149,10 +149,7 @@ class PatientAgent(LMAgent):
             message_list=patient_new_thought_msg_list,
         )
 
-        parsed_response_list = [
-            [{'coping_strategy': '', 'response': '', }] * len(self.coping_strategy_list)
-            for _ in range(max(active_sample_idx_list)+1)
-        ]
+        parsed_response_list = []
         for response_idx, response in enumerate(new_thought_list):
             cur_sample_idx, cur_strategy_idx = sample_and_strategy_idx_list[response_idx]
 
@@ -162,10 +159,10 @@ class PatientAgent(LMAgent):
             if '<updated_thought>' in response:
                 response = response.rsplit('<updated_thought>', 1)[1].split('</updated_thought>')[0].strip()
 
-            parsed_response_list[cur_sample_idx][cur_strategy_idx] = {
+            parsed_response_list.append({
                 'coping_strategy': str(cur_sample_idx) + '||' + cur_strategy_name,
                 'response': response,
-            }
+            })
 
         return parsed_response_list
 
