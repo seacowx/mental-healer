@@ -57,9 +57,6 @@ class CustomLLM(LLM):
             k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
         } 
 
-        print(kwargs['device'])
-        raise SystemExit
-
         super().__init__(*args, **kwargs)
 
     
