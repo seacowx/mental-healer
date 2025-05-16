@@ -5,7 +5,7 @@ from utils.vllm_inference_utils import vLLMOffline
 
 def load_offline_vllm_base_model(
     base_model_path: str,
-    coping_chat_template_path: str,
+    coping_chat_template_path: str = '',
     sentiment_reward_device: torch.device | None = None,
 ) -> vLLMOffline:
 
