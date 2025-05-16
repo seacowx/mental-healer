@@ -99,15 +99,15 @@ async def iterative_thought_generation(
             for active_message in active_messages
         ]
 
-        print(len(active_messages))
-        print(think_output_list)
-        raise SystemExit
-
         tqdm_msg = f"Generating initial thoughts for {len(active_messages)} messages"
         if batch_num:
             tqdm_msg += f" in batch {batch_num} / {top_k_personas}"
 
         think_output_list = await atqdm.gather(*think_output_list, desc=tqdm_msg)
+
+        print(len(active_messages))
+        print(think_output_list)
+        raise SystemExit
 
         # terminate the async vllm server
         vllm_client.kill_server()
