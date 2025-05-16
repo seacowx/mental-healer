@@ -14,6 +14,7 @@ from utils.vllm_inference_utils import vLLMServer
 from rewards.therapist_reward import TherapistReward
 from utils.data_utils import augment_situation_with_persona
 from utils.thought_utils import iterative_thought_generation
+from utils.model_utils import load_offline_vllm_base_model
 
 
 async def produce_initial_thought(
@@ -141,11 +142,17 @@ async def main():
 
     llm_path_dict = yaml.safe_load(open('../../src/configs/llm_configs.yaml', 'r'))
 
+    sentiment_reward_device=torch.device('cuda:0'),
+    base_offline_vllm_model = load_offline_vllm_base_model(
+        base_model_path=llm_path_dict['Qwen/Qwen3-8B']['path'],
+        sentiment_reward_device=sentiment_reward_device,
+    )
+
     therapist_reward = TherapistReward(
+        base_vllm_model=base_offline_vllm_model,
         sentiment_prompt_path='../../src/prompts/sentiment.yaml',
-        sentiment_reward_device=torch.device('cuda:0'),
-        llm_config_path='../../src/configs/llm_configs.yaml',
-        sentiment_reward_rule_path = '../../src/configs/sentiment_reward_rules.yaml',
+        sentiment_mapping_path='../../src/configs/emotion_to_sentiment.yaml',
+        sentiment_reward_rule_path='../../src/configs/sentiment_reward_rules.yaml',
     )
 
     if torch.cuda.device_count() == 4:

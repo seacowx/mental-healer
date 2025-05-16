@@ -350,7 +350,7 @@ class vLLMOffline:
     def __init__(
         self,
         model_path: str, 
-        coping_chat_template_path: str,
+        coping_chat_template_path: str = '',
         quantization: str = '',
         max_model_len: int = 2048,
         model_device: torch.device = None,

@@ -127,7 +127,6 @@ class TherapeuticSession:
             patient_sentiment_list = self.sentiment_reward.get_sentiment()
 
 
-    # TODO: add support for multiple samples batched inference
     def batch_simulate_therapeutic_session(
         self, 
         data: dict[str, dict],

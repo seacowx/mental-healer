@@ -4,13 +4,16 @@ import torch
 from rewards.sentiment import SentimentReward
 from rewards.semantic_similarity import SemanticSimilarityReward
 
+from utils.vllm_inference_utils import vLLMOffline
+
+
 class TherapistReward:
 
     def __init__(
         self, 
-        sentiment_reward_device: torch.device | None = None,
+        base_vllm_model: vLLMOffline,
         sentiment_prompt_path: str = './prompts/sentiment.yaml',
-        llm_config_path: str = './configs/llm_configs.yaml',
+        sentiment_mapping_path: str = './configs/emotion_to_sentiment.yaml',
         sentiment_reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
     ) -> None:
         self.sentiment_prompt = yaml.load(
@@ -18,9 +21,10 @@ class TherapistReward:
             Loader=yaml.FullLoader,
         )['input']
         self.sentiment_reward = SentimentReward(
-            sentiment_reward_device=sentiment_reward_device,
-            llm_config_path=llm_config_path,
+            base_vllm_model=base_vllm_model,
             reward_rule_path=sentiment_reward_rule_path,
+            sentiment_mapping_path=sentiment_mapping_path,
+            sentiment_prompt_path=sentiment_prompt_path,
         )
         self.semantic_similarity_reward = SemanticSimilarityReward()
 
