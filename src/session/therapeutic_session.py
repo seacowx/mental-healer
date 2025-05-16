@@ -20,6 +20,8 @@ class TherapeuticSession:
         patient_prompt_template_path: str = './prompts/patient.yaml',
         coping_strategies_path: str = './configs/coping_strategy.yaml',
         sentiment_prompt_path: str = './prompts/sentiment.yaml',
+        sentiment_reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
+        sentiment_mapping_path: str = './configs/emotion_to_sentiment.yaml',
         max_turns: int = 5,
     ):
         self.base_vllm_model = base_vllm_model
@@ -39,6 +41,8 @@ class TherapeuticSession:
         )
         self.sentiment_reward = SentimentReward(
             base_vllm_model=base_vllm_model,
+            reward_rule_path = sentiment_reward_rule_path,
+            sentiment_mapping_path = sentiment_mapping_path,
             sentiment_prompt_path=sentiment_prompt_path,
         )
         self.coping_agent = coping_agent
@@ -60,6 +64,63 @@ class TherapeuticSession:
             active_coping_strategy_idx_list.append(cur_active_idx_list)
 
         return active_coping_strategy_idx_list
+
+
+    def _simulate_therapeutic_session(
+        self,
+        session_buffer: TherapeuticSessionBuffer,
+        cur_situation_list: list[str],
+        patient_thought_list: list[str],
+        cur_persona_profile_list: list[dict],
+    ):
+
+        for _ in range(self.max_turns):
+
+            active_coping_strategy_idx_list = self._get_active_coping_strategy_list(
+                session_buffer=session_buffer,
+            )
+            active_sample_idx_list = [
+                sample_idx for sample_idx, active_coping_strategy_idx_list in enumerate(active_coping_strategy_idx_list)
+                if active_coping_strategy_idx_list
+            ]
+
+            # generate the therapist's utterance
+            therapist_utterance_dict_list = self.therapist_agent.utter(
+                situation_desc_list=cur_situation_list,
+                patient_thought_list=patient_thought_list,
+                patient_persona_profile_list=cur_persona_profile_list,
+                session_buffer=session_buffer,
+                active_sample_idx_list=active_sample_idx_list,
+                active_coping_strategy_idx_list=active_coping_strategy_idx_list,
+            )
+
+            # update the session history
+            for therapist_utterance_dict in therapist_utterance_dict_list:
+                utterance_idx, coping_strategy = therapist_utterance_dict['coping_strategy'].split('||')
+                utterance_idx = int(utterance_idx)
+                coping_utterance = therapist_utterance_dict['response']
+
+                session_buffer.update_buffer(
+                    role='therapist',
+                    sample_idx=utterance_idx,
+                    coping_strategy=coping_strategy,
+                    coping_utterance=coping_utterance,
+                    thought=patient_thought_list[utterance_idx],
+                )
+
+            # generate the patient's new thought and update `patient_thought_list`
+            patient_thought_list = self.patient_agent.utter(
+                situation_desc_list=cur_situation_list,
+                patient_thought_list=patient_thought_list,
+                session_buffer=session_buffer,
+                active_sample_idx_list=active_sample_idx_list,
+                active_coping_strategy_idx_list=active_coping_strategy_idx_list,
+            )
+
+            patient_sentiment_list = self.sentiment_reward.get_sentiment()
+
+            raise SystemExit
+
 
 
     # TODO: add support for multiple samples batched inference
@@ -95,50 +156,10 @@ class TherapeuticSession:
                 persona_profile_dict_list=cur_persona_profile_list
             )
 
-            for _ in range(self.max_turns):
+            self._simulate_therapeutic_session(
+                session_buffer=session_buffer,
+                cur_situation_list=cur_situation_list,
+                patient_thought_list=patient_thought_list,
+                cur_persona_profile_list=cur_persona_profile_list,
+            )
 
-                active_coping_strategy_idx_list = self._get_active_coping_strategy_list(
-                    session_buffer=session_buffer,
-                )
-                active_sample_idx_list = [
-                    sample_idx for sample_idx, active_coping_strategy_idx_list in enumerate(active_coping_strategy_idx_list)
-                    if active_coping_strategy_idx_list
-                ]
-
-                # generate the therapist's utterance
-                therapist_utterance_dict_list = self.therapist_agent.utter(
-                    situation_desc_list=cur_situation_list,
-                    patient_thought_list=patient_thought_list,
-                    patient_persona_profile_list=cur_persona_profile_list,
-                    session_buffer=session_buffer,
-                    active_sample_idx_list=active_sample_idx_list,
-                    active_coping_strategy_idx_list=active_coping_strategy_idx_list,
-                )
-
-                # update the session history
-                for therapist_utterance_dict in therapist_utterance_dict_list:
-                    utterance_idx, coping_strategy = therapist_utterance_dict['coping_strategy'].split('||')
-                    utterance_idx = int(utterance_idx)
-                    coping_utterance = therapist_utterance_dict['response']
-
-                    session_buffer.update_buffer(
-                        role='therapist',
-                        sample_idx=utterance_idx,
-                        coping_strategy=coping_strategy,
-                        coping_utterance=coping_utterance,
-                        thought=patient_thought_list[utterance_idx],
-                    )
-
-                # generate the patient's new thought and update `patient_thought_list`
-                patient_thought_list = self.patient_agent.utter(
-                    situation_desc_list=cur_situation_list,
-                    patient_thought_list=patient_thought_list,
-                    session_buffer=session_buffer,
-                    active_sample_idx_list=active_sample_idx_list,
-                    active_coping_strategy_idx_list=active_coping_strategy_idx_list,
-                )
-
-                patient_sentiment_list = self.sentiment_reward.get_sentiment()
-
-                print(patient_new_thought_list)
-                raise SystemExit

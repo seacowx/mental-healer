@@ -58,6 +58,8 @@ def main():
         patient_prompt_template_path='../prompts/patient.yaml',
         coping_strategies_path='../configs/coping_strategy.yaml',
         sentiment_prompt_path='../prompts/sentiment.yaml',
+        sentiment_reward_rule_path='../configs/sentiment_reward_rules.yaml',
+        sentiment_mapping_path='../configs/emotion_to_sentiment.yaml',
     )
 
     therapeutic_session.batch_simulate_therapeutic_session(

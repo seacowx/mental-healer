@@ -31,6 +31,7 @@ class SentimentReward:
         self.adapter_dir = (
             '/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/qwen8/checkpoint-260'
         )
+        self.sentiment_prompt = yaml.safe_load(open(sentiment_prompt_path, 'r'))
 
         self.llm = base_vllm_model
 
