@@ -115,6 +115,8 @@ class TherapeuticSession:
                 active_sample_idx_list=active_sample_idx_list,
             )
 
+            print(therapist_utterance_dict_list)
+            print('\n\n')
             print(patient_thought_dict_list)
             print('\n\n')
             print(patient_thought_list)
