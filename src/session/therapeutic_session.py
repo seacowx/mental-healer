@@ -99,10 +99,6 @@ class TherapeuticSession:
                 thought_list=thought_list,
             )
 
-            print(session_buffer.thought_history)
-            raise SystemExit
-
-
         return session_buffer
 
 
@@ -157,7 +153,10 @@ class TherapeuticSession:
                 turn_idx=turn_idx,
             )
 
-            patient_sentiment_list = self.sentiment_reward.get_sentiment()
+            patient_sentiment_list = self.sentiment_reward.get_sentiment(
+                situation_desc_list=cur_situation_list,
+                thought_list=patient_thought_list,
+            )
 
 
     def batch_simulate_therapeutic_session(

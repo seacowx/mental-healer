@@ -55,27 +55,35 @@ class SentimentReward:
 
     def get_sentiment(
         self, 
-        input_msg_list: list, 
+        situation_desc_list: list,
+        thought_list: list,
     ) -> list:
 
-        outputs = self.llm.inference(
-            message_list=input_msg_list,
-            temperature=self.temperature,
-            max_tokens=self.max_tokens,
-            lora_request=LoRARequest(f"sentiment", 1, self.adapter_dir),
-            use_tqdm=True,
-        )
+        # TODO: make input message list
 
-        out_list = [''] * len(input_msg_list)
-        for i, output in enumerate(outputs):
-            parsed_output = self.__parse_output(output)
-            if parsed_output:
-                # Store the parsed result in the original index
-                out_list[i] = parsed_output
-            else:
-                out_list[i] = 'positive'
+        print(situation_desc_list)
+        print('\n\n')
+        print(thought_list)
+        raise SystemExit
 
-        return out_list
+        # outputs = self.llm.inference(
+        #     message_list=input_msg_list,
+        #     temperature=self.temperature,
+        #     max_tokens=self.max_tokens,
+        #     lora_request=LoRARequest(f"sentiment", 1, self.adapter_dir),
+        #     use_tqdm=True,
+        # )
+
+        # out_list = [''] * len(input_msg_list)
+        # for i, output in enumerate(outputs):
+        #     parsed_output = self.__parse_output(output)
+        #     if parsed_output:
+        #         # Store the parsed result in the original index
+        #         out_list[i] = parsed_output
+        #     else:
+        #         out_list[i] = 'positive'
+
+        # return out_list
 
 
     def compute_sentiment_reward(
