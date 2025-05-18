@@ -100,6 +100,9 @@ class TherapeuticSession:
                 **extra_kwargs,
             )
 
+            print(session_buffer.thought_history)
+            raise SystemExit
+
         return session_buffer
 
 
