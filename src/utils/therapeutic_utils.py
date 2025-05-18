@@ -91,7 +91,7 @@ class TherapeuticSessionBuffer:
 
     
     def get_thought_history(self, sample_idx: int) -> dict:
-        return self.thought_history[sample_idx]
+        return self.thought_history[str(sample_idx)]
 
     
     def get_latest_sentiment(self, coping_strategy_idx: int) -> str:
