@@ -39,9 +39,6 @@ class SentimentReward:
 
     def __parse_output(self, output: str) -> str:
 
-        print(output)
-        raise SystemExit
-
         out_str = ""
         try:
             out_str = output \
@@ -95,6 +92,8 @@ class SentimentReward:
             lora_request=LoRARequest(f"sentiment", 1, self.adapter_dir),
             use_tqdm=True,
         )
+
+        print(outputs)
 
         output_list = [[''] * self.num_thought] * self.num_sample
         for output_idx, output_msg_idx in enumerate(input_msg_idx_list):
