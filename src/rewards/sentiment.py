@@ -64,6 +64,8 @@ class SentimentReward:
         print(situation_desc_list)
         print('\n\n')
         print(thought_list)
+        print('\n\n')
+        print(self.sentiment_prompt)
         raise SystemExit
 
         # outputs = self.llm.inference(
