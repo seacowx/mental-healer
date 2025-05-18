@@ -39,6 +39,9 @@ class SentimentReward:
 
     def __parse_output(self, output: str) -> str:
 
+        print(output)
+        raise SystemExit
+
         out_str = ""
         try:
             out_str = output \
