@@ -93,13 +93,14 @@ class SentimentReward:
             use_tqdm=True,
         )
 
-        print(outputs)
-        print('\n\n')
-
         output_list = [[''] * self.num_thought] * self.num_sample
         for output_idx, output_msg_idx in enumerate(input_msg_idx_list):
             if output_idx in filled_idx_list:
                 cur_output = self.__parse_output(outputs[output_idx])
+
+                print(cur_output)
+                raise SystemExit
+
                 sentiment = self.sentiment_mapping.get(cur_output, 'negative')
 
                 sample_idx, thought_idx = output_msg_idx                
