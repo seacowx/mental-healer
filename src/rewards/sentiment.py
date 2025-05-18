@@ -67,16 +67,16 @@ class SentimentReward:
         for situation_idx, situation_desc in enumerate(situation_desc_list):
             cur_thought_list = thought_list[situation_idx]
 
-            for thought in cur_thought_list:
+            for thought_idx,thought in cur_thought_list:
                 if not thought:
-                    empty_idx_list.append(situation_idx)
+                    empty_idx_list.append((situation_idx, thought_idx))
                 else:
                     cur_input_msg = self.sentiment_prompt.render(
                         situation=situation_desc,
                         thought=thought,
                     )
                     input_msg_list.append(cur_input_msg)
-                    filled_idx_list.append(situation_idx)
+                    filled_idx_list.append((situation_idx, thought_idx))
 
         print(filled_idx_list)
         print('\n\n')
@@ -84,7 +84,7 @@ class SentimentReward:
         print('\n\n')
         print(input_msg_list)
         print('\n\n')
-        print(len(situation_desc_list) * len(cur_thought_list[0]))
+        print(len(situation_desc_list) * len(cur_thought_list))
         raise SystemExit
 
         for output_idx in range(len(situation_desc_list) * len(cur_thought_list[0])):
