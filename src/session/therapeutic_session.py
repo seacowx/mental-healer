@@ -80,28 +80,26 @@ class TherapeuticSession:
             utterance_idx = int(utterance_idx)
             coping_utterance = utterance_dict['response']
 
-            extra_kwargs = {}
-            if turn_idx:
-
-                assert thought_list, \
-                    (
-                        "thought_list is required when turn_idx is provided. "
-                        "Please provide the thought_list when turn_idx is provided."
-                    )
-
-                extra_kwargs['turn_idx'] = turn_idx
-                extra_kwargs['thought'] = thought_list[utterance_idx]
-
-            session_buffer.update_buffer(
+            session_buffer.update_utterance_buffer(
                 role=role,
                 sample_idx=utterance_idx,
                 coping_strategy=coping_strategy,
                 coping_utterance=coping_utterance,
-                **extra_kwargs,
             )
 
-            print(session_buffer.thought_history)
-            raise SystemExit
+        if turn_idx:
+            assert thought_list, \
+                (
+                    "thought_list is required when turn_idx is provided. "
+                    "Please provide the thought_list when turn_idx is provided."
+                )
+            session_buffer.update_thought_buffer(
+                turn_idx=turn_idx,
+                thought_list=thought_list,
+            )
+
+        print(session_buffer.thought_history)
+        raise SystemExit
 
         return session_buffer
 

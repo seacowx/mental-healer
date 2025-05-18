@@ -29,7 +29,7 @@ class TherapeuticSessionBuffer:
         self.is_therapeutic_session_active = [[True, False, True, True, True, True, True, False]]
 
     
-    def add_utterance(
+    def update_utterance_buffer(
         self, 
         role: str,
         sample_idx: int,
@@ -42,25 +42,13 @@ class TherapeuticSessionBuffer:
         })
 
 
-    def update_buffer(
-        self, 
-        role: str,
-        sample_idx: int,
-        coping_strategy: str,
-        coping_utterance: str,
-        turn_idx: int | None = None,
-        thought: list[str] | None = None,
+    def update_thought_buffer(
+        self,
+        turn_idx: int,
+        thought_list: list[str],
     ):
-        self.add_utterance(
-            role=role,
-            sample_idx=sample_idx,
-            coping_strategy=coping_strategy,
-            coping_utterance=coping_utterance,
-        )
+        self.thought_history[str(turn_idx)] = thought_list
 
-        # only update the thought history if turn_idx is provided: this is because the buffer is updated twice in each turn (once for the patient and once for the therapist) but the thought history is only updated once for each turn (after the patients' new thoughts are generated)
-        if turn_idx:
-            self.thought_history[str(turn_idx)] = thought
 
 
     def update_sentiment_buffer(
