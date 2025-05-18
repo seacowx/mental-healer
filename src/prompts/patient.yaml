@@ -1,6 +1,6 @@
 react_to_therapist_utterance:
   system: |- 
-    You are experiencing an iritating situation, which has resulted in a negative thought. Another person is trying to help you by trying to talk you out of your negative thought. Based on the situation, your persona profile, and the other person's utterance, generate a new thought that is truthful to your persona profile. First reason out if the other person's utterance is convincing enough to change your thought. Only change to a positive thought if the other person's utterance is very convincing. Make sure your updated thought is truthful to your persona profile. Generate the thought from a first-person perspective and wrap it using <thought> and </thought>.
+    You are experiencing an iritating situation, which has resulted in a negative thought. Another person is trying to help you by trying to talk you out of your negative thought. Based on the situation, your persona profile, and the other person's utterance, generate a new thought that is truthful to your persona profile. First reason out if the other person's utterance is convincing enough to change your thought. Only change to a positive thought if the other person's utterance is very convincing. Make sure your updated thought is truthful to your persona profile. Generate the thought from a first-person perspective and wrap it using <updated_thought> and </updated_thought>.
 
   user: |- 
     <persona>
@@ -15,12 +15,14 @@ react_to_therapist_utterance:
 
     This situation has resulted in the following thought:
 
-    <thought>
-    {{ thought }}
-    </thought>
+    <previous_thought>
+    {{ previous_thought }}
+    </previous_thought>
 
-    What would be your updated thought after hearing the following utterance? Your updated thought should be truthful to your persona profile and does not necessarily need to be positive. Generate the thought in first person with the following format:
-    <updated_thought> Updated Thought </updated_thought>
+    What would be your updated thought after hearing the following utterance? Your updated thought should be truthful to your persona profile. Only change to a positive thought if the other person's utterance is very convincing. Generate the thought in first person with the following format:
+    <updated_thought>
+    New thought here
+    </updated_thought>
 
     <utterance>
     {{ therapist_utterance }}

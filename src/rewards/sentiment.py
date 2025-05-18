@@ -98,9 +98,7 @@ class SentimentReward:
             if output_msg_idx in filled_idx_list:
                 cur_output = self.__parse_output(outputs[output_idx])
 
-                # sentiment = self.sentiment_mapping.get(cur_output, 'negative')
-                sentiment = self.sentiment_mapping[cur_output]
-
+                sentiment = self.sentiment_mapping.get(cur_output, 'negative')
                 sample_idx, thought_idx = output_msg_idx                
 
                 output_list[sample_idx][thought_idx] = sentiment
