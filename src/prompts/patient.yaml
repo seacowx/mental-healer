@@ -19,7 +19,7 @@ react_to_therapist_utterance:
     {{ previous_thought }}
     </previous_thought>
 
-    What would be your updated thought after hearing the following utterance? Your updated thought should be truthful to your persona profile. Only change to a positive thought if the other person's utterance is very convincing. Generate the thought in first person with the following format:
+    What would be your updated thought after hearing the following utterance? Your updated thought should be truthful to your persona profile. Only change to a positive thought if the other person's utterance is very convincing. Most of the time, the updated thought would still be somewhat negative. Generate the thought in first person with the following format:
     <updated_thought>
     New thought here
     </updated_thought>
