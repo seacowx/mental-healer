@@ -63,21 +63,36 @@ class SentimentReward:
         # TODO: make input message list
 
         input_msg_list = []
+        filled_idx_list, empty_idx_list = [], []
         for situation_idx, situation_desc in enumerate(situation_desc_list):
             cur_thought_list = thought_list[situation_idx]
 
             for thought in cur_thought_list:
                 if not thought:
-                    input_msg_list.append('')
+                    empty_idx_list.append(situation_idx)
                 else:
                     cur_input_msg = self.sentiment_prompt.render(
                         situation=situation_desc,
                         thought=thought,
                     )
                     input_msg_list.append(cur_input_msg)
+                    filled_idx_list.append(situation_idx)
 
+        print(filled_idx_list)
+        print('\n\n')
+        print(empty_idx_list)
+        print('\n\n')
         print(input_msg_list)
+        print('\n\n')
+        print(len(situation_desc_list) * len(cur_thought_list[0]))
         raise SystemExit
+
+        for output_idx in range(len(situation_desc_list) * len(cur_thought_list[0])):
+            if output_idx in filled_idx_list:
+                ...
+            else:
+                ...
+            ...
 
         # outputs = self.llm.inference(
         #     message_list=input_msg_list,
