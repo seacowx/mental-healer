@@ -71,23 +71,24 @@ class TherapeuticSession:
         utterance_dict_list: list[dict],
         role: str,
         session_buffer: TherapeuticSessionBuffer,
-        thought_list: list[str] = [],
+        thought_list: list[list[str]] | None = None,
     ):
-
-        print(thought_list)
-        raise SystemExit
 
         for utterance_dict in utterance_dict_list:
             utterance_idx, coping_strategy = utterance_dict['coping_strategy'].split('||')
             utterance_idx = int(utterance_idx)
             coping_utterance = utterance_dict['response']
 
+            extra_kwargs = {}
+            if thought_list:
+                extra_kwargs['thought'] = thought_list[utterance_idx]
+
             session_buffer.update_buffer(
                 role=role,
                 sample_idx=utterance_idx,
                 coping_strategy=coping_strategy,
                 coping_utterance=coping_utterance,
-                thought=thought_list[utterance_idx],
+                **extra_kwargs,
             )
 
 
@@ -99,7 +100,7 @@ class TherapeuticSession:
         cur_persona_profile_list: list[dict],
     ):
 
-        for _ in range(self.max_turns):
+        for turn_idx in range(self.max_turns):
 
             active_coping_strategy_idx_list = self._get_active_coping_strategy_list(
                 session_buffer=session_buffer,
@@ -120,11 +121,10 @@ class TherapeuticSession:
             )
 
             # update the session history
-            session_buffer = self._update_session_buffer(
+            self._update_session_buffer(
                 utterance_dict_list=therapist_utterance_dict_list,
                 role='therapist',
                 session_buffer=session_buffer,
-                thought_list=patient_thought_list,
             )
 
             # generate the patient's new thought and update `patient_thought_list`
@@ -134,17 +134,13 @@ class TherapeuticSession:
                 active_sample_idx_list=active_sample_idx_list,
             )
 
-            # NOTE: this test has passed
             # update the session history
-            session_buffer = self._update_session_buffer(
+            self._update_session_buffer(
                 utterance_dict_list=patient_thought_dict_list,
                 role='patient',
                 session_buffer=session_buffer,
+                thought_list=patient_thought_list,
             )
-
-            print(session_buffer.show_thought_history())
-            raise SystemExit
-
 
             patient_sentiment_list = self.sentiment_reward.get_sentiment()
 
@@ -163,10 +159,6 @@ class TherapeuticSession:
             situation_dict_list[i:i+batch_size]
             for i in range(0, len(situation_dict_list), batch_size)
         ]
-        session_buffer = TherapeuticSessionBuffer(
-            batch_size=batch_size,
-            coping_strategies_list=self.coping_strategy_list,
-        )
 
         # iterate over each situation in the batch. For each situation, simulate the therapeutic session until
         # either the patient's thought is positive or the maximum number of turns is reached
@@ -177,6 +169,16 @@ class TherapeuticSession:
                 [ele['initial_thought']] * len(self.coping_strategy_list) for ele in situation_dict_batch
             ]
             cur_persona_profile_list = [ele['persona_profile'] for ele in situation_dict_batch]
+
+            # initialize the session buffer
+            session_buffer = TherapeuticSessionBuffer(
+                batch_size=batch_size,
+                coping_strategies_list=self.coping_strategy_list,
+                initial_thought_list=patient_thought_list,
+            )
+
+            print(session_buffer.thought_history)
+            raise SystemExit
 
             # set the persona profile of the current patient batch
             self.patient_agent.set_persona(

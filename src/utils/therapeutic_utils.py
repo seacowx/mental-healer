@@ -6,6 +6,7 @@ class TherapeuticSessionBuffer:
     def __init__(
         self, 
         coping_strategies_list: list[str],
+        initial_thought_list: list[list[str]],
         batch_size: int = 8,
     ):
 
@@ -21,7 +22,7 @@ class TherapeuticSessionBuffer:
         self.coping_dialogue_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategy_list
         } for _ in range(self.batch_size)]
-        self.thought_history = [[] for _ in range(self.batch_size)]
+        self.thought_history = {'0': initial_thought_list}
         
         # FIXME: remove this testing code
         # self.is_therapeutic_session_active = [[True] * len(self.coping_strategy_list)] * self.batch_size
@@ -47,7 +48,8 @@ class TherapeuticSessionBuffer:
         sample_idx: int,
         coping_strategy: str,
         coping_utterance: str,
-        thought: str,
+        turn_idx: int,
+        thought: list[str] | None = None,
     ):
         self.add_utterance(
             role=role,
@@ -55,7 +57,7 @@ class TherapeuticSessionBuffer:
             coping_strategy=coping_strategy,
             coping_utterance=coping_utterance,
         )
-        self.thought_history[sample_idx] = thought
+        self.thought_history[turn_idx] = thought
 
 
     def update_sentiment_buffer(
@@ -70,6 +72,7 @@ class TherapeuticSessionBuffer:
         if sentiment == 'positive':
             self.is_therapeutic_session_complete[sample_idx][coping_strategy_idx] = True
     
+
     @property
     def show_dialogue_history(self) -> dict:
         return json.dumps(self.coping_dialogue_history)
@@ -99,11 +102,11 @@ class TherapeuticSessionBuffer:
         return self.is_therapeutic_session_active
 
 
-    def reset(self,):
-        self.sentiment_buffer = [[] for _ in range(self.batch_size)]
-        self.coping_dialogue_history = [
-            {coping_strategy: [] for coping_strategy in self.coping_strategy_list } 
-            for _ in range(self.batch_size)
-        ]
-        self.thought_history = [[] for _ in range(self.batch_size)]
-        self.is_therapeutic_session_complete = [False] * self.batch_size
+    # def reset(self,):
+    #     self.sentiment_buffer = [[] for _ in range(self.batch_size)]
+    #     self.coping_dialogue_history = [
+    #         {coping_strategy: [] for coping_strategy in self.coping_strategy_list } 
+    #         for _ in range(self.batch_size)
+    #     ]
+    #     self.thought_history = {}
+    #     self.is_therapeutic_session_complete = [False] * self.batch_size
