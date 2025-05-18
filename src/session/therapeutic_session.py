@@ -71,8 +71,9 @@ class TherapeuticSession:
         utterance_dict_list: list[dict],
         role: str,
         session_buffer: TherapeuticSessionBuffer,
+        turn_idx: int,
         thought_list: list[list[str]] | None = None,
-    ):
+    ) -> TherapeuticSessionBuffer:
 
         for utterance_dict in utterance_dict_list:
             utterance_idx, coping_strategy = utterance_dict['coping_strategy'].split('||')
@@ -81,6 +82,7 @@ class TherapeuticSession:
 
             extra_kwargs = {}
             if thought_list:
+                extra_kwargs['turn_idx'] = turn_idx
                 extra_kwargs['thought'] = thought_list[utterance_idx]
 
             session_buffer.update_buffer(
@@ -90,6 +92,8 @@ class TherapeuticSession:
                 coping_utterance=coping_utterance,
                 **extra_kwargs,
             )
+
+        return session_buffer
 
 
     def _simulate_therapeutic_session(
@@ -121,7 +125,7 @@ class TherapeuticSession:
             )
 
             # update the session history
-            self._update_session_buffer(
+            session_buffer = self._update_session_buffer(
                 utterance_dict_list=therapist_utterance_dict_list,
                 role='therapist',
                 session_buffer=session_buffer,
@@ -135,12 +139,16 @@ class TherapeuticSession:
             )
 
             # update the session history
-            self._update_session_buffer(
+            session_buffer = self._update_session_buffer(
                 utterance_dict_list=patient_thought_dict_list,
                 role='patient',
                 session_buffer=session_buffer,
                 thought_list=patient_thought_list,
+                turn_idx=turn_idx,
             )
+
+            print(session_buffer.thought_history)
+            raise SystemExit
 
             patient_sentiment_list = self.sentiment_reward.get_sentiment()
 
@@ -176,9 +184,6 @@ class TherapeuticSession:
                 coping_strategies_list=self.coping_strategy_list,
                 initial_thought_list=patient_thought_list,
             )
-
-            print(session_buffer.thought_history)
-            raise SystemExit
 
             # set the persona profile of the current patient batch
             self.patient_agent.set_persona(

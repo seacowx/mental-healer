@@ -57,7 +57,7 @@ class TherapeuticSessionBuffer:
             coping_strategy=coping_strategy,
             coping_utterance=coping_utterance,
         )
-        self.thought_history[turn_idx] = thought
+        self.thought_history[str(turn_idx)] = thought
 
 
     def update_sentiment_buffer(
