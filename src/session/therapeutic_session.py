@@ -160,9 +160,6 @@ class TherapeuticSession:
                 turn_idx=turn_idx,
             )
 
-            print(session_buffer.thought_history)
-            raise SystemExit
-
             patient_sentiment_list = self.sentiment_reward.get_sentiment()
 
 
