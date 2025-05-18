@@ -71,7 +71,7 @@ class TherapeuticSession:
         utterance_dict_list: list[dict],
         role: str,
         session_buffer: TherapeuticSessionBuffer,
-        turn_idx: int,
+        turn_idx: int | None = None,
         thought_list: list[list[str]] | None = None,
     ) -> TherapeuticSessionBuffer:
 
@@ -81,7 +81,14 @@ class TherapeuticSession:
             coping_utterance = utterance_dict['response']
 
             extra_kwargs = {}
-            if thought_list:
+            if turn_idx:
+
+                assert thought_list, \
+                    (
+                        "thought_list is required when turn_idx is provided. "
+                        "Please provide the thought_list when turn_idx is provided."
+                    )
+
                 extra_kwargs['turn_idx'] = turn_idx
                 extra_kwargs['thought'] = thought_list[utterance_idx]
 
