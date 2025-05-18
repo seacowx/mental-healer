@@ -1,8 +1,8 @@
 input: |-
   <situation>
-  {situation}
+  {{ situation }}
   </situation>
 
   <thought>
-  {thought}
+  {{ thought }}
   </thought>

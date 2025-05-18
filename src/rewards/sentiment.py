@@ -1,5 +1,6 @@
 import gc
 import yaml, json
+from jinja2 import Template
 
 from vllm import SamplingParams
 from vllm.outputs import RequestOutput
@@ -31,7 +32,7 @@ class SentimentReward:
         self.adapter_dir = (
             '/scratch/prj/charnu/ft_weights/mental-healer/reward-sentiment/qwen8/checkpoint-260'
         )
-        self.sentiment_prompt = yaml.safe_load(open(sentiment_prompt_path, 'r'))
+        self.sentiment_prompt = Template(yaml.safe_load(open(sentiment_prompt_path, 'r'))['input'])
 
         self.llm = base_vllm_model
 
@@ -61,11 +62,21 @@ class SentimentReward:
 
         # TODO: make input message list
 
-        print(situation_desc_list)
-        print('\n\n')
-        print(thought_list)
-        print('\n\n')
-        print(self.sentiment_prompt)
+        input_msg_list = []
+        for situation_idx, situation_desc in enumerate(situation_desc_list):
+            cur_thought_list = thought_list[situation_idx]
+
+            for thought in cur_thought_list:
+                if not thought:
+                    input_msg_list.append('')
+                else:
+                    cur_input_msg = self.sentiment_prompt.render(
+                        situation=situation_desc,
+                        thought=thought,
+                    )
+                    input_msg_list.append(cur_input_msg)
+
+        print(input_msg_list)
         raise SystemExit
 
         # outputs = self.llm.inference(
