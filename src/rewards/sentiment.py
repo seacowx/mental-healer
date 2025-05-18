@@ -94,6 +94,7 @@ class SentimentReward:
         )
 
         print(outputs)
+        print('\n\n')
 
         output_list = [[''] * self.num_thought] * self.num_sample
         for output_idx, output_msg_idx in enumerate(input_msg_idx_list):
