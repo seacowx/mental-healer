@@ -60,8 +60,6 @@ class SentimentReward:
         thought_list: list,
     ) -> list:
 
-        # TODO: make input message list
-
         input_msg_list = []
         filled_idx_list, empty_idx_list = [], []
         for situation_idx, situation_desc in enumerate(situation_desc_list):
@@ -75,6 +73,9 @@ class SentimentReward:
                         situation=situation_desc,
                         thought=thought,
                     )
+                    cur_input_msg = [
+                        {'role': 'user', 'content': cur_input_msg}
+                    ]
                     input_msg_list.append(cur_input_msg)
                     filled_idx_list.append((situation_idx, thought_idx))
 
