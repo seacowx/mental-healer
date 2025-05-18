@@ -60,7 +60,11 @@ class SentimentReward:
         thought_list: list,
     ) -> list:
 
+        self.num_sample = len(situation_desc_list)
+        self.num_thought = len(thought_list[0])
+
         input_msg_list = []
+        input_msg_idx_list = []
         filled_idx_list, empty_idx_list = [], []
         for situation_idx, situation_desc in enumerate(situation_desc_list):
             cur_thought_list = thought_list[situation_idx]
@@ -79,6 +83,8 @@ class SentimentReward:
                     input_msg_list.append(cur_input_msg)
                     filled_idx_list.append((situation_idx, thought_idx))
 
+                input_msg_idx_list.append((situation_idx, thought_idx))
+
         outputs = self.llm.inference(
             message_list=input_msg_list,
             temperature=self.temperature,
@@ -87,27 +93,22 @@ class SentimentReward:
             use_tqdm=True,
         )
 
-        print(outputs)
+        output_list = [[''] * self.num_thought] * self.num_sample
+        for output_idx, output_msg_idx in enumerate(input_msg_idx_list):
+            if output_idx in filled_idx_list:
+                cur_output = self.__parse_output(outputs[output_idx])
+                sentiment = self.sentiment_mapping.get(cur_output, 'negative')
+
+                sample_idx, thought_idx = output_msg_idx                
+
+                output_list[sample_idx][thought_idx] = sentiment
+
+        print(output_list)
         raise SystemExit
 
-        for output_idx in range(len(situation_desc_list) * len(cur_thought_list[0])):
-            if output_idx in filled_idx_list:
-                ...
-            else:
-                ...
-            ...
+        return output_list
 
-        # outputs = self.llm.inference(
-        #     message_list=input_msg_list,
-        #     temperature=self.temperature,
-        #     max_tokens=self.max_tokens,
-        #     lora_request=LoRARequest(f"sentiment", 1, self.adapter_dir),
-        #     use_tqdm=True,
-        # )
 
-        # out_list = [''] * len(input_msg_list)
-        # for i, output in enumerate(outputs):
-        #     parsed_output = self.__parse_output(output)
         #     if parsed_output:
         #         # Store the parsed result in the original index
         #         out_list[i] = parsed_output
