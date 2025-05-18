@@ -67,7 +67,7 @@ class SentimentReward:
         for situation_idx, situation_desc in enumerate(situation_desc_list):
             cur_thought_list = thought_list[situation_idx]
 
-            for thought_idx,thought in cur_thought_list:
+            for thought_idx, thought in enumerate(cur_thought_list):
                 if not thought:
                     empty_idx_list.append((situation_idx, thought_idx))
                 else:
