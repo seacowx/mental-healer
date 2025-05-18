@@ -93,6 +93,11 @@ class TherapeuticSession:
                     "thought_list is required when turn_idx is provided. "
                     "Please provide the thought_list when turn_idx is provided."
                 )
+
+            print(turn_idx)
+            print(thought_list)
+            raise SystemExit
+
             session_buffer.update_thought_buffer(
                 turn_idx=turn_idx,
                 thought_list=thought_list,
