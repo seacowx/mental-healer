@@ -78,13 +78,15 @@ class SentimentReward:
                     input_msg_list.append(cur_input_msg)
                     filled_idx_list.append((situation_idx, thought_idx))
 
-        print(filled_idx_list)
-        print('\n\n')
-        print(empty_idx_list)
-        print('\n\n')
-        print(input_msg_list)
-        print('\n\n')
-        print(len(situation_desc_list) * len(cur_thought_list))
+        outputs = self.llm.inference(
+            message_list=input_msg_list,
+            temperature=self.temperature,
+            max_tokens=self.max_tokens,
+            lora_request=LoRARequest(f"sentiment", 1, self.adapter_dir),
+            use_tqdm=True,
+        )
+
+        print(outputs)
         raise SystemExit
 
         for output_idx in range(len(situation_desc_list) * len(cur_thought_list[0])):
