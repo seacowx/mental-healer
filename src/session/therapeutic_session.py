@@ -158,6 +158,8 @@ class TherapeuticSession:
                 thought_list=patient_thought_list,
             )
 
+            # TODO: update sentiment to session buffer
+
 
     def batch_simulate_therapeutic_session(
         self, 

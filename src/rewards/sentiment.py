@@ -106,9 +106,6 @@ class SentimentReward:
 
                 output_list[sample_idx][thought_idx] = sentiment_output
 
-        print(output_list)
-        raise SystemExit
-
         return output_list
 
 
