@@ -5,9 +5,9 @@ class TherapeuticSessionBuffer:
 
     def __init__(
         self, 
+        batch_size: int,
         coping_strategies_list: list[str],
         initial_thought_list: list[list[str]],
-        batch_size: int = 8,
     ):
 
         self.batch_size = batch_size
@@ -18,6 +18,8 @@ class TherapeuticSessionBuffer:
 
         # sentiment buffer stores the sentiment after each turn of the therapeutic session
         self.sentiment_buffer = [[] for _ in range(self.batch_size)]
+        print(self.sentiment_buffer)
+        raise SystemExit
         # coping strategies history stores the complete dialogue history of each coping strategy of each sample
         self.coping_dialogue_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategy_list
@@ -47,7 +49,6 @@ class TherapeuticSessionBuffer:
         thought_list: list[str],
     ):
         self.thought_history[str(turn_idx)] = thought_list
-
 
 
     def update_sentiment_buffer(
