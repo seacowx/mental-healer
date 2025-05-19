@@ -109,15 +109,6 @@ class SentimentReward:
         return output_list
 
 
-        #     if parsed_output:
-        #         # Store the parsed result in the original index
-        #         out_list[i] = parsed_output
-        #     else:
-        #         out_list[i] = 'positive'
-
-        # return out_list
-
-
     def compute_sentiment_reward(
         self,
         new_sentiment_list: list, 

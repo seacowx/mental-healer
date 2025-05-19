@@ -158,10 +158,11 @@ class TherapeuticSession:
                 thought_list=patient_thought_list,
             )
 
-            for cur_thought, cur_sentiment in zip(patient_thought_list, patient_sentiment_list):
-                print(cur_thought)
-                print(cur_sentiment)
-                print('-' * 100)
+            for cur_thought_list, cur_sentiment_list in zip(patient_thought_list, patient_sentiment_list):
+                for cur_thought, cur_sentiment in zip(cur_thought_list, cur_sentiment_list):
+                    print(cur_thought)
+                    print(cur_sentiment)
+                    print('-' * 100)
 
             raise SystemExit
 
