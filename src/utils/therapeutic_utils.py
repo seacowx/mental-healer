@@ -61,11 +61,11 @@ class TherapeuticSessionBuffer:
         for sample_idx, sample_sentiment_list in enumerate(sentiment_list):
             for coping_strategy_idx, sentiment in enumerate(sample_sentiment_list):
                 if sentiment == 'positive':
-                    self.is_therapeutic_session_complete[sample_idx][coping_strategy_idx] = True
+                    self.is_therapeutic_session_active[sample_idx][coping_strategy_idx] = False
 
         print(self.sentiment_buffer)
         print('\n\n')
-        print(self.is_therapeutic_session_complete)
+        print(self.is_therapeutic_session_active)
         raise SystemExit
     
 
