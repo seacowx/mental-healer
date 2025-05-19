@@ -24,9 +24,8 @@ class TherapeuticSessionBuffer:
         } for _ in range(self.batch_size)]
         self.thought_history = {'0': initial_thought_list}
         
-        # FIXME: remove this testing code
-        # self.is_therapeutic_session_active = [[True] * len(self.coping_strategy_list)] * self.batch_size
-        self.is_therapeutic_session_active = [[True, False, True, True, True, True, True, False]]
+        self.is_therapeutic_session_active = [[True] * len(self.coping_strategy_list)] * self.batch_size
+        # self.is_therapeutic_session_active = [[True, False, True, True, True, True, True, False]]
 
     
     def update_utterance_buffer(
@@ -56,14 +55,18 @@ class TherapeuticSessionBuffer:
         sentiment_list: list[list[str]],
     ):
 
-        print(sentiment_list)
+        self.sentiment_buffer.append(sentiment_list)
+
+        # set the session status to complete if the sentiment is positive
+        for sample_idx, sample_sentiment_list in enumerate(sentiment_list):
+            for coping_strategy_idx, sentiment in enumerate(sample_sentiment_list):
+                if sentiment == 'positive':
+                    self.is_therapeutic_session_complete[sample_idx][coping_strategy_idx] = True
+
+        print(self.sentiment_buffer)
+        print('\n\n')
+        print(self.is_therapeutic_session_complete)
         raise SystemExit
-
-        coping_strategy_idx = self.coping_strategy_to_idx[coping_strategy]
-        self.sentiment_buffer[sample_idx][coping_strategy_idx].append(sentiment)
-
-        if sentiment == 'positive':
-            self.is_therapeutic_session_complete[sample_idx][coping_strategy_idx] = True
     
 
     @property
