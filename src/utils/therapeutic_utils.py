@@ -53,10 +53,12 @@ class TherapeuticSessionBuffer:
 
     def update_sentiment_buffer(
         self,
-        sample_idx: int,
-        coping_strategy: str,
-        sentiment: str,
+        sentiment_list: list[list[str]],
     ):
+
+        print(sentiment_list)
+        raise SystemExit
+
         coping_strategy_idx = self.coping_strategy_to_idx[coping_strategy]
         self.sentiment_buffer[sample_idx][coping_strategy_idx].append(sentiment)
 

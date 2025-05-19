@@ -68,13 +68,15 @@ class TherapeuticSession:
 
     def _update_session_buffer(
         self,
-        utterance_dict_list: list[dict],
-        role: str,
         session_buffer: TherapeuticSessionBuffer,
+        utterance_dict_list: list[dict] = [],
+        role: str = '',
         turn_idx: int | None = None,
         thought_list: list[list[str]] | None = None,
+        sentiment_list: list[list[str]] | None = None,
     ) -> TherapeuticSessionBuffer:
 
+        # the utterance buffer is updated for each utterance
         for utterance_dict in utterance_dict_list:
             utterance_idx, coping_strategy = utterance_dict['coping_strategy'].split('||')
             utterance_idx = int(utterance_idx)
@@ -87,6 +89,7 @@ class TherapeuticSession:
                 coping_utterance=coping_utterance,
             )
 
+        # update the thought buffer after new thoughts are generated, this is indicated by the `turn_idx`
         if turn_idx:
             assert thought_list, \
                 (
@@ -97,6 +100,12 @@ class TherapeuticSession:
             session_buffer.update_thought_buffer(
                 turn_idx=turn_idx,
                 thought_list=thought_list,
+            )
+
+        # TODO: implement the sentiment buffer update
+        if sentiment_list:
+            session_buffer.update_sentiment_buffer(
+                sentiment_list=sentiment_list,
             )
 
         return session_buffer
@@ -164,7 +173,13 @@ class TherapeuticSession:
                     print(cur_sentiment)
                     print('-' * 100)
 
+            session_buffer = self._update_session_buffer(
+                session_buffer=session_buffer,
+                sentiment_list=patient_sentiment_list,
+            )
+
             raise SystemExit
+
 
             # TODO: update sentiment to session buffer
 
