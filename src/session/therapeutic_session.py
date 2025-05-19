@@ -158,6 +158,13 @@ class TherapeuticSession:
                 thought_list=patient_thought_list,
             )
 
+            for cur_thought, cur_sentiment in zip(patient_thought_list, patient_sentiment_list):
+                print(cur_thought)
+                print(cur_sentiment)
+                print('-' * 100)
+
+            raise SystemExit
+
             # TODO: update sentiment to session buffer
 
 
