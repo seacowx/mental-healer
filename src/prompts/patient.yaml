@@ -21,7 +21,7 @@ react_to_therapist_utterance:
     {{ previous_thought }}
     </previous_thought>
 
-    What would be your updated thought after hearing the following utterance? Your updated thought should be truthful to your persona profile. The length of the updated thought should be similar to the length of the previous thought. Only change to a positive thought if the trainee's utterance is extremely convincing. Most of the time, the updated thought would still be negative. Generate the thought in first person with the following format:
+    What would be your updated thought after hearing the following utterance? Your updated thought should be truthful to your persona profile. The length of the updated thought should be similar to the length of the previous thought. Only change to a positive thought if the trainee's utterance is extremely convincing. Most of the time, the updated thought would still be negative. Your thought should remain negative if you fail to identify at least 3 convincing points in the trainee's utterance. Generate the thought in first person with the following format:
     <updated_thought>
     New thought here
     </updated_thought>
