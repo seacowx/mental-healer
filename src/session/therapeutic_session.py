@@ -204,6 +204,7 @@ class TherapeuticSession:
         self, 
         data: dict[str, dict],
         batch_size: int = 1,
+        show_vllm_tqdm_bar: bool = False,
     ):
 
         situation_key_list = list(data.keys())

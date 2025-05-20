@@ -59,6 +59,7 @@ def main():
     therapeutic_session.batch_simulate_therapeutic_session(
         data=data,
         batch_size=1,
+        show_vllm_tqdm_bar=False,
     )
 
 
