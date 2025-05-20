@@ -22,6 +22,8 @@ class TherapeuticSessionBuffer:
         self.coping_dialogue_buffer = [{
             coping_strategy: [] for coping_strategy in self.coping_strategy_list
         } for _ in range(self.batch_size)]
+        
+        # turn_idx -> list of thoughts
         self.thought_buffer = {'0': initial_thought_list}
         
         self.is_therapeutic_session_active = [[True] * len(self.coping_strategy_list)] * self.batch_size
@@ -83,12 +85,8 @@ class TherapeuticSessionBuffer:
         return self.coping_dialogue_buffer[sample_idx]
 
     
-    def get_thought(self, sample_idx: int) -> dict:
-
-        print(self.thought_buffer)
-        raise SystemExit
-
-        return self.thought_buffer[str(sample_idx)]
+    def get_thought(self, turn_idx: int, sample_idx: int) -> list[str]:
+        return self.thought_buffer[str(turn_idx)][sample_idx]
 
     
     def get_latest_sentiment(self, coping_strategy_idx: int) -> str:

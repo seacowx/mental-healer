@@ -65,6 +65,7 @@ class PatientAgent(LMAgent):
 
     def _make_patient_new_thought_msg(
         self,
+        turn_idx: int,
         situation_desc_list: list[str],
         session_buffer: TherapeuticSessionBuffer,
         active_sample_idx_list: list[int],
@@ -81,7 +82,7 @@ class PatientAgent(LMAgent):
 
             # retrieve the dialogue buffer corresponding to the current sample index
             cur_dialogue = session_buffer.get_dialogue(sample_idx=sample_idx)
-            cur_thought = session_buffer.get_thought(sample_idx=sample_idx)
+            cur_thought = session_buffer.get_thought(turn_idx=turn_idx, sample_idx=sample_idx)
 
             print(cur_thought)
             raise SystemExit
@@ -128,6 +129,7 @@ class PatientAgent(LMAgent):
 
     def utter(
         self, 
+        turn_idx: int,
         situation_desc_list: list[str],
         session_buffer: TherapeuticSessionBuffer,
         active_sample_idx_list: list[int],
@@ -147,6 +149,7 @@ class PatientAgent(LMAgent):
             )
 
         patient_new_thought_msg_list, sample_and_strategy_idx_list = self._make_patient_new_thought_msg(
+            turn_idx=turn_idx,
             situation_desc_list=situation_desc_list,
             session_buffer=session_buffer,
             active_sample_idx_list=active_sample_idx_list,

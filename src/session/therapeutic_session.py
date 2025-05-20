@@ -147,6 +147,7 @@ class TherapeuticSession:
                 situation_desc_list=cur_situation_list,
                 session_buffer=session_buffer,
                 active_sample_idx_list=active_sample_idx_list,
+                turn_idx=turn_idx,
             )
 
             # update the session buffer
