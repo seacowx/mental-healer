@@ -69,9 +69,9 @@ class TherapeuticSession:
     def _update_session_buffer(
         self,
         session_buffer: TherapeuticSessionBuffer,
+        turn_idx: int,
         utterance_dict_list: list[dict] = [],
         role: str = '',
-        turn_idx: int | None = None,
         thought_list: list[list[str]] | None = None,
         sentiment_list: list[list[str]] | None = None,
     ) -> TherapeuticSessionBuffer:
@@ -90,13 +90,7 @@ class TherapeuticSession:
             )
 
         # update the thought buffer after new thoughts are generated, this is indicated by the `turn_idx`
-        if turn_idx:
-            assert thought_list, \
-                (
-                    "thought_list is required when turn_idx is provided. "
-                    "Please provide the thought_list when turn_idx is provided."
-                )
-
+        if thought_list:
             session_buffer.update_thought_buffer(
                 turn_idx=turn_idx,
                 thought_list=thought_list,
@@ -145,6 +139,7 @@ class TherapeuticSession:
                 utterance_dict_list=therapist_utterance_dict_list,
                 role='therapist',
                 session_buffer=session_buffer,
+                turn_idx=turn_idx,
             )
 
             # generate the patient's new thought and update `patient_thought_list`
