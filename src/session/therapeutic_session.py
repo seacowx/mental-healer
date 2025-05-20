@@ -163,11 +163,11 @@ class TherapeuticSession:
                 thought_list=patient_thought_list,
             )
 
-            for cur_thought_list, cur_sentiment_list in zip(patient_thought_list, patient_sentiment_list):
-                for cur_thought, cur_sentiment in zip(cur_thought_list, cur_sentiment_list):
-                    print(cur_thought)
-                    print(cur_sentiment)
-                    print('-' * 100)
+            # for cur_thought_list, cur_sentiment_list in zip(patient_thought_list, patient_sentiment_list):
+            #     for cur_thought, cur_sentiment in zip(cur_thought_list, cur_sentiment_list):
+            #         print(cur_thought)
+            #         print(cur_sentiment)
+            #         print('-' * 100)
 
             session_buffer = self._update_session_buffer(
                 session_buffer=session_buffer,
@@ -175,6 +175,7 @@ class TherapeuticSession:
                 turn_idx=turn_idx,
             )
 
+            print(session_buffer)
             raise SystemExit
 
 
