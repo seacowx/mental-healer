@@ -83,6 +83,9 @@ class PatientAgent(LMAgent):
             cur_dialogue = session_buffer.get_dialogue(sample_idx=sample_idx)
             cur_thought = session_buffer.get_thought(sample_idx=sample_idx)
 
+            print(cur_thought)
+            raise SystemExit
+
             cur_persona_profile_desc = verbalize_persona_profile(
                 persona_profile_dict=cur_persona_profile
             )
