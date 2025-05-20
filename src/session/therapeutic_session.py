@@ -134,7 +134,7 @@ class TherapeuticSession:
                 active_coping_strategy_idx_list=active_coping_strategy_idx_list,
             )
 
-            # update the session history
+            # update the session buffer
             session_buffer = self._update_session_buffer(
                 utterance_dict_list=therapist_utterance_dict_list,
                 role='therapist',
@@ -149,7 +149,7 @@ class TherapeuticSession:
                 active_sample_idx_list=active_sample_idx_list,
             )
 
-            # update the session history
+            # update the session buffer
             session_buffer = self._update_session_buffer(
                 utterance_dict_list=patient_thought_dict_list,
                 role='patient',
@@ -175,7 +175,14 @@ class TherapeuticSession:
                 turn_idx=turn_idx,
             )
 
-            print(session_buffer)
+            print('\n\n')
+            print('-' * 100)
+            print(session_buffer.show_dialogue_buffer)
+            print('-' * 100)
+            print(session_buffer.show_thought_buffer)
+            print('-' * 100)
+            print(session_buffer.show_sentiment_buffer)
+            print('-' * 100)
             raise SystemExit
 
 
