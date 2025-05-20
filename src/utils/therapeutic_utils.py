@@ -63,11 +63,6 @@ class TherapeuticSessionBuffer:
                 if sentiment == 'positive':
                     self.is_therapeutic_session_active[sample_idx][coping_strategy_idx] = False
 
-        print(self.sentiment_buffer)
-        print('\n\n')
-        print(self.is_therapeutic_session_active)
-        raise SystemExit
-    
 
     @property
     def show_dialogue_history(self) -> dict:
