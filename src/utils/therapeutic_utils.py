@@ -84,6 +84,10 @@ class TherapeuticSessionBuffer:
 
     
     def get_thought(self, sample_idx: int) -> dict:
+
+        print(self.thought_buffer)
+        raise SystemExit
+
         return self.thought_buffer[str(sample_idx)]
 
     
