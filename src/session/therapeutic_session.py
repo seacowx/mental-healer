@@ -23,7 +23,7 @@ class TherapeuticSession:
         sentiment_prompt_path: str = './prompts/sentiment.yaml',
         sentiment_reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
         sentiment_mapping_path: str = './configs/emotion_to_sentiment.yaml',
-        max_turns: int = 5,
+        max_turns: int = 3,
     ):
         self.base_vllm_model = base_vllm_model
         self.patient_prompt_template_path = patient_prompt_template_path

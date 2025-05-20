@@ -27,6 +27,12 @@ def parse_args():
         )
     )
     parser.add_argument(
+        '--max_turns',
+        type=int,
+        default=3,
+        help="The maximum number of turns in the therapeutic session.",
+    )
+    parser.add_argument(
         '--show_vllm_tqdm_bar',
         action='store_true',
         help="Show tqdm bar during vllm inference.",
@@ -59,6 +65,7 @@ def main():
         sentiment_prompt_path='../prompts/sentiment.yaml',
         sentiment_reward_rule_path='../configs/sentiment_reward_rules.yaml',
         sentiment_mapping_path='../configs/emotion_to_sentiment.yaml',
+        max_turns=args.max_turns,
     )
 
     therapeutic_session.batch_simulate_therapeutic_session(
