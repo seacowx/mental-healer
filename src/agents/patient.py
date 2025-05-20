@@ -117,7 +117,7 @@ class PatientAgent(LMAgent):
 
                     sample_and_strategy_idx_list.append((sample_idx, coping_strategy_idx))
 
-                print(patient_new_thought_msg_list[-1])
+                print(patient_new_thought_msg_list[-1][-1]['content'])
                 raise SystemExit
 
         return patient_new_thought_msg_list, sample_and_strategy_idx_list
