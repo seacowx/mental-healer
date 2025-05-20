@@ -170,7 +170,7 @@ class TherapeuticSession:
             patient_sentiment_list = self.sentiment_reward.get_sentiment(
                 situation_desc_list=cur_situation_list,
                 thought_list=patient_thought_list,
-                show_tqdm_bar=show_vllm_tqdm_bar,
+                show_vllm_tqdm_bar=show_vllm_tqdm_bar,
             )
 
             # for cur_thought_list, cur_sentiment_list in zip(patient_thought_list, patient_sentiment_list):
