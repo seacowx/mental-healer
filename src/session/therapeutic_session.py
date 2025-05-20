@@ -120,8 +120,6 @@ class TherapeuticSession:
 
         for turn_idx in pbar:
 
-            pbar.set_description(f'Current Turn {turn_idx} / {self.max_turns}')
-
             active_coping_strategy_idx_list = self._get_active_coping_strategy_list(
                 session_buffer=session_buffer,
             )
@@ -130,6 +128,7 @@ class TherapeuticSession:
                 if active_coping_strategy_idx_list
             ]
 
+            pbar.set_description(f'Generating Coping Utterance')
             # generate the therapist's utterance
             therapist_utterance_dict_list = self.therapist_agent.utter(
                 situation_desc_list=cur_situation_list,
@@ -150,6 +149,7 @@ class TherapeuticSession:
             )
 
             # generate the patient's new thought and update `patient_thought_list`
+            pbar.set_description(f'Updating Patient Thought')
             patient_thought_dict_list, patient_thought_list = self.patient_agent.utter(
                 situation_desc_list=cur_situation_list,
                 session_buffer=session_buffer,
@@ -167,6 +167,7 @@ class TherapeuticSession:
                 turn_idx=turn_idx,
             )
 
+            pbar.set_description(f'Identifying Patient Sentiment')
             patient_sentiment_list = self.sentiment_reward.get_sentiment(
                 situation_desc_list=cur_situation_list,
                 thought_list=patient_thought_list,
