@@ -100,9 +100,6 @@ class PatientAgent(LMAgent):
 
                 role, therapist_utterance = coping_dialogue_list[-1].values()
 
-                print(cur_thought)
-                raise SystemExit
-
                 # ensure that the last utterance is from the therapist
                 if role != 'therapist':
                     patient_new_thought_msg_list.append([])
@@ -117,6 +114,9 @@ class PatientAgent(LMAgent):
                             )
                         }
                     ])
+
+                    print(cur_thought[coping_strategy_idx])
+                    raise SystemExit
 
                     sample_and_strategy_idx_list.append((sample_idx, coping_strategy_idx))
 
