@@ -86,7 +86,6 @@ class TherapeuticSessionBuffer:
 
     
     def get_thought(self, turn_idx: int, sample_idx: int) -> list[str]:
-        # turn_idx is 1-indexed, make adjustment
         return self.thought_buffer[str(turn_idx-1)][sample_idx]
 
     

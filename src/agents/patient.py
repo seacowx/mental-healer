@@ -84,9 +84,6 @@ class PatientAgent(LMAgent):
             cur_dialogue = session_buffer.get_dialogue(sample_idx=sample_idx)
             cur_thought = session_buffer.get_thought(turn_idx=turn_idx, sample_idx=sample_idx)
 
-            print(cur_thought)
-            raise SystemExit
-
             cur_persona_profile_desc = verbalize_persona_profile(
                 persona_profile_dict=cur_persona_profile
             )
@@ -113,7 +110,7 @@ class PatientAgent(LMAgent):
                         {'role': 'user', 'content': self.patient_reaction_user.render(
                                 persona_profile=cur_persona_profile_desc,
                                 situation=cur_situation_desc,
-                                thought=cur_thought[sample_idx][coping_strategy_idx],
+                                thought=cur_thought[coping_strategy_idx],
                                 therapist_utterance=therapist_utterance,
                             )
                         }
