@@ -253,4 +253,9 @@ class CustomLLM(LLM):
             lora_request=lora_request,
         )
 
+        print(prompts[0])
+        print('\n\n')
+        print(output_list[0])
+        raise SystemExit
+
         return output_list, sample_idx_key_list
