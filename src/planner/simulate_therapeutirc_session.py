@@ -26,6 +26,11 @@ def parse_args():
             "'../../data/situations/situations_with_initial_thought_top1.json'.",
         )
     )
+    parser.add_argument(
+        '--show_vllm_tqdm_bar',
+        action='store_true',
+        help="Show tqdm bar during vllm inference.",
+    )
     return parser.parse_args()
 
 
@@ -59,7 +64,7 @@ def main():
     therapeutic_session.batch_simulate_therapeutic_session(
         data=data,
         batch_size=1,
-        show_vllm_tqdm_bar=False,
+        show_vllm_tqdm_bar=args.show_vllm_tqdm_bar,
     )
 
 
