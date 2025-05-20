@@ -17,9 +17,7 @@ class TherapeuticSessionBuffer:
         }
 
         # sentiment buffer stores the sentiment after each turn of the therapeutic session
-        self.sentiment_buffer = [[] for _ in range(self.batch_size)]
-        print(self.sentiment_buffer)
-        raise SystemExit
+        self.sentiment_buffer = {}
         # coping strategies history stores the complete dialogue history of each coping strategy of each sample
         self.coping_dialogue_history = [{
             coping_strategy: [] for coping_strategy in self.coping_strategy_list
@@ -53,10 +51,11 @@ class TherapeuticSessionBuffer:
 
     def update_sentiment_buffer(
         self,
+        turn_idx: int,
         sentiment_list: list[list[str]],
     ):
 
-        self.sentiment_buffer.append(sentiment_list)
+        self.sentiment_buffer[str(turn_idx)] = sentiment_list
 
         # set the session status to complete if the sentiment is positive
         for sample_idx, sample_sentiment_list in enumerate(sentiment_list):

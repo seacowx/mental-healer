@@ -106,6 +106,7 @@ class TherapeuticSession:
         if sentiment_list:
             session_buffer.update_sentiment_buffer(
                 sentiment_list=sentiment_list,
+                turn_idx=turn_idx,
             )
 
         return session_buffer
@@ -119,7 +120,7 @@ class TherapeuticSession:
         cur_persona_profile_list: list[dict],
     ):
 
-        for turn_idx in range(1, self.max_turns):
+        for turn_idx in range(1, self.max_turns + 1):
 
             active_coping_strategy_idx_list = self._get_active_coping_strategy_list(
                 session_buffer=session_buffer,
@@ -176,6 +177,7 @@ class TherapeuticSession:
             session_buffer = self._update_session_buffer(
                 session_buffer=session_buffer,
                 sentiment_list=patient_sentiment_list,
+                turn_idx=turn_idx,
             )
 
             raise SystemExit
