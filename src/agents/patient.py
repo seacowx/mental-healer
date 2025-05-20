@@ -80,8 +80,8 @@ class PatientAgent(LMAgent):
             cur_persona_profile = self.meta_persona_profile[sample_idx]
 
             # retrieve the dialogue buffer corresponding to the current sample index
-            cur_dialogue_buffer = session_buffer.get_dialogue_buffer(sample_idx=sample_idx)
-            cur_thought_buffer = session_buffer.get_thought_buffer(sample_idx=sample_idx)
+            cur_dialogue = session_buffer.get_dialogue(sample_idx=sample_idx)
+            cur_thought = session_buffer.get_thought(sample_idx=sample_idx)
 
             cur_persona_profile_desc = verbalize_persona_profile(
                 persona_profile_dict=cur_persona_profile
@@ -91,7 +91,7 @@ class PatientAgent(LMAgent):
 
             # make a prompt for each of the coping strategies. 
             # the only thing that changes by coping strategy is the therapist's utterance (therapist_utterance)
-            for coping_strategy_idx, coping_dialogue_list in enumerate(cur_dialogue_buffer.values()):
+            for coping_strategy_idx, coping_dialogue_list in enumerate(cur_dialogue.values()):
 
                 # if the dialogue buffer is empty, skip
                 if not coping_dialogue_list:

@@ -79,11 +79,11 @@ class TherapeuticSessionBuffer:
         return json.dumps(self.sentiment_buffer)
 
 
-    def get_dialogue_buffer(self, sample_idx: int) -> dict:
+    def get_dialogue(self, sample_idx: int) -> dict:
         return self.coping_dialogue_buffer[sample_idx]
 
     
-    def get_thought_buffer(self, sample_idx: int) -> dict:
+    def get_thought(self, sample_idx: int) -> dict:
         return self.thought_buffer[str(sample_idx)]
 
     
