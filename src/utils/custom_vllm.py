@@ -229,6 +229,10 @@ class CustomLLM(LLM):
                 coping_strategy_content += '\n\n' + self.coping_postfix
                 prompt_str = prompt_instruction.strip() + '\n<think>\n' + coping_strategy_content + '\n</think>'
 
+                print(prompt_str)
+                raise SystemExit
+
+
                 # Special tokens are already included in chat templates so
                 # should not be added by the tokenizer in this case.
                 prompt_token_ids = tokenizer.encode(
@@ -252,10 +256,5 @@ class CustomLLM(LLM):
             use_tqdm=use_tqdm,
             lora_request=lora_request,
         )
-
-        print(prompts[0])
-        print('\n\n')
-        print(output_list[0])
-        raise SystemExit
 
         return output_list, sample_idx_key_list
