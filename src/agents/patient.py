@@ -127,6 +127,7 @@ class PatientAgent(LMAgent):
         situation_desc_list: list[str],
         session_buffer: TherapeuticSessionBuffer,
         active_sample_idx_list: list[int],
+        show_vllm_tqdm_bar: bool = False,
     ) -> tuple[list[dict[str, str]], list[str]]:
         """
         Generate the patient's new thought
@@ -154,6 +155,7 @@ class PatientAgent(LMAgent):
 
         new_thought_list = self.base_vllm_model.inference(
             message_list=patient_new_thought_msg_list,
+            show_tqdm_bar=show_vllm_tqdm_bar,
         )
 
         updated_patient_thought_list = [

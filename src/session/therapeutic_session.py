@@ -1,5 +1,6 @@
 import yaml
 import copy
+import tqdm
 from typing import Optional
 
 from agents.planner import CopingAgent
@@ -112,9 +113,14 @@ class TherapeuticSession:
         cur_situation_list: list[str],
         patient_thought_list: list[list[str]],
         cur_persona_profile_list: list[dict],
+        show_vllm_tqdm_bar: bool = False,
     ):
 
-        for turn_idx in range(1, self.max_turns + 1):
+        pbar = tqdm.tqdm(range(1, self.max_turns + 1))
+
+        for turn_idx in pbar:
+
+            pbar.set_description(f'Current Turn {turn_idx} / {self.max_turns}')
 
             active_coping_strategy_idx_list = self._get_active_coping_strategy_list(
                 session_buffer=session_buffer,
@@ -132,6 +138,7 @@ class TherapeuticSession:
                 session_buffer=session_buffer,
                 active_sample_idx_list=active_sample_idx_list,
                 active_coping_strategy_idx_list=active_coping_strategy_idx_list,
+                show_vllm_tqdm_bar=show_vllm_tqdm_bar,
             )
 
             # update the session buffer
@@ -148,6 +155,7 @@ class TherapeuticSession:
                 session_buffer=session_buffer,
                 active_sample_idx_list=active_sample_idx_list,
                 turn_idx=turn_idx,
+                show_vllm_tqdm_bar=show_vllm_tqdm_bar,
             )
 
             # update the session buffer
@@ -162,6 +170,7 @@ class TherapeuticSession:
             patient_sentiment_list = self.sentiment_reward.get_sentiment(
                 situation_desc_list=cur_situation_list,
                 thought_list=patient_thought_list,
+                show_tqdm_bar=show_vllm_tqdm_bar,
             )
 
             # for cur_thought_list, cur_sentiment_list in zip(patient_thought_list, patient_sentiment_list):
@@ -175,6 +184,8 @@ class TherapeuticSession:
                 sentiment_list=patient_sentiment_list,
                 turn_idx=turn_idx,
             )
+
+            pbar.update(1)
 
             print('-' * 100)
             print(session_buffer.show_dialogue_buffer)
@@ -204,9 +215,19 @@ class TherapeuticSession:
             for i in range(0, len(situation_dict_list), batch_size)
         ]
 
+        pbar = tqdm.tqdm(
+            situation_dict_list_batches,
+            position=0,
+            leave=False,
+        )
+
         # iterate over each situation in the batch. For each situation, simulate the therapeutic session until
         # either the patient's thought is positive or the maximum number of turns is reached
-        for situation_dict_batch in situation_dict_list_batches:
+        for situation_dict_batch in pbar:
+
+            pbar.set_description(
+                f'Simulating Therapeutic Session | Batch {pbar.n + 1} / {len(situation_dict_list_batches)}'
+            )
 
             cur_situation_list = [ele['situation'] for ele in situation_dict_batch]
             patient_thought_list = [
@@ -231,5 +252,8 @@ class TherapeuticSession:
                 cur_situation_list=cur_situation_list,
                 patient_thought_list=patient_thought_list,
                 cur_persona_profile_list=cur_persona_profile_list,
+                show_vllm_tqdm_bar=show_vllm_tqdm_bar,
             )
+
+            pbar.update(1)
 

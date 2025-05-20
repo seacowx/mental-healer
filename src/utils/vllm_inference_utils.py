@@ -394,6 +394,7 @@ class vLLMOffline:
         is_coping_utterance: bool = False,
         active_sample_idx_list: list[int] = [],
         active_coping_strategy_idx_list: list[list[int]] = [],
+        show_tqdm_bar: bool = True,
         **kwargs
     ) -> list:
         """
@@ -429,7 +430,7 @@ class vLLMOffline:
                 patient_thought_list=patient_thought_list,
                 patient_persona_profile_desc_list=patient_persona_profile_desc_list,
                 sampling_params=sampling_params,
-                use_tqdm=True,
+                use_tqdm=show_tqdm_bar,
                 session_buffer=session_buffer,
                 active_sample_idx_list=active_sample_idx_list,
                 active_coping_strategy_idx_list=active_coping_strategy_idx_list,
@@ -440,7 +441,7 @@ class vLLMOffline:
             response_list = self.vllm_model.chat(
                 messages=message_list, 
                 sampling_params=sampling_params,
-                use_tqdm=True,
+                use_tqdm=show_tqdm_bar,
                 **extra_kwargs,
             )
 

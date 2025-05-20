@@ -58,6 +58,7 @@ class SentimentReward:
         self, 
         situation_desc_list: list,
         thought_list: list,
+        show_vllm_tqdm_bar: bool = False,
     ) -> list:
 
         self.num_sample = len(situation_desc_list)
@@ -90,7 +91,7 @@ class SentimentReward:
             temperature=self.temperature,
             max_tokens=self.max_tokens,
             lora_request=LoRARequest(f"sentiment", 1, self.adapter_dir),
-            use_tqdm=True,
+            show_tqdm_bar=show_vllm_tqdm_bar,
         )
 
         output_list = [[''] * self.num_thought] * self.num_sample
