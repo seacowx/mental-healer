@@ -110,7 +110,7 @@ class PatientAgent(LMAgent):
                         {'role': 'user', 'content': self.patient_reaction_user.render(
                                 persona_profile=cur_persona_profile_desc,
                                 situation=cur_situation_desc,
-                                thought=cur_thought[coping_strategy_idx],
+                                previous_thought=cur_thought[coping_strategy_idx],
                                 therapist_utterance=therapist_utterance,
                             )
                         }
