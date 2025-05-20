@@ -175,7 +175,6 @@ class TherapeuticSession:
                 turn_idx=turn_idx,
             )
 
-            print('\n\n')
             print('-' * 100)
             print(session_buffer.show_dialogue_buffer)
             print('-' * 100)
