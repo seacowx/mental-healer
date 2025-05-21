@@ -42,9 +42,6 @@ class SentimentReward:
             decay_factor=decay_factor
         )
 
-        print(self.efficiency_reward_sequence)
-        raise SystemExit
-
 
     def __parse_output(self, output: str) -> str:
 
