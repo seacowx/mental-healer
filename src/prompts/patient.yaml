@@ -29,6 +29,6 @@ react_to_therapist_utterance:
     {{ therapist_utterance }}
     </utterance>
     
-    In response, you need to generate a new thought that is truthful to the given persona profile. You need to be strict about the trainee's utterance. Therefore, your new thought should remain negative unless you can identify at least 10 convincing points in the trainee's utterance. Make your sentiment pronounced in your new thought. The length of the updated thought should be similar to the length of the previous thought.
+    In response, you need to generate a new thought that is truthful to the given persona profile. Your new thought must remain negative unless you can identify at least 5 distinct convincing points in the trainee's utterance. Make your negative or positive sentiment pronounced in your new thought. The length of the updated thought should be similar to the length of the previous thought.
     
     Generate the thought from a first-person perspective and wrap it using <updated_thought> and </updated_thought>. 
