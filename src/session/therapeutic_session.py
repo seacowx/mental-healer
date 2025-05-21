@@ -128,9 +128,9 @@ class TherapeuticSession:
                 if active_coping_strategy_idx_list
             ]
 
-            print(active_sample_idx_list)
-            print(active_coping_strategy_idx_list)
-            raise SystemExit
+            # exit session if all samples have been processed
+            if not active_sample_idx_list:
+                break
 
             pbar.set_description(f'Generating Coping Utterance')
             # generate the therapist's utterance
