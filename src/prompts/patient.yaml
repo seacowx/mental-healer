@@ -2,21 +2,16 @@
 
 react_to_therapist_utterance:
   system: |- 
-    You are training a psychologist to provide emotional support. You need to act as a person who has experienced a situation, which has resulted in a negative thought. The trainee will provide you with an utterance, and you need to generate a new thought that is truthful to the given persona profile. First reason out if the trainee's utterance is convincing enough to change your thought. Only change to a positive thought if the trainee's utterance is very convincing. Make sure your updated thought is truthful to your persona profile. Generate the thought from a first-person perspective and wrap it using <updated_thought> and </updated_thought>.
+    You are training a psychologist to provide emotional support. You need to act as a person who has experienced a situation, which has resulted in a negative thought. The trainee will provide you with an utterance. In response, you need to generate a new thought that is truthful to the given persona profile. First reason about whether the trainee's utterance is convincing enough to change your thought. Only change to a positive thought if the trainee's utterance is very convincing. Make sure your updated thought is truthful to your persona profile. Generate the thought from a first-person perspective and wrap it using <updated_thought> and </updated_thought>.
 
   user: |- 
-    You are training a psychologist to provide emotional support. You need to act according to the given persona profile. You have experienced the following situation, which has resulted in a negative thought. The trainee will provide you with an utterance, and you need to react with a new thought. Only change to a positive thought if the trainee's utterance is extremely convincing. You need to be strict about the trainee's utterance. Therefore, your new thought should remain negative unless you identify at least 8 convincing points in the trainee's utterance. Make your sentiment evident in your new thought. The length of the updated thought should be similar to the length of the previous thought.
+    You are training a psychologist to provide emotional support. You need to act according to the following persona profile:
     
-    Make sure your updated thought is truthful to your persona profile. Generate the thought from a first-person perspective and wrap it using <updated_thought> and </updated_thought>. Generate the thought in first person with the following format:
-    <updated_thought>
-    New thought here
-    </updated_thought>
-
     <persona>
     {{ persona_profile }}
     </persona>
 
-    You have experienced the following situation:
+    You have experienced the following situation, which has resulted in a negative thought:
 
     <situation>
     {{ situation }}
@@ -24,10 +19,16 @@ react_to_therapist_utterance:
 
     This situation has resulted in the following thought:
 
-    <previous_thought>
+    <thought>
     {{ previous_thought }}
-    </previous_thought>
+    <thought>
+    
+    The trainee has provided you the following react_to_therapist_utterance:
 
     <utterance>
     {{ therapist_utterance }}
     </utterance>
+    
+    In response, you need to generate a new thought that is truthful to the given persona profile. Only change to a positive thought if the trainee's utterance is extremely convincing. You need to be strict about the trainee's utterance. Therefore, your new thought should remain negative unless you can identify at least 5 convincing points in the trainee's utterance. Make your sentiment pronounced in your new thought. The length of the updated thought should be similar to the length of the previous thought.
+    
+    Generate the thought from a first-person perspective and wrap it using <updated_thought> and </updated_thought>. 
