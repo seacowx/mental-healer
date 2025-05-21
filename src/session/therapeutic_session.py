@@ -195,11 +195,6 @@ class TherapeuticSession:
 
             pbar.update(1)
 
-        print('-' * 100)
-        print(session_buffer.show_dialogue_buffer)
-        print('-' * 100)
-        print(session_buffer.show_thought_buffer)
-        print('-' * 100)
         print(session_buffer.show_sentiment_buffer)
         print('-' * 100)
         raise SystemExit

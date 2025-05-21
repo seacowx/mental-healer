@@ -137,16 +137,14 @@ class SentimentReward:
 
     def compute_sentiment_reward(
         self,
-        new_sentiment_list: list, 
-        previous_sentiment_list: list,
+        sentiment_list: list,
     ) -> list:
 
         reward_list = []
-        for prev_sentiment, new_sentiment in zip(previous_sentiment_list, new_sentiment_list):
-            reward_list.append(
-                self.reward_mapping[prev_sentiment][new_sentiment]
-            )
-        reward_list = reward_list
+
+        print(sentiment_list)
+        raise SystemExit
+
 
         return reward_list
         
