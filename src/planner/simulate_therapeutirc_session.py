@@ -37,6 +37,12 @@ def parse_args():
         action='store_true',
         help="Show tqdm bar during vllm inference.",
     )
+    parser.add_argument(
+        '--decay_factor',
+        type=float,
+        default=0.5,
+        help="The decay factor for the efficiency reward.",
+    )
     return parser.parse_args()
 
 
@@ -66,6 +72,7 @@ def main():
         sentiment_reward_rule_path='../configs/sentiment_reward_rules.yaml',
         sentiment_mapping_path='../configs/emotion_to_sentiment.yaml',
         max_turns=args.max_turns,
+        decay_factor=args.decay_factor,
     )
 
     therapeutic_session.batch_simulate_therapeutic_session(

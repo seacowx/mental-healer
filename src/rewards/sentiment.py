@@ -19,6 +19,8 @@ class SentimentReward:
         sentiment_prompt_path: str = './prompts/sentiment.yaml',
         temperature: float = 0.,
         max_tokens: int = 128,
+        num_turns: int = 3,
+        decay_factor: float = 0.5,
     ) -> None:
 
         self.reward_mapping = yaml.safe_load(open(reward_rule_path, 'r'))
@@ -35,6 +37,13 @@ class SentimentReward:
         self.sentiment_prompt = Template(yaml.safe_load(open(sentiment_prompt_path, 'r'))['input'])
 
         self.llm = base_vllm_model
+        self.efficiency_reward_sequence = self._allocate_efficiency_reward(
+            num_turns=num_turns, 
+            decay_factor=decay_factor
+        )
+
+        print(self.efficiency_reward_sequence)
+        raise SystemExit
 
 
     def __parse_output(self, output: str) -> str:
@@ -52,6 +61,16 @@ class SentimentReward:
         out_str = self.sentiment_mapping.get(out_str, '')
 
         return out_str
+
+    
+    def _allocate_efficiency_reward(
+            self,
+            num_turns: int,
+            sentiment_list: list,
+            decay_factor: float = 0.5,
+    ) -> list:
+        sequence = [1 * (decay_factor ** i) for i in range(num_turns)]
+        return sequence
 
 
     def get_sentiment(

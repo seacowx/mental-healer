@@ -24,6 +24,7 @@ class TherapeuticSession:
         sentiment_reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
         sentiment_mapping_path: str = './configs/emotion_to_sentiment.yaml',
         max_turns: int = 3,
+        decay_factor: float = 0.5,
     ):
         self.base_vllm_model = base_vllm_model
         self.patient_prompt_template_path = patient_prompt_template_path
@@ -45,6 +46,8 @@ class TherapeuticSession:
             reward_rule_path = sentiment_reward_rule_path,
             sentiment_mapping_path = sentiment_mapping_path,
             sentiment_prompt_path=sentiment_prompt_path,
+            num_turns=max_turns,
+            decay_factor=decay_factor,
         )
         self.coping_agent = coping_agent
         self.max_turns = max_turns
