@@ -66,11 +66,17 @@ class SentimentReward:
     def _allocate_efficiency_reward(
             self,
             num_turns: int,
-            sentiment_list: list,
             decay_factor: float = 0.5,
     ) -> list:
         sequence = [1 * (decay_factor ** i) for i in range(num_turns)]
         return sequence
+
+    
+    def _compute_efficiency_reward(
+        self,
+        sentiment_list: list,
+    ) -> list:
+        ...
 
 
     def get_sentiment(
