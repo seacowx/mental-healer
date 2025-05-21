@@ -35,8 +35,5 @@ def main():
         json.dump(test_data, f, indent=4)
 
 
-
-
-
 if __name__ == "__main__":
     main()
