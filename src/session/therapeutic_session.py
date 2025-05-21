@@ -128,6 +128,10 @@ class TherapeuticSession:
                 if active_coping_strategy_idx_list
             ]
 
+            print(active_sample_idx_list)
+            print(active_coping_strategy_idx_list)
+            raise SystemExit
+
             pbar.set_description(f'Generating Coping Utterance')
             # generate the therapist's utterance
             therapist_utterance_dict_list = self.therapist_agent.utter(
