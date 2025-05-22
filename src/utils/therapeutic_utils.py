@@ -19,12 +19,18 @@ class TherapeuticSessionBuffer:
         # sentiment buffer stores the sentiment after each turn of the therapeutic session
         self.sentiment_buffer = {}
         # coping strategies buffer stores the complete dialogue buffer of each coping strategy of each sample
-        self.coping_dialogue_buffer = [{
-            coping_strategy: [] for coping_strategy in self.coping_strategy_list
-        } for _ in range(self.batch_size)]
-        self.therapeutic_utterance_buffer = [{
-            coping_strategy: [] for coping_strategy in self.coping_strategy_list
-        } for _ in range(self.batch_size)]
+        self.coping_dialogue_buffer = [
+            {coping_strategy: [] for coping_strategy in self.coping_strategy_list } 
+            for _ in range(self.batch_size)
+        ]
+        self.therapist_utterance_buffer = [
+            {coping_strategy: [] for coping_strategy in self.coping_strategy_list} 
+            for _ in range(self.batch_size)
+        ]
+        self.patient_utterance_buffer = [
+            {coping_strategy: [] for coping_strategy in self.coping_strategy_list} 
+            for _ in range(self.batch_size)
+        ]
         
         # turn_idx -> list of thoughts
         self.thought_buffer = {'0': initial_thought_list}
@@ -44,8 +50,11 @@ class TherapeuticSessionBuffer:
             'role': role,
             'utterance': utterance,
         })
-        if 'role' == 'therapist':
-            self.therapeutic_utterance_buffer[sample_idx][coping_strategy].append(utterance)
+        match role:
+            case 'therapist':
+                self.therapist_utterance_buffer[sample_idx][coping_strategy].append(utterance)
+            case 'patient':
+                self.patient_utterance_buffer[sample_idx][coping_strategy].append(utterance)
 
 
     def update_thought_buffer(
