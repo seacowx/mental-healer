@@ -195,10 +195,12 @@ class TherapeuticSession:
 
             pbar.update(1)
 
-        print(session_buffer.show_therapeutic_utterance_buffer)
-        print('-' * 100)
+        print(session_buffer.show_therapist_utterance_buffer)
+        print('\n\n')
+        print(session_buffer.show_patient_utterance_buffer)
+        print('\n\n')
         print(session_buffer.show_thought_buffer)
-        print('-' * 100)
+        print('\n\n')
         print(session_buffer.show_sentiment_buffer)
         raise SystemExit
 
