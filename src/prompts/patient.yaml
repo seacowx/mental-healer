@@ -40,6 +40,6 @@ react_to_therapist_utterance:
     - Identify and consider any flaws, unrealistic assumptions, or dismissive elements in their message.
     - Determine whether the message presents at least 5 distinct and genuinely convincing points that could reasonably shift your current negative thought.
 
-    Only if the other person's message includes 5 or more strong points and lacks significant flaws should your updated thought express a clearly more positive sentiment. Otherwise, your thought should remain negative or only shift subtly.
+    Only if the other person's message includes 5 or more strong points and lacks significant flaws should your updated thought express a clearly more positive sentiment. Otherwise, your thought should be clearly negative.
 
     Make sure your response stays true to your persona and expresses your thought clearly from a first-person perspective. The updated thought should be similar in length to the original and wrapped using <updated_thought> and </updated_thought> tags.
