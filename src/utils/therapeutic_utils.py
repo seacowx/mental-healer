@@ -22,6 +22,9 @@ class TherapeuticSessionBuffer:
         self.coping_dialogue_buffer = [{
             coping_strategy: [] for coping_strategy in self.coping_strategy_list
         } for _ in range(self.batch_size)]
+        self.therapeutic_utterance_buffer = [{
+            coping_strategy: [] for coping_strategy in self.coping_strategy_list
+        } for _ in range(self.batch_size)]
         
         # turn_idx -> list of thoughts
         self.thought_buffer = {'0': initial_thought_list}
@@ -35,12 +38,14 @@ class TherapeuticSessionBuffer:
         role: str,
         sample_idx: int,
         coping_strategy: str,
-        coping_utterance: str,
+        utterance: str,
     ):
         self.coping_dialogue_buffer[sample_idx][coping_strategy].append({
             'role': role,
-            'utterance': coping_utterance,
+            'utterance': utterance,
         })
+        if 'role' == 'therapist':
+            self.therapeutic_utterance_buffer[sample_idx][coping_strategy].append(utterance)
 
 
     def update_thought_buffer(
@@ -70,6 +75,9 @@ class TherapeuticSessionBuffer:
     def show_dialogue_buffer(self) -> dict:
         return json.dumps(self.coping_dialogue_buffer)
 
+    @property
+    def show_therapeutic_utterance_buffer(self) -> dict:
+        return json.dumps(self.therapeutic_utterance_buffer)
     
     @property
     def show_thought_buffer(self) -> dict:
