@@ -85,8 +85,12 @@ class TherapeuticSessionBuffer:
         return json.dumps(self.coping_dialogue_buffer)
 
     @property
-    def show_therapeutic_utterance_buffer(self) -> dict:
-        return json.dumps(self.therapeutic_utterance_buffer)
+    def show_therapist_utterance_buffer(self) -> dict:
+        return json.dumps(self.therapist_utterance_buffer)
+    
+    @property
+    def show_patient_utterance_buffer(self) -> dict:
+        return json.dumps(self.patient_utterance_buffer)
     
     @property
     def show_thought_buffer(self) -> dict:
