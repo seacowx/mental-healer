@@ -90,7 +90,7 @@ class TherapeuticSession:
                 role=role,
                 sample_idx=utterance_idx,
                 coping_strategy=coping_strategy,
-                coping_utterance=coping_utterance,
+                utterance=coping_utterance,
             )
 
         # update the thought buffer after new thoughts are generated, this is indicated by the `turn_idx`
