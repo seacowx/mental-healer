@@ -199,8 +199,6 @@ class TherapeuticSession:
         print('\n\n')
         print(session_buffer.show_patient_utterance_buffer)
         print('\n\n')
-        print(session_buffer.show_thought_buffer)
-        print('\n\n')
         print(session_buffer.show_sentiment_buffer)
         raise SystemExit
 
