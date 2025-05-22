@@ -123,6 +123,8 @@ class TherapeuticSession:
 
         for turn_idx in pbar:
 
+            pbar.update(1)
+
             active_coping_strategy_idx_list = self._get_active_coping_strategy_list(
                 session_buffer=session_buffer,
             )
@@ -192,8 +194,6 @@ class TherapeuticSession:
                 sentiment_list=patient_sentiment_list,
                 turn_idx=turn_idx,
             )
-
-            pbar.update(1)
 
         print(session_buffer.show_therapist_utterance_buffer)
         print('\n\n')
