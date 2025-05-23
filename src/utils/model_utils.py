@@ -34,16 +34,20 @@ def load_offline_vllm_base_model(
 def load_all_models(
     base_model_path: str,
     coping_chat_template_path: str = '',
-    base_model_device: torch.device | None = None,
+    base_model_device: str | None = None,
 ): 
 
-    print(base_model_device)
+    extra_kwargs = {}
+    if base_model_device:
+        extra_kwargs['model_device'] = torch.device(base_model_device)
+
+    print(extra_kwargs)
     raise SystemExit
 
     base_offline_vllm_model = load_offline_vllm_base_model(
         base_model_path=base_model_path,
-        base_model_device=base_model_device,
         coping_chat_template_path=coping_chat_template_path,
+        **extra_kwargs,
     )
 
     return base_offline_vllm_model
