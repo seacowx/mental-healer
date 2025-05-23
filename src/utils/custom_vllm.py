@@ -60,7 +60,7 @@ class CustomLLM(LLM):
 
         # wrap device to torch.device
         if kwargs.get('device'):
-            kwargs['device'] = torch.device(kwargs['model_device'])
+            kwargs['device'] = torch.device(kwargs['device'])
 
         super().__init__(*args, **kwargs)
 
