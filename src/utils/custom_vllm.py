@@ -62,6 +62,9 @@ class CustomLLM(LLM):
         if kwargs.get('device'):
             kwargs['device'] = torch.device(kwargs['device'])
 
+        print(kwargs['device'])
+        raise SystemExit
+
         super().__init__(*args, **kwargs)
 
     
