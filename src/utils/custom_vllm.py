@@ -10,6 +10,7 @@ import warnings
 from jinja2 import Template
 from typing import Any, Optional, Union, cast
 
+import torch
 from vllm import LLM
 from vllm.lora.request import LoRARequest
 from vllm.sampling_params import SamplingParams
@@ -56,6 +57,13 @@ class CustomLLM(LLM):
         kwargs = {
             k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
         } 
+
+        # wrap device to torch.device
+        if kwargs.get('model_device'):
+            kwargs['device'] = torch.device(kwargs['model_device'])
+
+        print(kwargs)
+        raise SystemExit
 
         super().__init__(*args, **kwargs)
 

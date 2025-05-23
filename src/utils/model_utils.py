@@ -10,13 +10,6 @@ def load_offline_vllm_base_model(
     gpu_memory_utilization: float = 0.7,
 ) -> vLLMOffline:
 
-    extra_kwargs = {}
-    if base_model_device:
-        extra_kwargs['model_device'] = base_model_device
-        extra_kwargs['tensor_parallel_size'] = 1
-    else:
-        extra_kwargs['tensor_parallel_size'] = torch.cuda.device_count()
-
     # initialize the llm
     offline_vllm_model = vLLMOffline(
         model_path=base_model_path,
@@ -25,7 +18,7 @@ def load_offline_vllm_base_model(
         max_lora_rank=64,
         gpu_memory_utilization=gpu_memory_utilization,
         coping_chat_template_path=coping_chat_template_path,
-        **extra_kwargs,
+        model_device=base_model_device,
     )
 
     return offline_vllm_model
