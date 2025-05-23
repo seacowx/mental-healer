@@ -376,9 +376,6 @@ class vLLMOffline:
         if coping_chat_template_path:
             vllm_config['coping_chat_template_path'] = coping_chat_template_path
 
-        print(vllm_config['device'])
-        raise SystemExit
-
         # use custom vllm model which supports template-based coping with reasoning
         self.vllm_model = CustomLLM(
             model=self.model_path,

@@ -10,6 +10,9 @@ def load_offline_vllm_base_model(
     gpu_memory_utilization: float = 0.7,
 ) -> vLLMOffline:
 
+    print(base_model_device)
+    raise SystemExit
+
     extra_kwargs = {}
     if base_model_device:
         extra_kwargs['model_device'] = base_model_device
