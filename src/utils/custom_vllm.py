@@ -58,10 +58,6 @@ class CustomLLM(LLM):
             k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
         } 
 
-        print(kwargs['device'])
-        print(kwargs['tensor_parallel_size'])
-        raise SystemExit
-
         super().__init__(*args, **kwargs)
 
     
