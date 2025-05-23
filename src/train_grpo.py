@@ -94,6 +94,8 @@ def main():
         base_vllm_model=offline_vllm_base_model,
     )
 
+    raise SystemExit
+
     # from debug import test_sentiment
     # test_sentiment(sentiment_reward_model=sentiment_reward_model)
     # raise SystemExit
