@@ -83,7 +83,7 @@ def main():
 
     offline_vllm_base_model = load_all_models(
         base_model_path=grpo_config.base_agent_path,
-        sentiment_reward_device=torch.device(grpo_config.sentiment_reward_device),
+        base_model_device=torch.device(grpo_config.base_model_device),
     )
 
     sentiment_reward_model = SentimentReward(

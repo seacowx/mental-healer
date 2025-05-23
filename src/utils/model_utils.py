@@ -6,13 +6,13 @@ from utils.vllm_inference_utils import vLLMOffline
 def load_offline_vllm_base_model(
     base_model_path: str,
     coping_chat_template_path: str = '',
-    sentiment_reward_device: torch.device | None = None,
+    base_model_device: torch.device | None = None,
     gpu_memory_utilization: float = 0.7,
 ) -> vLLMOffline:
 
     extra_kwargs = {}
-    if sentiment_reward_device:
-        extra_kwargs['model_device'] = sentiment_reward_device
+    if base_model_device:
+        extra_kwargs['model_device'] = base_model_device
         extra_kwargs['tensor_parallel_size'] = 1
     else:
         extra_kwargs['tensor_parallel_size'] = torch.cuda.device_count()
@@ -34,12 +34,12 @@ def load_offline_vllm_base_model(
 def load_all_models(
     base_model_path: str,
     coping_chat_template_path: str = '',
-    sentiment_reward_device: torch.device | None = None,
+    base_model_device: torch.device | None = None,
 ): 
 
     base_offline_vllm_model = load_offline_vllm_base_model(
         base_model_path=base_model_path,
-        sentiment_reward_device=sentiment_reward_device,
+        base_model_device=base_model_device,
         coping_chat_template_path=coping_chat_template_path,
     )
 
