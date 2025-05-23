@@ -31,9 +31,9 @@ logging_first_step: true
 log_completions: true
 
 # device allocation
-base_model_device: cuda:0
-trl_vllm_server_device: cuda:1
+base_model_device: "cuda:0"
+trl_vllm_server_device: "cuda:1"
 
 # model path
-model_path: Qwen/Qwen3-4B
-base_agent_path: Qwen/Qwen3-8B
+model_path: "Qwen/Qwen3-4B"
+base_agent_path: "Qwen/Qwen3-8B"
