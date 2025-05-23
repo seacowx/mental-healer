@@ -59,9 +59,7 @@ class CustomLLM(LLM):
         } 
 
         if kwargs.get('device'):
-            print(kwargs['device'])
-            raise SystemExit
-            device_number = kwargs['device'].split(':')[-1]
+            device_number = str(kwargs['device']).split(':')[-1]
             torch.cuda.set_device(int(device_number))
 
         super().__init__(*args, **kwargs)
