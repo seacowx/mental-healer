@@ -19,7 +19,7 @@ class PatientAgent(LMAgent):
 
     def __init__(
         self,
-        coping_strategy_list: list[str],
+        coping_strategy_config_path: str,
         base_vllm_model: vLLMOffline | None = None,
         openai_client: OpenAI | None = None,
         openai_async_client: AsyncOpenAI | OpenAIAsyncInference | None = None,
@@ -28,7 +28,7 @@ class PatientAgent(LMAgent):
 
         self.meta_persona_profile = []
         self.role_playing_instruction_list = []
-        self.coping_strategy_list = coping_strategy_list
+        self.coping_strategy_list = yaml.safe_load(open(coping_strategy_config_path, 'r'))
 
         # organize patient prompt templates
         self.patient_template = yaml.safe_load(

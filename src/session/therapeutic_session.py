@@ -19,7 +19,7 @@ class TherapeuticSession:
         coping_agent: Optional[CopingAgent] = None,
         coping_cot_templates_path: str = './prompts/coping_strategies.yaml',
         patient_prompt_template_path: str = './prompts/patient.yaml',
-        coping_strategies_path: str = './configs/coping_strategy.yaml',
+        coping_strategy_config_path: str = './configs/coping_strategy.yaml',
         sentiment_prompt_path: str = './prompts/sentiment.yaml',
         sentiment_reward_rule_path: str = './configs/sentiment_reward_rules.yaml',
         sentiment_mapping_path: str = './configs/emotion_to_sentiment.yaml',
@@ -31,7 +31,6 @@ class TherapeuticSession:
         self.coping_cot_templates = yaml.safe_load(open(coping_cot_templates_path))
         self.patient_prompt_template = yaml.safe_load(open(patient_prompt_template_path))
         self.patient_thought_update_template = self.patient_prompt_template['react_to_therapist_utterance']
-        self.coping_strategy_list = yaml.safe_load(open(coping_strategies_path, 'r'))
 
         self.therapist_agent = TherapistAgent(
             base_vllm_model=base_vllm_model,
@@ -39,7 +38,7 @@ class TherapeuticSession:
         self.patient_agent = PatientAgent(
             base_vllm_model=base_vllm_model,
             patient_template_path=patient_prompt_template_path,
-            coping_strategy_list=self.coping_strategy_list,
+            coping_strategy_config_path=coping_strategy_config_path,
         )
         self.sentiment_reward = SentimentReward(
             base_vllm_model=base_vllm_model,
