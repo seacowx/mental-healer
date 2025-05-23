@@ -39,7 +39,7 @@ def load_all_models(
 
     extra_kwargs = {}
     if base_model_device:
-        extra_kwargs['model_device'] = torch.device(base_model_device)
+        extra_kwargs['base_model_device'] = torch.device(base_model_device)
 
     base_offline_vllm_model = load_offline_vllm_base_model(
         base_model_path=base_model_path,
