@@ -44,6 +44,8 @@ def load_all_models(
     if base_model_device:
         extra_kwargs['base_model_device'] = torch.device(base_model_device)
 
+    print(extra_kwargs['base_model_device'])
+
     base_offline_vllm_model = load_offline_vllm_base_model(
         base_model_path=base_model_path,
         coping_chat_template_path=coping_chat_template_path,
