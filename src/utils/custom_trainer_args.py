@@ -34,7 +34,7 @@ class GRPOTrainerArgs(BaseModel):
 
     # device allocation
     trl_vllm_server_device: str
-    sentiment_reward_device: str
+    base_model_device: str
 
     # model path
     model_path: str
