@@ -81,9 +81,6 @@ def main():
     grpo_config_dict = yaml.safe_load(open(args.grpo_config, 'r'))
     grpo_config = GRPOTrainerArgs(**grpo_config_dict)
 
-    print(grpo_config)
-    raise SystemExit
-
     offline_vllm_base_model = load_all_models(
         base_model_path=grpo_config.base_agent_path,
         base_model_device=grpo_config.base_model_device,

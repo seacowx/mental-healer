@@ -58,9 +58,9 @@ class CustomLLM(LLM):
             k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
         } 
 
-        # wrap device to torch.device
-        if kwargs.get('device'):
-            kwargs['device'] = torch.device(kwargs['device'])
+        print(kwargs['device'])
+        print(kwargs['tensor_parallel_size'])
+        raise SystemExit
 
         super().__init__(*args, **kwargs)
 

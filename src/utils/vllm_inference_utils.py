@@ -365,7 +365,7 @@ class vLLMOffline:
 
         vllm_config = {}
         vllm_config['max_model_len'] = max_model_len
-        vllm_config['device'] = model_device if model_device else 'auto'
+        vllm_config['device'] = torch.device(model_device) if model_device else 'auto'
         vllm_config['tensor_parallel_size'] = 1 if model_device else torch.cuda.device_count()
         vllm_config['gpu_memory_utilization'] = gpu_memory_utilization
         vllm_config['quantization'] = quantization if quantization else None
