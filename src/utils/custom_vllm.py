@@ -58,6 +58,9 @@ class CustomLLM(LLM):
             k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
         } 
 
+        if kwargs.get('device'):
+            torch.cuda.set_device(kwargs['device'])
+
         super().__init__(*args, **kwargs)
 
     
