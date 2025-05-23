@@ -37,6 +37,9 @@ def load_all_models(
     base_model_device: torch.device | None = None,
 ): 
 
+    print(base_model_device)
+    raise SystemExit
+
     base_offline_vllm_model = load_offline_vllm_base_model(
         base_model_path=base_model_path,
         base_model_device=base_model_device,
