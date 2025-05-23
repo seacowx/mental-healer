@@ -59,16 +59,10 @@ class CustomLLM(LLM):
         } 
 
         # wrap device to torch.device
-        if kwargs.get('model_device'):
-            kwargs.pop('model_device')
+        if kwargs.get('device'):
+            kwargs['device'] = torch.device(kwargs['model_device'])
 
-            super().__init__(
-                *args,
-                device=torch.device(kwargs['model_device']),
-                **kwargs,
-            )
-        else:
-            super().__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     
     def _make_coping_chat_messages(
