@@ -6,12 +6,9 @@ from utils.vllm_inference_utils import vLLMOffline
 def load_offline_vllm_base_model(
     base_model_path: str,
     coping_chat_template_path: str = '',
-    base_model_device: torch.device | None = None,
+    base_model_device: str | None = None,
     gpu_memory_utilization: float = 0.7,
 ) -> vLLMOffline:
-
-    print(base_model_device)
-    raise SystemExit
 
     extra_kwargs = {}
     if base_model_device:
@@ -40,16 +37,10 @@ def load_all_models(
     base_model_device: str | None = None,
 ): 
 
-    extra_kwargs = {}
-    if base_model_device:
-        extra_kwargs['base_model_device'] = torch.device(base_model_device)
-
-    print(extra_kwargs['base_model_device'])
-
     base_offline_vllm_model = load_offline_vllm_base_model(
         base_model_path=base_model_path,
         coping_chat_template_path=coping_chat_template_path,
-        **extra_kwargs,
+        base_model_device=base_model_device,
     )
 
     return base_offline_vllm_model
