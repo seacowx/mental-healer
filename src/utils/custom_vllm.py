@@ -59,7 +59,8 @@ class CustomLLM(LLM):
         } 
 
         if kwargs.get('device'):
-            torch.cuda.set_device(kwargs['device'])
+            device_number = kwargs['device'].split(':')[-1]
+            torch.cuda.set_device(int(device_number))
 
         super().__init__(*args, **kwargs)
 
