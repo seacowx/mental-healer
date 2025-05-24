@@ -25,8 +25,6 @@ from agents.patient import PatientAgent
 from rewards.sentiment import SentimentReward
 from session.therapeutic_session import TherapeuticSession
 
-os.environ["VLLM_DISABLE_COMPILATION"] = "1"
-
 
 def set_seed(seed: int) -> None:
     random.seed(seed)

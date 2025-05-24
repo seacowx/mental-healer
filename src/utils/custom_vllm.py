@@ -58,10 +58,6 @@ class CustomLLM(LLM):
             k: v for k, v in kwargs.items() if k != 'coping_chat_template_path'
         } 
 
-        if kwargs.get('device'):
-            device_number = str(kwargs['device']).split(':')[-1]
-            torch.cuda.set_device(int(device_number))
-
         super().__init__(*args, **kwargs)
 
     
