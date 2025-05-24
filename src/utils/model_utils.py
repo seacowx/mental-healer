@@ -1,4 +1,4 @@
-
+import os
 import ray
 import torch
 import socket
@@ -37,19 +37,42 @@ def load_all_models(
 
     # Initialize Ray
     ray.init()
-    num_models = 4
+    num_models = 1
     pg = placement_group(
         name="llm_pg",
         bundles=[{"GPU": 1, "CPU": 1} for _ in range(num_models)],
         strategy="STRICT_PACK"  # or "PACK" or "SPREAD" depending on your needs
     )
     ray.get(pg.ready())
-    raise SystemExit
 
-    base_offline_vllm_model = load_offline_vllm_base_model(
-        base_model_path=base_model_path,
-        coping_chat_template_path=coping_chat_template_path,
-        base_model_device=base_model_device,
-    )
+    @ray.remote(num_gpus=1, num_cpus=1)
+    class LLMActor:
+        def __init__(self, base_model_path):
+            # Get the GPU IDs assigned to this actor by Ray
+            gpu_ids = ray.get_gpu_ids()
+            # Set CUDA_VISIBLE_DEVICES to limit the GPUs visible to this process
+            os.environ["CUDA_VISIBLE_DEVICES"] = ",".join(str(int(gpu_id)) for gpu_id in gpu_ids)
+            # Set the default CUDA device
+            torch.cuda.set_device(0)  # Since only one GPU is visible, it's cuda:0
+            # Initialize the LLM model
+            self.offline_vllm_model = load_offline_vllm_base_model(
+                base_model_path=base_model_path,
+                coping_chat_template_path=coping_chat_template_path,
+                base_model_device=base_model_device,
+            )
+
+    # Create actors
+    actors = []
+    for i in range(num_models):
+        # Assign the actor to a specific bundle in the placement group
+        actor = LLMActor.options(
+            scheduling_strategy=PlacementGroupSchedulingStrategy(
+                placement_group=pg,
+                placement_group_bundle_index=i
+            )
+        ).remote(base_model_path)
+        actors.append(actor)
+
+    raise SystemExit
 
     return base_offline_vllm_model
