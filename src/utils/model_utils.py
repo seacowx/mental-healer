@@ -106,7 +106,16 @@ def load_all_models(
         ).remote(base_model_path)
         actors.append(actor)
 
-        actor.inference.remote(message_list=["Hello, how are you?"])
+        # Generate outputs using the actors
+        futures = []
+        for actor in actors:
+            future = actor.inference.remote(message_list=["Hello, how are you?"])
+            futures.append(future)
+
+        # Retrieve and print the outputs
+        outputs = ray.get(futures)
+        for i, output in enumerate(outputs):
+            print(f"Output from model {i+1}: {output}")
 
     raise SystemExit
     
