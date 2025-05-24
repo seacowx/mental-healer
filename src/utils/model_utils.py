@@ -88,6 +88,7 @@ def load_all_models(
                 active_sample_idx_list=active_sample_idx_list,
                 active_coping_strategy_idx_list=active_coping_strategy_idx_list,
                 show_tqdm_bar=show_tqdm_bar,
+                **kwargs,
             )
             return outputs
 
