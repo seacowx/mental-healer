@@ -4,8 +4,10 @@ import torch
 import socket
 from ray.util.placement_group import placement_group
 from ray.util.scheduling_strategies import PlacementGroupSchedulingStrategy
+from vllm.lora.request import LoRARequest
 
 from utils.vllm_inference_utils import vLLMOffline
+from utils.therapeutic_utils import TherapeuticSessionBuffer
 
 
 def load_offline_vllm_base_model(
