@@ -73,6 +73,8 @@ def load_all_models(
         ).remote(base_model_path)
         actors.append(actor)
 
+        actor.offline_vllm_model.inference.remote(message_list=["Hello, how are you?"])
+
     raise SystemExit
 
     return base_offline_vllm_model
