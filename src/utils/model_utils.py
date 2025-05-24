@@ -61,6 +61,36 @@ def load_all_models(
                 base_model_device=base_model_device,
             )
 
+        
+        def inference(
+            self, 
+            message_list: list = [], 
+            situation_desc_list: list = [],
+            patient_thought_list: list[list[str]] = [],
+            patient_persona_profile_desc_list: list = [],
+            session_buffer: TherapeuticSessionBuffer = None,
+            lora_request: LoRARequest = None,
+            is_coping_utterance: bool = False,
+            active_sample_idx_list: list[int] = [],
+            active_coping_strategy_idx_list: list[list[int]] = [],
+            show_tqdm_bar: bool = True,
+            **kwargs
+        ) -> list:
+            # Generate text using the LLM instance
+            outputs = self.offline_vllm_model.inference(
+                message_list=message_list, 
+                situation_desc_list=situation_desc_list,
+                patient_thought_list=patient_thought_list,
+                patient_persona_profile_desc_list=patient_persona_profile_desc_list,
+                session_buffer=session_buffer,
+                lora_request=lora_request,
+                is_coping_utterance=is_coping_utterance,
+                active_sample_idx_list=active_sample_idx_list,
+                active_coping_strategy_idx_list=active_coping_strategy_idx_list,
+                show_tqdm_bar=show_tqdm_bar,
+            )
+            return outputs
+
     # Create actors
     actors = []
     for i in range(num_models):
@@ -73,8 +103,13 @@ def load_all_models(
         ).remote(base_model_path)
         actors.append(actor)
 
-        actor.offline_vllm_model.inference.remote(message_list=["Hello, how are you?"])
+        actor.inference.remote(message_list=["Hello, how are you?"])
 
     raise SystemExit
+    
+
+    # Get the first actor's model
+    first_actor = actors[0]
+    first_actor.offline_vllm_model.inference.remote(message_list=["Hello, how are you?"])
 
     return base_offline_vllm_model
