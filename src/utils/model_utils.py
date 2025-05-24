@@ -1,5 +1,10 @@
 
+import ray
 import torch
+import socket
+from ray.util.placement_group import placement_group
+from ray.util.scheduling_strategies import PlacementGroupSchedulingStrategy
+
 from utils.vllm_inference_utils import vLLMOffline
 
 
@@ -29,6 +34,17 @@ def load_all_models(
     coping_chat_template_path: str = '',
     base_model_device: str | None = None,
 ): 
+
+    # Initialize Ray
+    ray.init()
+    num_models = 4
+    pg = placement_group(
+        name="llm_pg",
+        bundles=[{"GPU": 1, "CPU": 1} for _ in range(num_models)],
+        strategy="STRICT_PACK"  # or "PACK" or "SPREAD" depending on your needs
+    )
+    ray.get(pg.ready())
+    raise SystemExit
 
     base_offline_vllm_model = load_offline_vllm_base_model(
         base_model_path=base_model_path,
